@@ -6,7 +6,7 @@ body, html {
   height: 100%;
   margin: 0;
   padding: 0; 
-  background-image: url('food_image.jpg');
+  background-image: url('food_background2.jpg');
   background-size: cover; /* modalità di ridimensionamento dell'immagine */
   background-position: center;
   background-repeat: no-repeat; /* posizione dell'immagine */
@@ -24,7 +24,7 @@ body, html {
 
 /* RIEMPI IL TUO CARRELLO div */
 #ritc_div {
-  height:25%;
+  height:10%;
   margin:auto;
   text-align:center;
 }
@@ -32,6 +32,12 @@ body, html {
 /* recipes div */
 #recipes_div {
   height:57%;
+  margin:auto;
+  text-align:center;
+}
+
+#padding_div {
+  height:15%;
   margin:auto;
   text-align:center;
 }
