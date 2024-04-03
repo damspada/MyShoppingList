@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap'); 
+
+/* Bottone My Shopping List */
+.button_shopping {
+  font-family: "Pacifico", cursive;
+  padding: 17px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 0;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 40px;
+  transition: all 0.5s ease;
+}
+  
+.button_shopping:hover {
+  letter-spacing: 3px;
+  background-color: hsl(147, 91%, 39%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(33, 131, 20) 0px 7px 29px 0px;
+}
+  
+.button_shopping:active {
+  letter-spacing: 3px;
+  background-color: hsl(147, 91%, 39%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(33, 131, 20) 0px 0px 0px 0px;
+  transition: 50ms;
+}
+
+/* Stili per il centro del bottone */
+.centrato {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Backgroud */
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('food_image.jpg');
+  background-size: cover; /* modalità di ridimensionamento dell'immagine */
+  background-position: center;
+  background-repeat: no-repeat; /* posizione dell'immagine */
+  background-attachment: fixed;
+}
+
+
+/* CSS botton_user*/
+.Btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: fixed;
+  top: 10px; /* Regola la distanza dal top della pagina */
+  right: 10px; /* Regola la distanza dal lato destro della pagina */
+  z-index: 1000;
+  overflow: hidden;
+  transition-duration: .3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: #09be48;
+}
+
+/* plus sign */
+.sign {
+  width: 100%;
+  transition-duration: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign svg {
+  width: 30px;
+}
+
+.sign svg path {
+  fill: white;
+}
+/* text */
+.text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: .3s;
+}
+/* hover effect on button width */
+.Btn:hover {
+  width: 150px;
+  border-radius: 40px;
+  transition-duration: .3s;
+}
+
+.Btn:hover .sign {
+  width: 30%;
+  transition-duration: .3s;
+  padding-left: 10px;
+}
+/* hover effect button's text */
+.Btn:hover .text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: .3s;
+  padding-right: 10px;
+}
+/* button click effect*/
+.Btn:active {
+  transform: translate(2px ,2px);
+}
