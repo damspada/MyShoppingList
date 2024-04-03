@@ -1,13 +1,11 @@
 /* font per RIEMPI IL TUO CARRELLO */
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap'); 
 
-/* SEZIONI */
-
 /* Backgroud */
-body {
+body, html {
   height: 100%;
   margin: 0;
-  padding: 0;
+  padding: 0; 
   background-image: url('food_image.jpg');
   background-size: cover; /* modalità di ridimensionamento dell'immagine */
   background-position: center;
@@ -15,6 +13,7 @@ body {
   background-attachment: fixed;
 }
 
+/* SEZIONI */
 
 /* login div */
 #top_div {
