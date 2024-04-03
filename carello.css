@@ -1,0 +1,20 @@
+/* Backgroud */
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0; 
+    background-image: url('Immagini/food_background2.jpg');
+    background-size: cover; /* modalità di ridimensionamento dell'immagine */
+    background-position: center;
+    background-repeat: no-repeat; /* posizione dell'immagine */
+    background-attachment: fixed;
+  }
+
+  #top_div {
+    height:10%;
+    margin:auto;
+    text-align:left;
+  }
+
+
+ 
