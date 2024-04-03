@@ -12,9 +12,44 @@ body, html {
 
   #top_div {
     height:10%;
-    margin:auto;
+    margin:20px;
     text-align:left;
   }
 
-
- 
+  .search {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .search input[type="text"] {
+    width: 600px; /* Larghezza desiderata */
+    height: 30px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search button[type="submit"] {
+    background-color: rgb(248, 191, 3);
+    height: 30px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: .9s ease;
+  }
+  
+  .search button[type="submit"]:hover {
+    height: 30px;
+    transform: scale(1.1);
+    color: rgb(255, 255, 255);
+    background-color: rgb(204, 94, 4);
+  }
+  
