@@ -6,7 +6,7 @@ body, html {
   height: 100%;
   margin: 0;
   padding: 0; 
-  background-image: url('food_background2.jpg');
+  background-image: url('Immagini/food_background2.jpg');
   background-size: cover; /* modalità di ridimensionamento dell'immagine */
   background-position: center;
   background-repeat: no-repeat; /* posizione dell'immagine */
@@ -84,7 +84,7 @@ body, html {
 /* Stili per il centro del bottone */
 .centrato {
   position: absolute;
-  top: 30%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
