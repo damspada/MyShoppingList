@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
-{
+@import url("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css");
+@import url(https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css);
+
+* {
   margin: 0px;
   padding: 0px;
 }
@@ -67,15 +71,15 @@ button {
 
 /******* Middle section CSS Start ******/
 /* -------- Landing page ------- */
-.game-section {
+.recipe-section {
   padding: 60px 50px;
 }
-.game-section .owl-stage {
+.recipe-section .owl-stage {
   margin: 15px 0;
   display: flex;
   display: -webkit-flex;
 }
-.game-section .item {
+.recipe-section .item {
   margin: 0 15px 60px;
   width: 320px;
   height: 400px;
@@ -91,12 +95,12 @@ button {
   -webkit-transition: all 0.4s ease-in-out;
   cursor: pointer;
 }
-.game-section .item.active {
+.recipe-section .item.active {
   width: 500px;
   box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
   -webkit-box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
 }
-.game-section .item:after {
+.recipe-section .item:after {
   content: "";
   display: block;
   position: absolute;
@@ -106,7 +110,7 @@ button {
   top: 0;
   background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
 }
-.game-section .item-desc {
+.recipe-section .item-desc {
   padding: 0 24px 12px;
   color: #fff;
   position: relative;
@@ -117,23 +121,23 @@ button {
   transition: all 0.4s ease-in-out;
   -webkit-transition: all 0.4s ease-in-out;
 }
-.game-section .item.active .item-desc {
+.recipe-section .item.active .item-desc {
   transform: none;
   -webkit-transform: none;
 }
-.game-section .item-desc p {
+.recipe-section .item-desc p {
   opacity: 0;
   -webkit-transform: translateY(32px);
   transform: translateY(32px);
   transition: all 0.4s ease-in-out 0.2s;
   -webkit-transition: all 0.4s ease-in-out 0.2s;
 }
-.game-section .item.active .item-desc p {
+.recipe-section .item.active .item-desc p {
   opacity: 1;
   -webkit-transform: translateY(0);
   transform: translateY(0);
 }
-.game-section .owl-theme.custom-carousel .owl-dots {
+.recipe-section .owl-theme.custom-carousel .owl-dots {
   margin-top: -20px;
   position: relative;
   z-index: 5;
@@ -153,18 +157,18 @@ button {
   }
 
   /* -------- Landing page ------- */
-  .game-section {
+  .recipe-section {
     padding: 50px 30px;
   }
-  .game-section .item {
+  .recipe-section .item {
     margin: 0 12px 60px;
     width: 260px;
     height: 360px;
   }
-  .game-section .item.active {
+  .recipe-section .item.active {
     width: 400px;
   }
-  .game-section .item-desc {
+  .recipe-section .item-desc {
     transform: translateY(calc(100% - 46px));
     -webkit-transform: translateY(calc(100% - 46px));
   }
@@ -184,18 +188,18 @@ button {
   }
 
   /* -------- Landing page ------- */
-  .game-section {
+  .recipe-section {
     padding: 50px 30px 40px;
   }
-  .game-section .item {
+  .recipe-section .item {
     margin: 0 12px 60px;
     width: 240px;
     height: 330px;
   }
-  .game-section .item.active {
+  .recipe-section .item.active {
     width: 360px;
   }
-  .game-section .item-desc {
+  .recipe-section .item-desc {
     transform: translateY(calc(100% - 42px));
     -webkit-transform: translateY(calc(100% - 42px));
   }
@@ -218,20 +222,20 @@ button {
   }
 
   /* -------- Landing page ------- */
-  .game-section {
+  .recipe-section {
     padding: 30px 15px 20px;
   }
-  .game-section .item {
+  .recipe-section .item {
     margin: 0 10px 40px;
     width: 200px;
     height: 280px;
   }
-  .game-section .item.active {
+  .recipe-section .item.active {
     width: 270px;
     box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
     -webkit-box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
   }
-  .game-section .item-desc {
+  .recipe-section .item-desc {
     padding: 0 14px 5px;
     transform: translateY(calc(100% - 42px));
     -webkit-transform: translateY(calc(100% - 42px));
