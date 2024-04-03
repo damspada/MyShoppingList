@@ -1,6 +1,42 @@
 /* font per RIEMPI IL TUO CARRELLO */
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap'); 
 
+/* SEZIONI */
+
+body, html, #container {
+  height: 100%;
+}
+
+/* login div */
+#top_div {
+  height:10%;
+  margin:auto;
+  text-align:center;
+}
+
+/* RIEMPI IL TUO CARRELLO div */
+#ritc_div {
+  height:25%;
+  margin:auto;
+  text-align:center;
+}
+
+/* recipes div */
+#recipes_div {
+  height:50%;
+  margin:auto;
+  text-align:center;
+}
+
+/* social div */
+#social_div {
+  height:15%;
+  margin:auto;
+  text-align:center;
+}
+
+/* FINE SEZIONI */
+
 /* Bottone My Shopping List */
 .button_shopping {
   font-family: "Pacifico", cursive;

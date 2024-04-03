@@ -2,84 +2,79 @@
 <html lang="it">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="cart_2.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="cart_2.png">
-    
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="recipes.css">
-    
-    <title>MyShoppingList</title>
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="cart_2.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="cart_2.png">
+
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="recipes.css">
+
+  <title>MyShoppingList</title>
+
 </head>
 
 <body>
+    <div id="top_div">
+      <!-- Bottone User -->
+      <button class="Btn">
+        <div class="sign"><img src="user-icon.png"></div>
+        <div class="text">Accedi</div>
+      </button>
+    </div>
 
-    <!-- Bottone principale -->
-    <div class="centrato">
+    <div id="ritc_div">
+      <div class="centrato">
         <button class="button_shopping">RIEMPI IL TUO CARELLO</button>
+      </div>
     </div>
 
-    <!-- Bottone User -->
-    <div>
-        <button class="Btn">
-            <div class="sign"><img src="user-icon.png" ></div> 
-            <div class="text">Accedi</div>
-        </button>   
-    </div>
-    
+    <div id="recipes_div">
+      <section class="recipe-section">
 
-
-
-
-    <div style="width: 100%; height: 600px;">  
-        <div style="width: 100%; height: 300px;"> 
-        
-        </div>
-
-    <div style="width:100%; height: 300px;">  
-        
-    <!-- Sezione Ricette -->
-    <section class="recipe-section">
-        
         <div class="owl-carousel custom-carousel owl-theme">
-          <div class="item active" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/dota-2.jpg);">
+          <div class="item active"
+            style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/dota-2.jpg);">
             <div class="item-desc">
               <h3>Dota 2</h3>
               <p>Dota 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the
                 Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
             </div>
           </div>
-          <div class="item" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/winter-3.jpg);">
+          <div class="item"
+            style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/winter-3.jpg);">
             <div class="item-desc">
               <h3>The Witcher 3</h3>
               <p>The Witcher 3 is a multiplayer online battle arena by Valve. The game is a sequel to Defense
                 of the Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
             </div>
           </div>
-          <div class="item" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/rdr-2.jpg);">
+          <div class="item"
+            style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/rdr-2.jpg);">
             <div class="item-desc">
               <h3>RDR 2</h3>
               <p>RDR 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the
                 Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
             </div>
           </div>
-          <div class="item" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/pubg.jpg);">
+          <div class="item"
+            style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/pubg.jpg);">
             <div class="item-desc">
               <h3>PUBG Mobile</h3>
               <p>PUBG 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the
                 Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
             </div>
           </div>
-          <div class="item" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/fortnite.jpg);">
+          <div class="item"
+            style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/fortnite.jpg);">
             <div class="item-desc">
               <h3>Fortnite</h3>
               <p>Battle royale where 100 players fight to be the last person standing. which was a community-created mod
                 for Blizzard Entertainment's Warcraft III.</p>
             </div>
           </div>
-          <div class="item" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/far-cry-5.jpg);">
+          <div class="item"
+            style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/far-cry-5.jpg);">
             <div class="item-desc">
               <h3>Far Cry 5</h3>
               <p>Far Cry 5 is a 2018 first-person shooter game developed by Ubisoft.
@@ -87,14 +82,21 @@
             </div>
           </div>
         </div>
-        </div>
+    
       </section>
+
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
       <script src="index.js"></script>
-    </div>  
-</div>  
-    
+    </div>
+
+    <div id="social_div">
+
+    </div>
+
+  
+  
+
 </body>
 
 </html>
