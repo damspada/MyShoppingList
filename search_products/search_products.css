@@ -1,4 +1,11 @@
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    font-family: 'Open Sans', sans-serif;
+}
 
 body{
     width: 100%;
@@ -41,6 +48,14 @@ body{
     margin:auto;
     text-align:center;
   }
+
+.main {
+    width: 100%;
+    height: max-content;
+    min-height: 100vh;
+    padding: 2%;
+    background-color: green;
+}
 
 
 /*catalogo dei filtri*/
