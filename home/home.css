@@ -1,25 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
-
-.text_slogan {
-    position: absolute;
-    top: 55%; /* Posiziona il testo al centro verticalmente */
-    left: 47%; /* Posiziona il testo al centro orizzontalmente */
-    transform: translate(-80%, -50%); /* Sposta il testo di -50% rispetto al proprio centro */
-    color: black; /* Colore del testo */
-    font-size: 40px; /* Dimensione del testo */
-    font-weight: bold; /* Grassetto */
-    font-family: "Playfair Display", sans-serif;
-}
-
-.container{
-    width: 100%;
-    height: auto;
-}
-
-.container img{
-    width: 100%;
-}
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Serif+Display:ital@0;1&family=Orelega+One&family=Ultra&display=swap');
 
 /* NavBar */
 *{
@@ -83,7 +63,7 @@ body{
     color: black;
     font-weight: 500;
     text-decoration: none;
-    margin-left: 40px;
+    margin-left: 80px;
 }
 
 .navbar a::before{
@@ -93,7 +73,7 @@ body{
     left: 0;
     width: 0;
     height: 2px;
-    background: black;
+    background: #00BF63;
     transition: .3s;
 }
 
@@ -103,7 +83,66 @@ body{
 
 
 
+/* Slogan e background */
+.text_slogan {
+    position: absolute;
+    top: 45%; /* Posiziona il testo al centro verticalmente */
+    left: 47%; /* Posiziona il testo al centro orizzontalmente */
+    transform: translate(-110%, -50%); /* Sposta il testo di -50% rispetto al proprio centro */
+    color: black; /* Colore del testo */
+    font-size: 60px; /* Dimensione del testo */
+    font-weight: bold; /* Grassetto */
+    font-family: "Dm Serif Display", serif;
+}
 
+.container{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.container img{
+    width: 100%;
+}
+
+/* Bottone Riempi il carrello */
+.button_shopping {
+    position: absolute;
+    font-family: "Montserrat", sans-serif;
+    padding: 17px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    border: 0;
+    background-color: #00BF63;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1.5px;
+    font-size: 30px;
+    transition: all 0.5s ease;
+    font-weight: bold;
+}
+
+.button_shopping:hover {
+    letter-spacing: 3px;
+    background-color: #06e679;
+    color: black;
+    box-shadow: #00BF63 0px 7px 29px 0px;
+}
+
+.button_shopping:active {
+    letter-spacing: 3px;
+    background-color: #00BF63;
+    color: black;
+    box-shadow: #00BF63 0px 0px 0px 0px;
+    transition: 50ms;
+}
+
+/* Stili per il centro del bottone */
+.centrato {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 
 
@@ -124,7 +163,7 @@ z-index: 1000;
 overflow: hidden;
 transition-duration: .3s;
 box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-background-color: rgb(248, 191, 3);
+background-color: #00BF63;
 }
 
 /* plus sign */
@@ -176,4 +215,43 @@ padding-right: 10px;
 /* button click effect*/
 .Btn:active {
 transform: translate(2px ,2px);
+}
+
+
+/* Obiettivi */
+.obiettivi_container{
+    display: flex;
+    justify-content: space-around;
+    padding: 100px;
+}
+.obiettivi{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 2px solid #00BF63;
+    color: rgb(116, 30, 30);
+    font-weight: bold;
+    margin: 10px;
+}
+.obiettivi1 {
+    background-image: url(soldi_2.png); 
+    background-repeat: no-repeat;
+}
+.obiettivi2 {
+     
+    background-repeat: no-repeat;
+}
+.obiettivi3 {
+     
+    background-repeat: no-repeat;
+}
+
+.text_obiettivi{
+    font-family: "Dm Serif Display", serif;
+    font-size: 30px;
+    text-align: center;
 }
