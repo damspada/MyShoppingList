@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Serif+Display:ital@0;1&family=Orelega+One&family=Ultra&display=swap');
 
-/* NavBar */
+/*-------------------------------- NavBar --------------------------------*/
 *{
     margin: 0;
     padding: 0;
@@ -14,28 +14,13 @@ body{
     min-height: 100vh;
 }
 
-/* @keyframes change{
-    0%
-    {
-        background-image: url('food1.jpg');
-    }
-    25%
-    {
-        background-image: url('food2.jpg');
-    }
-    50%
-    {
-        background-image: url('food3.jpg');
-    }
-    75%
-    {
-        background-image: url('food4.jpg');
-    }
-    100%
-    {
-        background-image: url('food5.jpg');
-    }
-} */
+#login_div{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .header{
     position: fixed;
@@ -84,7 +69,7 @@ body{
 
 
 
-/* Slogan e background */
+/*-------------------------------- Slogan e background --------------------------------*/
 .text_slogan {
     position: absolute;
     top: 45%; /* Posiziona il testo al centro verticalmente */
@@ -98,12 +83,20 @@ body{
 
 .container{
     width: 100%;
-    height: auto;
-    overflow: hidden;
+    height: 100vh;
 }
 
-.container img{
+.background{
+    position: absolute;
     width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.showing{
+    opacity: 1;
 }
 
 /* lineup class and keyframes */
@@ -130,7 +123,7 @@ body{
 
 
 
-/* Bottone Riempi il carrello */
+/*-------------------------------- Bottone Riempi il carrello --------------------------------*/
 .button_shopping {
     position: absolute;
     font-family: "Montserrat", sans-serif;
@@ -171,7 +164,7 @@ body{
 
 
 
-/* CSS botton_user*/
+/*-------------------------------- botton_user --------------------------------*/
 .Btn {
     display: flex;
     align-items: center;
@@ -243,7 +236,7 @@ body{
 }
 
 
-/* pop-up login*/
+/*-------------------------------- pop-up login --------------------------------*/
 .wrapper{
     position: absolute; /* Posizionamento assoluto per centrare */
     top: 50%; /* Posiziona il margine superiore al 50% dell'altezza del contenitore genitore */
@@ -425,7 +418,7 @@ body{
 
 
 
-/* Obiettivi */
+/*-------------------------------- Obiettivi --------------------------------*/
 .obiettivi_container{
     position: relative;
     display: flex;
