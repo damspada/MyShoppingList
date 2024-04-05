@@ -12,29 +12,26 @@
 
 <body>
 
-    <!-- 
-    <div id="navbar_div">
-        <header class="header">
-            <img src="logo.png" class="logo">
-            <nav class="navbar">
-                <a href="home/home.html">Home</a>
-                <a href="#">Contacts</a>
-                <a href="#">        
-                    <button class="Btn">
-                    <div class="sign"><img src="user-icon.png"></div>
-                    <div class="text_btn">Login</div>
-                    </button>
-                </a>
-            </nav>
-        </header>
-    </div>
-    -->
+        
+        <!-- NavBar-->
+        <div id="navbar_div">
+            <header class="header">
+                <img src="logo.png" class="logo">
+                <nav class="navbar">
+                    <a href="MyShoppingList/home/home.html">Home</a>
+                    <a href="#">Contacts</a>
+                    <a href="#">        
+                        <button class="Btn">
+                        <div class="sign"><ion-icon name="person-circle-outline" size="large"></ion-icon></div>
+                        <div class="text_btn">Login</div>
+                        </button>
+                    </a>
+                </nav>
+            </header>
+        </div>
 
-
-
-    <div class="main">
-
-        <div class="main-menus">
+        <!-- 
+        <div id="filtri_div" class="main-menus">
             <div class="main-filter">
                 <div>
                     <h2 class="main-title"> Menu <br> Category </h2>
@@ -76,12 +73,74 @@
                     </div>
                 </div>
             </div>
+        </div> -->
+
+        <!--Login e Signin-->
+        <div class="wrapper">
+            <span class="icon-close">
+                <ion-icon name="close-outline"></ion-icon>
+            </span>
+
+            <div class="form-box login">
+                <h2>Login</h2>
+                <form action="#">
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+                        <input type="email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                        <input type="password" required>
+                        <label>Password</label>
+                    </div>
+                    <div class="remember-forgot">
+                        <label><input type="checkbox">Remember Me</label>
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                    <div class="login-register">
+                        <p>Don't have an account?<a href="#" class="register-link">Register</a></p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="form-box register">
+                <h2>Registration</h2>
+                <form action="#">
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                        <input type="text" required>
+                        <label>Username</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+                        <input type="email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                        <input type="password" required>
+                        <label>Password</label>
+                    </div>
+                    <div class="remember-forgot">
+                        <label><input type="checkbox">agree to the terms & conditions</label>
+                    </div>
+                    <button type="submit" class="btn">Register</button>
+                    <div class="login-register">
+                        <p>Already have an account?<a href="#" class="login-link">Login</a></p>
+                    </div>
+                </form>
+            </div>
+
+
         </div>
-    </div> 
+
 
 </body>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="search_products.js"></script>
+<script src="login_script.js"></script>
 </html>
