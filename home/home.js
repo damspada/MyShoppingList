@@ -1,3 +1,4 @@
+// -------------------------------- Animazione Background --------------------------------
 let headerBackgrounds = document.querySelectorAll(".background");
 
 let imageIndex = 0;
@@ -14,4 +15,14 @@ function changeBackground(){
     headerBackgrounds[imageIndex].classList.add("showing");
 }
 
-setInterval(changeBackground, 8000);
+setInterval(changeBackground, 6000);
+
+
+// -------------------------------- Indirizzamento Search Products --------------------------------
+function redirectToSearchProducts() {
+    window.location.href = "../search_products/search_products.html"; 
+}
+
+
+
+
