@@ -6,6 +6,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
 }
 
 
@@ -104,6 +105,30 @@ body{
 .container img{
     width: 100%;
 }
+
+/* lineup class and keyframes */
+.lineUp {
+    animation: 3s anim-lineUp ease-in-out ;
+  }
+  @keyframes anim-lineUp {
+    0% {
+      opacity: 0;
+      /* transform: translateY(80%); */
+    }
+    20% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+      /* transform: translateY(0%); */
+    }
+    100% {
+      opacity: 1;
+      /* transform: translateY(0%); */
+    }
+  }
+
+
 
 /* Bottone Riempi il carrello */
 .button_shopping {
@@ -220,11 +245,13 @@ transform: translate(2px ,2px);
 
 /* Obiettivi */
 .obiettivi_container{
+    position: relative;
     display: flex;
     justify-content: space-around;
     padding: 100px;
 }
 .obiettivi{
+    position: relative;
     border-radius: 50%;
     width: 200px;
     height: 200px;
@@ -233,25 +260,31 @@ transform: translate(2px ,2px);
     justify-content: center;
     text-align: center;
     border: 2px solid #00BF63;
-    color: rgb(116, 30, 30);
     font-weight: bold;
     margin: 10px;
 }
 .obiettivi1 {
-    background-image: url(soldi_2.png); 
+    background-image: url(soldi_2_2.png); 
     background-repeat: no-repeat;
 }
 .obiettivi2 {
-     
+    background-image: url(melav.png); 
     background-repeat: no-repeat;
 }
 .obiettivi3 {
-     
+    background-image: url(loc_2.png);
     background-repeat: no-repeat;
 }
 
-.text_obiettivi{
+.text_obiettivi_sansserif{
     font-family: "Dm Serif Display", serif;
     font-size: 30px;
     text-align: center;
 }
+
+.text_obiettivi_serif{
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    text-align: center;
+}
+
