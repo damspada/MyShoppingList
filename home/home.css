@@ -14,6 +14,14 @@ body{
     min-height: 100vh;
 }
 
+#login_div{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .header{
     position: fixed;
     top: 0;
@@ -158,79 +166,82 @@ body{
 
 /*-------------------------------- botton_user --------------------------------*/
 .Btn {
-display: flex;
-align-items: center;
-justify-content: flex-start;
-width: 45px;
-height: 45px;
-border: none;
-border-radius: 50%;
-cursor: pointer;
-position: fixed;
-top: 10px; /* Regola la distanza dal top della pagina */
-right: 10px; /* Regola la distanza dal lato destro della pagina */
-z-index: 1000;
-overflow: hidden;
-transition-duration: .3s;
-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-background-color: #00BF63;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: fixed;
+    top: 10px; /* Regola la distanza dal top della pagina */
+    right: 10px; /* Regola la distanza dal lato destro della pagina */
+    z-index: 1000;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: #00BF63;
 }
 
 /* plus sign */
 .sign {
-width: 100%;
-transition-duration: .3s;
-display: flex;
-align-items: center;
-justify-content: center;
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .sign svg {
-width: 30px;
+    width: 30px;
 }
 
 .sign svg path {
-fill: white;
+    fill: white;
 }
 /* text */
 .text_btn {
-position: absolute;
-right: 0%;
-width: 0%;
-opacity: 0;
-color: white;
-font-size: 1.2em;
-font-weight: 600;
-transition-duration: .3s;
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition-duration: .3s;
 }
 /* hover effect on button width */
 .Btn:hover {
-width: 150px;
-border-radius: 40px;
-transition-duration: .3s;
+    width: 150px;
+    border-radius: 40px;
+    transition-duration: .3s;
 }
 
 .Btn:hover .sign {
-width: 30%;
-transition-duration: .3s;
-padding-left: 10px;
+    width: 30%;
+    transition-duration: .3s;
+    padding-left: 10px;
 }
 /* hover effect button's text */
 .Btn:hover .text_btn {
-opacity: 1;
-width: 70%;
-transition-duration: .3s;
-padding-right: 10px;
+    opacity: 1;
+    width: 70%;
+    transition-duration: .3s;
+    padding-right: 10px;
 }
 /* button click effect*/
 .Btn:active {
-transform: translate(2px ,2px);
+    transform: translate(2px ,2px);
 }
 
 
 /*-------------------------------- pop-up login --------------------------------*/
 .wrapper{
-    position: absolute;
+    position: absolute; /* Posizionamento assoluto per centrare */
+    top: 50%; /* Posiziona il margine superiore al 50% dell'altezza del contenitore genitore */
+    left: 50%; /* Posiziona il margine sinistro al 50% della larghezza del contenitore genitore */
+    transform: translate(-50%, -50%);
     width: 400px;
     height: 440px;
     background: transparent;
@@ -244,6 +255,7 @@ transform: translate(2px ,2px);
     overflow: hidden;
     transform: scale(0);
     transition: transform .5s ease,height .2s ease;
+    z-index: 100;
 }
 
 .wrapper.active-popup{
