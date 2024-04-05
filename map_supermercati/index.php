@@ -37,6 +37,8 @@ try {
         echo "No supermarkets found in the database.";
     }
 
+    echo "<html>";
+
 } catch (Exception $e) {
     echo "Errore: " . $e->getMessage();
 }
