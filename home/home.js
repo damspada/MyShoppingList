@@ -18,11 +18,6 @@ function changeBackground(){
 setInterval(changeBackground, 6000);
 
 
-// -------------------------------- Indirizzamento Search Products --------------------------------
-function redirectToSearchProducts() {
-    window.location.href = "../search_products/search_products.html"; 
-}
-
 
 
 
