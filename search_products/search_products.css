@@ -11,9 +11,6 @@
 }
 
 body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
     background-image: url('gradient_green2.jpg');
     background-size: cover; /* modalità di ridimensionamento dell'immagine */
@@ -221,9 +218,16 @@ body{
 }
 
 #filtri_div{
-    height: 25%;
+    height: 50%;
     margin:auto;
     text-align:center;
+}
+
+#login_div{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
