@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+.text_slogan {
+    position: absolute;
+    top: 55%; /* Posiziona il testo al centro verticalmente */
+    left: 47%; /* Posiziona il testo al centro orizzontalmente */
+    transform: translate(-80%, -50%); /* Sposta il testo di -50% rispetto al proprio centro */
+    color: black; /* Colore del testo */
+    font-size: 40px; /* Dimensione del testo */
+    font-weight: bold; /* Grassetto */
+    font-family: "Playfair Display", sans-serif;
+}
+
+.container{
+    width: 100%;
+    height: auto;
+}
+
+.container img{
+    width: 100%;
+}
+
+/* NavBar */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    min-height: 100vh;
+}
+
+/* @keyframes change{
+    0%
+    {
+        background-image: url('food1.jpg');
+    }
+    25%
+    {
+        background-image: url('food2.jpg');
+    }
+    50%
+    {
+        background-image: url('food3.jpg');
+    }
+    75%
+    {
+        background-image: url('food4.jpg');
+    }
+    100%
+    {
+        background-image: url('food5.jpg');
+    }
+} */
+
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    font-family: "Montserrat", sans-serif;
+}
+
+.logo{
+    font-size: 32px;
+    color: black;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.navbar a{
+    position: relative;
+    font-size: 18px;
+    color: black;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 40px;
+}
+
+.navbar a::before{
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: black;
+    transition: .3s;
+}
+
+.navbar a:hover::before{
+    width: 100%;
+}
+
+
+
+
+
+
+
+/* CSS botton_user*/
+.Btn {
+display: flex;
+align-items: center;
+justify-content: flex-start;
+width: 45px;
+height: 45px;
+border: none;
+border-radius: 50%;
+cursor: pointer;
+position: fixed;
+top: 10px; /* Regola la distanza dal top della pagina */
+right: 10px; /* Regola la distanza dal lato destro della pagina */
+z-index: 1000;
+overflow: hidden;
+transition-duration: .3s;
+box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+background-color: rgb(248, 191, 3);
+}
+
+/* plus sign */
+.sign {
+width: 100%;
+transition-duration: .3s;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.sign svg {
+width: 30px;
+}
+
+.sign svg path {
+fill: white;
+}
+/* text */
+.text_btn {
+position: absolute;
+right: 0%;
+width: 0%;
+opacity: 0;
+color: white;
+font-size: 1.2em;
+font-weight: 600;
+transition-duration: .3s;
+}
+/* hover effect on button width */
+.Btn:hover {
+width: 150px;
+border-radius: 40px;
+transition-duration: .3s;
+}
+
+.Btn:hover .sign {
+width: 30%;
+transition-duration: .3s;
+padding-left: 10px;
+}
+/* hover effect button's text */
+.Btn:hover .text_btn {
+opacity: 1;
+width: 70%;
+transition-duration: .3s;
+padding-right: 10px;
+}
+/* button click effect*/
+.Btn:active {
+transform: translate(2px ,2px);
+}
