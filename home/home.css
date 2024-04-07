@@ -472,3 +472,37 @@ body{
     text-align: center;
 }
 
+/*-------------------------------- Spiegazioni --------------------------------*/
+
+.spiegazioni_container{
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    padding: 80px;
+    background-image: url(cibo.jpg);
+}
+
+.left{
+    flex: 50%;
+    background: url('supermercato.jpg');
+    background-size: cover;
+    position: relative;
+}
+
+.right{
+    flex: 50%;
+    position: relative;
+    display: flex;
+    background-color: white;
+}
+
+.text_spiegazioni_sansserif{
+    font-family: "Montserrat_Arabic_Regular", serif;
+    font-size: 30px;
+}
+
+.text_spiegazioni_serif{
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+}
+
