@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Serif+Display:ital@0;1&family=Orelega+One&family=Ultra&display=swap');
 
+@font-face {
+    font-family: "Montserrat_Arabic_Regular";
+    src: url("Montserrat-Arabic\ Regular\ 400.otf") format("opentype");
+}
+
 /*-------------------------------- NavBar --------------------------------*/
 *{
     margin: 0;
@@ -72,13 +77,14 @@ body{
 /*-------------------------------- Slogan e background --------------------------------*/
 .text_slogan {
     position: absolute;
-    top: 45%; /* Posiziona il testo al centro verticalmente */
-    left: 47%; /* Posiziona il testo al centro orizzontalmente */
-    transform: translate(-110%, -50%); /* Sposta il testo di -50% rispetto al proprio centro */
+    top: 50%; /* Posiziona il testo al centro verticalmente */
+    left: 58%; /* Posiziona il testo al centro orizzontalmente */
+    transform: translate(-130%, -50%); /* Sposta il testo di -50% rispetto al proprio centro */
     color: black; /* Colore del testo */
-    font-size: 60px; /* Dimensione del testo */
+    font-size: 80px; /* Dimensione del testo */
     font-weight: bold; /* Grassetto */
     font-family: "Dm Serif Display", serif;
+    line-height: 1;
 }
 
 .container{
@@ -126,7 +132,7 @@ body{
 /*-------------------------------- Bottone Riempi il carrello --------------------------------*/
 .button_shopping {
     position: absolute;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Montserrat_Arabic_Regular", serif;
     padding: 17px 40px;
     border-radius: 50px;
     cursor: pointer;
@@ -434,25 +440,28 @@ body{
     align-items: center;
     justify-content: center;
     text-align: center;
-    border: 2px solid #00BF63;
+    /* border: 2px solid #00BF63; */
     font-weight: bold;
     margin: 10px;
 }
 .obiettivi1 {
-    background-image: url(soldi_2_2.png); 
+    background-image: url(money2.png); 
     background-repeat: no-repeat;
+    background-position: center;
 }
 .obiettivi2 {
-    background-image: url(melav.png); 
+    background-image: url(apple2.png); 
     background-repeat: no-repeat;
+    background-position: center;
 }
 .obiettivi3 {
-    background-image: url(loc_2.png);
+    background-image: url(pin.png);
     background-repeat: no-repeat;
+    background-position: center;
 }
 
 .text_obiettivi_sansserif{
-    font-family: "Dm Serif Display", serif;
+    font-family: "Montserrat_Arabic_Regular", serif;
     font-size: 30px;
     text-align: center;
 }
