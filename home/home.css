@@ -48,7 +48,7 @@ body{
     font-weight: 700;
 }
 
-.navbar a{
+.my_navbar a{
     position: relative;
     font-size: 18px;
     color: black;
@@ -57,7 +57,7 @@ body{
     margin-left: 80px;
 }
 
-.navbar a::before{
+.my_navbar a::before{
     content: '';
     position: absolute;
     top: 100%;
@@ -68,7 +68,7 @@ body{
     transition: .3s;
 }
 
-.navbar a:hover::before{
+.my_navbar a:hover::before{
     width: 100%;
 }
 
