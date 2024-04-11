@@ -506,3 +506,11 @@ body{
     font-size: 20px;
 }
 
+.background_spiegazioni{
+    background-image: url(cibo.jpg);
+}
+
+.background_spiegazioni_text{
+    background-color: white;
+}
+
