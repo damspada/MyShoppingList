@@ -6,6 +6,17 @@
     src: url("Montserrat-Arabic\ Regular\ 400.otf") format("opentype");
 }
 
+/* .overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 110%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 999;
+    display: none;
+} */
+
 /*-------------------------------- NavBar --------------------------------*/
 *{
     margin: 0;
@@ -262,16 +273,16 @@ body{
     overflow: hidden;
     transform: scale(0);
     transition: transform .5s ease,height .2s ease;
-    z-index: 100;
+    z-index: 99;
 }
 
 .wrapper.active-popup{
     transform: scale(1);
+    overflow: hidden;
 }
 
 .wrapper.active{
     height: 520px;
-
 }
 
 .wrapper .form-box{
