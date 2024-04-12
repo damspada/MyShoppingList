@@ -204,6 +204,7 @@ body{
     background-color: white;
     color:  #00BF63; 
     border-radius: 8px;
+    cursor: pointer;
 }
 
 .filter-card:hover{
