@@ -38,6 +38,7 @@ body{
     margin:20px;
     display:flex;
     justify-content: left;
+    flex-shrink: 1;
 }
 
 
