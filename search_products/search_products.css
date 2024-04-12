@@ -429,4 +429,8 @@ body{
     color: rgb(255, 255, 255);
     background-color: #06e679 ;
   }
+
+  #search-icon{
+    font-size: 20px;
+  }
   
