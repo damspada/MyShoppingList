@@ -6,17 +6,6 @@
     src: url("Montserrat-Arabic\ Regular\ 400.otf") format("opentype");
 }
 
-/* .overlay{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 110%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .5);
-    z-index: 999;
-    display: none;
-} */
-
 /*-------------------------------- NavBar --------------------------------*/
 *{
     margin: 0;
@@ -457,17 +446,17 @@ body{
     margin: 10px;
 }
 .obiettivi1 {
-    background-image: url(money2.png); 
+    background-image: url(./Immagini/money2.png); 
     background-repeat: no-repeat;
     background-position: center;
 }
 .obiettivi2 {
-    background-image: url(apple2.png); 
+    background-image: url(./Immagini/apple2.png); 
     background-repeat: no-repeat;
     background-position: center;
 }
 .obiettivi3 {
-    background-image: url(pin.png);
+    background-image: url(./Immagini/pin.png);
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -476,12 +465,14 @@ body{
     font-family: "Montserrat_Arabic_Regular", serif;
     font-size: 30px;
     text-align: center;
+    font-weight: bold;
 }
 
 .text_obiettivi_serif{
     font-family: "Montserrat", sans-serif;
     font-size: 20px;
     text-align: center;
+    font-weight: 500;
 }
 
 /*-------------------------------- Spiegazioni --------------------------------*/
@@ -506,28 +497,40 @@ body{
 }
   
 .image-container{
-    flex: 1;
-    padding: 20px;
+    width: 400px; /* Larghezza del cerchio */
+    height: 400px; /* Altezza del cerchio */
+    border-radius: 50%; /* Rendi il contenitore un cerchio */
+    background-color: white; /* Colore di sfondo bianco */
+    overflow: hidden; /* Nascondi il contenuto che supera i limiti del cerchio */
+    position: relative;
+    margin-right: 10%; 
+    margin-left: 10%;  
 }
   
 .text-container {
     flex: 1;
     padding: 20px;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: #84ea83;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-right: 10px; /* Aggiungi margine a destra */
-    margin-left: 10px; /* Aggiungi margine a sinistra */
+    /* margin-right: 10%; 
+    margin-left: 5%;   */
 }
 
 .image-container img {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 10px;
+    width: 100%; /* Larghezza dell'immagine al 100% del contenitore */
+    height: auto; /* Altezza automatica per mantenere le proporzioni */
+    border-radius: 50%; /* Rendi l'immagine un cerchio */
+    object-fit: cover; /* Adatta l'immagine per coprire completamente il contenitore */
+    position: absolute; /* Imposta il posizionamento assoluto per consentire il centratura */
+    top: 50%; /* Sposta l'immagine verso il basso del 50% del contenitore */
+    left: 50%; /* Sposta l'immagine verso destra del 50% del contenitore */
+    transform: translate(-50%, -50%);
 }
 
-.text-container h2 {
+.text-container h1 {
     margin-top: 0;
+    font-weight: bold;
 }
 
 .text_spiegazioni_sansserif{
@@ -538,4 +541,77 @@ body{
 .text_spiegazioni_serif{
     font-family: "Montserrat", sans-serif;
     font-size: 20px;
+    font-weight: 500;
 }
+
+/*-------------------------------- SuperMercati --------------------------------*/
+
+
+.text_supermercati{
+    font-family: "Montserrat_Arabic_Regular", serif;
+    font-size: 50px;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 5%;
+}
+
+/*-------------------------------- Prodotti --------------------------------*/
+
+.text_prodotti{
+    font-family: "Montserrat_Arabic_Regular", serif;
+    font-size: 50px;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 2%;
+}
+
+@keyframes slide{
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(-100%);
+    }
+}
+
+.logos{
+    overflow: hidden;
+    padding: 60px 0;
+    white-space: nowrap;
+    position: relative;
+    align-items: center;
+}
+
+.logos_slide{
+    display: inline-block; 
+    animation: 30s slide infinite linear;
+}
+
+.logos_slide img{
+    height: 50px;
+    margin: 0 40px;
+}
+
+.logos:before,
+.logos:after{
+    position: absolute;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    content: "";
+    z-index: 2;
+}
+
+.logos:before{
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+    left: 0;
+}
+
+.logos:after{
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+    right: 0;
+}
+
+
+
+
