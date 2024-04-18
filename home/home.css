@@ -445,7 +445,7 @@ body{
 }
 .obiettivi{
     position: relative;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     width: 200px;
     height: 200px;
     display: flex;
@@ -485,27 +485,49 @@ body{
 }
 
 /*-------------------------------- Spiegazioni --------------------------------*/
-
-.spiegazioni_container{
-    position: relative;
-    display: flex;
-    justify-content: space-around;
-    padding: 80px;
-    background-image: url(cibo.jpg);
-}
-
-.left{
-    flex: 50%;
-    background: url('supermercato.jpg');
+.spiegazioni{
+    background-color: #f8f6f4;
+    background-repeat: no-repeat;
     background-size: cover;
-    position: relative;
 }
 
-.right{
-    flex: 50%;
-    position: relative;
+.titolo_container{
     display: flex;
-    background-color: white;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.spiegazioni_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+  
+.image-container{
+    flex: 1;
+    padding: 20px;
+}
+  
+.text-container {
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-right: 10px; /* Aggiungi margine a destra */
+    margin-left: 10px; /* Aggiungi margine a sinistra */
+}
+
+.image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+}
+
+.text-container h2 {
+    margin-top: 0;
 }
 
 .text_spiegazioni_sansserif{
@@ -517,12 +539,3 @@ body{
     font-family: "Montserrat", sans-serif;
     font-size: 20px;
 }
-
-.background_spiegazioni{
-    background-image: url(cibo.jpg);
-}
-
-.background_spiegazioni_text{
-    background-color: white;
-}
-
