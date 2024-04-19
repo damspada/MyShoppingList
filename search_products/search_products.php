@@ -186,10 +186,132 @@
     </div>
 
     <div class="carrello_div">
-        
+        <h3>Shopping Cart</h3>
+        <ul id="cart-list"></ul>
+        <button onclick="checkout()">Checkout</button>
     </div>
 
 </body>
+<script>
+    function addToCart(productName) {
+        var cartList = document.getElementById("cart-list");
+        var listItem = null;
+        var quantityInput = document.getElementById(productName);
+        var quantity = parseInt(quantityInput.value);
+
+        // Check if the product is already in the cart
+        var existingItem = document.querySelector("#cart-list li[data-product='" + productName + "']");
+        if (existingItem) {
+            listItem = existingItem;
+            quantity += parseInt(existingItem.dataset.quantity);
+        } else {
+            listItem = document.createElement("li");
+            listItem.dataset.product = productName;
+        }
+
+        quantityInput.value = quantity;
+        listItem.innerText = productName + " (Quantity: " + quantity + ")";
+        listItem.dataset.quantity = quantity;
+        cartList.appendChild(listItem);
+    }
+
+    function increaseQuantity(productName) {
+        var quantityInput = document.getElementById(productName);
+        var quantity = parseInt(quantityInput.value);
+        quantityInput.value = quantity + 1;
+    }
+
+    function decreaseQuantity(productName) {
+        var quantityInput = document.getElementById(productName);
+        var quantity = parseInt(quantityInput.value);
+        if (quantity > 0) {
+            quantityInput.value = quantity - 1;
+        }
+    }
+
+    function viewCart() {
+        // Redirect to the cart page
+        window.location.href = "cart.php";
+    }
+
+    // NEW CODE 
+
+    function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    // Function to get a cookie
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    // Function to save cart to cookie
+    function saveCartToCookie(cart) {
+        setCookie("shopping_cart", JSON.stringify(cart), 30);
+    }
+
+    // Function to load cart from cookie
+    function loadCartFromCookie() {
+        var cart = getCookie("shopping_cart");
+        return cart ? JSON.parse(cart) : [];
+    }
+
+    // Function to update the cart display
+    function updateCartDisplay() {
+        var cartList = document.getElementById("cart-list");
+        cartList.innerHTML = ""; // Clear existing items
+
+        var cart = loadCartFromCookie();
+
+        cart.forEach(function(item) {
+            var listItem = document.createElement("li");
+            listItem.innerText = item.productName + " (Quantity: " + item.quantity + ")";
+            cartList.appendChild(listItem);
+        });
+    }
+
+    // Function to add a product to the cart
+    function addToCart(productName) {
+        var cart = loadCartFromCookie();
+
+        var existingItemIndex = cart.findIndex(function(item) {
+            return item.productName === productName;
+        });
+
+        if (existingItemIndex !== -1) {
+            cart[existingItemIndex].quantity++;
+        } else {
+            cart.push({ productName: productName, quantity: 1 });
+        }
+
+        saveCartToCookie(cart);
+        updateCartDisplay();
+    }
+
+    // Function to handle checkout
+    function checkout() {
+        // Implement checkout functionality here
+    }
+
+    // Load cart on page load
+    window.onload = function() {
+        updateCartDisplay();
+    };
+
+</script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
