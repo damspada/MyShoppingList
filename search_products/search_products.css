@@ -49,6 +49,8 @@ body{
     width: 70%;
     height: 68%;
     box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .carrello_div{
@@ -464,4 +466,44 @@ body{
   #search-icon{
     font-size: 20px;
   }
+
+   /* card dei prodotti*/
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+    float: left;
+}
+.card img {
+    max-width: 100%;
+    height: auto;
+}
+.shopping-cart {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+    float: right;
+}
+.shopping-cart ul {
+    list-style-type: none;
+    padding: 0;
+}
+.shopping-cart li {
+    margin-bottom: 10px;
+}
+.quantity {
+    display: flex;
+    align-items: center;
+}
+.quantity input {
+    width: 30px;
+    text-align: center;
+}
+.quantity button {
+    margin: 0 5px;
+}
   
