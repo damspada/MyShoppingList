@@ -657,3 +657,105 @@ html{
 }
 
 
+/*-------------------------------- Footer --------------------------------*/
+
+.footer_container{
+    background-color: #00BF63;
+}
+
+.social_container{
+    display: grid;
+    height: 100%;
+    width: 100%;
+    place-items: center;
+    /* background: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%); */
+    padding-top: 5%;
+    padding-bottom: 3%;
+}
+
+.wrapper_social{
+    display: inline-flex;
+}
+
+.wrapper_social a {
+    color: inherit; /* eredita il colore del testo dai genitori */
+    text-decoration: none; /* rimuove il sottolineato del link */
+}
+
+.wrapper_social a:hover {
+    color: inherit; /* eredita il colore del testo al passaggio del mouse */
+}
+
+.wrapper_social .icon{
+    margin: 0 20px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+    transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper_social .icon span{
+    display: block;
+    height: 60px;
+    width: 60px;
+    background: #fff;
+    border-radius: 50%;
+    position: relative;
+    z-index: 50;
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+    transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper_social .icon span i{
+    line-height: 60px;
+    font-size: 25px;
+}
+
+.wrapper_social .icon:hover span{
+    color: #fff;
+    text-shadow: 0px -1px 0px rgba(0,0,0,0.4);
+}
+
+.wrapper_social .facebook:hover span{
+    background: #3B5999;
+}
+
+.wrapper_social .linkedin:hover span{
+    background: #0a66c2;
+}
+
+.wrapper_social .instagram:hover span{
+    background: #e1306c;
+}
+
+.wrapper_social .github:hover span{
+    background: #333;
+}
+
+.wrapper_social .youtube:hover span{
+    background: #DE463B;
+}
+
+.contatti {
+    display: flex; /* Usa il layout flexbox */
+    justify-content: center; /* Centra gli elementi lungo l'asse principale */
+    /* margin-top: 20px;  */
+}
+
+.contatto {
+    margin: 0 30px; /* Aggiungi spazio tra i contatti */
+    text-align: center; /* Centra il testo */
+}
+
+.contatto p {
+    margin: 5px 0; /* Aggiungi spazio tra le righe */
+}
+
+.contatto i{
+    margin-right: 5px;
+}
