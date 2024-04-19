@@ -37,6 +37,7 @@ body{
     margin:20px;
     display:flex;
     justify-content: left;
+    
 }
 
 .prodotti_div{
@@ -46,7 +47,8 @@ body{
     position: absolute;
     top: 32%;
     width: 70%;
-    height: 70%;
+    height: 68%;
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
 }
 
 .carrello_div{
@@ -57,7 +59,8 @@ body{
     top: 8%;
     width: 25%;
     left: 72%;
-    height: 94%;
+    height: 92%;
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
 }
 
 
