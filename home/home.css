@@ -612,6 +612,48 @@ body{
     right: 0;
 }
 
+/*-------------------------------- BackToTop --------------------------------*/
 
+html{
+    scroll-behavior: smooth;
+}
+
+.back_to_top{
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: #00BF63;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    text-decoration: none;
+    transition: 0.2s ease-out;
+    z-index: 1000;
+    opacity: 0; /* Inizialmente il bottone è trasparente */
+    pointer-events: none; /* Impedisce al bottone di essere cliccabile quando è trasparente */
+    transition: opacity 0.5s ease 2s; /* Aggiungi una transizione graduale per l'opacità */
+}
+
+.back_to_top.show {
+    opacity: 1; /* Quando il bottone è visualizzato, lo rendi completamente opaco */
+    pointer-events: auto; /* Consentiamo al bottone di essere cliccabile */
+    display: inline-flex; /* Mostra il bottone quando la classe "show" è presente */
+    transition-delay: 3s;
+}
+
+.back_to_top span{
+    color: white;
+    font-size: 2rem;
+    transition: 0.2s ease-out;
+}
+
+.back_to_top:hover{
+    background-color: #0da75c;
+}
+.back_to_top:hover span{
+    transform: translateY(-4px);
+}
 
 

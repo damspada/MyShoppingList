@@ -19,5 +19,27 @@ setInterval(changeBackground, 6000);
 
 
 
+// -------------------------------- Back To Top --------------------------------
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    var backToTopBtn = document.getElementById("back-to-top-btn");
+    if (document.body.scrollTop > 2000 || document.documentElement.scrollTop > 2000) {
+        backToTopBtn.classList.add("show"); /* Aggiungi la classe "show" per visualizzare il bottone */
+    } else {
+        backToTopBtn.classList.remove("show"); /* Rimuovi la classe "show" per nascondere il bottone */
+    }
+}
+
+document.getElementById("back-to-top-btn").addEventListener("click", function(event) {
+    event.preventDefault();
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+});
+
+
+
+
+
 
 
