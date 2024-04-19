@@ -185,7 +185,7 @@ body{
     border-radius: 50%;
     cursor: pointer;
     position: fixed;
-    top: 10px; /* Regola la distanza dal top della pagina */
+    top: 13px; /* Regola la distanza dal top della pagina */
     right: 10px; /* Regola la distanza dal lato destro della pagina */
     z-index: 1000;
     overflow: hidden;
@@ -482,21 +482,16 @@ body{
     background-size: cover;
 }
 
-.titolo_container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.spiegazioni_container {
+.spiegazioni_container{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    /* padding: 20px; */
+    margin: 2% 5%;
 }
   
-.image-container{
+.image-container_sopra,
+.image-container_sotto{
     width: 400px; /* Larghezza del cerchio */
     height: 400px; /* Altezza del cerchio */
     border-radius: 50%; /* Rendi il contenitore un cerchio */
@@ -506,8 +501,16 @@ body{
     margin-right: 10%; 
     margin-left: 10%;  
 }
+
+.image-container_sopra{
+    margin: 2% 10% 2% 5%;
+}
+
+.image-container_sotto{
+    margin: 2% 5% 2% 10%;
+}
   
-.text-container {
+.text-container{
     flex: 1;
     padding: 20px;
     border-radius: 10px;
@@ -518,7 +521,8 @@ body{
     margin-left: 5%;   */
 }
 
-.image-container img {
+.image-container_sopra img,
+.image-container_sotto img{
     width: 100%; /* Larghezza dell'immagine al 100% del contenitore */
     height: auto; /* Altezza automatica per mantenere le proporzioni */
     border-radius: 50%; /* Rendi l'immagine un cerchio */
@@ -556,6 +560,28 @@ body{
     padding-top: 5%;
 }
 
+.griglia {
+    display: flex;
+    justify-content: space-between;
+    margin: 4% 10%;
+}
+
+.colonna {
+    flex: 1;
+    margin-right: 10px; /* Aggiungi spazio tra le colonne */
+    margin-left: 10px;
+    display: flex;
+    justify-content: center; /* Centra l'immagine orizzontalmente */
+    align-items: center; /* Centra l'immagine verticalmente */
+}
+
+.colonna img {
+    max-width: 100%; /* Imposta la larghezza massima dell'immagine al 100% della larghezza del contenitore */
+    max-height: 200px;
+    height: auto; /* Imposta l'altezza automaticamente per mantenere le proporzioni */
+    width: auto;
+}
+
 /*-------------------------------- Prodotti --------------------------------*/
 
 .text_prodotti{
@@ -563,7 +589,6 @@ body{
     font-size: 50px;
     text-align: center;
     font-weight: bold;
-    padding-top: 2%;
 }
 
 @keyframes slide{
@@ -577,7 +602,8 @@ body{
 
 .logos{
     overflow: hidden;
-    padding: 60px 0;
+    padding-top: 4%;
+    padding-bottom: 5%;
     white-space: nowrap;
     position: relative;
     align-items: center;
@@ -627,7 +653,7 @@ html{
     align-items: center;
     justify-content: center;
     background-color: #00BF63;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     padding: 0.5rem;
     text-decoration: none;
     transition: 0.2s ease-out;
@@ -670,7 +696,7 @@ html{
     width: 100%;
     place-items: center;
     background-color: #f8f6f4;
-    padding-top: 2%;
+    padding-top: 3%;
     padding-bottom: 2%;
 }
 
