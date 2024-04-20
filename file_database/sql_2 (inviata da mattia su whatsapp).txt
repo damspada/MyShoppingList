@@ -91,7 +91,7 @@ INSERT INTO categories (name, image, description) VALUES
 ('Vegetali', 'categories/vegetali.jpg', 'Un vasto assortimento di frutta e verdura fresca di stagione, proveniente da coltivazioni locali e biologiche.'),
 ('Pesce', 'categories/pesce.jpg', 'Pesce fresco e surgelato proveniente dai mari del mondo: dalla classica trota di fiume ai crostacei più pregiati.'),
 ('Bevande', 'categories/bevande.jpg', 'Birre artigianali, vini selezionati, bibite analcoliche e liquori per soddisfare ogni palato e occasione.'),
-('Igiene e Casa', 'categories/igiene_casa.jpg', 'Detergenti per la pulizia della casa, prodotti per l'igiene personale e accessori per la cura della casa e della persona.'),
+('Igiene e Casa', 'categories/igiene_casa.jpg', 'Detergenti per la pulizia della casa, prodotti per igiene personale e accessori per la cura della casa e della persona.'),
 ('Snack', 'categories/snack.jpg', 'Snack dolci e salati per uno spuntino veloce o per accompagnare i momenti di relax.'),
 ('Dolci', 'categories/dolci.jpg', 'Dolci freschi e da forno, pasticceria secca, cioccolatini e caramelle per coccolarsi con un tocco di dolcezza.'),
 ('Surgelati', 'categories/surgelati.jpg', 'Prodotti surgelati di alta qualità, dalla pizza agli antipasti, per comodità e praticità senza rinunciare al gusto.'),
@@ -127,7 +127,7 @@ INSERT INTO products (name, peso, image, category, description, nutrients, healt
   ('Datterini Rossi', 1000, 'products/datterini_rossi.jpg', 'Vegetali', 'Datterini rossi, intensi e saporiti, perfetti per sughi.', 'nutrienti da specificare', 8.3),
   ('Zucchine', 1000, 'products/zucchine.jpg', 'Vegetali', 'Zucchine fresche e versatili, ottime grigliate o in padella.', 'nutrienti da specificare', 9.0),
   ('Melanzane', 1000, 'products/melanzane.jpg', 'Vegetali', 'Melanzane dal sapore ricco, ideali per parmigiana e grigliate.', 'nutrienti da specificare', 8.8),
-  ('Zucca', 1000, 'products/zucca.jpg', 'Vegetali', 'Zucca dolce e nutriente, perfetta per zuppe e purè.', 'nutrienti da specificare', 8.2);
+  ('Zucca', 1000, 'products/zucca.jpg', 'Vegetali', 'Zucca dolce e nutriente, perfetta per zuppe e purè.', 'nutrienti da specificare', 8.2),
   ('Patate', 1000, 'products/patate.jpg', 'Vegetali', 'Patate fresche e versatili, ottime per purè e arrosti.', 'nutrienti da specificare', 7.5),
   ('Mele', 1000, 'products/mele.jpg', 'Vegetali', 'Mele croccanti e dolci, perfette per spuntini e dessert.', 'nutrienti da specificare', 8.0),
   ('Pere', 1000, 'products/pere.jpg', 'Vegetali', 'Pere succose e aromatiche, ideali per insalate e macedonie.', 'nutrienti da specificare', 7.8),
@@ -141,7 +141,9 @@ INSERT INTO products (name, peso, image, category, description, nutrients, healt
   ('Carote', 1000, 'products/carote.jpg', 'Vegetali', 'Carote arancioni e ricche di betacarotene, ottime crude o cotte.', 'nutrienti da specificare', 8.0),
   ('Kiwi', 1000, 'products/kiwi.jpg', 'Vegetali', 'Kiwi verdi e ricchi di vitamina C, perfetti per frullati e dessert.', 'nutrienti da specificare', 9.5),
   ('Arance', 1000, 'products/arance.jpg', 'Vegetali', 'Arance succose e dolci, ideali per spremute e gusti freschi.', 'nutrienti da specificare', 8.8),
-  ('Ciliegie', 1000, 'products/ciliegie.jpg', 'Vegetali', 'Ciliegie rosse e dolci, ottime da sole o per dolci.', 'nutrienti da specificare', 9.2),
+  ('Ciliegie', 1000, 'products/ciliegie.jpg', 'Vegetali', 'Ciliegie rosse e dolci, ottime da sole o per dolci.', 'nutrienti da specificare', 9.2);
+
+INSERT INTO products (name, peso, image, category, description, nutrients, health) VALUES
   ('Albicocche', 1000, 'products/albicocche.jpg', 'Vegetali', 'Albicocche arancioni e ricche di vitamina A, perfette per snack.', 'nutrienti da specificare', 8.5),
   ('Pesche', 1000, 'products/pesche.jpg', 'Vegetali', 'Pesche succose e profumate, ideali per macedonie e gelati.', 'nutrienti da specificare', 8.2),
   ('Patate Dolci', 1000, 'products/patate_dolci.jpg', 'Vegetali', 'Patate dolci arancioni e ricche di fibre, ottime al forno o in purea.', 'nutrienti da specificare', 8.0),
@@ -186,7 +188,9 @@ INSERT INTO products (name, peso, image, category, description, nutrients, healt
   ('Coca Cola Zero', 1500, 'products/coca_cola_zero.jpg', 'Bevande', 'Coca Cola Zero senza zucchero, ideale per chi vuole evitare calorie.', 'nutrienti da specificare', 7.8),
   ('Fanta', 1500, 'products/fanta.jpg', 'Bevande', 'Fanta aranciata, dolce e frizzante.', 'nutrienti da specificare', 7.0),
   ('Sprite', 1500, 'products/sprite.jpg', 'Bevande', 'Sprite limonata, dissetante e leggera.', 'nutrienti da specificare', 7.5),
-  ('Pepsi', 1500, 'products/pepsi.jpg', 'Bevande', 'Pepsi cola, dal sapore intenso.', 'nutrienti da specificare', 8.2),
+  ('Pepsi', 1500, 'products/pepsi.jpg', 'Bevande', 'Pepsi cola, dal sapore intenso.', 'nutrienti da specificare', 8.2);
+
+INSERT INTO products (name, peso, image, category, description, nutrients, health) VALUES
   ('Pepsi Twist', 1500, 'products/pepsi_twist.jpg', 'Bevande', 'Pepsi Twist con aroma di limone, fresca e frizzante.', 'nutrienti da specificare', 7.5),
   ('Birra Heineken', 330, 'products/birra_heineken.jpg', 'Bevande', 'Birra Heineken, dal sapore equilibrato.', 'nutrienti da specificare', 8.0),
   ('Birra Peroni', 330, 'products/birra_peroni.jpg', 'Bevande', 'Birra Peroni, tipica italiana e dissetante.', 'nutrienti da specificare', 8.5),
@@ -227,14 +231,43 @@ INSERT INTO products (name, peso, image, category, description, nutrients, healt
   ('Kinder Pingui', 1500, 'products/kinder_pingui.jpg', 'Dolci', 'Kinder Pingui, dolcetti al cioccolato e crema.', 'nutrienti da specificare', 7.5),
   ('Barette Kinder', 1500, 'products/barette_kinder.jpg', 'Dolci', 'Barette di cioccolato Kinder, ideali per la merenda.', 'nutrienti da specificare', 7.8),
   ('Mikado', 1500, 'products/mikado.jpg', 'Dolci', 'Mikado al cioccolato, croccanti e divertenti da gustare.', 'nutrienti da specificare', 7.2),
-  ('Wafer Loacker', 1500, 'products/wafer_loacker.jpg', 'Dolci', 'Wafer Loacker, sottili e friabili.', 'nutrienti da specificare', 8.0),
+  ('Wafer Loacker', 1500, 'products/wafer_loacker.jpg', 'Dolci', 'Wafer Loacker, sottili e friabili.', 'nutrienti da specificare', 8.0);
+
+INSERT INTO products (name, peso, image, category, description, nutrients, health) VALUES
   ('Cioccolata Bianca Novi', 1500, 'products/cioccolata_bianca_novi.jpg', 'Dolci', 'Cioccolata bianca Novi, delicata e cremosa.', 'nutrienti da specificare', 8.5),
   ('Cioccola Fondente Novi', 1500, 'products/cioccolata_fondente_novi.jpg', 'Dolci', 'Cioccolata fondente Novi, intensa e profumata.', 'nutrienti da specificare', 7.8),
   ('Gocciole Pavesi', 1500, 'products/gocciole_pavesi.jpg', 'Dolci', 'Gocciole Pavesi, biscotti al cacao con gocce di cioccolato.', 'nutrienti da specificare', 8.2),
   ('Abbracci Mulino Bianco', 1500, 'products/abbracci_mulino_bianco.jpg', 'Dolci', 'Abbracci Mulino Bianco, biscotti con doppia frolla.', 'nutrienti da specificare', 7.5),
   ('Grisby', 1500, 'products/grisby.jpg', 'Dolci', 'Grisby, biscotti al burro con zucchero a velo.', 'nutrienti da specificare', 7.2),
   ('Cornetti Tre Marie', 1500, 'products/cornetti_tre_marie.jpg', 'Dolci', 'Cornetti Tre Marie, soffici e golosi.', 'nutrienti da specificare', 8.0),
-  ('Brownie Milka', 1500, 'products/milka.jpg', 'Dolci', 'Tavoletta di cioccolato Milka, irresistibile e cremosa.', 'nutrienti da specificare', 8.5),
+  ('Brownie Milka', 1500, 'products/milka.jpg', 'Dolci', 'Tavoletta di cioccolato Milka, irresistibile e cremosa.', 'nutrienti da specificare', 8.5);
+
+INSERT INTO products (name, peso, image, category, description, nutrients, health) VALUES
+  ('Pesto Barilla', 500, 'products/pesto_barilla.jpg', 'Dispensa', 'Pesto alla Genovese Barilla, unione perfetta tra basilico fresco italiano e Parmigiano Reggiano DOP.', 'nutrienti da specificare', 7.5),
+  ('Farina 00 Barilla', 500, 'products/farina_00_barilla.jpg', 'Dispensa', 'Farina 00 Barilla, ideale per impasti lievitati e pasta fresca.', 'nutrienti da specificare', 7.5),
+  ('Uova', 500, 'products/uova.jpg', 'Dispensa', 'Uova fresche, ricche di proteine e versatili in cucina.', 'nutrienti da specificare', 7.5),
+  ('Passata di pomodoro Mutti', 500, 'products/passata_pomodoro_mutti.jpg', 'Dispensa', 'Passata di pomodoro Mutti, perfetta per sughi e salse.', 'nutrienti da specificare', 7.5),
+  ('Fagioli Valfrutta', 500, 'products/fagioli_valfrutta.jpg', 'Dispensa', 'Fagioli Valfrutta, ricchi di fibre e proteine.', 'nutrienti da specificare', 7.5),
+  ('Mais Valfrutta', 500, 'products/mais_valfrutta.jpg', 'Dispensa', 'Mais Valfrutta, ideale per insalate e contorni.', 'nutrienti da specificare', 7.5),
+  ('Riso Scotti', 500, 'products/riso_scotti.jpg', 'Dispensa', 'Riso Scotti, perfetto per risotti e piatti a base di riso.', 'nutrienti da specificare', 7.5),
+  ('Pelati Cirio', 500, 'products/pelati_cirio.jpg', 'Dispensa', 'Pelati Cirio, pomodori pelati di alta qualità.', 'nutrienti da specificare', 7.5),
+  ('Ragù alla bolognese De Cecco', 500, 'products/ragu_bolognese_de_cecco.jpg', 'Dispensa', 'Ragù alla bolognese De Cecco, pronto per condire la tua pasta.', 'nutrienti da specificare', 7.5),
+  ('Salsa Cacio e Pepe Biffi', 500, 'products/salsa_cacio_pepe_biffi.jpg', 'Dispensa', 'Salsa Cacio e Pepe Biffi, dal gusto intenso e cremoso.', 'nutrienti da specificare', 7.5),
+  ('Pesto alle noci Rana', 500, 'products/pesto_noci_rana.jpg', 'Dispensa', 'Pesto alle noci Rana, aromatico e ricco di sapore.', 'nutrienti da specificare', 7.5),
+  ('Pan bauletto Mulino Bianco', 500, 'products/pan_bauletto_mulino_bianco.jpg', 'Dispensa', 'Pan bauletto Mulino Bianco, perfetto per tramezzini e toast.', 'nutrienti da specificare', 7.5),
+  ('American Texas Toast Morato', 500, 'products/american_texas_toast_morato.jpg', 'Dispensa', 'American Texas Toast Morato, fette di pane tostate e spesse.', 'nutrienti da specificare', 7.5),
+  ('Marmellata di lamponi Zueg', 500, 'products/marmellata_lamponi_zueg.jpg', 'Dispensa', 'Marmellata di lamponi Zueg, dolce e fruttata.', 'nutrienti da specificare', 7.5),
+  ('Marmellata di albicocca Zueg', 500, 'products/marmellata_albicocca_zueg.jpg', 'Dispensa', 'Marmellata di albicocca Zueg, perfetta per la colazione.', 'nutrienti da specificare', 7.5),
+  ('Marmellata di frutti rossi Zueg', 500, 'products/marmellata_frutti_rossi_zueg.jpg', 'Dispensa', 'Marmellata di frutti rossi Zueg, perfetta per colazioni e merende.', 'nutrienti da specificare', 7.5),
+  ('Marmellata di fragole Santa Rosa', 500, 'products/marmellata_fragole_santa_rosa.jpg', 'Dispensa', 'Marmellata di fragole Santa Rosa, dolce e profumata.', 'nutrienti da specificare', 7.5),
+  ('Nutella Ferrero', 500, 'products/nutella_ferrero.jpg', 'Dispensa', 'Nutella Ferrero, crema di cioccolato e nocciole.', 'nutrienti da specificare', 7.5),
+  ('CremaNovi alla nocciola', 500, 'products/crema_novi_nocciola.jpg', 'Dispensa', 'Crema alla nocciola Novi, irresistibile e cremosa.', 'nutrienti da specificare', 7.5);
+
+---
+FINO A QUA TUTTO FUNZIONANTE
+---
+
+INSERT INTO products (name, peso, image, category, description, nutrients, health) VALUES
   ('Sapone Nievea', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
   ('Shampoo Eden Shoulders', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
   ('Bagnoschiuma Nivea', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
@@ -256,28 +289,7 @@ INSERT INTO products (name, peso, image, category, description, nutrients, healt
   ('Detersivo Svelto', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
   ('Ammorbidente Lenor', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
   ('Sgrassatore Chante Clair', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Ammorbidente Dash', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Pesto Barilla', 500, 'products/pesto_barilla.jpg', 'Dispensa', 'Pesto alla Genovese Barilla, unione perfetta tra basilico fresco italiano e Parmigiano Reggiano DOP.', 'nutrienti da specificare', 7.5),
-  ('Farina 00 Barilla', 500, 'products/farina_00_barilla.jpg', 'Dispensa', 'Farina 00 Barilla, ideale per impasti lievitati e pasta fresca.', 'nutrienti da specificare', 7.5),
-  ('Uova', 500, 'products/uova.jpg', 'Dispensa', 'Uova fresche, ricche di proteine e versatili in cucina.', 'nutrienti da specificare', 7.5),
-  ('Passata di pomodoro Mutti', 500, 'products/passata_pomodoro_mutti.jpg', 'Dispensa', 'Passata di pomodoro Mutti, perfetta per sughi e salse.', 'nutrienti da specificare', 7.5),
-  ('Fagioli Valfrutta', 500, 'products/fagioli_valfrutta.jpg', 'Dispensa', 'Fagioli Valfrutta, ricchi di fibre e proteine.', 'nutrienti da specificare', 7.5),
-  ('Mais Valfrutta', 500, 'products/mais_valfrutta.jpg', 'Dispensa', 'Mais Valfrutta, ideale per insalate e contorni.', 'nutrienti da specificare', 7.5),
-  ('Riso Scotti', 500, 'products/riso_scotti.jpg', 'Dispensa', 'Riso Scotti, perfetto per risotti e piatti a base di riso.', 'nutrienti da specificare', 7.5),
-  ('Pelati Cirio', 500, 'products/pelati_cirio.jpg', 'Dispensa', 'Pelati Cirio, pomodori pelati di alta qualità.', 'nutrienti da specificare', 7.5),
-  ('Ragù alla bolognese De Cecco', 500, 'products/ragu_bolognese_de_cecco.jpg', 'Dispensa', 'Ragù alla bolognese De Cecco, pronto per condire la tua pasta.', 'nutrienti da specificare', 7.5),
-  ('Salsa Cacio e Pepe Biffi', 500, 'products/salsa_cacio_pepe_biffi.jpg', 'Dispensa', 'Salsa Cacio e Pepe Biffi, dal gusto intenso e cremoso.', 'nutrienti da specificare', 7.5),
-  ('Pesto alle noci Rana', 500, 'products/pesto_noci_rana.jpg', 'Dispensa', 'Pesto alle noci Rana, aromatico e ricco di sapore.', 'nutrienti da specificare', 7.5),
-  ('Pan bauletto Mulino Bianco', 500, 'products/pan_bauletto_mulino_bianco.jpg', 'Dispensa', 'Pan bauletto Mulino Bianco, perfetto per tramezzini e toast.', 'nutrienti da specificare', 7.5),
-  ('American Texas Toast Morato', 500, 'products/american_texas_toast_morato.jpg', 'Dispensa', 'American Texas Toast Morato, fette di pane tostate e spesse.', 'nutrienti da specificare', 7.5),
-  ('Marmellata di lamponi Zueg', 500, 'products/marmellata_lamponi_zueg.jpg', 'Dispensa', 'Marmellata di lamponi Zueg, dolce e fruttata.', 'nutrienti da specificare', 7.5),
-  ('Marmellata di albicocca Zueg', 500, 'products/marmellata_albicocca_zueg.jpg', 'Dispensa', 'Marmellata di albicocca Zueg, perfetta per la colazione.', 'nutrienti da specificare', 7.5),
-  ('Marmellata di frutti rossi Zueg', 500, 'products/marmellata_frutti_rossi_zueg.jpg', 'Dispensa', 'Marmellata di frutti rossi Zueg, perfetta per colazioni e merende.', 'nutrienti da specificare', 7.5),
-  ('Marmellata di fragole Santa Rosa', 500, 'products/marmellata_fragole_santa_rosa.jpg', 'Dispensa', 'Marmellata di fragole Santa Rosa, dolce e profumata.', 'nutrienti da specificare', 7.5),
-  ('Nutella Ferrero', 500, 'products/nutella_ferrero.jpg', 'Dispensa', 'Nutella Ferrero, crema di cioccolato e nocciole.', 'nutrienti da specificare', 7.5),
-  ('CremaNovi alla nocciola', 500, 'products/crema_novi_nocciola.jpg', 'Dispensa', 'Crema alla nocciola Novi, irresistibile e cremosa.', 'nutrienti da specificare', 7.5);
-
-
+  ('Ammorbidente Dash', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5);
 
 
 CREATE TABLE recipes (
