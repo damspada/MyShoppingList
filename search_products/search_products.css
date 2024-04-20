@@ -524,11 +524,10 @@ body{
    height: 10%;
 }
 .quantity input {
-    width: 30px;
+    width: 25%;
     text-align: center;
-}
-.quantity button {
-    margin: 0 5px;
+    border-radius: 10px;
+    border: 1px solid black;
 }
 
 h3{
