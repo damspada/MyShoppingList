@@ -1,3 +1,15 @@
+// -------------------------------- Navbar Responsive --------------------------------
+function showSidebar(){
+    const sidebar = document.querySelector('.sidebar')
+    sidebar.style.display = 'flex'
+}
+
+function hideSidebar(){
+    const sidebar = document.querySelector('.sidebar')
+    sidebar.style.display = 'none'
+  }
+
+
 // -------------------------------- Animazione Background --------------------------------
 let headerBackgrounds = document.querySelectorAll(".background");
 
