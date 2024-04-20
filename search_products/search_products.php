@@ -169,11 +169,11 @@
                     </div>
                     <h3><?php echo $row["name"]; ?></h3>
                     <div class="quantity">
-                        <button class="bottoni_tondi" onclick="decreaseQuantity('<?php echo $row["name"]; ?>')">-</button>
+                        <button class="bottoni_tondi" onclick="decreaseQuantity('<?php echo $row["name"]; ?>')"><ion-icon name="remove-outline"></ion-icon></button>
                         <input type="number" id="<?php echo $row["name"]; ?>" value="1" min="1">
-                        <button class="bottoni_tondi" onclick="increaseQuantity('<?php echo $row["name"]; ?>')">+</button>
+                        <button class="bottoni_tondi" onclick="increaseQuantity('<?php echo $row["name"]; ?>')"><ion-icon name="add-outline"></ion-icon></button>
                     </div>
-                    <button onclick="addToCart('<?php echo $row["name"]; ?>')">Add to Cart</button>
+                    <button class="bottone_carrello" onclick="addToCart('<?php echo $row["name"]; ?>')">Add to Cart</button>
                 </div>
         <?php
             }
