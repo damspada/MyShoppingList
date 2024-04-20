@@ -798,4 +798,8 @@ html{
     text-decoration: underline; /* Aggiunge sottolineatura al passaggio del mouse */
 }
 
+h3{
+    font-size: 10px;
+}
+
 
