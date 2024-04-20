@@ -2,7 +2,7 @@
     $servername = "127.0.0.1";
     $username = "root";
     $password = "";
-    $dbname = "MyShoppingList";
+    $dbname = "MyShopping";
     
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -18,6 +18,7 @@
     // Close the connection
     $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

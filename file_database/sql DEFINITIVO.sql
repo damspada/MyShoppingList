@@ -263,7 +263,6 @@ INSERT INTO products (name, peso, image, category, description, nutrients, healt
   ('Nutella Ferrero', 500, 'products/nutella_ferrero.jpg', 'Dispensa', 'Nutella Ferrero, crema di cioccolato e nocciole.', 'nutrienti da specificare', 7.5),
   ('CremaNovi alla nocciola', 500, 'products/crema_novi_nocciola.jpg', 'Dispensa', 'Crema alla nocciola Novi, irresistibile e cremosa.', 'nutrienti da specificare', 7.5);
 
-
 INSERT INTO products (name, peso, image, category, description, nutrients, health) VALUES
   ('Sapone Nivea', 200, 'products/sapone_nivea.jpg', 'Igiene e Casa', 'Sapone idratante per una pulizia delicata.', 'Acqua, Sodio Laureth Solfato, Glicerina', 8.2),
   ('Shampoo Head & Shoulders', 500, 'products/shampoo_head_shoulders.jpg', 'Igiene e Casa', 'Shampoo antiforfora con mentolo per un cuoio capelluto fresco e pulito.', 'Piritione di zinco, Mentolo, Acqua', 7.9),
@@ -285,10 +284,8 @@ INSERT INTO products (name, peso, image, category, description, nutrients, healt
   ('Ammorbidente Lenor Primavera', 500, 'products/ammo_bounce.jpg', 'Igiene e Casa', 'Ammorbidente con fragranze floreali per tessuti morbidi e profumati.', 'Quaternario di ammonio, Profumo', 8.5),
   ('Sgrassatore Cif Power & Shine', 750, 'products/sgrassatore_cif.jpg', 'Igiene e Casa', 'Sgrassatore con formula potente per una pulizia brillante e senza sforzo.', 'Tensioattivi non ionici, Solventi alcalini', 9.1),
   ('Ammorbidente Bounce', 500, 'products/ammo_bounce.jpg', 'Igiene e Casa', 'Ammorbidente con profumo di primavera per tessuti morbidi e freschi.', 'Quaternario di ammonio, Profumo', 8.6);
-
----
-FINO A QUA TUTTO FUNZIONANTE
----
+  
+--- FINO A QUA TUTTO FUNZIONANTE ---
 
 CREATE TABLE recipes (
   name VARCHAR(255) PRIMARY KEY,
