@@ -471,7 +471,7 @@ body{
 
    /* card dei prodotti*/
 .card {
-    border: 1px solid #ccc;
+    border: 1px solid #00BF63;
     border-radius: 10px;
     padding: 1%;
     margin: 1.5% 1.5%;
@@ -538,9 +538,30 @@ h3{
 
 .bottoni_tondi{
     border-radius: 50%;
-    height: 20px;
-    width: 20px;
-    text-align: center;
-
+    height: 25px;
+    width: 25px;
+    background-color: #00BF63;
+    transition: transform .2s;
+    border: none;
 }
+
+.bottoni_tondi:hover{
+    transform: scale(1.1);
+}
+
+
+.bottone_carrello{
+    border-radius: 10px;
+    width: 40%;
+    height: 8%;
+    background-color:  #00BF63;
+    transition: transform .2s;
+    border: none;
+}
+
+.bottone_carrello:hover{
+    transform: scale(1.1);
+}
+
+
   
