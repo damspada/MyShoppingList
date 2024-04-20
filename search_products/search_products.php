@@ -162,15 +162,16 @@
             while ($row = $result->fetch_assoc()){
         ?>
                 <div class="card">
+                    <div class="card_image">
+                        <?php if (!empty($row["image"])) { ?>
+                            <img src="<?php echo $row["image"]; ?>" alt="<?php echo $row["name"]; ?>">
+                        <?php } ?>
+                    </div>
                     <h3><?php echo $row["name"]; ?></h3>
-                    <p><strong>Category:</strong> <?php echo $row["category"]; ?></p>
-                    <p><strong>Description:</strong> <?php echo $row["description"]; ?></p>
-                    <p><strong>Nutrients:</strong> <?php echo $row["nutrients"]; ?></p>
-                    <p><strong>Health Rating:</strong> <?php echo $row["health"]; ?>/10</p>
                     <div class="quantity">
-                        <button onclick="decreaseQuantity('<?php echo $row["name"]; ?>')">-</button>
+                        <button class="bottoni_tondi" onclick="decreaseQuantity('<?php echo $row["name"]; ?>')">-</button>
                         <input type="number" id="<?php echo $row["name"]; ?>" value="1" min="1">
-                        <button onclick="increaseQuantity('<?php echo $row["name"]; ?>')">+</button>
+                        <button class="bottoni_tondi" onclick="increaseQuantity('<?php echo $row["name"]; ?>')">+</button>
                     </div>
                     <button onclick="addToCart('<?php echo $row["name"]; ?>')">Add to Cart</button>
                 </div>
