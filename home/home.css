@@ -778,7 +778,7 @@ html{
 .contatto {
     display: flex;
     margin: 0 30px; /* Aggiungi spazio tra i contatti */
-    text-align: center; /* Centra il testo */
+    text-align: center; 
     align-items: center;
     font-size: 20px;
 }
