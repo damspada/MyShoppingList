@@ -735,7 +735,7 @@ html{
     position: relative;
     z-index: 50;
     box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
-    transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .wrapper_social .icon span i{
