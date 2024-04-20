@@ -471,7 +471,7 @@ body{
    /* card dei prodotti*/
 .card {
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 10px;
     margin: 12px;
     width: 275px;
