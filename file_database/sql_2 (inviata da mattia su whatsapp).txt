@@ -263,34 +263,32 @@ INSERT INTO products (name, peso, image, category, description, nutrients, healt
   ('Nutella Ferrero', 500, 'products/nutella_ferrero.jpg', 'Dispensa', 'Nutella Ferrero, crema di cioccolato e nocciole.', 'nutrienti da specificare', 7.5),
   ('CremaNovi alla nocciola', 500, 'products/crema_novi_nocciola.jpg', 'Dispensa', 'Crema alla nocciola Novi, irresistibile e cremosa.', 'nutrienti da specificare', 7.5);
 
+
+INSERT INTO products (name, peso, image, category, description, nutrients, health) VALUES
+  ('Sapone Nivea', 200, 'products/sapone_nivea.jpg', 'Igiene e Casa', 'Sapone idratante per una pulizia delicata.', 'Acqua, Sodio Laureth Solfato, Glicerina', 8.2),
+  ('Shampoo Head & Shoulders', 500, 'products/shampoo_head_shoulders.jpg', 'Igiene e Casa', 'Shampoo antiforfora con mentolo per un cuoio capelluto fresco e pulito.', 'Piritione di zinco, Mentolo, Acqua', 7.9),
+  ('Bagnoschiuma Dove', 400, 'products/bagnoschiuma_dove.jpg', 'Igiene e Casa', 'Bagnoschiuma idratante per una pelle morbida e vellutata.', 'Glicerina, Acqua, Cocamidopropyl Betaina', 8.5),
+  ('Dopobarba Gillette Fusion', 150, 'products/dopobarba_gillette.jpg', 'Igiene e Casa', 'Dopobarba lenitivo per una pelle protetta dopo la rasatura.', 'Alcool Denat, Profumo, Acqua', 7.3),
+  ('Schiuma da barba Proraso', 200, 'products/schiuma_barba_proraso.jpg', 'Igiene e Casa', 'Schiuma da barba con mentolo per una rasatura fresca e confortevole.', 'Olio di Eucalipto, Olio di Menta Piperita, Glicerina', 8.1),
+  ('Lamette Wilkinson Sword', 50, 'products/lamette_wilkinson.jpg', 'Igiene e Casa', 'Lamette con tripla lama per una rasatura precisa e confortevole.', 'Acciaio inossidabile, Plastica', 9.0),
+  ('Assorbenti Lines Ultra Sottili', 100, 'products/assorbenti_lines.jpg', 'Igiene e Casa', 'Assorbenti ultra sottili per una protezione discreta e confortevole.', 'Polimero super assorbente, Copertura esterna in cotone', 8.7),
+  ('Tampax Compak', 80, 'products/tampax_compak.jpg', 'Igiene e Casa', 'Assorbenti interni compatti per una protezione sicura e confortevole.', 'Fibra di Rayon, Copertura in poliestere', 8.4),
+  ('Preservativi Durex Love', 10, 'products/preservativi_durex.jpg', 'Igiene e Casa', 'Preservativi lubrificati per un piacere naturale e sicuro.', 'Lattice di gomma naturale, Silicone', 9.2),
+  ('Candeggina Ace', 1000, 'products/candeggina_ace.jpg', 'Igiene e Casa', 'Candeggina con formula antibatterica per una pulizia profonda e igienica.', 'Ipercloro, Acqua, Soda Caustica', 8.8),
+  ('Scottex Classico', 300, 'products/scottex_classico.jpg', 'Igiene e Casa', 'Carta igienica resistente e morbida per igiene quotidiana.', 'Pulpa di cellulosa, Acqua', 8.3),
+  ('Carta Igienica Regina', 500, 'products/carta_igienica_regina.jpg', 'Igiene e Casa', 'Carta igienica con struttura goffrata per una maggiore resistenza e morbidezza.', 'Pulpa di cellulosa, Amido', 8.6),
+  ('Dentifricio Colgate Total', 150, 'products/dentifricio_colgate.jpg', 'Igiene e Casa', 'Dentifricio con formula antibatterica per una protezione completa della bocca.', 'Fluoruro di Sodio, Silice', 8.9),
+  ('Spazzolino Oral-B CrossAction', 50, 'products/spazzolino_oral_b.jpg', 'Igiene e Casa', 'Spazzolino con setole a croce per una pulizia profonda e efficace.', 'Plastica, Nylon', 8.7),
+  ('Shampoo Garnier Fructis', 400, 'products/shampoo_garnier_fructis.jpg', 'Igiene e Casa', 'Shampoo rinforzante con estratti di frutta per capelli più forti e lucenti.', 'Estratto di mela, Estratto di limone, Pantenolo', 8.2),
+  ('Shampoo Sunsilk Brillantezza', 300, 'products/shampoo_sunsilk.jpg', 'Igiene e Casa', 'Shampoo con agenti illuminanti per capelli più luminosi e setosi.', 'Olio di Argan, Proteine della seta, Pantenolo', 8.4),
+  ('Detersivo Dash Freschezza', 1000, 'products/detersivo_dash.jpg', 'Igiene e Casa', 'Detersivo concentrato per un bucato fresco e profumato a lungo.', 'Tensioattivi anionici, Enzimi, Profumo', 8.7),
+  ('Ammorbidente Lenor Primavera', 500, 'products/ammo_bounce.jpg', 'Igiene e Casa', 'Ammorbidente con fragranze floreali per tessuti morbidi e profumati.', 'Quaternario di ammonio, Profumo', 8.5),
+  ('Sgrassatore Cif Power & Shine', 750, 'products/sgrassatore_cif.jpg', 'Igiene e Casa', 'Sgrassatore con formula potente per una pulizia brillante e senza sforzo.', 'Tensioattivi non ionici, Solventi alcalini', 9.1),
+  ('Ammorbidente Bounce', 500, 'products/ammo_bounce.jpg', 'Igiene e Casa', 'Ammorbidente con profumo di primavera per tessuti morbidi e freschi.', 'Quaternario di ammonio, Profumo', 8.6);
+
 ---
 FINO A QUA TUTTO FUNZIONANTE
 ---
-
-INSERT INTO products (name, peso, image, category, description, nutrients, health) VALUES
-  ('Sapone Nievea', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Shampoo Eden Shoulders', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Bagnoschiuma Nivea', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Dopobarba Gilette', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Dopobarba Proraso', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Schiuma da barba Proraso', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Lamette Gilette', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Assorbenti Lines Seta', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Tampax', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Preservativi Durex', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Candeggina ACE', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Scottex', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Carta ignienica Scotte', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Dentifricio Mentadent', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Spazzolino per i denti', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Shampoo Garnier', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Shampoo Sunsik', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Rotolone Regina', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Detersivo Svelto', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Ammorbidente Lenor', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Sgrassatore Chante Clair', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5),
-  ('Ammorbidente Dash', '1500', 'products/spaghetti.jpg', 'Igiene e Casa', 'descrizione da scrivere', 7.5);
-
 
 CREATE TABLE recipes (
   name VARCHAR(255) PRIMARY KEY,
