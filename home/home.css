@@ -62,7 +62,7 @@ body {
     font-size: 120%;
     color: black;
     font-weight: 500;
-    margin-left: 80px; 
+    margin-left: 4em; 
     text-decoration: none;
     font-weight: 550;
 }
@@ -375,6 +375,7 @@ body {
     display: flex;
     align-items:center ;
     justify-content: center;
+    padding-top: 8%;
 }
 
 .background{
@@ -384,6 +385,8 @@ body {
     object-fit: cover;
     opacity: 0;
     transition: opacity 1s ease-in-out;
+    border-radius: 3em;
+    padding: 1em;
 }
 
 .showing{
