@@ -14,10 +14,14 @@
     font-family: "Montserrat", sans-serif;
 }
 
+html, body{
+    scroll-behavior: smooth;
+}
 
-/* body{
-    min-height: 100vh;
-} */
+body {
+    margin: 0;
+    padding: 0;
+}
 
 #login_div{
     height: 100vh;
@@ -96,6 +100,10 @@
     }
     .my_navbar a:nth-child(1) {
         display: none; 
+    }
+
+    html, body {
+        overflow-x: hidden;
     }
 }
 
@@ -410,14 +418,14 @@
 .button_shopping {
     position: absolute;
     /* font-family: "Montserrat_Arabic_Regular", serif; */
-    padding: 17px 40px;
+    padding: 4% 8%;
     border-radius: 50px;
     cursor: pointer;
     border: 0;
     background-color: #00BF63;
     box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
     letter-spacing: 1.5px;
-    font-size: 30px;
+    font-size: 35px;
     transition: all 0.5s ease;
     font-weight: bold;
 }
@@ -451,7 +459,7 @@
     position: relative;
     display: flex;
     justify-content: space-around;
-    padding: 100px;
+    padding: 5%;
 }
 .obiettivi{
     position: relative;
@@ -495,6 +503,20 @@
     text-align: center;
     font-weight: 500;
 }
+
+@media screen and (max-width: 400px) {
+    .obiettivi_container {
+        flex-direction: column; /* Imposta il layout in colonna */
+        align-items: center; /* Centra gli obiettivi lungo l'asse x */
+        justify-content: center;
+        padding: 20px; /* Riduci il padding */
+    }
+
+    .obiettivi {
+        margin: 10px 0; /* Aggiungi margine solo sopra e sotto */
+    }
+}
+
 
 /*-------------------------------- Spiegazioni --------------------------------*/
 .spiegazioni{
@@ -661,10 +683,6 @@
 }
 
 /*-------------------------------- BackToTop --------------------------------*/
-
-html{
-    scroll-behavior: smooth;
-}
 
 .back_to_top{
     position: fixed;
