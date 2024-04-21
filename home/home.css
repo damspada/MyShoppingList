@@ -462,7 +462,7 @@ body {
     position: relative;
     display: flex;
     justify-content: space-around;
-    padding: 5%;
+    padding: 8% 5% 5% 5%;
 }
 .obiettivi{
     position: relative;
