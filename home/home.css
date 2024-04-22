@@ -14,10 +14,14 @@
     font-family: "Montserrat", sans-serif;
 }
 
+html, body{
+    scroll-behavior: smooth;
+}
 
-/* body{
-    min-height: 100vh;
-} */
+body {
+    margin: 0;
+    padding: 0;
+}
 
 #login_div{
     height: 100vh;
@@ -58,7 +62,7 @@
     font-size: 120%;
     color: black;
     font-weight: 500;
-    margin-left: 80px; 
+    margin-left: 4em; 
     text-decoration: none;
     font-weight: 550;
 }
@@ -72,6 +76,10 @@
     height: 10%;
     background: #00BF63;
     transition: .3s;
+}
+
+.icon_contatti{
+    display: none; /* Nasconde l'icona inizialmente */
 }
 
 .my_navbar a:nth-child(1):hover::before {
@@ -88,15 +96,6 @@
 
 .my_navbar a:nth-child(2) .sign:hover::before {
     width: 0;
-}
-
-@media screen and (max-width: 400px) {
-    .my_navbar a:nth-child(2) {
-        display: none; 
-    }
-    .my_navbar a:nth-child(1) {
-        display: none; 
-    }
 }
 
 
@@ -166,6 +165,56 @@
 /* button click effect*/
 .Btn:active {
     transform: translate(2px ,2px);
+}
+
+
+@media screen and (max-width: 400px) {
+    html, body {
+        overflow-x: hidden;
+    }
+    
+    /*----------------- Navbar Responsive -----------------*/
+    .header{
+        padding: 1% 6% 1% 6.5%;;
+    }
+    .my_navbar a:nth-child(2) {
+        display: none; 
+    }
+    .my_navbar a:nth-child(1) {
+        display: none; 
+    }
+    .logo{
+        width: 150px;
+        height: auto;
+    }
+    .Btn{
+        width: 30px;
+        height: 30px;    
+    }
+    .icon_contatti {
+        display: inline-block; 
+    }
+    .icon_contatti img{
+        width: 30px;
+        height: 30px; 
+    }
+    .my_navbar a{
+        margin-left: 1em;
+    }
+
+
+    /*----------------- Obiettivi Responsive -----------------*/
+    .obiettivi_container {
+        flex-direction: column; /* Imposta il layout in colonna */
+        align-items: center; /* Centra gli obiettivi lungo l'asse x */
+        justify-content: center;
+        padding: 20px; /* Riduci il padding */
+    }
+
+    .obiettivi {
+        margin: 10px 0; /* Aggiungi margine solo sopra e sotto */
+    }
+
 }
 
 
@@ -367,6 +416,7 @@
     display: flex;
     align-items:center ;
     justify-content: center;
+    padding-top: 8%;
 }
 
 .background{
@@ -376,6 +426,8 @@
     object-fit: cover;
     opacity: 0;
     transition: opacity 1s ease-in-out;
+    border-radius: 3em;
+    padding: 1em;
 }
 
 .showing{
@@ -410,14 +462,14 @@
 .button_shopping {
     position: absolute;
     /* font-family: "Montserrat_Arabic_Regular", serif; */
-    padding: 17px 40px;
+    padding: 4% 8%;
     border-radius: 50px;
     cursor: pointer;
     border: 0;
     background-color: #00BF63;
     box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
     letter-spacing: 1.5px;
-    font-size: 30px;
+    font-size: 35px;
     transition: all 0.5s ease;
     font-weight: bold;
 }
@@ -451,7 +503,7 @@
     position: relative;
     display: flex;
     justify-content: space-around;
-    padding: 100px;
+    padding: 8% 5% 5% 5%;
 }
 .obiettivi{
     position: relative;
@@ -495,6 +547,7 @@
     text-align: center;
     font-weight: 500;
 }
+
 
 /*-------------------------------- Spiegazioni --------------------------------*/
 .spiegazioni{
@@ -661,10 +714,6 @@
 }
 
 /*-------------------------------- BackToTop --------------------------------*/
-
-html{
-    scroll-behavior: smooth;
-}
 
 .back_to_top{
     position: fixed;
