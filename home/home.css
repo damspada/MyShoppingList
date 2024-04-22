@@ -113,7 +113,7 @@ body {
         display: none; 
     }
     .logo{
-        width: 150px;
+        width: 140px;
         height: auto;
     }
     .Btn{
@@ -376,6 +376,50 @@ body {
 .login-register p a:hover{
     text-decoration: underline;
 }
+
+@media screen and (max-width: 400px) {
+    .wrapper {
+        width: 80%;
+        height: auto;
+        max-width: 400px;
+    }
+
+    .wrapper .form-box {
+        padding: 20px;
+    }
+
+    .form-box h2 {
+        font-size: 1.5em;
+    }
+
+    .input-box {
+        margin: 20px 0;
+    }
+
+    .input-box label {
+        font-size: 0.8em;
+    }
+
+    .input-box input {
+        font-size: 0.8em;
+    }
+
+    .remember-forgot {
+        margin: -10px 0 10px;
+        font-size: 0.7em;
+    }
+
+
+    .login-register {
+        margin: 15px 0 5px;
+        font-size: 0.7em;
+    }
+
+    .login-register p a {
+        font-size: 0.9em;
+    }
+}
+
 
 
 /*-------------------------------- Slogan e background --------------------------------*/
