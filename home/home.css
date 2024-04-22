@@ -794,6 +794,8 @@ body {
 
 .footer_container{
     background-color: #f8f6f4;
+    border-top-left-radius: 3em;
+    border-top-right-radius: 3em;
 }
 
 .social_container{
@@ -804,6 +806,8 @@ body {
     background-color: #f8f6f4;
     padding-top: 3%;
     padding-bottom: 2%;
+    border-top-left-radius: 3em;
+    border-top-right-radius: 3em;
 }
 
 .wrapper_social{
