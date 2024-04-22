@@ -1,15 +1,3 @@
-// -------------------------------- Navbar Responsive --------------------------------
-function showSidebar(){
-    const sidebar = document.querySelector('.sidebar')
-    sidebar.style.display = 'flex'
-}
-
-function hideSidebar(){
-    const sidebar = document.querySelector('.sidebar')
-    sidebar.style.display = 'none'
-  }
-
-
 // -------------------------------- Animazione Background --------------------------------
 let headerBackgrounds = document.querySelectorAll(".background");
 
@@ -40,6 +28,10 @@ function scrollFunction() {
         backToTopBtn.classList.add("show"); /* Aggiungi la classe "show" per visualizzare il bottone */
     } else {
         backToTopBtn.classList.remove("show"); /* Rimuovi la classe "show" per nascondere il bottone */
+    }
+
+    if(window.innerWidth <= 400){
+        backToTopBtn.classList.remove("show");
     }
 }
 

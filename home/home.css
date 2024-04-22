@@ -12,6 +12,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Montserrat", sans-serif;
+    transition: all 0.5s ease;
 }
 
 html, body{
@@ -98,6 +99,39 @@ body {
     width: 0;
 }
 
+@media screen and (max-width: 400px){
+    html, body {
+        overflow-x: hidden;
+    }
+    
+    .header{
+        padding: 1% 6% 1% 6.5%;;
+    }
+    .my_navbar a:nth-child(2) {
+        display: none; 
+    }
+    .my_navbar a:nth-child(1) {
+        display: none; 
+    }
+    .logo{
+        width: 150px;
+        height: auto;
+    }
+    .Btn{
+        width: 30px;
+        height: 30px;    
+    }
+    .icon_contatti {
+        display: inline-block; 
+    }
+    .icon_contatti img{
+        width: 30px;
+        height: 30px; 
+    }
+    .my_navbar a{
+        margin-left: 1em;
+    }
+}
 
 /*-------------------------------- botton_user --------------------------------*/
 .Btn {
@@ -166,57 +200,6 @@ body {
 .Btn:active {
     transform: translate(2px ,2px);
 }
-
-
-@media screen and (max-width: 400px) {
-    html, body {
-        overflow-x: hidden;
-    }
-    
-    /*----------------- Navbar Responsive -----------------*/
-    .header{
-        padding: 1% 6% 1% 6.5%;;
-    }
-    .my_navbar a:nth-child(2) {
-        display: none; 
-    }
-    .my_navbar a:nth-child(1) {
-        display: none; 
-    }
-    .logo{
-        width: 150px;
-        height: auto;
-    }
-    .Btn{
-        width: 30px;
-        height: 30px;    
-    }
-    .icon_contatti {
-        display: inline-block; 
-    }
-    .icon_contatti img{
-        width: 30px;
-        height: 30px; 
-    }
-    .my_navbar a{
-        margin-left: 1em;
-    }
-
-
-    /*----------------- Obiettivi Responsive -----------------*/
-    .obiettivi_container {
-        flex-direction: column; /* Imposta il layout in colonna */
-        align-items: center; /* Centra gli obiettivi lungo l'asse x */
-        justify-content: center;
-        padding: 20px; /* Riduci il padding */
-    }
-
-    .obiettivi {
-        margin: 10px 0; /* Aggiungi margine solo sopra e sotto */
-    }
-
-}
-
 
 /*-------------------------------- pop-up login --------------------------------*/
 .wrapper{
@@ -399,12 +382,12 @@ body {
 /*-------------------------------- Slogan e background --------------------------------*/
 .text_slogan {
     position: absolute;
-    top: 50%; /* Posiziona il testo al centro verticalmente */
-    left: 58%; /* Posiziona il testo al centro orizzontalmente */
-    transform: translate(-130%, -50%); /* Sposta il testo di -50% rispetto al proprio centro */
-    color: black; /* Colore del testo */
-    font-size: 80px; /* Dimensione del testo */
-    font-weight: bold; /* Grassetto */
+    top: 50%; 
+    left: 58%; 
+    transform: translate(-130%, -50%); 
+    color: black; 
+    font-size: 80px; 
+    font-weight: bold; 
     font-family: "Dm Serif Display", serif;
     line-height: 1;
 }
@@ -417,6 +400,7 @@ body {
     align-items:center ;
     justify-content: center;
     padding-top: 8%;
+    position: relative;
 }
 
 .background{
@@ -437,25 +421,24 @@ body {
 /* lineup class and keyframes */
 .lineUp {
     animation: 3s anim-lineUp ease-in-out ;
-  }
-  @keyframes anim-lineUp {
+}
+@keyframes anim-lineUp {
     0% {
-      opacity: 0;
-      /* transform: translateY(80%); */
+        opacity: 0;
+        /* transform: translateY(80%); */
     }
     20% {
-      opacity: 0;
+        opacity: 0;
     }
     50% {
-      opacity: 1;
-      /* transform: translateY(0%); */
+        opacity: 1;
+        /* transform: translateY(0%); */
     }
     100% {
-      opacity: 1;
-      /* transform: translateY(0%); */
+        opacity: 1;
+        /* transform: translateY(0%); */
     }
-  }
-
+}
 
 
 /*-------------------------------- Bottone Riempi il carrello --------------------------------*/
@@ -511,10 +494,10 @@ body {
     width: 200px;
     height: 200px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     text-align: center;
-    /* border: 2px solid #00BF63; */
     font-weight: bold;
     margin: 10px;
 }
@@ -548,12 +531,27 @@ body {
     font-weight: 500;
 }
 
+@media screen and (max-width: 400px) {
+    .obiettivi_container {
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center;
+        padding: 20px; 
+    }
+
+    .obiettivi {
+        margin: 10px 0; 
+    }
+}
+
 
 /*-------------------------------- Spiegazioni --------------------------------*/
 .spiegazioni{
     background-color: #f8f6f4;
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .spiegazioni_container{
@@ -656,6 +654,25 @@ body {
     width: auto;
 }
 
+@media screen and (max-width: 400px){
+    .text_supermercati {
+        font-size: 30px;
+    }
+    .griglia {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin: 8% 5%;
+    }
+
+    .colonna {
+        flex-basis: calc(33.33% - 10px); /* Larghezza del 33.33% meno il margine */
+        margin: 5px; /* Aggiungi un margine tra le colonne */
+    }
+
+}
+
 /*-------------------------------- Prodotti --------------------------------*/
 
 .text_prodotti{
@@ -712,6 +729,25 @@ body {
     background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
     right: 0;
 }
+
+
+@media screen and (max-width: 400px) {
+    .text_prodotti {
+        font-size: 30px;
+    }
+    .logos{
+        padding-bottom: 10%;
+    }
+    .logos_slide img {
+        height: 30px;
+        margin: 0 20px;
+    }
+    .logos:before,
+    .logos:after {
+        width: 150px;
+    }
+}
+
 
 /*-------------------------------- BackToTop --------------------------------*/
 
@@ -870,6 +906,49 @@ body {
 
 h3{
     font-size: 10px;
+}
+
+@media screen and (max-width: 400px){
+    .footer_container {
+        padding-top: 2%;
+        padding-bottom: 2%;
+    }
+
+    .contatti {
+        flex-direction: column; /* Allinea i contatti verticalmente */
+        align-items: center; /* Centra i contatti verticalmente */
+        padding-top: 3%;
+    }
+    .contatto {
+        margin: 0.5% 0; /* Riduci lo spazio tra i contatti */
+    }
+    .contatto p img {
+        width: 20px; /* Riduci le dimensioni delle icone dei contatti */
+        height: 20px;
+        margin-right: 10px; /* Riduci lo spazio tra l'icona e il testo */
+    }
+    .contatto p {
+        font-size: 14px; 
+    }
+
+    .wrapper_social {
+        display: flex; 
+        /* flex-wrap: wrap;  */
+        justify-content: center; 
+    }
+    .wrapper_social .icon{
+        margin: 0 8%;
+    }
+    .wrapper_social .icon span {
+        width: 40px !important; 
+        height: 40px !important; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+    }
+    .wrapper_social .icon span i {
+        font-size: 20px !important; 
+    }
 }
 
 
