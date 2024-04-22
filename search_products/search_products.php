@@ -15,6 +15,32 @@
     $sql = "SELECT * FROM products";
     $result = $conn->query($sql);
 
+   
+    if (isset($_POST['add_to_cart']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+        // Assicurati di aver stabilito la connessione al database ($conn) prima di eseguire le query
+
+        $product_name = $_POST['product_name'];
+        $product_category = $_POST['product_category'];
+        $product_image = $_POST['product_image'];
+        $product_quantity = 1;
+
+        $select_cart = "SELECT * FROM `Cart` WHERE Nome = '$product_name'";
+        $res = $conn->query($select_cart);
+
+        if ($res->num_rows > 0) {
+            $update_query = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = '$product_name'";
+            $update_result = $conn->query($update_query);
+        } else {
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('$product_name', '$product_quantity', '$product_category', '$product_image')";
+            $res = $conn->query($insert_product);
+            if ($res) {
+                $message[] = 'Product added to cart successfully';
+            } else {
+                $message[] = 'Error adding product to cart';
+            }
+        }
+    }
+
     // Close the connection
     $conn->close();
 ?>
@@ -169,12 +195,12 @@
                         <?php } ?>
                     </div>
                     <h3><?php echo $row["name"]; ?></h3>
-                    <div class="quantity">
-                        <button class="bottoni_tondi" onclick="decreaseQuantity('<?php echo $row["name"]; ?>')"><ion-icon name="remove-outline"></ion-icon></button>
-                        <input type="number" id="<?php echo $row["name"]; ?>" value="1" min="1">
-                        <button class="bottoni_tondi" onclick="increaseQuantity('<?php echo $row["name"]; ?>')"><ion-icon name="add-outline"></ion-icon></button>
-                    </div>
-                    <button class="bottone_carrello" onclick="addToCart('<?php echo $row["name"]; ?>')">Add to Cart</button>
+                    <form action="" method="post">
+                        <input type="hidden" name="product_name" value="<?php echo $row["name"]; ?>">
+                        <input type="hidden" name="product_category" value="<?php echo $row["category"]; ?>">
+                        <input type="hidden" name="product_immage" value="<?php echo $row["immage"]; ?>">
+                        <input class="bottone_carrello" type="submit" value="Add to Cart" name="add_to_cart">
+                    </form>
                 </div>
         <?php
             }
@@ -185,132 +211,35 @@
     </div>
 
     <div class="carrello_div">
-        <h3>Shopping Cart</h3>
-        <ul id="cart-list"></ul>
-        <button onclick="checkout()">Checkout</button>
+        <div class="carrello_titolo">
+            <h2>Shopping Cart</h2>
+        </div>
+        <div class="carrello_spesa">
+            <!--<?php
+            //$carrello = "SELECT * FROM Cart";
+            //$risultato = $conn->query($carrello);
+            //if ($risultato->num_rows > 0) {
+                //while ($riga = $risultato->fetch_assoc()) {
+            ?> 
+                    <div class="carello_elemento">
+                        <h3><?php //echo $riga["Nome"]; ?></h3>
+                        <h3><?php //echo $riga["Quantità"]; ?></h3>
+                    </div>
+            <?php
+               // }
+            //}
+            ?>
+            -->
+            <div class="carello_elemento">
+            </div>
+        </div>
+        <div class="carrello_checkout">
+            <button class="bottone_checkout"><h2>Checkout</h2></button>
+        </div>
     </div>
 
 </body>
-<script>
-    function addToCart(productName) {
-        var cartList = document.getElementById("cart-list");
-        var listItem = null;
-        var quantityInput = document.getElementById(productName);
-        var quantity = parseInt(quantityInput.value);
 
-        // Check if the product is already in the cart
-        var existingItem = document.querySelector("#cart-list li[data-product='" + productName + "']");
-        if (existingItem) {
-            listItem = existingItem;
-            quantity += parseInt(existingItem.dataset.quantity);
-        } else {
-            listItem = document.createElement("li");
-            listItem.dataset.product = productName;
-        }
-
-        quantityInput.value = quantity;
-        listItem.innerText = productName + " (Quantity: " + quantity + ")";
-        listItem.dataset.quantity = quantity;
-        cartList.appendChild(listItem);
-    }
-
-    function increaseQuantity(productName) {
-        var quantityInput = document.getElementById(productName);
-        var quantity = parseInt(quantityInput.value);
-        quantityInput.value = quantity + 1;
-    }
-
-    function decreaseQuantity(productName) {
-        var quantityInput = document.getElementById(productName);
-        var quantity = parseInt(quantityInput.value);
-        if (quantity > 0) {
-            quantityInput.value = quantity - 1;
-        }
-    }
-
-    function viewCart() {
-        // Redirect to the cart page
-        window.location.href = "cart.php";
-    }
-
-    // NEW CODE 
-
-    function setCookie(name, value, days) {
-        var expires = "";
-        if (days) {
-            var date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            expires = "; expires=" + date.toUTCString();
-        }
-        document.cookie = name + "=" + (value || "") + expires + "; path=/";
-    }
-
-    // Function to get a cookie
-    function getCookie(name) {
-        var nameEQ = name + "=";
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
-    }
-
-    // Function to save cart to cookie
-    function saveCartToCookie(cart) {
-        setCookie("shopping_cart", JSON.stringify(cart), 30);
-    }
-
-    // Function to load cart from cookie
-    function loadCartFromCookie() {
-        var cart = getCookie("shopping_cart");
-        return cart ? JSON.parse(cart) : [];
-    }
-
-    // Function to update the cart display
-    function updateCartDisplay() {
-        var cartList = document.getElementById("cart-list");
-        cartList.innerHTML = ""; // Clear existing items
-
-        var cart = loadCartFromCookie();
-
-        cart.forEach(function(item) {
-            var listItem = document.createElement("li");
-            listItem.innerText = item.productName + " (Quantity: " + item.quantity + ")";
-            cartList.appendChild(listItem);
-        });
-    }
-
-    // Function to add a product to the cart
-    function addToCart(productName) {
-        var cart = loadCartFromCookie();
-
-        var existingItemIndex = cart.findIndex(function(item) {
-            return item.productName === productName;
-        });
-
-        if (existingItemIndex !== -1) {
-            cart[existingItemIndex].quantity++;
-        } else {
-            cart.push({ productName: productName, quantity: 1 });
-        }
-
-        saveCartToCookie(cart);
-        updateCartDisplay();
-    }
-
-    // Function to handle checkout
-    function checkout() {
-        // Implement checkout functionality here
-    }
-
-    // Load cart on page load
-    window.onload = function() {
-        updateCartDisplay();
-    };
-
-</script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
