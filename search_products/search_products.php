@@ -57,40 +57,40 @@
         </div>
 
         <div class="filter-wrapper">
-            <div class="filter-card">
+            <div class="filter-card tooltip-top">
                 <img src="Icone/icons8-coltello-e-spatchula-50.png">
             </div>
-            <div class="filter-card">
+            <div class="filter-card tooltip-top2">
                 <img src="Icone/icons8-pasta-64.png">
             </div>
-            <div class="filter-card">
+            <div class="filter-card tooltip-top3">
                 <img src="Icone/icons8-carre-di-agnello-60.png">
             </div>
-            <div class="filter-card">
+            <div class="filter-card tooltip-top4">
                 <img src="Icone/icons8-anguria-64.png">
             </div>
-            <div class="filter-card">
+            <div class="filter-card tooltip-top5">
                 <img src="Icone/icons8-salmone-64.png">
             </div>
-            <div class="filter-card">
+            <div class="filter-card tooltip-top6">
                 <img src="Icone/icons8-softdrink-64.png">
             </div>
-            <div class="filter-card">
+            <div class="filter-card tooltip-top7">
                 <img src="Icone/icons8-sapone-60.png"> 
             </div>
-            <div class="filter-card">
+            <div class="filter-card tooltip-top8">
                 <img src="Icone/icons8-carrot-64.png">
             </div>
-            <div class="filter-card">
+            <div class="filter-card tooltip-top9">
                 <img src="Icone/icons8-snack-64 (2).png">
             </div>
-            <div class="filter-card">
+            <div class="filter-card tooltip-top10">
                 <img src="Icone/icons8-barra-di-cioccolato-64 (1).png">
             </div>
-            <div class="filter-card">
+            <div class="filter-card tooltip-top11">
                 <img src="Icone/icons8-inverno-64.png">
             </div>
-            <div class="filter-card">
+            <div class="filter-card tooltip-top12">
                 <img src="Icone/icons8-pomodorini-in-salamoia-64.png">
             </div>
         </div>

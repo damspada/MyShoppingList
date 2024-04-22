@@ -1,20 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Serif+Display:ital@0;1&family=Orelega+One&family=Ultra&display=swap');
 
+@font-face {
+    font-family: "Montserrat_Arabic_Regular";
+    src: url("Montserrat-Arabic\ Regular\ 400.otf") format("opentype");
+}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     outline: none;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 body{
     min-height: 100vh;
-    background-image: url('Icone/gradient_green2.jpg');
+    background-image: url('Icone/—Pngtree—patterned\ background\ elegant\ white\ marble_13386114.jpg');
     background-position: center;
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
@@ -34,15 +38,15 @@ body{
 
 .top_div {
     height:25%;
+    width: 70%;
     margin:20px;
     display:flex;
     justify-content: left;
-    
+    background-color: red;
 }
 
 .prodotti_div{
     margin:20px;
-    background-color: white;
     border-radius: 10px;
     position: absolute;
     top: 32%;
@@ -51,7 +55,7 @@ body{
     box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
     overflow-x: hidden;
     overflow-y: scroll;
-    background-color: #f8f6f4;
+    background-color: white;
 }
 
 .carrello_div{
@@ -133,7 +137,7 @@ body{
     background-color: #00BF63;
     margin-left: 40px;
 }
-    
+
     /* plus sign */
 .sign {
     width: 100%;
@@ -184,17 +188,17 @@ body{
 .Btn:active {
     transform: translate(2px ,2px);
 }
-    
+
 
 /*catalogo dei filtri*/
 
-.filter-wrapper { 
+.filter-wrapper {
     position: absolute;
     top: 20%;
-    display: flex; 
+    display: flex;
     justify-content: flex-start;
-    width: 100%;
-    height: 100px; 
+    width: 70%;
+    height: 10%;
     gap: 1.2rem;
 }
 
@@ -204,7 +208,7 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    /*min-width: 80px; 
+    /*min-width: 80px;
     height: 100%;*/
     height: 82px;
     width: 82px;
@@ -213,36 +217,332 @@ body{
     /*border-radius: 8px;*/
     border-radius: 50%;
     border: 1px solid #d9f2ee;
-    font-size: 14px; 
+    font-size: 14px;
     cursor: pointer;
     transition: transform .2s;
 }
 
-.filter-icon { 
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    /*width:70%;
-    height:50%;*/
-    width:80%;
-    height:70%;
-    font-size: 30px;
-    margin-top: 4px;
-    /*background-color: #d9f2ee;*/
-    background-color: white;
-    color:  #00BF63; 
-    border-radius: 8px;
-    cursor: pointer;
-}
 
 .filter-card:hover{
-    background-color: white;
-    color: white;
-    transform: scale(1.1); 
+    transform: translateY(14%);
 }
-.filter-card:hover .filter-icon {
-    background-color: white;
-}
+
+
+.tooltip-top:before {
+    content: "All";
+    font-weight: 600;
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    background-color: #00BF63;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -4em;
+    padding: 0.8em 1em;
+    display: none;
+    border-radius: 10px;
+  }
+  .tooltip-top:after {
+    content: "";
+    position: absolute;
+    border-top: 1.25em solid  #00BF63;
+    border-left: 1.25em solid transparent;
+    border-right: 1.25em solid transparent;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -1.5em;
+    display: none;
+  }
+  .tooltip-top2:before {
+    content: "Pasta";
+    font-weight: 600;
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    background-color: #00BF63;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -4em;
+    padding: 0.8em 1em;
+    display: none;
+    border-radius: 10px;
+  }
+  .tooltip-top2:after {
+    content: "";
+    position: absolute;
+    border-top: 1.25em solid  #00BF63;
+    border-left: 1.25em solid transparent;
+    border-right: 1.25em solid transparent;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -1.5em;
+    display: none;
+  }
+  .tooltip-top3:before {
+    content: "Carne";
+    font-weight: 600;
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    background-color: #00BF63;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -4em;
+    padding: 0.8em 1em;
+    display: none;
+    border-radius: 10px;
+  }
+  .tooltip-top3:after {
+    content: "";
+    position: absolute;
+    border-top: 1.25em solid  #00BF63;
+    border-left: 1.25em solid transparent;
+    border-right: 1.25em solid transparent;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -1.5em;
+    display: none;
+  }
+  .tooltip-top4:before {
+    content: "Frutta";
+    font-weight: 600;
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    background-color: #00BF63;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -4em;
+    padding: 0.8em 1em;
+    display: none;
+    border-radius: 10px;
+  }
+  .tooltip-top4:after {
+    content: "";
+    position: absolute;
+    border-top: 1.25em solid  #00BF63;
+    border-left: 1.25em solid transparent;
+    border-right: 1.25em solid transparent;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -1.5em;
+    display: none;
+  }
+  .tooltip-top5:before {
+    content: "Pesce";
+    font-weight: 600;
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    background-color: #00BF63;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -4em;
+    padding: 0.8em 1em;
+    display: none;
+    border-radius: 10px;
+  }
+  .tooltip-top5:after {
+    content: "";
+    position: absolute;
+    border-top: 1.25em solid  #00BF63;
+    border-left: 1.25em solid transparent;
+    border-right: 1.25em solid transparent;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -1.5em;
+    display: none;
+  }
+
+  .tooltip-top6:before {
+    content: "Bevande";
+    font-weight: 600;
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    background-color: #00BF63;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -4em;
+    padding: 0.8em 1em;
+    display: none;
+    border-radius: 10px;
+  }
+  .tooltip-top6:after {
+    content: "";
+    position: absolute;
+    border-top: 1.25em solid  #00BF63;
+    border-left: 1.25em solid transparent;
+    border-right: 1.25em solid transparent;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -1.5em;
+    display: none;
+  }
+
+  .tooltip-top7:before {
+    content: "Igiene";
+    font-weight: 600;
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    background-color: #00BF63;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -4em;
+    padding: 0.8em 1em;
+    display: none;
+    border-radius: 10px;
+  }
+  .tooltip-top7:after {
+    content: "";
+    position: absolute;
+    border-top: 1.25em solid  #00BF63;
+    border-left: 1.25em solid transparent;
+    border-right: 1.25em solid transparent;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -1.5em;
+    display: none;
+  }
+
+  .tooltip-top8:before {
+    content: "Verdura";
+    font-weight: 600;
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    background-color: #00BF63;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -4em;
+    padding: 0.8em 1em;
+    display: none;
+    border-radius: 10px;
+  }
+  .tooltip-top8:after {
+    content: "";
+    position: absolute;
+    border-top: 1.25em solid  #00BF63;
+    border-left: 1.25em solid transparent;
+    border-right: 1.25em solid transparent;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -1.5em;
+    display: none;
+  }
+
+  .tooltip-top9:before {
+    content: "Snack";
+    font-weight: 600;
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    background-color: #00BF63;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -4em;
+    padding: 0.8em 1em;
+    display: none;
+    border-radius: 10px;
+  }
+  .tooltip-top9:after {
+    content: "";
+    position: absolute;
+    border-top: 1.25em solid  #00BF63;
+    border-left: 1.25em solid transparent;
+    border-right: 1.25em solid transparent;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -1.5em;
+    display: none;
+  }
+
+  .tooltip-top10:before {
+    content: "Dolci";
+    font-weight: 600;
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    background-color: #00BF63;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -4em;
+    padding: 0.8em 1em;
+    display: none;
+    border-radius: 10px;
+  }
+  .tooltip-top10:after {
+    content: "";
+    position: absolute;
+    border-top: 1.25em solid  #00BF63;
+    border-left: 1.25em solid transparent;
+    border-right: 1.25em solid transparent;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -1.5em;
+    display: none;
+  }
+
+  .tooltip-top11:before {
+    content: "Surgelati";
+    font-weight: 600;
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    background-color: #00BF63;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -4em;
+    padding: 0.8em 1em;
+    display: none;
+    border-radius: 10px;
+  }
+  .tooltip-top11:after {
+    content: "";
+    position: absolute;
+    border-top: 1.25em solid  #00BF63;
+    border-left: 1.25em solid transparent;
+    border-right: 1.25em solid transparent;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -1.5em;
+    display: none;
+  }
+
+  .tooltip-top12:before {
+    content: "Dispensa";
+    font-weight: 600;
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    background-color: #00BF63;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -4em;
+    padding: 0.8em 1em;
+    display: none;
+    border-radius: 10px;
+  }
+  .tooltip-top12:after {
+    content: "";
+    position: absolute;
+    border-top: 1.25em solid  #00BF63;
+    border-left: 1.25em solid transparent;
+    border-right: 1.25em solid transparent;
+    transform: translateX(-50%);
+    left: 50%;
+    top: -1.5em;
+    display: none;
+  } 
+
+  .filter-card:hover:before {
+    display: block;
+  }
+  .filter-card:hover:after {
+    display: block;
+  }
+
 
 
 
@@ -431,7 +731,7 @@ body{
     top: 10%;
     left: 18%;
   }
-  
+
   .search input[type="text"] {
     width: 600px; /* Larghezza desiderata */
     height: 50px;
@@ -441,8 +741,9 @@ body{
     border-radius: 20px;
     box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
     font-size: 20px;
+    background-color: #f8f6f4;
   }
-  
+
   .search button[type="submit"] {
     background-color:  #00BF63;
     height: 50px;
@@ -457,7 +758,7 @@ body{
     right: 0;
     transition: .9s ease;
   }
-  
+
   .search button[type="submit"]:hover {
     height: 50px;
     transform: scale(1.1);
@@ -563,4 +864,4 @@ h3{
 }
 
 
-  
+
