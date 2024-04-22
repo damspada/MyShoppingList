@@ -552,9 +552,9 @@ body {
     background-size: cover;
     display: flex;
     flex-wrap: wrap;
-    border-radius: 3em;
+    /* border-radius: 3em;
     margin-left: 2em;
-    margin-right: 2em;
+    margin-right: 2em; */
 }
 
 .spiegazioni_container{

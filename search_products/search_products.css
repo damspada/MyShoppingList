@@ -729,9 +729,9 @@ body{
     position: absolute;
     top: 10%;
     left: 18%;
-  }
+}
 
-  .search input[type="text"] {
+.search input[type="text"] {
     width: 600px; /* Larghezza desiderata */
     height: 50px;
     padding: 10px;
@@ -741,9 +741,9 @@ body{
     box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
     font-size: 20px;
     background-color: #f8f6f4;
-  }
+}
 
-  .search button[type="submit"] {
+.search button[type="submit"] {
     background-color:  #00BF63;
     height: 50px;
     border: none;
@@ -756,20 +756,20 @@ body{
     top: 0;
     right: 0;
     transition: .9s ease;
-  }
+}
 
-  .search button[type="submit"]:hover {
+.search button[type="submit"]:hover {
     height: 50px;
     transform: scale(1.1);
     color: rgb(255, 255, 255);
     background-color: #06e679 ;
-  }
+}
 
-  #search-icon{
+#search-icon{
     font-size: 20px;
-  }
+}
 
-   /* card dei prodotti*/
+/* card dei prodotti*/
 .card {
     border: 1px solid #00BF63;
     border-radius: 10px;
