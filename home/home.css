@@ -12,7 +12,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Montserrat", sans-serif;
-    transition: all 0.5s ease;
 }
 
 html, body{
@@ -102,6 +101,7 @@ body {
 @media screen and (max-width: 400px){
     html, body {
         overflow-x: hidden;
+        transition: all 0.5s ease;
     }
     
     .header{
