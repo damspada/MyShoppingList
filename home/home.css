@@ -61,7 +61,6 @@ body {
     position: relative;
     font-size: 120%;
     color: black;
-    font-weight: 500;
     margin-left: 4em; 
     text-decoration: none;
     font-weight: 550;
@@ -488,6 +487,7 @@ body {
     justify-content: space-around;
     padding: 8% 5% 5% 5%;
 }
+
 .obiettivi{
     position: relative;
     /* border-radius: 50%; */
@@ -501,6 +501,7 @@ body {
     font-weight: bold;
     margin: 10px;
 }
+
 .obiettivi1 {
     background-image: url(./Immagini/money2.png); 
     background-repeat: no-repeat;
@@ -522,13 +523,14 @@ body {
     font-size: 30px;
     text-align: center;
     font-weight: bold;
+    margin: 10% 0 5% 0;
 }
 
 .text_obiettivi_serif{
     font-family: "Montserrat", sans-serif;
     font-size: 20px;
     text-align: center;
-    font-weight: 500;
+    font-weight: 550;
 }
 
 @media screen and (max-width: 400px) {
@@ -536,11 +538,15 @@ body {
         flex-direction: column; 
         align-items: center; 
         justify-content: center;
-        padding: 20px; 
+        margin: 10% 0;
     }
 
-    .obiettivi {
-        margin: 10px 0; 
+    .text_obiettivi_sansserif{
+        margin: 5% 0 5% 0;
+    }
+
+    .text_obiettivi_serif{
+        margin-bottom: 20%;
     }
 }
 
@@ -561,8 +567,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* padding: 20px; */
-    margin: 2% 5%;
+    margin: 1% 5%;
 }
   
 .image-container_sopra,
@@ -578,11 +583,11 @@ body {
 }
 
 .image-container_sopra{
-    margin: 2% 10% 2% 5%;
+    margin: 2% 10% 0 5%;
 }
 
 .image-container_sotto{
-    margin: 2% 5% 2% 10%;
+    margin: 0 5% 2% 10%;
 }
   
 .text-container{
@@ -613,15 +618,46 @@ body {
     font-weight: bold;
 }
 
-.text_spiegazioni_sansserif{
-    font-family: "Montserrat_Arabic_Regular", serif;
-    font-size: 30px;
-}
-
 .text_spiegazioni_serif{
     font-family: "Montserrat", sans-serif;
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 520;
+}
+
+@media screen and (max-width: 400px) {
+    .spiegazioni_container {
+        flex-direction: column;
+    }
+
+    .spiegazioni_container:first-child{
+        margin-top: 10%;
+    }
+
+    .image-container_sopra,
+    .image-container_sotto{
+        width: 200px;
+        height: 200px;
+        margin: 10% 0;
+    }
+
+    .text-container {
+        width: 100%; /* Larghezza del contenitore al 90% dello schermo */
+        margin: 2% 5%; /* Margine uniforme */
+    }
+
+    .text-container h1{
+        font-size: 20px;
+    }
+
+    .text_spiegazioni_serif{
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .image-container_sopra{
+        order: 2;
+    }
+
 }
 
 /*-------------------------------- SuperMercati --------------------------------*/
@@ -672,6 +708,11 @@ body {
     .colonna {
         flex-basis: calc(33.33% - 10px); /* Larghezza del 33.33% meno il margine */
         margin: 5px; /* Aggiungi un margine tra le colonne */
+    }
+
+    .colonna img{
+        width: 75%;
+        height: auto;
     }
 
 }
@@ -747,7 +788,7 @@ body {
     }
     .logos:before,
     .logos:after {
-        width: 150px;
+        width: 50px;
     }
 }
 
