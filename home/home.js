@@ -30,9 +30,9 @@ function scrollFunction() {
         backToTopBtn.classList.remove("show"); /* Rimuovi la classe "show" per nascondere il bottone */
     }
 
-    // if(window.innerWidth <= 600){
-    //     backToTopBtn.classList.remove("show");
-    // }
+    if(window.innerWidth <= 720){
+        backToTopBtn.classList.remove("show");
+    }
 }
 
 document.getElementById("back-to-top-btn").addEventListener("click", function(event) {

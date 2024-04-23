@@ -1032,8 +1032,13 @@ body {
 
 @media screen and (max-width: 800px){
     .back_to_top{
-        width: 5%;
-        height: 5%;
+        width: 8%;
+        height: 8%;
+    }
+
+    .back_to_top img{
+        width: 100%;
+        height: auto;
     }
 }
 
