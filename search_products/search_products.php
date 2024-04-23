@@ -41,14 +41,24 @@
         }
     }
 
-    if(isset($_POST['update_btn'])){
-        $update_value = $_POST['update_quantity']+1;
-        $update_name = $_POST['update_quantity_name'];
-        $update_quantity_query = "UPDATE `Cart` SET Quantità = '$update_value' WHERE Nome = '$update_name'";
-     }
-
     $carrello = "SELECT * FROM Cart";
     $risultato = $conn->query($carrello);
+
+
+    if (isset($_POST['update_btn']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+        $update_name = $_POST['update_quantity_name'];
+        $update_quantity_query = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = '$update_name'";
+        $update=$conn->query($update_quantity_query);
+        if($update){
+            header('location:search_products.php');
+         };
+     }
+
+     if (isset($_POST['decrease_btn']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+        $update_name = $_POST['update_quantity_name'];
+        $update_quantity_query = "UPDATE `Cart` SET Quantità = Quantità - 1 WHERE Nome = '$update_name'";
+        $update=$conn->query($update_quantity_query);
+     }
     // Close the connection
     $conn->close();
 ?>
@@ -242,9 +252,9 @@
                         <div class="carrello_quantità">
                             <form action="" method="post">
                                 <input type="hidden" name="update_quantity_name"  value="<?php echo $riga['Nome']; ?>" >
-                                <input type="submit" class="bottoni_tondi2" value="-" name="update_btn">
-                                <input type="number" class="quantity" name="update_quantity" min="1"  value="<?php echo $riga['Quantità']; ?>" >
-                                <input type="submit" class="bottoni_tondi" value="+" name="decrease_btn">
+                                <input type="submit" class="bottoni_tondi2" value="-" name="decrease_btn">
+                                <input type="number" class="quantity" name="update_quantity" min="1"  value="<?php echo $riga['Quantità']; ?>" readonly >
+                                <input type="submit" class="bottoni_tondi" value="+" name="update_btn">
                             </form>   
                         </div>
                     </div>

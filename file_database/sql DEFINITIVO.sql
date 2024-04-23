@@ -285,6 +285,15 @@ INSERT INTO products (name, peso, image, category, description, nutrients, healt
   ('Sgrassatore Cif Power & Shine', 750, 'products/sgrassatore_cif.jpg', 'Igiene e Casa', 'Sgrassatore con formula potente per una pulizia brillante e senza sforzo.', 'Tensioattivi non ionici, Solventi alcalini', 9.1),
   ('Ammorbidente Bounce', 500, 'products/ammo_bounce.jpg', 'Igiene e Casa', 'Ammorbidente con profumo di primavera per tessuti morbidi e freschi.', 'Quaternario di ammonio, Profumo', 8.6);
   
+
+
+CREATE TABLE Cart (
+ Nome varchar(255) NOT NULL,
+ Quantità int(11) NOT NULL,
+ Categoria varchar(255) NOT NULL,
+ Immagine varchar(255) NOT NULL,
+ PRIMARY KEY (Nome)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
 --- FINO A QUA TUTTO FUNZIONANTE ---
 
 CREATE TABLE recipes (
@@ -302,6 +311,8 @@ CREATE TABLE recipe_ingredients (
   FOREIGN KEY (recipe_name) REFERENCES recipes(name),
   FOREIGN KEY (ingredient) REFERENCES products(name)
 );
+
+
 
 
 

@@ -6,6 +6,17 @@
     src: url("Montserrat-Arabic\ Regular\ 400.otf") format("opentype");
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -796,13 +807,6 @@ body{
     max-height: 100% ;
 }
 
-.quantity {
-   padding: 2%;
-   margin: 2%;
-   height: 10%;
-   width: 30%;
-}
-
 
 h3{
     margin-bottom: 3%;
@@ -924,3 +928,12 @@ h3{
     text-align: center;
 }
 
+.quantity {
+    padding: 2%;
+    margin: 2%;
+    height: 10%;
+    width: 30%;
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+ }
