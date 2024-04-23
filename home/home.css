@@ -97,7 +97,7 @@ body {
     width: 0;
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 900px){
     html, body {
         overflow-x: hidden;
         transition: all 0.5s ease;
@@ -484,9 +484,9 @@ body {
     }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 900px){
     .text_slogan{
-        font-size: 30px;
+        font-size: 45px;
     }
 
     .background{
@@ -498,6 +498,36 @@ body {
     .container_slogan{
         width: 100%;
         height: auto;
+    }
+}
+
+@media screen and (max-width: 800px){
+    .text_slogan{
+        font-size: 40px;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .text_slogan{
+        font-size: 35px;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .text_slogan{
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 520px){
+    .text_slogan{
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 430px){
+    .text_slogan{
+        font-size: 20px;
     }
 }
 
@@ -537,9 +567,7 @@ body {
     transition: 50ms;
 }
 
-/* Aggiungi questo media query alla fine del tuo CSS */
-@media screen and (max-width: 600px) {
- 
+@media screen and (max-width: 900px){
     .text_slogan_container {
         position: relative;
         width: 100%;
@@ -552,7 +580,44 @@ body {
         padding: 2% 6%; 
         left: 50%;
         transform: translateX(-50%);
+        margin-top: 15em; 
+    }
+}
+
+@media screen and (max-width: 880px){
+    .button_shopping {
+        margin-top: 15em; 
+    }
+}
+
+@media screen and (max-width: 780px){
+    .button_shopping {
+        margin-top: 14em; 
+    }
+}
+
+@media screen and (max-width: 720px){
+    .button_shopping {
+        margin-top: 13em; 
+    }
+}
+
+@media screen and (max-width: 675px) {
+    .button_shopping {
         margin-top: 12em; 
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    .button_shopping {
+        margin-top: 11em; 
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .button_shopping {
+        margin-top: 10em; 
     }
 }
 
@@ -628,6 +693,20 @@ body {
         margin-bottom: 20%;
     }
 }
+
+@media screen and (min-width: 601px) and (max-width: 900px) {
+    .obiettivi_container {
+        flex-wrap: wrap; /* Per consentire ai cerchi di andare a capo */
+    }
+    
+    .text_obiettivi_sansserif,
+    .text_obiettivi_serif {
+        width: 100%; /* Per far sì che i testi occupino l'intera larghezza della riga */
+        text-align: center; /* Per centrare il testo all'interno della riga */
+        margin-bottom: 20px; /* Aggiungere uno spazio sotto i testi */
+    }
+}
+
 
 
 /*-------------------------------- Spiegazioni --------------------------------*/
@@ -725,16 +804,55 @@ body {
     }
 
     .text-container h1{
-        font-size: 20px;
+        font-size: 22px;
     }
 
     .text_spiegazioni_serif{
-        font-size: 15px;
+        font-size: 16px;
         font-weight: 500;
     }
 
     .image-container_sopra{
         order: 2;
+    }
+}
+
+@media screen and (min-width: 550px) and (max-width: 600px){
+    .image-container_sopra,
+    .image-container_sotto{
+        width: 250px;
+        height: 250px;
+        margin: 10% 0;
+    }
+}
+
+@media screen and (min-width: 601px) and (max-width: 900px){
+    .spiegazioni_container {
+        flex-direction: column;
+    }
+
+    .image-container_sopra{
+        order: 2;
+    }
+
+    .spiegazioni_container:first-child{
+        margin-top: 10%;
+    }
+
+    .image-container_sopra,
+    .image-container_sotto{
+        width: 300px;
+        height: 300px;
+        margin: 10% 0;
+    }
+
+    .text-container h1{
+        font-size: 25px;
+    }
+
+    .text_spiegazioni_serif{
+        font-size: 18px;
+        font-weight: 500;
     }
 
 }
@@ -912,9 +1030,10 @@ body {
     transform: translateY(-4px);
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 800px){
     .back_to_top{
-        display: none;
+        width: 5%;
+        height: 5%;
     }
 }
 
@@ -1041,7 +1160,7 @@ h3{
     font-size: 10px;
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 670px){
     .footer_container {
         padding-top: 2%;
         padding-bottom: 2%;
@@ -1061,26 +1180,45 @@ h3{
         margin-right: 10px; /* Riduci lo spazio tra l'icona e il testo */
     }
     .contatto p {
-        font-size: 14px; 
+        font-size: 18px; 
     }
 
     .wrapper_social {
         display: flex; 
-        /* flex-wrap: wrap;  */
         justify-content: center; 
     }
     .wrapper_social .icon{
         margin: 0 8%;
     }
     .wrapper_social .icon span {
-        width: 40px !important; 
-        height: 40px !important; 
+        width: 50px !important; 
+        height: 50px !important; 
         display: flex; 
         align-items: center; 
         justify-content: center;
     }
     .wrapper_social .icon span i {
         font-size: 20px !important; 
+    }
+}
+
+@media screen and (max-width: 600px){
+    .contatto p {
+        font-size: 16px; 
+    }
+
+    .wrapper_social .icon span {
+        width: 45px !important; 
+        height: 45px !important; 
+
+    }
+
+}
+
+@media screen and (max-width: 450px){
+    .wrapper_social .icon span{
+        width: 40px !important; 
+        height: 40px !important;
     }
 }
 
