@@ -57,6 +57,11 @@ body{
     background-color: #f8f6f4;
 }
 
+.ricette_div{
+    top:40%;
+    width: 100%;
+}
+
 
 
 /* NavBar*/
@@ -744,7 +749,7 @@ body{
     position: absolute;
     top: 0;
     right: 0;
-    transition: .9s ease;
+    transition: .5s ease;
 }
 
 .search button[type="submit"]:hover {
@@ -760,7 +765,7 @@ body{
 
 /* card dei prodotti*/
 .card {
-    border: 1px solid #00BF63;
+    /* border: 1px solid black; */
     border-radius: 10px;
     padding: 1%;
     margin: 1.5% 1.5%;
@@ -791,24 +796,20 @@ body{
     max-height: 100% ;
 }
 
-/* .quantity {
+.quantity {
    padding: 2%;
    margin: 2%;
    height: 10%;
+   width: 30%;
 }
-.quantity input {
-    width: 25%;
-    text-align: center;
-    border-radius: 10px;
-    border: 1px solid black;
-} */
+
 
 h3{
     margin-bottom: 3%;
     font-size: 15px;
 }
 
-/* .bottoni_tondi{
+.bottoni_tondi{
     border-radius: 50%;
     height: 25px;
     width: 25px;
@@ -819,8 +820,20 @@ h3{
 
 .bottoni_tondi:hover{
     transform: scale(1.1);
-} */
+}
 
+.bottoni_tondi2{
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    background-color: #eb1906;
+    transition: transform .2s;
+    border: none;
+}
+
+.bottoni_tondi2:hover{
+    transform: scale(1.1);
+}
 
 .bottone_carrello{
     border-radius: 10px;
@@ -829,6 +842,7 @@ h3{
     background-color:  #00BF63;
     transition: transform .2s;
     border: none;
+    font-weight: 600;
 }
 
 .bottone_carrello:hover{
@@ -856,7 +870,7 @@ h3{
 }
 .carrello_spesa{
     overflow-y: scroll;
-    height: 85%;
+    height: 83%;
     width: 100%;
 }
 .carrello_checkout{
@@ -884,6 +898,29 @@ h3{
 }
 
 .carrello_elemento{
-    height: 10%;
-    width: 100%;
+    height: 8%;
+    width: 96%;
+    margin: 2%;
+    border-radius: 10px;
+    background-color: white;
 }
+
+.carrello_nome{
+    height: 100%;
+    width: 50%;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.carrello_quantità{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+

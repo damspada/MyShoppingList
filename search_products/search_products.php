@@ -41,6 +41,14 @@
         }
     }
 
+    if(isset($_POST['update_btn'])){
+        $update_value = $_POST['update_quantity']+1;
+        $update_name = $_POST['update_quantity_name'];
+        $update_quantity_query = "UPDATE `Cart` SET Quantità = '$update_value' WHERE Nome = '$update_name'";
+     }
+
+    $carrello = "SELECT * FROM Cart";
+    $risultato = $conn->query($carrello);
     // Close the connection
     $conn->close();
 ?>
@@ -53,6 +61,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.png">
     <link rel="stylesheet" href="search_products.css">
+    <link href="https://icons8.com/icon/7801/up" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="search_products.js"></script>
+    <script src="login_script.js"></script>
     <title>MyShoppingList</title>
 </head>
 
@@ -214,35 +229,78 @@
         <div class="carrello_titolo">
             <h2>Shopping Cart</h2>
         </div>
+        
         <div class="carrello_spesa">
-            <!--<?php
-            //$carrello = "SELECT * FROM Cart";
-            //$risultato = $conn->query($carrello);
-            //if ($risultato->num_rows > 0) {
-                //while ($riga = $risultato->fetch_assoc()) {
-            ?> 
-                    <div class="carello_elemento">
-                        <h3><?php //echo $riga["Nome"]; ?></h3>
-                        <h3><?php //echo $riga["Quantità"]; ?></h3>
-                    </div>
             <?php
-               // }
-            //}
+            if ($risultato->num_rows > 0) {
+                while ($riga = $risultato->fetch_assoc()) {
+            ?> 
+                    <div class="carrello_elemento">
+                        <div class="carrello_nome">
+                            <h3><?php echo $riga["Nome"]; ?></h3>
+                        </div>
+                        <div class="carrello_quantità">
+                            <form action="" method="post">
+                                <input type="hidden" name="update_quantity_name"  value="<?php echo $riga['Nome']; ?>" >
+                                <input type="submit" class="bottoni_tondi2" value="-" name="update_btn">
+                                <input type="number" class="quantity" name="update_quantity" min="1"  value="<?php echo $riga['Quantità']; ?>" >
+                                <input type="submit" class="bottoni_tondi" value="+" name="decrease_btn">
+                            </form>   
+                        </div>
+                    </div>
+            <?php  
+                }
+            }
             ?>
-            -->
-            <div class="carello_elemento">
-            </div>
         </div>
+
         <div class="carrello_checkout">
             <button class="bottone_checkout"><h2>Checkout</h2></button>
         </div>
+
     </div>
 
-</body>
+    <div class="ricette_div">
 
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script src="search_products.js"></script>
-<script src="login_script.js"></script>
+    </div>
+
+    <!-- <div class="footer_container">
+        <div class="social_container">
+            <div class="wrapper_social">
+
+                <a href="https://www.facebook.com/" class="icon facebook">
+                    <span><i class="fab fa-facebook-f"></i></span>
+                </a>
+
+                <a href="https://www.instagram.com/" class="icon instagram">
+                    <span><i class="fab fa-instagram"></i></span>
+                </a>
+
+                <a href="https://www.github.com/" class="icon github">
+                    <span><i class="fab fa-github"></i></span>
+                </a>
+
+                <a href="https://it.linkedin.com/" class="icon linkedin">
+                    <span><i class="fab fa-linkedin"></i></span>
+                </a>
+
+                <a href="https://www.youtube.com/" class="icon youtube">
+                    <span><i class="fab fa-youtube"></i></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="contatti" id="contatti">
+            <div class="contatto">
+                <p><img src="./Icone/phone.png">+39 340-559-5344</p>
+            </div>
+            
+            <div class="contatto">
+                <p><img src="./Icone/mail.png"><a href="mailto:MyShoppingList@gmail.com">MyShoppingList@gmail.com</a></p>
+            </div>
+        </div>
+
+    </div> -->
+
+</body>
 </html>
