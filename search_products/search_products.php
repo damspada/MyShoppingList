@@ -72,6 +72,15 @@
             header('location:search_products.php');
          };
      }
+
+
+     if (isset($_POST['cestino']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+        $Elementi="DELETE FROM `Cart`";
+        $update=$conn->query($Elementi);
+        if($update){
+            header('location:search_products.php');
+         };
+     }
     // Close the connection
     $conn->close();
 ?>
@@ -86,11 +95,6 @@
     <link rel="stylesheet" href="search_products.css">
     <link href="https://icons8.com/icon/7801/up" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script src="search_products.js"></script>
-    <script src="login_script.js"></script>
     <title>MyShoppingList</title>
 </head>
 
@@ -278,6 +282,9 @@
         </div>
 
         <div class="carrello_checkout">
+            <form action="" method="post">
+                <input type="submit" name="cestino" class="bottoni_tondi3" value="">
+            </form>
             <button class="bottone_checkout"><h2>Checkout</h2></button>
         </div>
 
@@ -326,4 +333,9 @@
     </div> -->
 
 </body>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="search_products.js"></script>
+    <script src="login_script.js"></script>
 </html>
