@@ -26,17 +26,6 @@ iconClose.addEventListener('click', ()=>{
 });
 
 
-function openPopup(type) {
-    if (type === 'register') {
-        wrapper.classList.add('active');
-        body.classList.add('popup-active');
-        currentPopup = 'register';
-    } else if (type === 'login') {
-        wrapper.classList.remove('active');
-        body.classList.remove('popup-active');
-        currentPopup = 'login';
-    }
-}
 
 
 
