@@ -56,8 +56,21 @@
 
      if (isset($_POST['decrease_btn']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         $update_name = $_POST['update_quantity_name'];
-        $update_quantity_query = "UPDATE `Cart` SET Quantità = Quantità - 1 WHERE Nome = '$update_name'";
-        $update=$conn->query($update_quantity_query);
+        $Quantità="SELECT * FROM Cart WHERE  Nome = '$update_name'";
+        $res=$conn->query($Quantità);
+        $row = $res->fetch_assoc();
+        $n=$row['Quantità'];
+        if($n>1){
+            $update_quantity_query = "UPDATE `Cart` SET Quantità = Quantità - 1 WHERE Nome = '$update_name'";
+            $update=$conn->query($update_quantity_query);
+        }else{
+            $update_cart = "DELETE FROM `Cart` WHERE Nome = '$update_name'";
+            $update=$conn->query($update_cart);
+        }
+
+        if($update){
+            header('location:search_products.php');
+         };
      }
     // Close the connection
     $conn->close();
