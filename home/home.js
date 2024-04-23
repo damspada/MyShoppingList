@@ -30,7 +30,7 @@ function scrollFunction() {
         backToTopBtn.classList.remove("show"); /* Rimuovi la classe "show" per nascondere il bottone */
     }
 
-    if(window.innerWidth <= 400){
+    if(window.innerWidth <= 600){
         backToTopBtn.classList.remove("show");
     }
 }

@@ -97,7 +97,7 @@ body {
     width: 0;
 }
 
-@media screen and (max-width: 400px){
+@media screen and (max-width: 600px){
     html, body {
         overflow-x: hidden;
         transition: all 0.5s ease;
@@ -377,7 +377,7 @@ body {
     text-decoration: underline;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
     .wrapper {
         width: 80%;
         height: auto;
@@ -432,8 +432,9 @@ body {
     font-size: 80px; 
     font-weight: bold; 
     font-family: "Dm Serif Display", serif;
-    line-height: 1;
+    line-height: 1.1;
 }
+
 
 .container_slogan{
     width: 100%;
@@ -483,12 +484,32 @@ body {
     }
 }
 
+@media screen and (max-width: 600px){
+    .text_slogan{
+        font-size: 30px;
+    }
+
+    .background{
+        width: 100%;
+        height: auto;
+        padding: 1% 1em 1% 1em;
+    }
+
+    .container_slogan{
+        width: 100%;
+        height: auto;
+    }
+}
+
 
 /*-------------------------------- Bottone Riempi il carrello --------------------------------*/
 .button_shopping {
     position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-115%, -50%);
     /* font-family: "Montserrat_Arabic_Regular", serif; */
-    padding: 4% 8%;
+    padding: 1% 4.5%;
     border-radius: 50px;
     cursor: pointer;
     border: 0;
@@ -502,6 +523,7 @@ body {
 
 .button_shopping:hover {
     letter-spacing: 3px;
+    padding: 1% 4%;
     background-color: #06e679;
     color: black;
     box-shadow: #00BF63 0px 7px 29px 0px;
@@ -515,13 +537,26 @@ body {
     transition: 50ms;
 }
 
-/* Stili per il centro del bottone */
-.centrato {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+/* Aggiungi questo media query alla fine del tuo CSS */
+@media screen and (max-width: 600px) {
+ 
+    .text_slogan_container {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .button_shopping {
+        position: relative;
+        font-size: 25px;
+        padding: 2% 6%; 
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 12em; 
+    }
 }
+
+    
 
 
 /*-------------------------------- Obiettivi --------------------------------*/
@@ -577,12 +612,12 @@ body {
     font-weight: 550;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
     .obiettivi_container {
         flex-direction: column; 
         align-items: center; 
         justify-content: center;
-        margin: 10% 0;
+        margin: 10% 0 10% 0;
     }
 
     .text_obiettivi_sansserif{
@@ -668,7 +703,7 @@ body {
     font-weight: 520;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
     .spiegazioni_container {
         flex-direction: column;
     }
@@ -737,7 +772,7 @@ body {
     width: auto;
 }
 
-@media screen and (max-width: 400px){
+@media screen and (max-width: 600px){
     .text_supermercati {
         font-size: 30px;
     }
@@ -819,7 +854,7 @@ body {
 }
 
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
     .text_prodotti {
         font-size: 30px;
     }
@@ -875,6 +910,12 @@ body {
 }
 .back_to_top:hover span{
     transform: translateY(-4px);
+}
+
+@media screen and (max-width: 600px){
+    .back_to_top{
+        display: none;
+    }
 }
 
 
@@ -1000,7 +1041,7 @@ h3{
     font-size: 10px;
 }
 
-@media screen and (max-width: 400px){
+@media screen and (max-width: 600px){
     .footer_container {
         padding-top: 2%;
         padding-bottom: 2%;
