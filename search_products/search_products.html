@@ -1,0 +1,441 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.png">
+    <link rel="stylesheet" href="search_products.css">
+    <link href="https://icons8.com/icon/7801/up" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Effettua la richiesta al server per ottenere i prodotti
+            $.ajax({
+                url: "server.php",
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    // Ora puoi utilizzare forEach()
+                    data.forEach(function(element) {
+                        // Crea un div card per ogni prodotto
+                        var productCard = $('<div>').addClass('card');
+                        var CardImage = $('<div>').addClass('card_image');
+                        CardImage.append('<img src="' + element.image + '" alt="' + element.name + '">');
+                        productCard.append(CardImage);
+                        productCard.append('<h3>' + element.name + '</h3>');
+
+                        var productForm = document.createElement('form');
+                        productForm.id = 'productForm';
+                        productForm.method='post';
+
+                        var inputName = document.createElement('input');
+                        inputName.type = 'hidden';
+                        inputName.name = 'product_name';
+                        inputName.value = element.name;
+
+                        var inputCategory = document.createElement('input');
+                        inputCategory.type = 'hidden';
+                        inputCategory.name = 'product_category';
+                        inputCategory.value = element.category;
+
+                        var inputImage = document.createElement('input');
+                        inputImage.type = 'hidden';
+                        inputImage.name = 'product_image';
+                        inputImage.value = element.name;
+
+                        // Aggiungi gli input al form
+                        productForm.appendChild(inputName);
+                        productForm.appendChild(inputCategory);
+                        productForm.appendChild(inputImage);
+
+                        var submitButton = document.createElement("input");
+                        submitButton.type = "submit";
+                        submitButton.className = "bottone_carrello";
+                        submitButton.value = "Add to Cart";
+                        submitButton.name="add_to_cart"
+
+                        productForm.appendChild(submitButton);
+                        productForm.addEventListener("submit", function(event) {
+                            event.preventDefault(); // Evita il comportamento predefinito del modulo (refresh della pagina)
+
+                            // Serializza i dati del form
+                            var formData = $(this).serialize();
+
+                            // Esegui la richiesta AJAX
+                            $.ajax({
+                                type: "POST",
+                                url: "server.php",
+                                data: formData,
+                                success: function(response) {
+                                    if(!(!!document.getElementById(element.name))){
+                                    
+                                        var carrelloCard = $('<div>').addClass('carrello_elemento');
+                                        carrelloCard[0].id = element.name;
+                                        var carrelloNome= $('<div>').addClass('carrello_nome');
+                                        carrelloNome.append('<h3>' + element.name + '</h3>');
+                                        carrelloCard.append(carrelloNome);
+                                        
+                                        var carrelloQuantità=$('<div>').addClass('carrello_quantità');
+                                        const quantityForm = document.createElement('form');
+                                        quantityForm.setAttribute('id', element.name);
+                                        quantityForm.setAttribute('action', '');
+                                        quantityForm.setAttribute('method', 'post');
+
+                                        // Create the hidden input for update_quantity_name
+                                        const updateQuantityNameInput = document.createElement('input');
+                                        updateQuantityNameInput.setAttribute('type', 'hidden');
+                                        updateQuantityNameInput.setAttribute('name', 'update_quantity_name');
+                                        updateQuantityNameInput.value = element.name;
+
+                                        // Create the "-" button
+                                        const decreaseButton = document.createElement('button');
+                                        decreaseButton.setAttribute('type', 'submit');
+                                        decreaseButton.setAttribute('class', 'bottoni_tondi2');
+                                        decreaseButton.setAttribute('name', 'decrease_btn');
+                                        decreaseButton.textContent = "-";
+
+                                        // Create the input for quantity
+                                        const quantityInput = document.createElement('input');
+                                        quantityInput.setAttribute('type', 'number');
+                                        quantityInput.setAttribute('class', 'quantity');
+                                        quantityInput.setAttribute('name', 'update_quantity');
+                                        quantityInput.setAttribute('min', '1');
+                                        quantityInput.setAttribute('value', 1);
+                                        quantityInput.setAttribute('readonly', true);
+
+                                        // Create the "+" button
+                                        const increaseButton = document.createElement('button');
+                                        increaseButton.setAttribute('type', 'submit');
+                                        increaseButton.setAttribute('class', 'bottoni_tondi');
+                                        increaseButton.setAttribute('name', 'update_btn');
+                                        increaseButton.textContent = "+";
+
+                                        // Append elements to the form
+                                        quantityForm.append(updateQuantityNameInput);
+                                        quantityForm.append(decreaseButton);
+                                        quantityForm.append(quantityInput);
+                                        quantityForm.append(increaseButton);
+                                        quantityForm.addEventListener('submit', function(event) {
+                                            event.preventDefault(); 
+                                            const addButtonClicked = event.submitter.classList.contains('bottoni_tondi');
+                                            const lowButtonClicked = event.submitter.classList.contains('bottoni_tondi2');
+                                            if (addButtonClicked) {
+                                                $.ajax({
+                                                    url: 'server.php', // Specifica l'URL del server
+                                                    type: 'POST', // Metodo HTTP (PUT)
+                                                    data: { elemento: element.name, valore:'+1' }, // Dati da inviare al server
+                                                    success: function(response) {
+                                                        const inputElement = document.querySelector(`[id="${element.name}"] .quantity`);
+                                                        inputElement.value++;
+                                                    },
+                                                    error: function(error) {
+                                                        // Gestisci eventuali errori
+                                                    }
+                                                });
+                                            } else if (lowButtonClicked) {
+                                                $.ajax({
+                                                    url: 'server.php', // Specifica l'URL del server
+                                                    type: 'POST', // Metodo HTTP (PUT)
+                                                    data: { elemento: element.name,valore:'-1' }, // Dati da inviare al server
+                                                    success: function(response) {
+                                                        const inputElement = document.querySelector(`[id="${element.name}"] .quantity`);
+                                                        if(inputElement.value==1){
+                                                            const myDiv = document.getElementById(element.name);
+                                                            myDiv.remove();
+                                                        }else{
+                                                        inputElement.value--;
+                                                        }
+                                                    },
+                                                    error: function(error) {
+                                                        console.error('Si è verificato un errore durante la richiesta.');
+                                                    }
+                                                });
+                                            }
+                                        });
+
+                                        carrelloQuantità.append(quantityForm);
+                                        carrelloCard.append(carrelloQuantità);
+                                        $('.carrello_spesa').append(carrelloCard);
+                                    }else{
+                                        const inputElement = document.querySelector(`[id="${element.name}"] .quantity`);
+                                        inputElement.value++;
+                                    }
+                                },
+                                error: function(xhr, status, error) {
+                                    // Gestisci eventuali errori
+                                    console.error('Si è verificato un errore durante la richiesta.');
+                                }
+                            });
+                        });
+                        productCard.append(productForm);
+                        // Aggiungi il div card al container
+                        $('.prodotti_div').append(productCard);
+                    });
+                }
+            });
+        }); // Chiudi la parentesi graffa della funzione $(document).ready
+    </script>
+    <script>  //non funziona
+        $(document).ready(function() {
+            var filterCards = document.getElementsByClassName('filter-card');
+            for (var i = 0; i < filterCards.length; i++) {
+                filterCards[i].addEventListener('click', function(event) {
+                    var categoria = this.id;
+                    $.ajax({
+                        url: "server.php",
+                        method: "GET",
+                        data: { Categoria: categoria },
+                        dataType: "json",
+                        success: function(response) {
+                            console.log("Hello, world!");
+                            response.forEach(function(element) {
+                                var productCard = $('<div>').addClass('card');
+                                var CardImage = $('<div>').addClass('card_image');
+                                CardImage.append('<img src="' + element.image + '" alt="' + element.name + '">');
+                                productCard.append(CardImage);
+                                productCard.append('<h3>' + element.name + '</h3>');
+
+                                var button = document.createElement("button");
+                                button.id = "addToCartButton";
+                                button.textContent = "Aggiungi al Carrello";
+                                button.classList.add("bottone_carrello");
+
+                                button.setAttribute("data-product-name", element.name);
+                                button.setAttribute("data-product-category", element.category);
+                                button.setAttribute("data-product-image", element.image);
+                                productCard.append(button);
+                
+                                $('.prodotti_div').append(productCard);
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                                    // Gestisci eventuali errori
+                                    console.error('Si è verificato un errore durante la richiesta.');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function() { 
+            document.getElementById('Cestino').addEventListener('submit', function(event) {
+                event.preventDefault();
+                $.ajax({
+                    url: "server.php",
+                    method: "POST",
+                    data: { cestino : '1' },
+                    success: function(response) {
+                        const myDiv = document.querySelector('.carrello_spesa'); // Seleziona l'elemento <div>
+                        myDiv.innerHTML = ''; 
+                    },
+                    error: function(xhr, status, error) {
+                                console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                });
+            });
+        });
+    </script>
+    <title>MyShoppingList</title>
+</head>
+
+<body>
+
+    <!-- NavBar-->
+    <div id="navbar_div">
+        <header class="header">
+            <img src="Icone/MyShoppingList.png" class="logo">
+            <nav class="navbar">
+                <a href="../home/home.html">Home</a>
+                <a href="#">Contacts</a>
+                <a href="#">        
+                    <button class="Btn">
+                    <div class="sign"><ion-icon name="person-circle-outline" size="large"></ion-icon></div>
+                    <div class="text_btn">Login</div>
+                    </button>
+                </a>
+            </nav>
+        </header>
+    </div>
+
+    <div class="top_div">
+
+        <div class="search">
+            <input placeholder="Cerca..." type="text">
+            <button type="submit"><ion-icon id="search-icon" name="search" size="medium"></ion-icon></button>
+        </div>
+
+        <div class="filter-wrapper">
+            <button class="filter-card tooltip-top">
+                <img src="Icone/icons8-coltello-e-spatchula-50.png">
+            </button>
+            <button class="filter-card tooltip-top2">
+                <img src="Icone/icons8-pasta-64.png">
+            </button>
+            <button class="filter-card tooltip-top3" id="Carne">
+                <img src="Icone/icons8-carre-di-agnello-60.png">
+            </button>
+            <div class="filter-card tooltip-top4">
+                <img src="Icone/icons8-anguria-64.png">
+            </div>
+            <div class="filter-card tooltip-top5">
+                <img src="Icone/icons8-salmone-64.png">
+            </div>
+            <div class="filter-card tooltip-top6">
+                <img src="Icone/icons8-softdrink-64.png">
+            </div>
+            <div class="filter-card tooltip-top7">
+                <img src="Icone/icons8-sapone-60.png"> 
+            </div>
+            <div class="filter-card tooltip-top8">
+                <img src="Icone/icons8-carrot-64.png">
+            </div>
+            <div class="filter-card tooltip-top9">
+                <img src="Icone/icons8-snack-64 (2).png">
+            </div>
+            <div class="filter-card tooltip-top10">
+                <img src="Icone/icons8-barra-di-cioccolato-64 (1).png">
+            </div>
+            <div class="filter-card tooltip-top11">
+                <img src="Icone/icons8-inverno-64.png">
+            </div>
+            <div class="filter-card tooltip-top12">
+                <img src="Icone/icons8-pomodorini-in-salamoia-64.png">
+            </div>
+        </div>
+    </div> 
+
+    <!--Login e Signin-->
+    <div id="login_div">
+        <div class="wrapper">
+            <span class="icon-close">
+                <ion-icon name="close-outline"></ion-icon>
+            </span>
+
+            <div class="form-box login">
+                <h2>Login</h2>
+                <form action="#">
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+                        <input type="email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                        <input type="password" required>
+                        <label>Password</label>
+                    </div>
+                    <div class="remember-forgot">
+                        <label><input type="checkbox">Remember Me</label>
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                    <div class="login-register">
+                        <p>Don't have an account?<a href="#" class="register-link">Register</a></p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="form-box register">
+                <h2>Registration</h2>
+                <form action="#">
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                        <input type="text" required>
+                        <label>Username</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+                        <input type="email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                        <input type="password" required>
+                        <label>Password</label>
+                    </div>
+                    <div class="remember-forgot">
+                        <label><input type="checkbox">agree to the terms & conditions</label>
+                    </div>
+                    <button type="submit" class="btn">Register</button>
+                    <div class="login-register">
+                        <p>Already have an account?<a href="#" class="login-link">Login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="prodotti_div">
+    </div>
+
+
+    <div class="carrello_div">
+        <div class="carrello_titolo">
+            <h2>Shopping Cart</h2>
+        </div>
+        
+        <div class="carrello_spesa">
+            
+        </div>
+
+        <div class="carrello_checkout">
+            <form id="Cestino">
+                <input type="submit" name="cestino" class="bottoni_tondi3" value="">
+            </form>
+            <button class="bottone_checkout"><h2>Checkout</h2></button>
+        </div>
+
+    </div>
+
+    <div class="ricette_div">
+
+    </div>
+
+    <!-- <div class="footer_container">
+        <div class="social_container">
+            <div class="wrapper_social">
+
+                <a href="https://www.facebook.com/" class="icon facebook">
+                    <span><i class="fab fa-facebook-f"></i></span>
+                </a>
+
+                <a href="https://www.instagram.com/" class="icon instagram">
+                    <span><i class="fab fa-instagram"></i></span>
+                </a>
+
+                <a href="https://www.github.com/" class="icon github">
+                    <span><i class="fab fa-github"></i></span>
+                </a>
+
+                <a href="https://it.linkedin.com/" class="icon linkedin">
+                    <span><i class="fab fa-linkedin"></i></span>
+                </a>
+
+                <a href="https://www.youtube.com/" class="icon youtube">
+                    <span><i class="fab fa-youtube"></i></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="contatti" id="contatti">
+            <div class="contatto">
+                <p><img src="./Icone/phone.png">+39 340-559-5344</p>
+            </div>
+            
+            <div class="contatto">
+                <p><img src="./Icone/mail.png"><a href="mailto:MyShoppingList@gmail.com">MyShoppingList@gmail.com</a></p>
+            </div>
+        </div>
+
+    </div> -->
+
+</body>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="search_products.js"></script>
+    <script src="login_script.js"></script>
+</html>
