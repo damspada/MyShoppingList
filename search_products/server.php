@@ -91,6 +91,11 @@
 
         }
 
+        if (isset($_POST['cestino'])) {
+           $Elementi="DELETE FROM `Cart`";
+           $update=$conn->query($Elementi);
+        }
+
     }
 
     // if (isset($_POST['update_btn']) && $_SERVER['REQUEST_METHOD'] == 'POST') {

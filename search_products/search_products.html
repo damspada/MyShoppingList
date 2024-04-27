@@ -178,8 +178,7 @@
             });
         }); // Chiudi la parentesi graffa della funzione $(document).ready
     </script>
-    <script>
-        //non funziona
+    <script>  //non funziona
         $(document).ready(function() {
             var filterCards = document.getElementsByClassName('filter-card');
             for (var i = 0; i < filterCards.length; i++) {
@@ -211,10 +210,33 @@
                 
                                 $('.prodotti_div').append(productCard);
                             });
+                        },
+                        error: function(xhr, status, error) {
+                                    // Gestisci eventuali errori
+                                    console.error('Si è verificato un errore durante la richiesta.');
                         }
                     });
                 });
             }
+        });
+    </script>
+    <script>
+        $(document).ready(function() { 
+            document.getElementById('Cestino').addEventListener('submit', function(event) {
+                event.preventDefault();
+                $.ajax({
+                    url: "server.php",
+                    method: "POST",
+                    data: { cestino : '1' },
+                    success: function(response) {
+                        const myDiv = document.querySelector('.carrello_spesa'); // Seleziona l'elemento <div>
+                        myDiv.innerHTML = ''; 
+                    },
+                    error: function(xhr, status, error) {
+                                console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                });
+            });
         });
     </script>
     <title>MyShoppingList</title>
@@ -361,7 +383,7 @@
         </div>
 
         <div class="carrello_checkout">
-            <form action="" method="post">
+            <form id="Cestino">
                 <input type="submit" name="cestino" class="bottoni_tondi3" value="">
             </form>
             <button class="bottone_checkout"><h2>Checkout</h2></button>
