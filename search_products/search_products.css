@@ -27,7 +27,8 @@ input[type=number] {
 
 body{
     min-height: 100vh;
-    background-image: url('Icone/ruvido-beige-in-legno-strutturato.jpg');
+    /* background-image: url('Icone/ruvido-beige-in-legno-strutturato.jpg'); */
+    background-color: #8edfb7ae;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
