@@ -171,6 +171,14 @@ body.popup-active {
 .sign svg path {
     fill: white;
 }
+
+.sign img {
+    width: 30px; /* Regola la dimensione dell'immagine */
+    height: 30px; /* Regola la dimensione dell'immagine */
+    border-radius: 50%; /* Assicura che l'immagine sia rotonda */
+    object-fit: cover; /* Scalare e ritagliare l'immagine per adattarsi al contenitore */
+}
+
 /* text */
 .text_btn {
     position: absolute;

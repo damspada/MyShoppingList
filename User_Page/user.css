@@ -1,0 +1,492 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Serif+Display:ital@0;1&family=Orelega+One&family=Ultra&display=swap');
+
+@font-face {
+    font-family: "Montserrat_Arabic_Regular";
+    src: url("Montserrat-Arabic\ Regular\ 400.otf") format("opentype");
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+html, body{
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* .container_total{
+    background-color: #f8f6f4;
+    border: 2px solid #00BF63;
+    border-radius: 20px;  
+    overflow: hidden;
+    margin: 5% 5% 0 5%;
+} */
+
+/*-------------------------------- NavBar --------------------------------*/
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1% 5% 1% 6.5%;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    font-family: "Montserrat", sans-serif;
+    border-bottom: 1px solid #ccc;
+}
+
+.logo{
+    font-size: 32px;
+    color: black;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.my_navbar{
+    display: flex;
+    align-items: center;
+}
+
+.my_navbar a{
+    position: relative;
+    font-size: 120%;
+    color: black;
+    margin-left: 4em; 
+    text-decoration: none;
+    font-weight: 550;
+}
+
+.my_navbar a::before{
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 10%;
+    background: #00BF63;
+    transition: .3s;
+}
+
+.icon_contatti{
+    display: none; /* Nasconde l'icona inizialmente */
+}
+
+.my_navbar a:nth-child(1):hover::before {
+    width: 100%;
+}
+
+.my_navbar a:nth-child(1) .sign:hover::before {
+    width: 0;
+}
+
+.my_navbar a:nth-child(2):hover::before {
+    width: 100%;
+}
+
+.my_navbar a:nth-child(2) .sign:hover::before {
+    width: 0;
+}
+
+@media screen and (max-width: 900px){
+    html, body {
+        overflow-x: hidden;
+        transition: all 0.5s ease;
+    }
+    
+    .header{
+        padding: 1% 6% 1% 6.5%;;
+    }
+    .my_navbar a:nth-child(2) {
+        display: none; 
+    }
+    .my_navbar a:nth-child(1) {
+        display: none; 
+    }
+    .logo{
+        width: 140px;
+        height: auto;
+    }
+    .Btn{
+        width: 30px;
+        height: 30px;    
+    }
+    .icon_contatti {
+        display: inline-block; 
+    }
+    .icon_contatti img{
+        width: 30px;
+        height: 30px; 
+    }
+    .my_navbar a{
+        margin-left: 1em;
+    }
+}
+
+
+
+/*-------------------------------- Form --------------------------------*/
+.container {
+    display: flex;
+    margin: 8% 0 4% 0;
+}
+
+.avatar-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0.5%;
+    overflow: hidden;
+}
+
+.avatar {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 1px solid black;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.upload-button {
+    cursor: pointer;
+    background-color: #00BF63;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 20px;
+}
+
+.update-button {
+    cursor: pointer;
+    background-color: #0f5eccb6;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    border: none;
+    font-size: 15px;
+    margin-left: 10%;
+}
+
+.update-button:hover{
+    background-color: #0a4291b6;
+}
+
+.upload-button:hover {
+    background-color: #048948; 
+}
+
+.form-container {
+    flex: 1;
+}
+
+.form-row {
+    margin-bottom: 3%;
+}
+
+.login_container{
+    margin: 0 10%;
+    display: flex; 
+}
+
+.grid_container{
+    display: grid;
+    gap: 60%;
+    width: 100%;
+    grid-template-columns: 100% 100%;
+    flex-direction: column;
+    margin-bottom: 10%;
+}
+
+.grid_item{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    position: relative;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input[type="text"]{
+    width: 60%;
+    font-size: 20px;
+    padding: 2.5%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f8f6f4;
+}
+
+input[type="tel"]{
+    width: 100%;
+    font-size: 20px;
+    padding: 2.5%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f8f6f4;
+}
+
+input[type="date"]{
+    width: 29%;
+    font-size: 20px;
+    padding: 2.5%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f8f6f4;
+}
+
+input[type="email"],
+input[type="password"]{
+    width: 100%;
+    font-size: 20px;
+    padding: 2.5%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f8f6f4;
+}
+
+input[type="number"]{
+    width: 123.5%;
+    font-size: 20px;
+    padding: 2.5%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f8f6f4;
+}
+
+.pref_container{
+    margin: 0 10%;
+    display: flex; 
+}
+
+.grid_container_2{
+    display: grid;
+    width: 50%;
+    grid-template-columns: 100% 100%;
+    margin-bottom: 10%;
+}
+
+.grid_item_2{
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+    position: relative;
+}
+
+.my_select{
+    width: 140%;
+    font-size: 20px;
+    padding: 2.5%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f8f6f4;
+}
+
+
+/*-------------------------------- Footer --------------------------------*/
+
+.footer_container{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    background-color: #f8f6f4;
+    border-top-left-radius: 3em;
+    border-top-right-radius: 3em;
+    padding-bottom: 1%;
+}
+
+.social_container{
+    display: grid;
+    height: 100%;
+    width: 100%;
+    place-items: center;
+    background-color: #f8f6f4;
+    padding-top: 2%;
+    padding-bottom: 1%;
+    border-top-left-radius: 3em;
+    border-top-right-radius: 3em;
+}
+
+.wrapper_social{
+    display: inline-flex;
+}
+
+.wrapper_social a {
+    color: inherit; /* eredita il colore del testo dai genitori */
+    text-decoration: none; /* rimuove il sottolineato del link */
+}
+
+.wrapper_social a:hover {
+    color: inherit; /* eredita il colore del testo al passaggio del mouse */
+}
+
+.wrapper_social .icon{
+    margin: 0 20px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+    transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper_social .icon span{
+    display: block;
+    height: 60px;
+    width: 60px;
+    background: #fff;
+    border-radius: 50%;
+    position: relative;
+    z-index: 50;
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+    transition: 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper_social .icon span i{
+    line-height: 60px;
+    font-size: 25px;
+}
+
+.wrapper_social .icon:hover span{
+    color: #fff;
+    text-shadow: 0px -1px 0px rgba(0,0,0,0.4);
+}
+
+.wrapper_social .facebook:hover span{
+    background: #3B5999;
+}
+
+.wrapper_social .linkedin:hover span{
+    background: #0a66c2;
+}
+
+.wrapper_social .instagram:hover span{
+    background: #e1306c;
+}
+
+.wrapper_social .github:hover span{
+    background: #333;
+}
+
+.wrapper_social .youtube:hover span{
+    background: #DE463B;
+}
+
+.contatti {
+    display: flex; /* Usa il layout flexbox */
+    justify-content: center; /* Centra gli elementi lungo l'asse principale */
+    background-color: #f8f6f4;
+    margin-top: 1%;
+}
+
+.contatto {
+    display: flex;
+    margin: 0 30px; /* Aggiungi spazio tra i contatti */
+    text-align: center; 
+    align-items: center;
+    font-size: 20px;
+}
+
+.contatto p img{
+    width: 25px;
+    height: 25px;
+    margin-right: 15px;    
+    display: inline; 
+    vertical-align: middle; 
+}
+
+.contatto a{
+    color: black; 
+    text-decoration: none; /* Rimuove la sottolineatura */
+}
+
+.contatto a:hover {
+    text-decoration: underline; /* Aggiunge sottolineatura al passaggio del mouse */
+}
+
+h3{
+    font-size: 10px;
+}
+
+@media screen and (max-width: 670px){
+    .footer_container {
+        padding-top: 2%;
+        padding-bottom: 2%;
+    }
+
+    .contatti {
+        flex-direction: column; /* Allinea i contatti verticalmente */
+        align-items: center; /* Centra i contatti verticalmente */
+        padding-top: 3%;
+    }
+    .contatto {
+        margin: 0.5% 0; /* Riduci lo spazio tra i contatti */
+    }
+    .contatto p img {
+        width: 20px; /* Riduci le dimensioni delle icone dei contatti */
+        height: 20px;
+        margin-right: 10px; /* Riduci lo spazio tra l'icona e il testo */
+    }
+    .contatto p {
+        font-size: 18px; 
+    }
+
+    .wrapper_social {
+        display: flex; 
+        justify-content: center; 
+    }
+    .wrapper_social .icon{
+        margin: 0 8%;
+    }
+    .wrapper_social .icon span {
+        width: 50px !important; 
+        height: 50px !important; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+    }
+    .wrapper_social .icon span i {
+        font-size: 20px !important; 
+    }
+}
+
+@media screen and (max-width: 600px){
+    .contatto p {
+        font-size: 16px; 
+    }
+
+    .wrapper_social .icon span {
+        width: 45px !important; 
+        height: 45px !important; 
+
+    }
+
+}
+
+@media screen and (max-width: 450px){
+    .wrapper_social .icon span{
+        width: 40px !important; 
+        height: 40px !important;
+    }
+}
+
+
