@@ -59,34 +59,34 @@
     <!-- Form Login e Preferenze -->
     <div class="login_container">
         <form>
-            <div class="grid_container">
-                <div class="grid_item">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="Insert here...">
+            <div class="flex_container">
+                <div class="flex_container_2">
+                    <div class="flex_item_2 email">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="Insert here...">
+                    </div>
+                    <div class="flex_item_2 lifestyle">
+                        <label for="stile_di_vita">Life-Style:</label>
+                        <select name="stile_di_vita" id="stile_di_vita" class="my_select">
+                            <option value="">Select one..</option>
+                            <option value="Sedentario">Sedentary</option>
+                            <option value="Normale">Normal</option>
+                            <option value="Sportivo">Sporty</option>
+                        </select>
+                    </div>
+                    <div class="flex_item_2 maxamount">
+                        <label for="importo">Max Amount:</label>
+                        <input type="number" id="importo" name="importo" placeholder="Insert here...">
+                    </div>
                 </div>
-                <div class="grid_item">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" placeholder="Insert here...">
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <div class="pref_container">
-        <form>
-            <div class="grid_container_2">
-                <div class="grid_item_2">
-                    <label for="stile_di_vita">Life-Style:</label>
-                    <select name="stile_di_vita" id="stile_di_vita" class="my_select">
-                        <option value="">Select one..</option>
-                        <option value="Sedentario">Sedentary</option>
-                        <option value="Normale">Normal</option>
-                        <option value="Sportivo">Sporty</option>
-                    </select>
-                </div>
-                <div class="grid_item_2">
-                    <label for="importo">Max Amount:</label>
-                    <input type="number" id="importo" name="importo" placeholder="Insert here...">
+                <div class="flex_container_2">
+                    <div class="flex_item">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" placeholder="Insert here...">
+                    </div>
+                    <div class="flex_item">
+                        <button class="button_shopping lineUp" onclick="window.location.href='../search_products/search_products.html';" >Fill the cart now ➜</button>
+                    </div>
                 </div>
             </div>
         </form>

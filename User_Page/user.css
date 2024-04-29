@@ -169,6 +169,64 @@ body {
     font-size: 20px;
 }
 
+.upload-button:hover {
+    background-color: #048948; 
+}
+
+.form-container {
+    flex: 1;
+}
+
+.form-row {
+    margin-bottom: 3%;
+}
+
+
+
+/*-------------------------------- Form Login--------------------------------*/
+.login_container{
+    margin: 0 0 0 10%;
+}
+
+.flex_container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.flex_container_2{
+    display: flex;
+    flex-direction: row;
+}
+
+.flex_item{
+    width: 50%;
+    flex: 1;
+    padding-bottom: 2%;
+}
+
+.flex_item_2{
+    width: 40%;
+}
+
+.email{
+    width: 50%;
+    padding-bottom: 1.5%;
+}
+
+.lifestyle{
+    width: 20%;
+}
+
+.maxamount{
+    width: 20%;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
 .update-button {
     cursor: pointer;
     background-color: #0f5eccb6;
@@ -183,44 +241,6 @@ body {
 
 .update-button:hover{
     background-color: #0a4291b6;
-}
-
-.upload-button:hover {
-    background-color: #048948; 
-}
-
-.form-container {
-    flex: 1;
-}
-
-.form-row {
-    margin-bottom: 3%;
-}
-
-.login_container{
-    margin: 0 10%;
-    display: flex; 
-}
-
-.grid_container{
-    display: grid;
-    gap: 60%;
-    width: 100%;
-    grid-template-columns: 100% 100%;
-    flex-direction: column;
-    margin-bottom: 10%;
-}
-
-.grid_item{
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    position: relative;
-}
-
-label {
-    display: block;
-    font-weight: bold;
 }
 
 input[type="text"]{
@@ -250,9 +270,17 @@ input[type="date"]{
     background-color: #f8f6f4;
 }
 
-input[type="email"],
+input[type="email"]{
+    width: 70%;
+    font-size: 20px;
+    padding: 2.5%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f8f6f4;
+}
+
 input[type="password"]{
-    width: 100%;
+    width: 70%;
     font-size: 20px;
     padding: 2.5%;
     border-radius: 5px;
@@ -261,41 +289,89 @@ input[type="password"]{
 }
 
 input[type="number"]{
-    width: 123.5%;
+    width: 60%;
     font-size: 20px;
     padding: 2.5%;
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color: #f8f6f4;
-}
-
-.pref_container{
-    margin: 0 10%;
-    display: flex; 
-}
-
-.grid_container_2{
-    display: grid;
-    width: 50%;
-    grid-template-columns: 100% 100%;
-    margin-bottom: 10%;
-}
-
-.grid_item_2{
-    display: flex;
-    width: 60%;
-    flex-direction: column;
-    position: relative;
 }
 
 .my_select{
-    width: 140%;
+    width: 60%;
     font-size: 20px;
-    padding: 2.5%;
+    padding: 1%;
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color: #f8f6f4;
 }
+
+.button_shopping {
+    width: 48%;
+    height: 90%;
+    padding: 1% 2%;
+    border-radius: 50px;
+    cursor: pointer;
+    border: 0;
+    background-color: #00BF63;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1.5px;
+    font-size: 20px;
+    transition: all 0.5s ease;
+    font-weight: bold;
+}
+
+.button_shopping:hover {
+    letter-spacing: 3px;
+    padding: 1% 4%;
+    background-color: #06e679;
+    color: black;
+    box-shadow: #00BF63 0px 7px 29px 0px;
+}
+
+.button_shopping:active {
+    letter-spacing: 3px;
+    background-color: #00BF63;
+    color: black;
+    box-shadow: #00BF63 0px 0px 0px 0px;
+    transition: 50ms;
+}
+
+@media screen and (max-width: 1400px) {
+    .grid_container {
+        grid-template-columns: 1fr; /* Imposta una colonna quando la larghezza dello schermo è inferiore a 768px */
+    }
+}
+
+@media screen and (max-width: 900px){
+    .avatar {
+        width: 200px;
+        height: 200px;
+    }
+
+    .upload-button {
+        font-size: 15px;
+    }
+
+    input[type="text"]{
+        width: 50%;
+        font-size: 15px;
+        padding: 2%;
+    }
+
+    input[type="date"]{
+        width: 45%;
+        font-size: 10px;
+        padding: 2%;
+    }
+
+    input[type="tel"]{
+        width: 76%;
+        font-size: 15px;
+        padding: 2%;
+    }
+}
+
 
 
 /*-------------------------------- Footer --------------------------------*/
