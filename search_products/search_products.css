@@ -42,7 +42,7 @@ body{
     position: absolute;
     top: 32%;
     width: 70%;
-    height: 68%;
+    height: 65%;
     box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
     overflow-x: hidden;
     overflow-y: scroll;
@@ -908,7 +908,7 @@ h3{
     top: 8%;
     width: 25%;
     left: 72%;
-    height: 92%;
+    height: 89%;
     box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
 }
 
