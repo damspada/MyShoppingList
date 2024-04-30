@@ -71,7 +71,6 @@ body {
     height: 10%;
     background: #00BF63;
     transition: .3s;
-    
 }
 
 .icon_contatti{
@@ -101,7 +100,7 @@ body {
         display: none; 
     }
     .logo{
-        width: 140px;
+        width: 160px;
         height: auto;
     }
     .Btn{
@@ -199,7 +198,7 @@ body {
 
 .email{
     width: 50%;
-    padding-bottom: 1.5%;
+    padding-bottom: 3%;
 }
 
 .lifestyle{
@@ -225,6 +224,7 @@ label {
     border: none;
     font-size: 15px;
     margin-left: 10%;
+    margin-top: 1%;
 }
 
 .update-button:hover{
@@ -241,7 +241,7 @@ input[type="text"]{
 }
 
 input[type="tel"]{
-    width: 100%;
+    width: 90%;
     font-size: 20px;
     padding: 2.5%;
     border-radius: 5px;
@@ -250,7 +250,7 @@ input[type="tel"]{
 }
 
 input[type="date"]{
-    width: 29%;
+    width: 34.5%;
     font-size: 20px;
     padding: 2.5%;
     border-radius: 5px;
@@ -296,14 +296,14 @@ input[type="number"]{
 
 @media screen and (max-width: 1400px) {
     .grid_container {
-        grid-template-columns: 1fr; /* Imposta una colonna quando la larghezza dello schermo è inferiore a 768px */
+        grid-template-columns: 1fr; 
     }
 }
 
 @media screen and (min-width: 601px) and (max-width: 900px){
     .avatar {
-        width: 200px;
-        height: 200px;
+        width: 230px;
+        height: 230px;
     }
 
     .upload-button {
@@ -311,42 +311,59 @@ input[type="number"]{
     }
 
     input[type="text"]{
-        width: 50%;
-        font-size: 15px;
+        width: 70%;
+        font-size: 18px;
         padding: 2%;
     }
 
     input[type="date"]{
         width: 45%;
-        font-size: 10px;
+        font-size: 18px;
         padding: 2%;
     }
 
     input[type="tel"]{
         width: 76%;
-        font-size: 15px;
+        font-size: 18px;
         padding: 2%;
     }
 
     input[type="email"]{
-        width: 50%;
-        font-size: 15px;
+        width: 70%;
+        font-size: 18px;
         padding: 2%;
     }
 
     input[type="password"]{
-        width: 50%;
-        font-size: 15px;
+        width: 70%;
+        font-size: 18px;
         padding: 2%;
     }
 
     .my_select{
         font-size: 18px;
+        width: 85%;
+        padding: 3.5%;
     }
 
     input[type="number"]{
-        font-size: 15px;
-        padding: 2%;
+        font-size: 18px;
+        padding: 1%;
+        width: 80%;
+    }
+
+    .button_register{
+        width: 60% !important;
+        font-size: 20px !important;
+        margin-left: 7% !important;
+        padding: 2% 0 !important;
+    }
+
+    .button_shopping{
+        width: 75% !important;
+        font-size: 20px !important;
+        margin-left: 7% !important;
+        padding: 2% 0 !important;
     }
 }
 
@@ -437,6 +454,13 @@ input[type="number"]{
         width: 60% !important;
         font-size: 20px !important;
         margin-left: 23% !important;
+        padding: 3% 0 !important;
+    }
+
+    .button_shopping{
+        width: 70% !important;
+        font-size: 20px !important;
+        margin-left: 19% !important;
         padding: 3% 0 !important;
     }
 
