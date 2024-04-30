@@ -96,6 +96,10 @@
            $update=$conn->query($Elementi);
         }
 
+        if (isset($_POST['close'])){
+            $Elementi="DELETE FROM `Cart`";
+           $update=$conn->query($Elementi);
+        }
     }
 
     // if (isset($_POST['update_btn']) && $_SERVER['REQUEST_METHOD'] == 'POST') {

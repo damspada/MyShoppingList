@@ -7,9 +7,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.png">
     <link rel="stylesheet" href="search_products.css">
+    
+    <!--=============== REMIXICONS ===============-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css" crossorigin="">
+
     <link href="https://icons8.com/icon/7801/up" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        window.addEventListener('beforeunload', function(event) {
+            $.ajax({
+                url: "server.php",
+                method: "POST",
+                data: { close : '1' },
+                success: function(response) {
+                    console.log('Richiesta andata a buon fine.');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Si è verificato un errore durante la richiesta.');
+                }
+            });
+        })
+    </script>
     <script>
         $(document).ready(function() {
             // Effettua la richiesta al server per ottenere i prodotti
@@ -245,18 +264,19 @@
 <body>
 
     <!-- NavBar-->
-    <div id="navbar_div">
+    <div>
         <header class="header">
-            <img src="Icone/MyShoppingList.png" class="logo">
-            <nav class="navbar">
-                <a href="../home/home.html">Home</a>
-                <a href="#">Contacts</a>
-                <a href="#">        
-                    <button class="Btn">
-                    <div class="sign"><ion-icon name="person-circle-outline" size="large"></ion-icon></div>
-                    <div class="text_btn">Login</div>
-                    </button>
-                </a>
+            <a href="../home/home.html"><img src="Icone/MyShoppingList.png" class="logo"></a>
+            <nav class="my_navbar">
+                    <a href="../home/home.html" class="link_navbar">Home</a>
+                    <a href="#contatti">Contacts</a>
+                    <a href="#contatti" class="icon_contatti"><img src="./Immagini/phone.png"></a>
+                    <a href="#">        
+                        <button class="Btn">
+                        <div class="sign"><ion-icon name="person-circle-outline" size="large"></ion-icon></div>
+                        <div class="text_btn">Login</div>
+                        </button>
+                    </a>
             </nav>
         </header>
     </div>
@@ -391,47 +411,139 @@
 
     </div>
 
-    <div class="ricette_div">
-
+    <div class="text">
+        <h1>COSA TI CONSIGLIAMO?</h1>
     </div>
 
-    <!-- <div class="footer_container">
-        <div class="social_container">
-            <div class="wrapper_social">
+    <div class="ricette_div">
 
-                <a href="https://www.facebook.com/" class="icon facebook">
-                    <span><i class="fab fa-facebook-f"></i></span>
-                </a>
+             <div class="ricetta_card">
+                <div class="ricetta_immagine">
+                    <img src="Icone/carbo (1).jpeg" alt="">
+                </div>
+                <div class="ricetta_description">
+                    <h4>CARBONARA</h4>
+                    La carbonara è un piatto tradizionale italiano, originario di Roma. Questa pasta cremosa e saporita è preparata con spaghetti o rigatoni, uova, formaggio pecorino, guanciale e pepe nero.
+                </div>
+                <div class="ricetta_form">
+                    <button type="submit" class="bottone_carrello2" id="Carbonara">
+                        Try it
+                    </button>
+                </div>
+            </div> 
 
-                <a href="https://www.instagram.com/" class="icon instagram">
-                    <span><i class="fab fa-instagram"></i></span>
-                </a>
-
-                <a href="https://www.github.com/" class="icon github">
-                    <span><i class="fab fa-github"></i></span>
-                </a>
-
-                <a href="https://it.linkedin.com/" class="icon linkedin">
-                    <span><i class="fab fa-linkedin"></i></span>
-                </a>
-
-                <a href="https://www.youtube.com/" class="icon youtube">
-                    <span><i class="fab fa-youtube"></i></span>
-                </a>
+            <div class="ricetta_card">
+                <div class="ricetta_immagine">
+                    <img src="Icone/Amatriciana.jpeg" alt="">
+                </div>
+                <div class="ricetta_description">
+                    <h4>AMATRICIANA</h4>
+                    La carbonara è un piatto tradizionale italiano, originario di Roma. Questa pasta cremosa e saporita è preparata con spaghetti o rigatoni, uova, formaggio pecorino, pancetta o guanciale e pepe nero.
+                </div>
+                <div class="ricetta_form">
+                    <button type="submit" class="bottone_carrello2" id="Carbonara">
+                        Try it
+                    </button>
+                </div>
             </div>
+
+            <div class="ricetta_card">
+                <div class="ricetta_immagine">
+                    <img src="Icone/DSC_0070 (1).jpg" alt="">
+                </div>
+                <div class="ricetta_description">
+                    <h4>POLLO E PATATE</h4>
+                    La carbonara è un piatto tradizionale italiano, originario di Roma. Questa pasta cremosa e saporita è preparata con spaghetti o rigatoni, uova, formaggio pecorino, pancetta o guanciale e pepe nero.
+                </div>
+                <div class="ricetta_form">
+                    <button type="submit" class="bottone_carrello2" id="Carbonara">
+                        Try it
+                    </button>
+                </div>
+            </div>
+
+            <div class="ricetta_card">
+                <div class="ricetta_immagine">
+                    <img src="Icone/Tiramisu-Recipe-Cover (1).jpg" alt="">
+                </div>
+                <div class="ricetta_description">
+                    <h4>TIRAMISU</h4>
+                    La carbonara è un piatto tradizionale italiano, originario di Roma. Questa pasta cremosa e saporita è preparata con spaghetti o rigatoni, uova, formaggio pecorino, pancetta o guanciale e pepe nero.
+                </div>
+                <div class="ricetta_form">
+                    <button type="submit" class="bottone_carrello2" id="Carbonara">
+                        Try it
+                    </button>
+                </div>
+            </div>
+
+            <div class="ricetta_card">
+                <div class="ricetta_immagine">
+                    <img src="Icone/Lasagna (1).jpg" alt="">
+                </div>
+                <div class="ricetta_description">
+                    <h4>LASAGNA</h4>
+                    La carbonara è un piatto tradizionale italiano, originario di Roma. Questa pasta cremosa e saporita è preparata con spaghetti o rigatoni, uova, formaggio pecorino, pancetta o guanciale e pepe nero.
+                </div>
+                <div class="ricetta_form">
+                    <button type="submit" class="bottone_carrello2" id="Carbonara">
+                        Try it
+                    </button>
+                </div>
+            </div>
+
+            <div class="ricetta_card">
+                <div class="ricetta_immagine">
+                    <img src="Icone/PB051362-1-768x1024 (2).jpg" alt="">
+                </div>
+                <div class="ricetta_description">
+                    <h4>TORTELLINI IN BRODO</h4>
+                    La carbonara è un piatto tradizionale italiano, originario di Roma. Questa pasta cremosa e saporita è preparata con spaghetti o rigatoni, uova, formaggio pecorino, pancetta o guanciale e pepe nero.
+                </div>
+                <div class="ricetta_form">
+                    <button type="submit" class="bottone_carrello2" id="Carbonara">
+                        Try it
+                    </button>
+                </div>
+            </div>
+    </div>
+
+    <!-- Footer -->
+   <div class="footer_container">
+    <div class="social_container">
+        <div class="wrapper_social">
+            <a href="https://www.facebook.com/" class="icon facebook">
+                <span><i class="fab fa-facebook-f"></i></span>
+            </a>
+
+            <a href="https://www.instagram.com/" class="icon instagram">
+                <span><i class="fab fa-instagram"></i></span>
+            </a>
+
+            <a href="https://github.com/damspada/MyShoppingList" class="icon github">
+                <span><i class="fab fa-github"></i></span>
+            </a>
+
+            <a href="https://it.linkedin.com/" class="icon linkedin">
+                <span><i class="fab fa-linkedin"></i></span>
+            </a>
+
+            <a href="https://www.youtube.com/" class="icon youtube">
+                <span><i class="fab fa-youtube"></i></span>
+            </a>
         </div>
+    </div>
 
-        <div class="contatti" id="contatti">
-            <div class="contatto">
-                <p><img src="./Icone/phone.png">+39 340-559-5344</p>
-            </div>
-            
-            <div class="contatto">
-                <p><img src="./Icone/mail.png"><a href="mailto:MyShoppingList@gmail.com">MyShoppingList@gmail.com</a></p>
-            </div>
+    <div class="contatti" id="contatti">
+        <div class="contatto">
+            <p><img src="./Icone/phone.png">+39 340-559-5344</p>
         </div>
-
-    </div> -->
+    
+        <div class="contatto">
+            <p><img src="./Icone/mail.png"><a href="mailto:MyShoppingList@gmail.com">MyShoppingList@gmail.com</a></p>
+        </div>
+    </div>
+</div>
 
 </body>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
