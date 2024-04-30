@@ -20,45 +20,42 @@
             <a href="../home/home.html"><img src="./Immagini/MyShoppingList.png" class="logo"></a>
             <nav class="my_navbar">
                     <a href="../home/home.html" class="link_navbar">Home</a>
-                    <a href="#contatti">Contacts</a>
-                    <a href="#contatti" class="icon_contatti"><img src="./Immagini/phone.png"></a>
+                    <a href="../home/home.html" class="icon_contatti"><img src="./Immagini/home.png"></a>
             </nav>
         </header>
     </div>
 
     
     <!-- Form -->
-    <div class="container">
-        <div class="avatar-container">
-            <img src="#" class="avatar" id="avatar-preview">
-            <label for="avatar-upload" class="upload-button">Choose Image</label>
-            <input type="file" id="avatar-upload" accept="image/*" style="display: none;">
+    <form>
+        <div class="container">
+            <div class="avatar-container">
+                <img src="#" class="avatar" id="avatar-preview">
+                <label for="avatar-upload" class="upload-button">Choose Image</label>
+                <input type="file" id="avatar-upload" accept="image/*" style="display: none;">
+            </div>
+            <div class="form-container">
+                    <div class="form-row">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" placeholder="Insert here...">
+                    </div>
+                    <div class="form-row">
+                        <label for="surname">Surname:</label>
+                        <input type="text" id="surname" name="surname" placeholder="Insert here...">
+                    </div>
+                    <div class="form-row">
+                        <label for="birthdate">Birth-Day:</label>
+                        <input type="date" id="birthdate" name="birthdate" placeholder="Select Date">
+                    </div>
+                    <div class="form-row">
+                        <label for="phone">Phone-Number:</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Insert here...">
+                    </div>
+            </div>
         </div>
-        <div class="form-container">
-            <form>
-                <div class="form-row">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" placeholder="Insert here...">
-                </div>
-                <div class="form-row">
-                    <label for="surname">Surname:</label>
-                    <input type="text" id="surname" name="surname" placeholder="Insert here...">
-                </div>
-                <div class="form-row">
-                    <label for="birthdate">Birth-Day:</label>
-                    <input type="date" id="birthdate" name="birthdate" placeholder="Select Date">
-                </div>
-                <div class="form-row">
-                    <label for="phone">Phone-Number:</label>
-                    <input type="tel" id="phone" name="phone" placeholder="Insert here...">
-                </div>
-            </form>
-        </div>
-    </div>
 
-    <!-- Form Login e Preferenze -->
-    <div class="login_container">
-        <form>
+        <!-- Form Login e Preferenze -->
+        <div class="login_container">
             <div class="flex_container">
                 <div class="flex_container_2">
                     <div class="flex_item_2 email">
@@ -92,9 +89,8 @@
                     </div>
                 </div>
             </div>
-        </form>
-    </div>
-
+        </div>
+    </form>
     <button class="update-button">Update Profile</button>
 
     

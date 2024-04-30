@@ -23,13 +23,6 @@ body {
     padding: 0;
 }
 
-/* .container_total{
-    background-color: #f8f6f4;
-    border: 2px solid #00BF63;
-    border-radius: 20px;  
-    overflow: hidden;
-    margin: 5% 5% 0 5%;
-} */
 
 /*-------------------------------- NavBar --------------------------------*/
 .header{
@@ -37,7 +30,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 1% 5% 1% 6.5%;
+    padding: 1.5% 5% 1% 6.5%;
     background-color: white;
     display: flex;
     justify-content: space-between;
@@ -49,6 +42,7 @@ body {
 
 .logo{
     font-size: 32px;
+    width: 100%;
     color: black;
     text-decoration: none;
     font-weight: 700;
@@ -61,7 +55,7 @@ body {
 
 .my_navbar a{
     position: relative;
-    font-size: 120%;
+    font-size: 140%;
     color: black;
     margin-left: 4em; 
     text-decoration: none;
@@ -77,6 +71,7 @@ body {
     height: 10%;
     background: #00BF63;
     transition: .3s;
+    
 }
 
 .icon_contatti{
@@ -91,13 +86,7 @@ body {
     width: 0;
 }
 
-.my_navbar a:nth-child(2):hover::before {
-    width: 100%;
-}
 
-.my_navbar a:nth-child(2) .sign:hover::before {
-    width: 0;
-}
 
 @media screen and (max-width: 900px){
     html, body {
@@ -107,9 +96,6 @@ body {
     
     .header{
         padding: 1% 6% 1% 6.5%;;
-    }
-    .my_navbar a:nth-child(2) {
-        display: none; 
     }
     .my_navbar a:nth-child(1) {
         display: none; 
@@ -123,7 +109,8 @@ body {
         height: 30px;    
     }
     .icon_contatti {
-        display: inline-block; 
+        display: inline-block;
+        margin-top: 10%; 
     }
     .icon_contatti img{
         width: 30px;
@@ -228,7 +215,7 @@ label {
     font-weight: bold;
 }
 
-.update-button {
+.update-button{
     cursor: pointer;
     background-color: #2875e1b6;
     color: white;
@@ -402,20 +389,26 @@ input[type="number"]{
     }
 
     .flex_item_2.email {
-        order: 1; 
+        order: 5; 
+        padding-bottom: 10%;
+        width: 84%;
     }
     
     .flex_item {
         order: 2; 
+        width: 84%;
     }
     
-    .flex_item_2.lifestyle,
     .flex_item_2.maxamount {
         order: 3; 
+        width: 60%;
+        padding-bottom: 5%;
     }
-    
-    .button_register {
-        order: 4; 
+
+    .flex_item_2.lifestyle{
+        order: 3; 
+        width: 56%;
+        padding-bottom: 2%;
     }
 
     input[type="email"]{
@@ -440,12 +433,16 @@ input[type="number"]{
         width: 140%;
     }
 
-    /* .button_register{
-        width: 100%;
-        height: 100%;
-        padding: 1% 100%;
-        margin: 8% 0 0 55%;
-    } */
+    .button_register{
+        width: 60% !important;
+        font-size: 20px !important;
+        margin-left: 23% !important;
+        padding: 3% 0 !important;
+    }
+
+    .update-button{
+        margin: 10% 10% 50% 10%;
+    }
     
 }
 
@@ -700,7 +697,7 @@ h3{
     }
 }
 
-@media screen and (min-width: 600px) and (max-width: 2000px){
+@media screen and  (max-width: 2000px){
     .footer_container{
         position: fixed;
         width: 100%;
