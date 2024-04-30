@@ -229,7 +229,7 @@ label {
 
 .update-button {
     cursor: pointer;
-    background-color: #0f5eccb6;
+    background-color: #2875e1b6;
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
@@ -319,6 +319,7 @@ input[type="number"]{
     font-size: 20px;
     transition: all 0.5s ease;
     font-weight: bold;
+    margin: 8% 0 0 6%;
 }
 
 .button_shopping:hover {
