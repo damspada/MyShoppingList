@@ -306,38 +306,6 @@ input[type="number"]{
     background-color: #f8f6f4;
 }
 
-.button_shopping {
-    width: 48%;
-    height: 90%;
-    padding: 1% 2%;
-    border-radius: 50px;
-    cursor: pointer;
-    border: 0;
-    background-color: #00BF63;
-    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
-    letter-spacing: 1.5px;
-    font-size: 20px;
-    transition: all 0.5s ease;
-    font-weight: bold;
-    margin: 8% 0 0 6%;
-}
-
-.button_shopping:hover {
-    letter-spacing: 3px;
-    padding: 1% 4%;
-    background-color: #06e679;
-    color: black;
-    box-shadow: #00BF63 0px 7px 29px 0px;
-}
-
-.button_shopping:active {
-    letter-spacing: 3px;
-    background-color: #00BF63;
-    color: black;
-    box-shadow: #00BF63 0px 0px 0px 0px;
-    transition: 50ms;
-}
-
 @media screen and (max-width: 1400px) {
     .grid_container {
         grid-template-columns: 1fr; /* Imposta una colonna quando la larghezza dello schermo è inferiore a 768px */
@@ -371,6 +339,74 @@ input[type="number"]{
         font-size: 15px;
         padding: 2%;
     }
+}
+
+
+/*-------------------------------- Button Shopping--------------------------------*/
+.button_shopping {
+    width: 47%;
+    height: 60%;
+    padding: 1% 2%;
+    border-radius: 50px;
+    cursor: pointer;
+    border: 0;
+    background-color: #00BF63;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1.5px;
+    font-size: 20px;
+    transition: all 0.5s ease;
+    font-weight: bold;
+    margin: 8% 0 0 9%;
+}
+
+.button_shopping:hover {
+    letter-spacing: 3px;
+    padding: 1% 4%;
+    background-color: #0bcf70;
+    /* color: black; */
+    box-shadow: #00BF63 0px 7px 29px 0px;
+}
+
+.button_shopping:active {
+    letter-spacing: 3px;
+    background-color: #00BF63;
+    /* color: black; */
+    box-shadow: #00BF63 0px 0px 0px 0px;
+    transition: 50ms;
+}
+
+
+/*-------------------------------- Button Register--------------------------------*/
+.button_register{
+    width: 35%;
+    height: 90%;
+    padding: 1% 2%;
+    border-radius: 50px;
+    cursor: pointer;
+    border: 0;
+    background-color: #00BF63;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1.5px;
+    font-size: 20px;
+    transition: all 0.5s ease;
+    font-weight: bold;
+    margin: 8% 0 0 15%;
+}
+
+.button_register:hover{
+    letter-spacing: 3px;
+    padding: 1% 4%;
+    background-color: #0bcf70;
+    /* color: black; */
+    box-shadow: #00BF63 0px 7px 29px 0px;
+}
+
+.button_register:active{
+    letter-spacing: 3px;
+    background-color: #00BF63;
+    /* color: black; */
+    box-shadow: #00BF63 0px 0px 0px 0px;
+    transition: 50ms;
 }
 
 
