@@ -12,6 +12,7 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
+    //Per visualizzare tutti i prodotti
     if ($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_GET['Categoria'])) {
         
         $sql = "SELECT * FROM products";
@@ -28,9 +29,10 @@
 
     }
 
-    if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['Categoria'])){
-        $categoria=$_GET['Categoria'];
-        $sql2 = "SELECT * FROM `products` WHERE Categoria = '$categoria'";
+    //Per visualizzare i prodotti cercati tramite barra di ricerca
+    if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['Nome'])){
+        $Nome=$_GET['Nome'];
+        $sql2 = "SELECT * FROM `products` WHERE 'name' LIKE '%$Nome%'";
         $risultato = $conn->query($sql2);
         $productsC = array();
         if ($risultato->num_rows > 0) {
@@ -39,6 +41,32 @@
             }
         }
         echo json_encode($productsC);
+    }
+
+    //Per visualizzare i prodotti della categoria desiderata
+    if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['Categoria'])){
+        $categoria=$_GET['Categoria'];
+        if($categoria=="All"){
+            $sql2 = "SELECT * FROM `products`";
+            $risultato = $conn->query($sql2);
+            $productsC = array();
+            if ($risultato->num_rows > 0) {
+                while ($row = $risultato->fetch_assoc()) {
+                    $productsC[] = $row;
+                }
+            }
+            echo json_encode($productsC);
+        }else{
+            $sql2 = "SELECT * FROM `products` WHERE category = '$categoria'";
+            $risultato = $conn->query($sql2);
+            $productsC = array();
+            if ($risultato->num_rows > 0) {
+                while ($row = $risultato->fetch_assoc()) {
+                    $productsC[] = $row;
+                }
+            }
+            echo json_encode($productsC);
+        }
     }
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
