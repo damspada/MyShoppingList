@@ -14,17 +14,26 @@
 
     <script>
         $(document).ready(function(){
-            document.getElementById("log").addEventListener("click",function(event){
+            document.getElementById("form_log").addEventListener("submit",function(event){
                 event.preventDefault();
                 const immagine = document.getElementById('avatar-preview').value;
+                console.log(immagine);
                 const name = document.getElementById('name').value;
+                console.log(name);
                 const surname = document.getElementById('surname').value;
+                console.log(surname);
                 const birthdate = document.getElementById('birthdate').value;
+                console.log(birthdate);
                 const phone = document.getElementById('phone').value;
+                console.log(phone);
                 const email = document.getElementById('email').value;
+                console.log(email);
                 const password = document.getElementById('password').value;
+                console.log(password);
                 const stile_di_vita = document.getElementById('stile_di_vita').value;
+                console.log(stile_di_vita);
                 const importo = document.getElementById('importo').value;
+                console.log(importo);
 
                 $.ajax({
                     url: "server.php",
@@ -32,9 +41,6 @@
                     data: {immagine:immagine, name:name, surname:surname, birthdate:birthdate, phone:phone, email:email, password:password, stile_di_vita:stile_di_vita, importo:importo},
                     success: function(data){
                         console.log("All right!");
-                    },
-                    error: function(xhr, status, error){
-                        console.log('Si è verificato un errore durante la richiesta.');
                     }
                 });
             });
