@@ -13,7 +13,7 @@
     }
 
     //Per visualizzare tutti i prodotti
-    if ($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_GET['Categoria'])) {
+    if ($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_GET['Categoria']) && !isset($_GET['Nome']) && !isset($_GET['Ricetta'])) {
         
         $sql = "SELECT * FROM products";
         $result = $conn->query($sql);
@@ -32,8 +32,9 @@
     //Per visualizzare i prodotti cercati tramite barra di ricerca
     if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['Nome'])){
         $Nome=$_GET['Nome'];
-        $sql2 = "SELECT * FROM `products` WHERE 'name' LIKE '%$Nome%'";
-        $risultato = $conn->query($sql2);
+        echo "Il nome inviato è: " . $Nome;
+        $sql3 = "SELECT * FROM `products` WHERE `name` LIKE '%$Nome%'";
+        $risultato = $conn->query($sql3);
         $productsC = array();
         if ($risultato->num_rows > 0) {
             while ($row = $risultato->fetch_assoc()) {
@@ -69,8 +70,31 @@
         }
     }
 
+    // if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['Ricetta'])){
+    //     $Ricetta=$_GET['Ricetta'];
+    //     if($Ricetta=="Carbonara"){
+    //         $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Uova', 1, 'Dispensa', 'products/uova.jpg')";
+    //         $res = $conn->query($insert_product);
+    //         $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Mezze Maniche Barilla', 1, 'Dispensa', 'products/mezze_maniche.jpg')";
+    //         $res = $conn->query($insert_product);
+    //         $prodotti = [
+    //             [
+    //                 "name" => "Uova"
+    //                 "category"=> "Dispensa"
+    //             ],
+    //             [
+    //                 "name" => "Mezze Maniche Barilla"
+    //                 "category"=> "Dispensa"
+    //             ]
+    //             // Aggiungi altri prodotti qui...
+    //         ];
+    //         echo json_encode($prodotti);
+    //     }
+    // }
+
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        // Verifica se sono stati inviati tutti i dati necessari
+        // Aggiungere prodotto al carrello o aumentare la quantità di esso all'interno del carrello
         if (isset($_POST['product_name']) && isset($_POST['product_category']) && isset($_POST['product_image'])) {
             // Sanificazione dei dati
             $product_name = $_POST['product_name'];
@@ -95,7 +119,7 @@
             }
         }
     
-
+        //Per aumentare e diminuire la quantità di un prodotto nel carrello 
         if (isset($_POST['elemento']) && isset($_POST['valore'])) {
             $valore = $_POST['valore'];
             $prodotto=$_POST['elemento'];
@@ -119,53 +143,18 @@
 
         }
 
+        //Per svuotare il carrello premendo l'icona del cestino
         if (isset($_POST['cestino'])) {
            $Elementi="DELETE FROM `Cart`";
            $update=$conn->query($Elementi);
         }
 
+        //Per svuotare il carrello alla chiusura della pagina 
         if (isset($_POST['close'])){
             $Elementi="DELETE FROM `Cart`";
            $update=$conn->query($Elementi);
         }
     }
 
-    // if (isset($_POST['update_btn']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
-    //     $update_name = $_POST['update_quantity_name'];
-    //     $update_quantity_query = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = '$update_name'";
-    //     $update=$conn->query($update_quantity_query);
-    //     if($update){
-    //         header('location:search_products.php');
-    //      };
-    //  }
-
-    //  if (isset($_POST['decrease_btn']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
-    //     $update_name = $_POST['update_quantity_name'];
-    //     $Quantità="SELECT * FROM Cart WHERE  Nome = '$update_name'";
-    //     $res=$conn->query($Quantità);
-    //     $row = $res->fetch_assoc();
-    //     $n=$row['Quantità'];
-    //     if($n>1){
-    //         $update_quantity_query = "UPDATE `Cart` SET Quantità = Quantità - 1 WHERE Nome = '$update_name'";
-    //         $update=$conn->query($update_quantity_query);
-    //     }else{
-    //         $update_cart = "DELETE FROM `Cart` WHERE Nome = '$update_name'";
-    //         $update=$conn->query($update_cart);
-    //     }
-
-    //     if($update){
-    //         header('location:search_products.php');
-    //      };
-    //  }
-
-
-    //  if (isset($_POST['cestino']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
-    //     $Elementi="DELETE FROM `Cart`";
-    //     $update=$conn->query($Elementi);
-    //     if($update){
-    //         header('location:search_products.php');
-    //      };
-    //  }
-    // Close the connection
     $conn->close();
 ?>

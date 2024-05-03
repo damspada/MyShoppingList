@@ -26,6 +26,20 @@
                 }
             });
         })
+
+        window.addEventListener('load', function(event) {
+            $.ajax({
+                url: "server.php",
+                method: "POST",
+                data: { close : '1' },
+                success: function(response) {
+                    console.log('Richiesta andata a buon fine.');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Si è verificato un errore durante la richiesta.');
+                }
+            });
+        })
     </script>
     <script> // script per visualizzare tutti i prodotti
         $(document).ready(function() {
@@ -429,10 +443,10 @@
             
                             $('.prodotti_div').append(productCard);
                         });
-                    },
-                    error: function(xhr, status, error) {
-                                // Gestisci eventuali errori
-                                console.log('Si è verificato un errore durante la richiesta.');
+                    
+                    // error: function(xhr, status, error) {
+                    //             // Gestisci eventuali errori
+                    //             console.log('Si è verificato un errore durante la richiesta.');
                     }
                 }); 
             });
@@ -442,6 +456,118 @@
                     const searchQuery = searchBar.value; 
                 }
             });
+        });
+    </script>
+    <script>//script per le ricette
+         $(document).ready(function() {
+            var bottoni = document.getElementsByClassName('bottone_carrello2');
+            for (var i = 0; i < bottoni.length; i++) {
+                bottoni[i].addEventListener('click', function(event) {
+                    var ricetta = this.id;
+                    $.ajax({
+                        url: "server.php",
+                        method: "GET",
+                        data: { Ricetta: ricetta },
+                        dataType: "json",
+                        success: function(response){
+                            response.forEach(function(element) {
+                                if(!(!!document.getElementById(element.name))){    
+                                    var carrelloCard = $('<div>').addClass('carrello_elemento');
+                                    carrelloCard[0].id = element.name;
+                                    var carrelloNome= $('<div>').addClass('carrello_nome');
+                                    carrelloNome.append('<h3>' + element.name + '</h3>');
+                                    carrelloCard.append(carrelloNome);
+                                    
+                                    var carrelloQuantità=$('<div>').addClass('carrello_quantità');
+                                    const quantityForm = document.createElement('form');
+                                    quantityForm.setAttribute('id', element.name);
+                                    quantityForm.setAttribute('action', '');
+                                    quantityForm.setAttribute('method', 'post');
+
+                                    // Create the hidden input for update_quantity_name
+                                    const updateQuantityNameInput = document.createElement('input');
+                                    updateQuantityNameInput.setAttribute('type', 'hidden');
+                                    updateQuantityNameInput.setAttribute('name', 'update_quantity_name');
+                                    updateQuantityNameInput.value = element.name;
+
+                                    // Create the "-" button
+                                    const decreaseButton = document.createElement('button');
+                                    decreaseButton.setAttribute('type', 'submit');
+                                    decreaseButton.setAttribute('class', 'bottoni_tondi2');
+                                    decreaseButton.setAttribute('name', 'decrease_btn');
+                                    decreaseButton.textContent = "-";
+
+                                    // Create the input for quantity
+                                    const quantityInput = document.createElement('input');
+                                    quantityInput.setAttribute('type', 'number');
+                                    quantityInput.setAttribute('class', 'quantity');
+                                    quantityInput.setAttribute('name', 'update_quantity');
+                                    quantityInput.setAttribute('min', '1');
+                                    quantityInput.setAttribute('value', 1);
+                                    quantityInput.setAttribute('readonly', true);
+
+                                    // Create the "+" button
+                                    const increaseButton = document.createElement('button');
+                                    increaseButton.setAttribute('type', 'submit');
+                                    increaseButton.setAttribute('class', 'bottoni_tondi');
+                                    increaseButton.setAttribute('name', 'update_btn');
+                                    increaseButton.textContent = "+";
+
+                                    // Append elements to the form
+                                    quantityForm.append(updateQuantityNameInput);
+                                    quantityForm.append(decreaseButton);
+                                    quantityForm.append(quantityInput);
+                                    quantityForm.append(increaseButton);
+                                    quantityForm.addEventListener('submit', function(event) {
+                                        event.preventDefault(); 
+                                        const addButtonClicked = event.submitter.classList.contains('bottoni_tondi');
+                                        const lowButtonClicked = event.submitter.classList.contains('bottoni_tondi2');
+                                        if (addButtonClicked) {
+                                            $.ajax({
+                                                url: 'server.php', // Specifica l'URL del server
+                                                type: 'POST', // Metodo HTTP (PUT)
+                                                data: { elemento: element.name, valore:'+1' }, // Dati da inviare al server
+                                                success: function(response) {
+                                                    const inputElement = document.querySelector(`[id="${element.name}"] .quantity`);
+                                                    inputElement.value++;
+                                                },
+                                                error: function(error) {
+                                                    // Gestisci eventuali errori
+                                                }
+                                            });
+                                        } else if (lowButtonClicked) {
+                                            $.ajax({
+                                                url: 'server.php', // Specifica l'URL del server
+                                                type: 'POST', // Metodo HTTP (PUT)
+                                                data: { elemento: element.name,valore:'-1' }, // Dati da inviare al server
+                                                success: function(response) {
+                                                    const inputElement = document.querySelector(`[id="${element.name}"] .quantity`);
+                                                    if(inputElement.value==1){
+                                                        const myDiv = document.getElementById(element.name);
+                                                        myDiv.remove();
+                                                    }else{
+                                                    inputElement.value--;
+                                                    }
+                                                },
+                                                error: function(error) {
+                                                    console.error('Si è verificato un errore durante la richiesta.');
+                                                }
+                                            });
+                                        }
+                                    });
+                                }else{
+                                    const inputElement = document.querySelector(`[id="${element.name}"] .quantity`);
+                                    inputElement.value++;
+                                }
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            // Gestisci eventuali errori
+                            console.error('Si è verificato un errore durante la richiesta.');
+                        }
+                    });
+                });
+            };
         });
     </script>
 
@@ -499,7 +625,7 @@
             <div class="filter-card tooltip-top7" id="Igiene e Casa">
                 <img src="Icone/icons8-sapone-60.png"> 
             </div>
-            <div class="filter-card tooltip-top8">
+            <div class="filter-card tooltip-top8" id="Vegetali">
                 <img src="Icone/icons8-carrot-64.png">
             </div>
             <div class="filter-card tooltip-top9" id="Snack">
@@ -626,7 +752,7 @@
                     Amatriciana is a traditional Italian dish, originally from Amatrice. It is simple but rich in flavor thanks to the bacon, pecorino romano, tomato and chilli pepper. It pairs well with bucatini.
                 </div>
                 <div class="ricetta_form">
-                    <button type="submit" class="bottone_carrello2" id="Carbonara">
+                    <button type="submit" class="bottone_carrello2" id="Amatriciana">
                         Try it
                     </button>
                 </div>
@@ -641,7 +767,7 @@
                     A warm embrace between pieces of succulent chicken and soft potatoes. The aroma of garlic and rosemary wafts through the air as the pan sizzles. It is a dish that tastes of home, of family Sundays.
                 </div>
                 <div class="ricetta_form">
-                    <button type="submit" class="bottone_carrello2" id="Carbonara">
+                    <button type="submit" class="bottone_carrello2" id="Pollo">
                         Try it
                     </button>
                 </div>
@@ -656,7 +782,7 @@
                     Tiramisu is a traditional Italian dessert, widespread throughout the country. This spoon dessert is made up of ladyfingers soaked in coffee and covered with a cream made from mascarpone, eggs and sugar. 
                 </div>
                 <div class="ricetta_form">
-                <button type="submit" class="bottone_carrello2" id="Carbonara">
+                <button type="submit" class="bottone_carrello2" id="Tiramisu">
                     Try it
                 </button>
                 </div>
@@ -671,7 +797,7 @@
                     Lasagna Bolognese is a mainstay of Italian cuisine that combines layers of fresh pasta with a rich meat sauce. It is a dish full of flavors and to be shared with family and friends.
                 </div>
                 <div class="ricetta_form">
-                    <button type="submit" class="bottone_carrello2" id="Carbonara">
+                    <button type="submit" class="bottone_carrello2" id="Lasagna">
                         Try it
                     </button>
                 </div>
@@ -686,7 +812,7 @@
                     Tortellini are small stuffed pasta parcels. They are stuffed with a mixture of meats, Parmigiano Reggiano, eggs and nutmeg and then cooked in a rich meat broth and served piping hot. 
                 </div>
                 <div class="ricetta_form">
-                    <button type="submit" class="bottone_carrello2" id="Carbonara">
+                    <button type="submit" class="bottone_carrello2" id="Tortellini">
                         Try it
                     </button>
                 </div>
