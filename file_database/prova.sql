@@ -100,7 +100,7 @@ INSERT INTO categories (name, image, description) VALUES
 ('Healty', 'categories/salutare.jpg', 'Scelta di prodotti sani e biologici, senza conservanti o additivi artificiali, per uno stile di vita sano e equilibrato.');
 
 CREATE TABLE products (
-  name VARCHAR(255) PRIMARY KEY,
+  Nome VARCHAR(255) PRIMARY KEY,
   peso INT,
   image VARCHAR(255),
   category VARCHAR(50),

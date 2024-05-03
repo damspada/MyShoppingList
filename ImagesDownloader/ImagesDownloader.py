@@ -55,13 +55,13 @@ for product in products:
     query = f"{name}"
     image_url = search_image(query)
     if image_url:
-        image_filename = f"{name.lower().replace(' ', '_')}.jpg"        image_path = product[2]
+        image_path = product[2]
         
         # Download the image if not already downloaded
         if not os.path.exists(image_path):
             download_image(image_url, image_path)
         else:
-            print(f"Image {image_filename} already exists locally.")
+            print(f"Image {image_path} already exists locally.")
 
     else:
         print(f"No image found for {name}")
