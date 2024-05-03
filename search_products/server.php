@@ -32,8 +32,7 @@
     //Per visualizzare i prodotti cercati tramite barra di ricerca
     if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['Nome'])){
         $Nome=$_GET['Nome'];
-        echo "Il nome inviato è: " . $Nome;
-        $sql3 = "SELECT * FROM `products` WHERE `name` LIKE '%$Nome%'";
+        $sql3 = "SELECT * FROM `products` WHERE Nome LIKE '%$Nome%'";
         $risultato = $conn->query($sql3);
         $productsC = array();
         if ($risultato->num_rows > 0) {

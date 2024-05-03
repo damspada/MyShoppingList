@@ -53,9 +53,9 @@
                         // Crea un div card per ogni prodotto
                         var productCard = $('<div>').addClass('card');
                         var CardImage = $('<div>').addClass('card_image');
-                        CardImage.append('<img src="' + element.image + '" alt="' + element.name + '">');
+                        CardImage.append('<img src="' + element.image + '" alt="' + element.Nome + '">');
                         productCard.append(CardImage);
-                        productCard.append('<h3>' + element.name + '</h3>');
+                        productCard.append('<h3>' + element.Nome + '</h3>');
 
                         var productForm = document.createElement('form');
                         productForm.id = 'productForm';
@@ -64,7 +64,7 @@
                         var inputName = document.createElement('input');
                         inputName.type = 'hidden';
                         inputName.name = 'product_name';
-                        inputName.value = element.name;
+                        inputName.value = element.Nome;
 
                         var inputCategory = document.createElement('input');
                         inputCategory.type = 'hidden';
@@ -74,7 +74,7 @@
                         var inputImage = document.createElement('input');
                         inputImage.type = 'hidden';
                         inputImage.name = 'product_image';
-                        inputImage.value = element.name;
+                        inputImage.value = element.Nome;
 
                         // Aggiungi gli input al form
                         productForm.appendChild(inputName);
@@ -100,17 +100,17 @@
                                 url: "server.php",
                                 data: formData,
                                 success: function(response) {
-                                    if(!(!!document.getElementById(element.name))){
+                                    if(!(!!document.getElementById(element.Nome))){
                                     
                                         var carrelloCard = $('<div>').addClass('carrello_elemento');
-                                        carrelloCard[0].id = element.name;
+                                        carrelloCard[0].id = element.Nome;
                                         var carrelloNome= $('<div>').addClass('carrello_nome');
-                                        carrelloNome.append('<h3>' + element.name + '</h3>');
+                                        carrelloNome.append('<h3>' + element.Nome + '</h3>');
                                         carrelloCard.append(carrelloNome);
                                         
                                         var carrelloQuantità=$('<div>').addClass('carrello_quantità');
                                         const quantityForm = document.createElement('form');
-                                        quantityForm.setAttribute('id', element.name);
+                                        quantityForm.setAttribute('id', element.Nome);
                                         quantityForm.setAttribute('action', '');
                                         quantityForm.setAttribute('method', 'post');
 
@@ -118,7 +118,7 @@
                                         const updateQuantityNameInput = document.createElement('input');
                                         updateQuantityNameInput.setAttribute('type', 'hidden');
                                         updateQuantityNameInput.setAttribute('name', 'update_quantity_name');
-                                        updateQuantityNameInput.value = element.name;
+                                        updateQuantityNameInput.value = element.Nome;
 
                                         // Create the "-" button
                                         const decreaseButton = document.createElement('button');
@@ -156,9 +156,9 @@
                                                 $.ajax({
                                                     url: 'server.php', // Specifica l'URL del server
                                                     type: 'POST', // Metodo HTTP (PUT)
-                                                    data: { elemento: element.name, valore:'+1' }, // Dati da inviare al server
+                                                    data: { elemento: element.Nome, valore:'+1' }, // Dati da inviare al server
                                                     success: function(response) {
-                                                        const inputElement = document.querySelector(`[id="${element.name}"] .quantity`);
+                                                        const inputElement = document.querySelector(`[id="${element.Nome}"] .quantity`);
                                                         inputElement.value++;
                                                     },
                                                     error: function(error) {
@@ -169,11 +169,11 @@
                                                 $.ajax({
                                                     url: 'server.php', // Specifica l'URL del server
                                                     type: 'POST', // Metodo HTTP (PUT)
-                                                    data: { elemento: element.name,valore:'-1' }, // Dati da inviare al server
+                                                    data: { elemento: element.Nome,valore:'-1' }, // Dati da inviare al server
                                                     success: function(response) {
-                                                        const inputElement = document.querySelector(`[id="${element.name}"] .quantity`);
+                                                        const inputElement = document.querySelector(`[id="${element.Nome}"] .quantity`);
                                                         if(inputElement.value==1){
-                                                            const myDiv = document.getElementById(element.name);
+                                                            const myDiv = document.getElementById(element.Nome);
                                                             myDiv.remove();
                                                         }else{
                                                         inputElement.value--;
@@ -190,7 +190,7 @@
                                         carrelloCard.append(carrelloQuantità);
                                         $('.carrello_spesa').append(carrelloCard);
                                     }else{
-                                        const inputElement = document.querySelector(`[id="${element.name}"] .quantity`);
+                                        const inputElement = document.querySelector(`[id="${element.Nome}"] .quantity`);
                                         inputElement.value++;
                                     }
                                 },
@@ -226,9 +226,9 @@
                             response.forEach(function(element) {
                                 var productCard = $('<div>').addClass('card');
                                 var CardImage = $('<div>').addClass('card_image');
-                                CardImage.append('<img src="' + element.image + '" alt="' + element.name + '">');
+                                CardImage.append('<img src="' + element.image + '" alt="' + element.Nome + '">');
                                 productCard.append(CardImage);
-                                productCard.append('<h3>' + element.name + '</h3>');
+                                productCard.append('<h3>' + element.Nome + '</h3>');
 
                                 var productForm = document.createElement('form');
                                 productForm.id = 'productForm';
@@ -237,7 +237,7 @@
                                 var inputName = document.createElement('input');
                                 inputName.type = 'hidden';
                                 inputName.name = 'product_name';
-                                inputName.value = element.name;
+                                inputName.value = element.Nome;
 
                                 var inputCategory = document.createElement('input');
                                 inputCategory.type = 'hidden';
@@ -247,7 +247,7 @@
                                 var inputImage = document.createElement('input');
                                 inputImage.type = 'hidden';
                                 inputImage.name = 'product_image';
-                                inputImage.value = element.name;
+                                inputImage.value = element.Nome;
 
                                 // Aggiungi gli input al form
                                 productForm.appendChild(inputName);
@@ -273,17 +273,17 @@
                                         url: "server.php",
                                         data: formData,
                                         success: function(response) {
-                                            if(!(!!document.getElementById(element.name))){
+                                            if(!(!!document.getElementById(element.Nome))){
                                             
                                                 var carrelloCard = $('<div>').addClass('carrello_elemento');
-                                                carrelloCard[0].id = element.name;
+                                                carrelloCard[0].id = element.Nome;
                                                 var carrelloNome= $('<div>').addClass('carrello_nome');
-                                                carrelloNome.append('<h3>' + element.name + '</h3>');
+                                                carrelloNome.append('<h3>' + element.Nome + '</h3>');
                                                 carrelloCard.append(carrelloNome);
                                                 
                                                 var carrelloQuantità=$('<div>').addClass('carrello_quantità');
                                                 const quantityForm = document.createElement('form');
-                                                quantityForm.setAttribute('id', element.name);
+                                                quantityForm.setAttribute('id', element.Nome);
                                                 quantityForm.setAttribute('action', '');
                                                 quantityForm.setAttribute('method', 'post');
 
@@ -291,7 +291,7 @@
                                                 const updateQuantityNameInput = document.createElement('input');
                                                 updateQuantityNameInput.setAttribute('type', 'hidden');
                                                 updateQuantityNameInput.setAttribute('name', 'update_quantity_name');
-                                                updateQuantityNameInput.value = element.name;
+                                                updateQuantityNameInput.value = element.Nome;
 
                                                 // Create the "-" button
                                                 const decreaseButton = document.createElement('button');
@@ -329,9 +329,9 @@
                                                         $.ajax({
                                                             url: 'server.php', // Specifica l'URL del server
                                                             type: 'POST', // Metodo HTTP (PUT)
-                                                            data: { elemento: element.name, valore:'+1' }, // Dati da inviare al server
+                                                            data: { elemento: element.Nome, valore:'+1' }, // Dati da inviare al server
                                                             success: function(response) {
-                                                                const inputElement = document.querySelector(`[id="${element.name}"] .quantity`);
+                                                                const inputElement = document.querySelector(`[id="${element.Nome}"] .quantity`);
                                                                 inputElement.value++;
                                                             },
                                                             error: function(error) {
@@ -342,11 +342,11 @@
                                                         $.ajax({
                                                             url: 'server.php', // Specifica l'URL del server
                                                             type: 'POST', // Metodo HTTP (PUT)
-                                                            data: { elemento: element.name,valore:'-1' }, // Dati da inviare al server
+                                                            data: { elemento: element.Nome,valore:'-1' }, // Dati da inviare al server
                                                             success: function(response) {
-                                                                const inputElement = document.querySelector(`[id="${element.name}"] .quantity`);
+                                                                const inputElement = document.querySelector(`[id="${element.Nome}"] .quantity`);
                                                                 if(inputElement.value==1){
-                                                                    const myDiv = document.getElementById(element.name);
+                                                                    const myDiv = document.getElementById(element.Nome);
                                                                     myDiv.remove();
                                                                 }else{
                                                                 inputElement.value--;
@@ -363,7 +363,7 @@
                                                 carrelloCard.append(carrelloQuantità);
                                                 $('.carrello_spesa').append(carrelloCard);
                                             }else{
-                                                const inputElement = document.querySelector(`[id="${element.name}"] .quantity`);
+                                                const inputElement = document.querySelector(`[id="${element.Nome}"] .quantity`);
                                                 inputElement.value++;
                                             }
                                         },
@@ -406,7 +406,7 @@
             });
         });
     </script>
-    <script> //script per l'utilizzo della barra di ricerca(Non Funziona)
+    <script> //script per l'utilizzo della barra di ricerca
         $(document).ready(function() { 
             const searchBtn = document.getElementById("searchBtn");
             const searchBar = document.getElementById("searchBar");
@@ -426,26 +426,26 @@
                         response.forEach(function(element) {
                             var productCard = $('<div>').addClass('card');
                             var CardImage = $('<div>').addClass('card_image');
-                            CardImage.append('<img src="' + element.image + '" alt="' + element.name + '">');
+                            CardImage.append('<img src="' + element.image + '" alt="' + element.Nome + '">');
                             productCard.append(CardImage);
-                            productCard.append('<h3>' + element.name + '</h3>');
+                            productCard.append('<h3>' + element.Nome + '</h3>');
 
                             var button = document.createElement("button");
                             button.id = "addToCartButton";
                             button.textContent = "Aggiungi al Carrello";
                             button.classList.add("bottone_carrello");
 
-                            button.setAttribute("data-product-name", element.name);
+                            button.setAttribute("data-product-name", element.Nome);
                             button.setAttribute("data-product-category", element.category);
                             button.setAttribute("data-product-image", element.image);
                             productCard.append(button);
             
                             $('.prodotti_div').append(productCard);
                         });
-                    
-                    // error: function(xhr, status, error) {
-                    //             // Gestisci eventuali errori
-                    //             console.log('Si è verificato un errore durante la richiesta.');
+                    },
+                    error: function(xhr, status, error) {
+                                 // Gestisci eventuali errori
+                                 console.log('Si è verificato un errore durante la richiesta.');
                     }
                 }); 
             });
@@ -453,6 +453,40 @@
             searchBar.addEventListener("keydown", (e) => {
                 if (e.key === "Enter" && searchBar.value !== "") {
                     const searchQuery = searchBar.value; 
+                    $.ajax({
+                    url: "server.php",
+                    method: "GET",
+                    data: { Nome: searchQuery },
+                    dataType: "json",
+                    success: function(response) {
+                        console.log("Hello, world!");
+                        const myDiv = document.querySelector('.prodotti_div'); // Seleziona l'elemento <div>
+                        myDiv.innerHTML = '';
+                        response.forEach(function(element) {
+                            var productCard = $('<div>').addClass('card');
+                            var CardImage = $('<div>').addClass('card_image');
+                            CardImage.append('<img src="' + element.image + '" alt="' + element.Nome + '">');
+                            productCard.append(CardImage);
+                            productCard.append('<h3>' + element.Nome + '</h3>');
+
+                            var button = document.createElement("button");
+                            button.id = "addToCartButton";
+                            button.textContent = "Aggiungi al Carrello";
+                            button.classList.add("bottone_carrello");
+
+                            button.setAttribute("data-product-name", element.Nome);
+                            button.setAttribute("data-product-category", element.category);
+                            button.setAttribute("data-product-image", element.image);
+                            productCard.append(button);
+            
+                            $('.prodotti_div').append(productCard);
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                                 // Gestisci eventuali errori
+                                 console.log('Si è verificato un errore durante la richiesta.');
+                    }
+                }); 
                 }
             });
         });
@@ -470,16 +504,16 @@
                         dataType: "json",
                         success: function(response){
                             response.forEach(function(element) {
-                                if(!(!!document.getElementById(element.name))){    
+                                if(!(!!document.getElementById(element.Nome))){    
                                     var carrelloCard = $('<div>').addClass('carrello_elemento');
-                                    carrelloCard[0].id = element.name;
+                                    carrelloCard[0].id = element.Nome;
                                     var carrelloNome= $('<div>').addClass('carrello_nome');
-                                    carrelloNome.append('<h3>' + element.name + '</h3>');
+                                    carrelloNome.append('<h3>' + element.Nome + '</h3>');
                                     carrelloCard.append(carrelloNome);
                                     
                                     var carrelloQuantità=$('<div>').addClass('carrello_quantità');
                                     const quantityForm = document.createElement('form');
-                                    quantityForm.setAttribute('id', element.name);
+                                    quantityForm.setAttribute('id', element.Nome);
                                     quantityForm.setAttribute('action', '');
                                     quantityForm.setAttribute('method', 'post');
 
@@ -487,7 +521,7 @@
                                     const updateQuantityNameInput = document.createElement('input');
                                     updateQuantityNameInput.setAttribute('type', 'hidden');
                                     updateQuantityNameInput.setAttribute('name', 'update_quantity_name');
-                                    updateQuantityNameInput.value = element.name;
+                                    updateQuantityNameInput.value = element.Nome;
 
                                     // Create the "-" button
                                     const decreaseButton = document.createElement('button');
@@ -525,9 +559,9 @@
                                             $.ajax({
                                                 url: 'server.php', // Specifica l'URL del server
                                                 type: 'POST', // Metodo HTTP (PUT)
-                                                data: { elemento: element.name, valore:'+1' }, // Dati da inviare al server
+                                                data: { elemento: element.Nome, valore:'+1' }, // Dati da inviare al server
                                                 success: function(response) {
-                                                    const inputElement = document.querySelector(`[id="${element.name}"] .quantity`);
+                                                    const inputElement = document.querySelector(`[id="${element.Nome}"] .quantity`);
                                                     inputElement.value++;
                                                 },
                                                 error: function(error) {
@@ -538,11 +572,11 @@
                                             $.ajax({
                                                 url: 'server.php', // Specifica l'URL del server
                                                 type: 'POST', // Metodo HTTP (PUT)
-                                                data: { elemento: element.name,valore:'-1' }, // Dati da inviare al server
+                                                data: { elemento: element.Nome,valore:'-1' }, // Dati da inviare al server
                                                 success: function(response) {
-                                                    const inputElement = document.querySelector(`[id="${element.name}"] .quantity`);
+                                                    const inputElement = document.querySelector(`[id="${element.Nome}"] .quantity`);
                                                     if(inputElement.value==1){
-                                                        const myDiv = document.getElementById(element.name);
+                                                        const myDiv = document.getElementById(element.Nome);
                                                         myDiv.remove();
                                                     }else{
                                                     inputElement.value--;
@@ -555,7 +589,7 @@
                                         }
                                     });
                                 }else{
-                                    const inputElement = document.querySelector(`[id="${element.name}"] .quantity`);
+                                    const inputElement = document.querySelector(`[id="${element.Nome}"] .quantity`);
                                     inputElement.value++;
                                 }
                             });
