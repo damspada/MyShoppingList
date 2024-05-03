@@ -3,25 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Images</title>
+    <title>Select Image</title>
 </head>
 <body>
-    <h1>Product Images</h1>
-    <ul>
-        {% for product in products %}
-            <li>
-                <h3>{{ product[0] }}</h3>
-                <form action="/download" method="post">
-                    <input type="hidden" name="product_name" value="{{ product[0] }}">
-                    {% for image_url in product[2:] %}
-                        <img src="{{ image_url }}" style="max-width: 200px; max-height: 200px;">
-                        <input type="radio" name="selected_image_url" value="{{ image_url }}">
-                    {% endfor %}
-                    <br>
-                    <button type="submit">Download Selected Image</button>
-                </form>
-            </li>
-        {% endfor %}
-    </ul>
+    <h1>Select Image for {{ product_name }}</h1>
+    <form action="/select_image/{{ product_id }}" method="post">
+        <ul>
+            {% for image_url in image_urls %}
+                <li>
+                    <a href="{{ image_url }}">URL</a> 
+                    <input type="radio" name="image_url" value="{{ image_url }}">
+                </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">Download Selected Image</button>
+    </form>
 </body>
 </html>
