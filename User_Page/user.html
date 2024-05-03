@@ -9,7 +9,37 @@
     <link rel="stylesheet" href="./prefissi numeri/css/demo.css">
     <link rel="stylesheet" href="./prefissi numeri/css/intlTelInput.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>MyShoppingList</title>
+
+    <script>
+        $(document).ready(function(){
+            document.getElementById("log").addEventListener("click",function(event){
+                event.preventDefault();
+                const immagine = document.getElementById('avatar-preview').value;
+                const name = document.getElementById('name').value;
+                const surname = document.getElementById('surname').value;
+                const birthdate = document.getElementById('birthdate').value;
+                const phone = document.getElementById('phone').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const stile_di_vita = document.getElementById('stile_di_vita').value;
+                const importo = document.getElementById('importo').value;
+
+                $.ajax({
+                    url: "server.php",
+                    type: "POST",
+                    data: {immagine:immagine, name:name, surname:surname, birthdate:birthdate, phone:phone, email:email, password:password, stile_di_vita:stile_di_vita, importo:importo},
+                    success: function(data){
+                        console.log("All right!");
+                    },
+                    error: function(xhr, status, error){
+                        console.log('Si è verificato un errore durante la richiesta.');
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -27,7 +57,7 @@
 
     
     <!-- Form -->
-    <form>
+    <form id="form_log">
         <div class="container">
             <div class="avatar-container">
                 <img src="#" class="avatar" id="avatar-preview">
@@ -81,17 +111,17 @@
                         <label for="password">Password:</label>
                         <input type="password" id="password" name="password" placeholder="Insert here...">
                     </div>
-                    <div class="flex_item">
-                        <button class="button_shopping" onclick="window.location.href='../search_products/search_products.html';" >Fill the cart now ➜</button>
-                    </div>
                     <!-- <div class="flex_item">
-                        <button class="button_register">Register Now!</button>
+                        <button class="button_shopping" onclick="window.location.href='../search_products/search_products.html';" >Fill the cart now ➜</button>
                     </div> -->
+                    <div class="flex_item">
+                        <button type="submit" class="button_register" id="log">Register Now!</button>
+                    </div>
                 </div>
             </div>
         </div>
     </form>
-    <button class="update-button">Update Profile</button>
+    <!-- <button type="submit" class="update-button" id="update">Update Profile</button> -->
 
     
 
