@@ -39,7 +39,7 @@ conn = mysql.connector.connect(**db_config)
 cursor = conn.cursor()
 
 # SQL query to fetch records
-sql_query = "SELECT name FROM products"
+sql_query = "SELECT * FROM products"
 cursor.execute(sql_query)
 products = cursor.fetchall()
 
@@ -50,12 +50,12 @@ if not os.path.exists(image_dir):
 
 # Loop through products, search for images, download them, and update database
 for product in products:
+    print(product)
     name = product[0]  # Extracting the name from the fetched record
     query = f"{name}"
     image_url = search_image(query)
     if image_url:
-        image_filename = f"{name.lower().replace(' ', '_')}.jpg"
-        image_path = os.path.join(image_dir, image_filename)
+        image_filename = f"{name.lower().replace(' ', '_')}.jpg"        image_path = product[2]
         
         # Download the image if not already downloaded
         if not os.path.exists(image_path):
@@ -63,9 +63,6 @@ for product in products:
         else:
             print(f"Image {image_filename} already exists locally.")
 
-        # Update the image path in the database
-        update_query = "UPDATE products SET image = %s WHERE name = %s"
-        cursor.execute(update_query, (image_path, name))
     else:
         print(f"No image found for {name}")
 
