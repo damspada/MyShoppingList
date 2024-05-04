@@ -24,7 +24,7 @@ if ($conn->connect_error) {
     $password = $_POST['password'];
 
     // Query per inserire i dati nella tabella del database
-    $sql = "INSERT INTO `users` (immagine, email, pass, nome, cognome, dt, telefono, lifestyle, max_amount)
+    $sql = "INSERT INTO users (immagine, email, pass, nome, cognome, dt, telefono, lifestyle, max_amount)
     VALUES ('$immagine', '$email', '$password', '$name', '$surname', '$birthdate', '$phone', '$lifestyle', '$maxamount')";
 
     if ($conn->query($sql) === TRUE) {
