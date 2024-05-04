@@ -10,7 +10,7 @@
     border-radius: 20px;
     backdrop-filter: blur(50px);
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
-    display: inline-flex; /* should be none but i use inline-flex to work */
+    display: none; /* should be none but i use inline-flex */
     justify-content: normal;
     align-items: normal;
     overflow: hidden;
