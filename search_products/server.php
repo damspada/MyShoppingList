@@ -79,27 +79,308 @@
         }
     }
 
-    // // if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['Ricetta'])){
-    // //     $Ricetta=$_GET['Ricetta'];
-    // //     if($Ricetta=="Carbonara"){
-    // //         $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Uova', 1, 'Dispensa', 'products/uova.jpg')";
-    // //         $res = $conn->query($insert_product);
-    // //         $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Mezze Maniche Barilla', 1, 'Dispensa', 'products/mezze_maniche.jpg')";
-    // //         $res = $conn->query($insert_product);
-    // //         $prodotti = [
-    // //             [
-    // //                 "name" => "Uova"
-    // //                 "category"=> "Dispensa"
-    // //             ],
-    // //             [
-    // //                 "name" => "Mezze Maniche Barilla"
-    // //                 "category"=> "Dispensa"
-    // //             ]
-    // //             // Aggiungi altri prodotti qui...
-    // //         ];
-    // //         echo json_encode($prodotti);
-    // //     }
-    // // }
+    if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['Ricetta'])){
+        $Ricetta=$_GET['Ricetta'];
+        if($Ricetta=="Carbonara"){
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Uova', 1, 'Dispensa', 'products/uova.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Mezze Maniche Barilla', 1, 'Dispensa', 'products/mezze_maniche.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Guanciale Beretta', 1, 'Salumi e Formaggi', 'products/Guanciale_Beretta.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Pecorino Biraghi', 1, 'Salumi e Formaggi', 'products/Pecorino_Biraghi.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Pepe Nero Cannamela', 1, 'Dispensa', 'products/pepe_nero_cannamela.jpg')";
+            $res = $conn->query($insert_product);
+            $prodotti = [
+                [
+                    "Nome" => "Uova",
+                    "Quantità" => 1,
+                    "Categoria" => "Dispensa",
+                    "Immagine" => "products/uova.jpg"
+                ],
+                [
+                    "Nome" => "Mezze Maniche Barilla",
+                    "Quantità" => 1,
+                    "Categoria" => "Dispensa",
+                    "Immagine" => "products/mezze_maniche.jpg"
+                ],
+                [
+                    "Nome" => "Guanciale Beretta",
+                    "Quantità" => 1,
+                    "Categoria" => "Salumi e Formaggi",
+                    "Immagine" => "products/Guanciale_Beretta.jpg"
+                ],
+                [
+                    "Nome" => "Pecorino Biraghi",
+                    "Quantità" => 1,
+                    "Categoria" => "Salumi e Formaggi",
+                    "Immagine" => "products/Pecorino_Biraghi.jpg"
+                ],
+                [
+                    "Nome" => "Pepe Nero Cannamela",
+                    "Quantità" => 1,
+                    "Categoria" => "Dispensa",
+                    "Immagine" => "products/pepe_nero_cannamela.jpg"
+                ]
+            ];
+            $json_prodotti = json_encode($prodotti);
+            echo $json_prodotti;
+        }else if($Ricetta=="Amatriciana"){
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Passata di pomodoro Mutti', 1, 'Dispensa', 'products/passata_di_pomodoro_mutti.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Bucatini Rummo', 1, 'Dispensa', 'products/bucatini_rummo.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Guanciale Beretta', 1, 'Salumi e Formaggi', 'products/Guanciale_Beretta.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Pecorino Biraghi', 1, 'Salumi e Formaggi', 'products/Pecorino_Biraghi.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Pepe Nero Cannamela', 1, 'Dispensa', 'products/pepe_nero_cannamela.jpg')";
+            $res = $conn->query($insert_product);
+            $prodotti = [
+                [
+                    "Nome" => "Passata di pomodoro Mutti",
+                    "Quantità" => 1,
+                    "Categoria" => "Dispensa",
+                    "Immagine" => "products/passata_di_pomodoro_mutti.jpg"
+                ],
+                [
+                    "Nome" => "Bucatini Rummo",
+                    "Quantità" => 1,
+                    "Categoria" => "Dispensa",
+                    "Immagine" => "products/bucatini_rummo.jpg"
+                ],
+                [
+                    "Nome" => "Guanciale Beretta",
+                    "Quantità" => 1,
+                    "Categoria" => "Salumi e Formaggi",
+                    "Immagine" => "products/Guanciale_Beretta.jpg"
+                ],
+                [
+                    "Nome" => "Pecorino Biraghi",
+                    "Quantità" => 1,
+                    "Categoria" => "Salumi e Formaggi",
+                    "Immagine" => "products/Pecorino_Biraghi.jpg"
+                ],
+                [
+                    "Nome" => "Pepe Nero Cannamela",
+                    "Quantità" => 1,
+                    "Categoria" => "Dispensa",
+                    "Immagine" => "products/pepe_nero_cannamela.jpg"
+                ]
+            ];
+            $json_prodotti = json_encode($prodotti);
+            echo $json_prodotti;
+        }else if($Ricetta=="Pollo"){
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Pollo Aia', 1, 'Carne', 'products/Pollo.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Patate', 1, 'Vegetali', 'products/Patate.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Cipolle', 1, 'Vegetali', 'products/Cipolle.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Rosmarino Cannamela', 1, 'Dispensa', 'products/rosmarino_cannamela.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Olio De Cecco', 1, 'Dispensa', 'products/olio_de_cecco.jpg')";
+            $res = $conn->query($insert_product);
+            $prodotti = [
+                [
+                    "Nome" => "Pollo Aia",
+                    "Quantità" => 1,
+                    "Categoria" => "Carne",
+                    "Immagine" => "products/Pollo.jpg"
+                ],
+                [
+                    "Nome" => "Patate",
+                    "Quantità" => 1,
+                    "Categoria" => "Vegetali",
+                    "Immagine" => "products/Patate.jpg"
+                ],
+                [
+                    "Nome" => "Cipolle",
+                    "Quantità" => 1,
+                    "Categoria" => "Vegetali",
+                    "Immagine" => "products/Cipolle.jpg"
+                ],
+                [
+                    "Nome" => "Rosmarino Cannamela",
+                    "Quantità" => 1,
+                    "Categoria" => "Dispensa",
+                    "Immagine" => "products/rosmarino_cannamela.jpg"
+                ],
+                [
+                    "Nome" => "Olio De Cecco",
+                    "Quantità" => 1,
+                    "Categoria" => "Dispensa",
+                    "Immagine" => "products/olio_de_cecco.jpg"
+                ]
+            ];
+            $json_prodotti = json_encode($prodotti);
+            echo $json_prodotti;
+        }else if($Ricetta=="Lasagna"){
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Passata di pomodoro Mutti', 1, 'Dispensa', 'products/passata_di_pomodoro_mutti.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Lasagne Barilla', 1, 'Dispensa', 'products/lasagne_barilla.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Cipolle', 1, 'Vegetali', 'products/Cipolle.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Carote', 1, 'Vegetali', 'products/carote.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Besciamella Chef', 1, 'Dispensa', 'products/besciamella_chef.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Sedano', 1, 'Vegetali', 'products/sedano.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Macinato', 1, 'Carne', 'products/macinato.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Parmigiano Parmareggio', 1, 'Salumi e Formaggi', 'products/parmigiano_parmareggio.jpg')";
+            $res = $conn->query($insert_product);
+            $prodotti = [
+                [
+                    "Nome" => "Passata di pomodoro Mutti",
+                    "Quantità" => 1,
+                    "Categoria" => "Dispensa",
+                ],
+                [
+                    "Nome" => "Lasagne Barilla",
+                    "Quantità" => 1,
+                    "Categoria" => "Dispensa",
+                ],
+                [
+                    "Nome" => "Cipolle",
+                    "Quantità" => 1,
+                    "Categoria" => "Vegetali",
+                ],
+                [
+                    "Nome" => "Carote",
+                    "Quantità" => 1,
+                    "Categoria" => "Vegetali",
+                ],
+                [
+                    "Nome" => "Besciamella Chef",
+                    "Quantità" => 1,
+                    "Categoria" => "Dispensa",
+                ],
+                [
+                    "Nome" => "Sedano",
+                    "Quantità" => 1,
+                    "Categoria" => "Vegetale",
+                ],
+                [
+                    "Nome" => "Macinato",
+                    "Quantità" => 1,
+                    "Categoria" => "Carne",
+                ],
+                [
+                    "Nome" => "Parmigiano Parmareggio",
+                    "Quantità" => 1,
+                    "Categoria" => "Salumi e Formaggi",
+                ]
+            ];
+            $json_prodotti = json_encode($prodotti);
+            echo $json_prodotti;
+        }else if($Ricetta=="Tiramisù"){
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Caffè Kimbo', 1, 'Dispensa', 'products/caffè_kimbo.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Mascarpone Galbani', 1, 'Salumi e Formaggi', 'products/mascarpone_galbani.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Vincezovo Savoiardi', 1, 'Dolci', 'products/vincenzovo_savoiardi.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Uova', 1, 'Dispensa', 'products/uova.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Zucchero Eridania', 1, 'Dispensa', 'products/zucchero_eridania.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Cacao Perugina', 1, 'Dispensa', 'products/cacao_perugina.jpg')";
+            $res = $conn->query($insert_product);
+            $prodotti = [
+                [
+                    "Nome" => "Caffè Kimbo",
+                    "Quantità" => 1,
+                    "Categoria" => "Dispensa",
+                ],
+                [
+                    "Nome" => "Mascarpone Galbani",
+                    "Quantità" => 1,
+                    "Categoria" => "Salumi e Formaggi",
+                ],
+                [
+                    "Nome" => "Vincezovo Savoiardi",
+                    "Quantità" => 1,
+                    "Categoria" => "Dolci",
+                ],
+                [
+                    "Nome" => "Uova",
+                    "Quantità" => 1,
+                    "Categoria" => "Dispensa",
+                ],
+                [
+                    "Nome" => "Zucchero Eridania",
+                    "Quantità" => 1,
+                    "Categoria" => "Dispensa",
+                ],
+                [
+                    "Nome" => "Cacao Perugina",
+                    "Quantità" => 1,
+                    "Categoria" => "Dispensa",
+                ]
+            ];
+            $json_prodotti = json_encode($prodotti);
+            echo $json_prodotti;
+        }else if($Ricetta=="Tortellini"){
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Tortellini Barilla', 1, 'Dispensa', 'products/tortellini_barilla.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Cipolle', 1, 'Vegetali', 'products/Cipolle.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Carote', 1, 'Vegetali', 'products/carote.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Pomodori San Marzano', 1, 'Vegetali', 'products/pomodori_san_marzano.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Sedano', 1, 'Vegetali', 'products/sedano.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Parmigiano Parmareggio', 1, 'Salumi e Formaggi', 'products/parmigiano_parmareggio.jpg')";
+            $res = $conn->query($insert_product);
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Olio De Cecco', 1, 'Dispensa', 'products/olio_de_cecco.jpg')";
+            $res = $conn->query($insert_product);
+            $prodotti = [
+                [
+                    "Nome" => "Tortellini Barilla",
+                    "Quantità" => 1,
+                    "Categoria" => "Dispensa",
+                ],
+                [
+                    "Nome" => "Pomodori San Marzano",
+                    "Quantità" => 1,
+                    "Categoria" => "Vegetali",
+                ],
+                [
+                    "Nome" => "Cipolle",
+                    "Quantità" => 1,
+                    "Categoria" => "Vegetali",
+                ],
+                [
+                    "Nome" => "Carote",
+                    "Quantità" => 1,
+                    "Categoria" => "Vegetali",
+                ],
+                [
+                    "Nome" => "Sedano",
+                    "Quantità" => 1,
+                    "Categoria" => "Vegetale",
+                ],
+                [
+                    "Nome" => "Parmigiano Parmareggio",
+                    "Quantità" => 1,
+                    "Categoria" => "Salumi e Formaggi",
+                ],
+                [
+                    "Nome" => "Olio De Cecco",
+                    "Quantità" => 1,
+                    "Categoria" => "Dispensa",
+                    "Immagine" => "products/olio_de_cecco.jpg"
+                ]
+            ];
+            $json_prodotti = json_encode($prodotti);
+            echo $json_prodotti;
+        }
+    }
 
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {

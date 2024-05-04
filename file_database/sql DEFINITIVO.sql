@@ -284,6 +284,48 @@ INSERT INTO products (Nome, peso, image, category, description, nutrients) VALUE
   ('Sgrassatore Cif Power & Shine', 750, 'products/sgrassatore_cif.jpg', 'Igiene e Casa', 'Sgrassatore con formula potente per una pulizia brillante e senza sforzo.', 'Tensioattivi non ionici, Solventi alcalini'),
   ('Ammorbidente Bounce', 500, 'products/ammo_bounce.jpg', 'Igiene e Casa', 'Ammorbidente con profumo di primavera per tessuti morbidi e freschi.', 'Quaternario di ammonio, Profumo');
   
+INSERT INTO products (Nome, peso, image, category, description, nutrients, health) VALUES
+  ('Pecorino Biraghi', 100, 'products/Pecorino_Biraghi.jpg', 'Salumi e Formaggi', 'Pesto alla Genovese Barilla, unione perfetta tra basilico fresco italiano e Parmigiano Reggiano DOP.', 'nutrienti da specificare', 7.0),
+  ('Guanciale Beretta', 100, 'products/Guanciale_Beretta.jpg', 'Salumi e Formaggi', 'Farina 00 Barilla, ideale per impasti lievitati e pasta fresca.', 'nutrienti da specificare', 6.5),
+  ('Prosciutto Crudo Negroni', 100, 'products/prosciutto_crudo_negroni.jpg', 'Salumi e Formaggi', 'Uova fresche, ricche di proteine e versatili in cucina.', 'nutrienti da specificare', 7.0),
+  ('Prosciutto Crudo Parma', 100, 'products/prosciutto_crudo_parma.jpg', 'Salumi e Formaggi', 'Pesto alla Genovese Barilla, unione perfetta tra basilico fresco italiano e Parmigiano Reggiano DOP.', 'nutrienti da specificare', 7.0),
+  ('Parmigiano Parmareggio', 100, 'products/parmigiano_parmareggio.jpg', 'Salumi e Formaggi', 'Farina 00 Barilla, ideale per impasti lievitati e pasta fresca.', 'nutrienti da specificare', 7.0),
+  ('Philadelphia', 100, 'products/philadelphia.jpg', 'Salumi e Formaggi', 'Uova fresche, ricche di proteine e versatili in cucina.', 'nutrienti da specificare', 7.0),
+  ('Philadelphia light', 100, 'products/philadelphia_light.jpg', 'Salumi e Formaggi', 'Pesto alla Genovese Barilla, unione perfetta tra basilico fresco italiano e Parmigiano Reggiano DOP.', 'nutrienti da specificare', 8.0),
+  ('Pancetta Beretta', 100, 'products/pancetta_beretta.jpg', 'Salumi e Formaggi', 'Farina 00 Barilla, ideale per impasti lievitati e pasta fresca.', 'nutrienti da specificare', 6.5),
+  ('Mortadella Fiorucci', 100, 'products/mortadella_fiorucci.jpg', 'Salumi e Formaggi', 'Uova fresche, ricche di proteine e versatili in cucina.', 'nutrienti da specificare', 6.0),
+  ('Salame Milano Negroni', 100, 'products/salame_milano_negroni.jpg', 'Salumi e Formaggi', 'Pesto alla Genovese Barilla, unione perfetta tra basilico fresco italiano e Parmigiano Reggiano DOP.', 'nutrienti da specificare', 7.0),
+  ('Prosciutto Cotto Parmacotto', 100, 'products/prosciutto_cotto_parmacotto.jpg', 'Salumi e Formaggi', 'Farina 00 Barilla, ideale per impasti lievitati e pasta fresca.', 'nutrienti da specificare', 6.5),
+  ('Prosciutto Cotto Citterio', 100, 'products/prosciutto_cotto_citterio.jpg', 'Salumi e Formaggi', 'Uova fresche, ricche di proteine e versatili in cucina.', 'nutrienti da specificare', 7.0),
+  ('Petto di Tacchino Aia', 100, 'products/petto_di_tacchino_aia.jpg', 'Salumi e Formaggi', 'Farina 00 Barilla, ideale per impasti lievitati e pasta fresca.', 'nutrienti da specificare', 8.5),
+  ('Asiago Ferrari', 100, 'products/asiago_ferrari.jpg', 'Salumi e Formaggi', 'Uova fresche, ricche di proteine e versatili in cucina.', 'nutrienti da specificare', 6.0),
+  ('Leerdammer Original', 100, 'products/leerdammer_original.jpg', 'Salumi e Formaggi', 'Pesto alla Genovese Barilla, unione perfetta tra basilico fresco italiano e Parmigiano Reggiano DOP.', 'nutrienti da specificare', 7.0),
+  ('Sottilette Classiche', 100, 'products/sottilette_classiche.jpg', 'Salumi e Formaggi', 'Farina 00 Barilla, ideale per impasti lievitati e pasta fresca.', 'nutrienti da specificare', 6.5),
+  ('Sottilette light', 100, 'products/sottilette_light.jpg', 'Salumi e Formaggi', 'Uova fresche, ricche di proteine e versatili in cucina.', 'nutrienti da specificare', 8.0);
+  
+INSERT INTO products (Nome, peso, image, category, description, nutrients, health) VALUES
+  ('Dado Classico Star ', 100, 'products/dado_classico_star.jpg', 'Dispensa', 'Pesto alla Genovese Barilla, unione perfetta tra basilico fresco italiano e Parmigiano Reggiano DOP.', 'nutrienti da specificare', 5.0),
+  ('Dado Vegetale Star ', 100, 'products/dado_vegetale_star.jpg', 'Dispensa', 'Pesto alla Genovese Barilla, unione perfetta tra basilico fresco italiano e Parmigiano Reggiano DOP.', 'nutrienti da specificare', 5.0),
+  ('Insaporitore Ariosto', 50, 'products/insaporitore_ariosto.jpg', 'Dispensa', 'Uova fresche, ricche di proteine e versatili in cucina.', 'nutrienti da specificare', 7.0),
+  ('Olio Monini', 1000, 'products/olio_monini.jpg', 'Dispensa', 'Passata di pomodoro Mutti, perfetta per sughi e salse.', 'nutrienti da specificare', 6.0),
+  ('Olio De Cecco', 500, 'products/olio_de_cecco.jpg', 'Dispensa', 'Fagioli Valfrutta, ricchi di fibre e proteine.', 'nutrienti da specificare', 6.0),
+  ('Bucatini Rummo', 500, 'products/bucatini_rummo.jpg', 'Dispensa', 'Mais Valfrutta, ideale per insalate e contorni.', 'nutrienti da specificare', 7.0),
+  ('Fusilli Integrali Barilla', 500, 'products/fusilli_integrali_barilla.jpg', 'Dispensa', 'Riso Scotti, perfetto per risotti e piatti a base di riso.', 'nutrienti da specificare', 9.0),
+  ('Penne Integrali De Cecco', 500, 'products/penne_integrali_de_cecco.jpg', 'Dispensa', 'Pelati Cirio, pomodori pelati di alta qualità.', 'nutrienti da specificare', 9.0),
+  ('Tortellini Barilla', 500, 'products/tortellini_barilla.jpg', 'Dispensa', 'Ragù alla bolognese De Cecco, pronto per condire la tua pasta.', 'nutrienti da specificare', 7.0),
+  ('Sfogliagrezza Rana', 500, 'products/sfogliagrezza_rana.jpg', 'Dispensa', 'Salsa Cacio e Pepe Biffi, dal gusto intenso e cremoso.', 'nutrienti da specificare', 7.0),
+  ('Sale Italkali', 500, 'products/sale_italkali.jpg', 'Dispensa', 'Pesto alle noci Rana, aromatico e ricco di sapore.', 'nutrienti da specificare', 6.0),
+  ('Zucchero Eridania', 500, 'products/zucchero_eridania.jpg', 'Dispensa', 'Pan bauletto Mulino Bianco, perfetto per tramezzini e toast.', 'nutrienti da specificare', 6.0),
+  ('Caffè Kimbo ', 250, 'products/caffe_kimbo.jpg', 'Dispensa', 'American Texas Toast Morato, fette di pane tostate e spesse.', 'nutrienti da specificare', 6.5),
+  ('Vincezovo Savoiardi', 300, 'products/vincenzovo_savoiardi.jpg', 'Dolci', 'Marmellata di lamponi Zueg, dolce e fruttata.', 'nutrienti da specificare', 6.5),
+  ('Cacao Perugina', 200, 'products/cacao_perugina.jpg', 'Dispensa', 'Marmellata di albicocca Zueg, perfetta per la colazione.', 'nutrienti da specificare', 6.5),
+  ('Rosmarino Cannamela', 100, 'products/rosmarino_cannamela.jpg', 'Dispensa', 'Marmellata di frutti rossi Zueg, perfetta per colazioni e merende.', 'nutrienti da specificare', 7.0),
+  ('Misura Privolat', 400, 'products/misura_privolat.jpg', 'Dolci', 'Marmellata di fragole Santa Rosa, dolce e profumata.', 'nutrienti da specificare', 8.5),
+  ('Oro Saiwa', 300, 'products/oro_saiwa.jpg', 'Dispensa', 'Nutella Ferrero, crema di cioccolato e nocciole.', 'nutrienti da specificare', 4.5),
+  ('Sedano', 1000, 'products/Sedano.jpg', 'Vegetali', 'Crema alla nocciola Novi, irresistibile e cremosa.', 'nutrienti da specificare', 9.0);
+  ('Pepe Nero Cannamela', 100, 'products/pepe_nero_cannamela.jpg', 'Dispensa', 'Marmellata di frutti rossi Zueg, perfetta per colazioni e merende.', 'nutrienti da specificare', 6.5),
+  ('Besciamella Chef', 250, 'products/besciamella_chef.jpg', 'Dispensa', 'Marmellata di frutti rossi Zueg, perfetta per colazioni e merende.', 'nutrienti da specificare', 6.5);
+  
 
 
 CREATE TABLE Cart (
