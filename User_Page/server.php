@@ -13,25 +13,25 @@ if ($conn->connect_error) {
 }
 
 // Prendi i valori inviati dal form
-$immagine = $_POST['immagine'];
-$name = $_POST['name'];
-$surname = $_POST['surname'];
-$birthdate = $_POST['birthdate'];
-$phone = $_POST['phone'];
-$email = $_POST['email'];
-$lifestyle = $_POST['stile_di_vita'];
-$maxamount = $_POST['importo'];
-$password = $_POST['password'];
+    $immagine = $_POST['immagine'];
+    $name = $_POST['name'];
+    $surname = $_POST['surname'];
+    $birthdate = $_POST['birthdate'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+    $lifestyle = $_POST['stile_di_vita'];
+    $maxamount = $_POST['importo'];
+    $password = $_POST['password'];
 
-// Query per inserire i dati nella tabella del database
-$sql = "INSERT INTO `users` (immagine, email, pass, nome, cognome, dt, telefono, lifestyle, max_amount)
-VALUES ('$immagine', '$email', '$password', '$name', '$surname', '$birthdate', '$phone', '$lifestyle', '$maxamount')";
+    // Query per inserire i dati nella tabella del database
+    $sql = "INSERT INTO `users` (immagine, email, pass, nome, cognome, dt, telefono, lifestyle, max_amount)
+    VALUES ('$immagine', '$email', '$password', '$name', '$surname', '$birthdate', '$phone', '$lifestyle', '$maxamount')";
 
-if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
 
 $conn->close();
 

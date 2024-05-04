@@ -56,6 +56,16 @@
                 }
             }
             echo json_encode($productsC);
+        }else if($categoria=="Healty"){
+            $sql2 = "SELECT * FROM `products` WHERE health>=8";
+            $risultato = $conn->query($sql2);
+            $productsC = array();
+            if ($risultato->num_rows > 0) {
+                while ($row = $risultato->fetch_assoc()) {
+                    $productsC[] = $row;
+                }
+            }
+            echo json_encode($productsC);
         }else{
             $sql2 = "SELECT * FROM `products` WHERE category = '$categoria'";
             $risultato = $conn->query($sql2);
@@ -69,27 +79,27 @@
         }
     }
 
-    // if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['Ricetta'])){
-    //     $Ricetta=$_GET['Ricetta'];
-    //     if($Ricetta=="Carbonara"){
-    //         $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Uova', 1, 'Dispensa', 'products/uova.jpg')";
-    //         $res = $conn->query($insert_product);
-    //         $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Mezze Maniche Barilla', 1, 'Dispensa', 'products/mezze_maniche.jpg')";
-    //         $res = $conn->query($insert_product);
-    //         $prodotti = [
-    //             [
-    //                 "name" => "Uova"
-    //                 "category"=> "Dispensa"
-    //             ],
-    //             [
-    //                 "name" => "Mezze Maniche Barilla"
-    //                 "category"=> "Dispensa"
-    //             ]
-    //             // Aggiungi altri prodotti qui...
-    //         ];
-    //         echo json_encode($prodotti);
-    //     }
-    // }
+    // // if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['Ricetta'])){
+    // //     $Ricetta=$_GET['Ricetta'];
+    // //     if($Ricetta=="Carbonara"){
+    // //         $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Uova', 1, 'Dispensa', 'products/uova.jpg')";
+    // //         $res = $conn->query($insert_product);
+    // //         $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Mezze Maniche Barilla', 1, 'Dispensa', 'products/mezze_maniche.jpg')";
+    // //         $res = $conn->query($insert_product);
+    // //         $prodotti = [
+    // //             [
+    // //                 "name" => "Uova"
+    // //                 "category"=> "Dispensa"
+    // //             ],
+    // //             [
+    // //                 "name" => "Mezze Maniche Barilla"
+    // //                 "category"=> "Dispensa"
+    // //             ]
+    // //             // Aggiungi altri prodotti qui...
+    // //         ];
+    // //         echo json_encode($prodotti);
+    // //     }
+    // // }
 
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {

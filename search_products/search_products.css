@@ -305,7 +305,7 @@ body.popup-active {
     display: none;
   }
   .tooltip-top2:before {
-    content: "Pasta";
+    content: "Dispensa";
     font-weight: 600;
     position: absolute;
     width: 80%;
@@ -355,7 +355,7 @@ body.popup-active {
     display: none;
   }
   .tooltip-top4:before {
-    content: "Frutta";
+    content: "Salumi";
     font-weight: 600;
     position: absolute;
     width: 80%;
@@ -458,7 +458,7 @@ body.popup-active {
   }
 
   .tooltip-top8:before {
-    content: "Verdura";
+    content: "Vegetali";
     font-weight: 600;
     position: absolute;
     width: 80%;
@@ -562,7 +562,7 @@ body.popup-active {
   }
 
   .tooltip-top12:before {
-    content: "Dispensa";
+    content: "Healty";
     font-weight: 600;
     position: absolute;
     width: 80%;
