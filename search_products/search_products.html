@@ -1031,15 +1031,13 @@
 
                     var sessionId = getSessionId();
 
-                    var sessionId = getSessionId();
-
                     // Check if session ID exists
                     if (sessionId) {
                         console.log('Session ID:', sessionId);
                     } else {
                         console.log('Session ID not found.');
                     }
-                    
+
                     // Send latitude and longitude to backend using AJAX
                     $.ajax({
                         type: "POST",

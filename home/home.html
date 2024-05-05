@@ -89,7 +89,8 @@
             // Check if session ID is already set
             if (sessionStorage.getItem('sessionId')) {
                 // Session ID is already set
-                console.log('Session ID is already set');
+                var sessionId = sessionStorage.getItem('sessionId');
+                console.log('Session ID is already set: ' + sessionId);
                 return;
             }
 
