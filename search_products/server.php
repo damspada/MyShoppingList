@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
 
     //Per visualizzare i prodotti cercati tramite barra di ricerca
-    if (isset($_GET['Nome'])) {
+    else if (isset($_GET['Nome'])) {
         $Nome = $_GET['Nome'];
         $sql3 = "SELECT * FROM `products` WHERE Nome LIKE '%$Nome%'";
         $risultato = $conn->query($sql3);
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
 
     //Per visualizzare i prodotti della categoria desiderata
-    if (isset($_GET['Categoria'])) {
+    else if (isset($_GET['Categoria'])) {
         $categoria = $_GET['Categoria'];
         if ($categoria == "All") {
             $sql2 = "SELECT * FROM `products`";
@@ -76,8 +76,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             echo json_encode($productsC);
         }
     }
+
     // Per inserire nel carrello i prodotti in base alla ricetta selezionata
-    if (isset($_GET['Ricetta'])) {
+    else if (isset($_GET['Ricetta'])) {
         $Ricetta = $_GET['Ricetta'];
         if ($Ricetta == "Carbonara") {
 
@@ -688,6 +689,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         }
         echo json_encode($products);
     }
+
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
