@@ -334,7 +334,7 @@ CREATE TABLE Cart (
  Categoria varchar(255) NOT NULL,
  Immagine varchar(255) NOT NULL,
  PRIMARY KEY (Nome)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+);
 --- FINO A QUA TUTTO FUNZIONANTE ---
 
 CREATE TABLE recipes (
