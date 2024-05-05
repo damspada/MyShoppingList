@@ -13,7 +13,7 @@
     }
 
     //Per visualizzare tutti i prodotti
-    if ($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_GET['Categoria']) && !isset($_GET['Nome']) && !isset($_GET['Ricetta'])) {
+    if ($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_GET['Categoria']) && !isset($_GET['Nome']) && !isset($_GET['Ricetta']) && !isset($_GET['riavvio'])) {
         
         $sql = "SELECT * FROM products";
         $result = $conn->query($sql);
@@ -27,6 +27,18 @@
         }
         echo json_encode($products);
 
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['riavvio'])){
+        $sql3 = "SELECT * FROM Cart";
+        $risultato = $conn->query($sql3);
+        $productsC = array();
+        if ($risultato->num_rows > 0) {
+            while ($row = $risultato->fetch_assoc()) {
+                $productsC[] = $row;
+            }
+        }
+        echo json_encode($productsC);
     }
 
     //Per visualizzare i prodotti cercati tramite barra di ricerca

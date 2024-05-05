@@ -245,7 +245,7 @@ body.popup-active {
 
 .filter-wrapper {
     position: absolute;
-    top: 20%;
+    top: 20.5%;
     display: flex;
     justify-content: flex-start;
     width: 70%;
@@ -943,15 +943,11 @@ h3{
 
 .bottone_carrello:hover{
     transform: scale(1.1);
-    background-color: #06e679 !important;
-    color: black;
-    box-shadow: #00BF63 0px 7px 29px 0px;
 }
 
 .bottone_carrello:active {
-    background-color: #00BF63 !important;
+    background-color: #048948 !important;
     color: black;
-    box-shadow: #00BF63 0px 0px 0px 0px;
     transition: 50ms;
 }
 
@@ -1153,15 +1149,11 @@ h4{
 
 .bottone_carrello2:hover{
     transform: scale(1.1);
-    background-color: #06e679 !important;
-    color: black;
-    box-shadow: #00BF63 0px 7px 29px 0px;
 }
 
 .bottone_carrello2:active {
-    background-color: #00BF63 !important;
+    background-color: #048948 !important;
     color: black;
-    box-shadow: #00BF63 0px 0px 0px 0px;
     transition: 50ms;
 }
 

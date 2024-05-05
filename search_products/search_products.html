@@ -15,30 +15,124 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script> //script per svuotare il carrello alla chiusura della pagina web
-        window.addEventListener('beforeunload', function(event) {
-            $.ajax({
-                url: "server.php",
-                method: "POST",
-                data: { close : '1' },
-                success: function(response) {
-                    console.log('Richiesta andata a buon fine.');
-                },
-                error: function(xhr, status, error) {
-                    console.error('Si è verificato un errore durante la richiesta.');
-                }
-            });
-        })
+        // // window.addEventListener('beforeunload', function(event) {
+        // //     $.ajax({
+        // //         url: "server.php",
+        // //         method: "POST",
+        // //         data: { close : '1' },
+        // //         success: function(response) {
+        // //             console.log('Richiesta andata a buon fine.');
+        // //         },
+        // //         error: function(xhr, status, error) {
+        // //             console.error('Si è verificato un errore durante la richiesta.');
+        // //         }
+        // //     });
+        // // })
 
         window.addEventListener('load', function(event) {
             $.ajax({
                 url: "server.php",
-                method: "POST",
-                data: { close : '1' },
+                method: "GET",
+                data:{ riavvio : '1'},
+                dataType: "json",
                 success: function(response) {
                     console.log('Richiesta andata a buon fine.');
+                    response.forEach(function(element) {
+                        if(!(!!document.getElementById(element.Nome))){    
+                            var carrelloCard = $('<div>').addClass('carrello_elemento');
+                            carrelloCard[0].id = element.Nome;
+                            var carrelloNome= $('<div>').addClass('carrello_nome');
+                            carrelloNome.append('<h3>' + element.Nome + '</h3>');
+                            carrelloCard.append(carrelloNome);
+                            
+                            var carrelloQuantità=$('<div>').addClass('carrello_quantità');
+                            const quantityForm = document.createElement('form');
+                            quantityForm.setAttribute('id', element.Nome);
+                            quantityForm.setAttribute('action', '');
+                            quantityForm.setAttribute('method', 'post');
+
+                            // Create the hidden input for update_quantity_name
+                            const updateQuantityNameInput = document.createElement('input');
+                            updateQuantityNameInput.setAttribute('type', 'hidden');
+                            updateQuantityNameInput.setAttribute('name', 'update_quantity_name');
+                            updateQuantityNameInput.value = element.Nome;
+
+                            // Create the "-" button
+                            const decreaseButton = document.createElement('button');
+                            decreaseButton.setAttribute('type', 'submit');
+                            decreaseButton.setAttribute('class', 'bottoni_tondi2');
+                            decreaseButton.setAttribute('name', 'decrease_btn');
+                            decreaseButton.textContent = "-";
+
+                            // Create the input for quantity
+                            const quantityInput = document.createElement('input');
+                            quantityInput.setAttribute('type', 'number');
+                            quantityInput.setAttribute('class', 'quantity');
+                            quantityInput.setAttribute('name', 'update_quantity');
+                            quantityInput.setAttribute('min', '1');
+                            quantityInput.setAttribute('value', element.Quantità);
+                            quantityInput.setAttribute('readonly', true);
+
+                            // Create the "+" button
+                            const increaseButton = document.createElement('button');
+                            increaseButton.setAttribute('type', 'submit');
+                            increaseButton.setAttribute('class', 'bottoni_tondi');
+                            increaseButton.setAttribute('name', 'update_btn');
+                            increaseButton.textContent = "+";
+
+                            // Append elements to the form
+                            quantityForm.append(updateQuantityNameInput);
+                            quantityForm.append(decreaseButton);
+                            quantityForm.append(quantityInput);
+                            quantityForm.append(increaseButton);
+                            quantityForm.addEventListener('submit', function(event) {
+                                event.preventDefault(); 
+                                const addButtonClicked = event.submitter.classList.contains('bottoni_tondi');
+                                const lowButtonClicked = event.submitter.classList.contains('bottoni_tondi2');
+                                if (addButtonClicked) {
+                                    $.ajax({
+                                        url: 'server.php', // Specifica l'URL del server
+                                        type: 'POST', // Metodo HTTP (PUT)
+                                        data: { elemento: element.Nome, valore:'+1' }, // Dati da inviare al server
+                                        success: function(response) {
+                                            const inputElement = document.querySelector(`[id="${element.Nome}"] .quantity`);
+                                            inputElement.value++;
+                                        },
+                                        error: function(error) {
+                                            // Gestisci eventuali errori
+                                        }
+                                    });
+                                } else if (lowButtonClicked) {
+                                    $.ajax({
+                                        url: 'server.php', // Specifica l'URL del server
+                                        type: 'POST', // Metodo HTTP (PUT)
+                                        data: { elemento: element.Nome,valore:'-1' }, // Dati da inviare al server
+                                        success: function(response) {
+                                            const inputElement = document.querySelector(`[id="${element.Nome}"] .quantity`);
+                                            if(inputElement.value==1){
+                                                const myDiv = document.getElementById(element.Nome);
+                                                myDiv.remove();
+                                            }else{
+                                            inputElement.value--;
+                                            }
+                                        },
+                                        error: function(error) {
+                                            console.error('Si è verificato un errore durante la richiesta.');
+                                        }
+                                    });
+                                }
+                            });
+                            carrelloQuantità.append(quantityForm);
+                            carrelloCard.append(carrelloQuantità);
+                            $('.carrello_spesa').append(carrelloCard);
+                        }else{
+                            const inputElement = document.querySelector(`[id="${element.Nome}"] .quantity`);
+                            inputElement.value++;
+                        }
+                    });
                 },
                 error: function(xhr, status, error) {
-                    console.error('Si è verificato un errore durante la richiesta.');
+                    console.error('Errore Richiesta');
                 }
             });
         })
