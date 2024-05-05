@@ -26,21 +26,6 @@ iconClose.addEventListener('click', ()=>{
 });
 
 
-swal({
-    title: "Errore!",
-    text: "Invalid credentials. Try again.",
-    icon: "error",
-    button: "OK",
-    dangerMode: true,
-    background: "#f8f9fa",
-    confirmButtonColor: "#dc3545",
-    textColor: "#343a40",
-    width: "400px",
-    padding: "3rem",
-    titleFont: "Montserrat_Arabic_Regular",
-    textFont: "Montserrat_Arabic_Regular"
-});
-
 
 
 

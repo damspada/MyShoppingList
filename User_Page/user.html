@@ -16,7 +16,7 @@
         $(document).ready(function(){
             document.getElementById("form_log").addEventListener("submit",function(event){
                 event.preventDefault();
-                const immagine = document.getElementById('avatar-preview').value;
+                const immagine = document.getElementById('avatar-upload').value;
                 console.log(immagine);
                 const name = document.getElementById('name').value;
                 console.log(name);
@@ -63,11 +63,11 @@
 
     
     <!-- Form -->
-    <form id="form_log">
+    <form id="form_log" method="post" enctype="multipart/form-data">
         <div class="container">
             <div class="avatar-container">
                 <img src="#" class="avatar" id="avatar-preview">
-                <label for="avatar-upload" class="upload-button">Choose Image</label>
+                <label for="avatar-upload" class="upload-button" >Choose Image</label>
                 <input type="file" id="avatar-upload" accept="image/*" style="display: none;">
             </div>
             <div class="form-container">
