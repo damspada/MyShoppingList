@@ -674,6 +674,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             echo $json_prodotti;
         }
     }
+
+    // Verifica se l'azione è "checkout"
+    else if(isset($_GET['action']) && $_GET['action'] === 'checkout') {
+        // Simuliamo un calcolo dei dati e dei risultati
+        $supermercatoEconomico = "Supermercato X";
+        $supermercatoVicino = "Supermercato Y";
+        $supermercatoConsigliato = "Supermercato Z";
+        $prezziProdotti = array(
+            "Prodotto1" => 1.99,
+            "Prodotto2" => 2.49,
+            "Prodotto3" => 0.99
+        );
+    
+        // Creiamo un array associativo con i dati da restituire
+        $responseData = array(
+            "supermercatoEconomico" => $supermercatoEconomico,
+            "supermercatoVicino" => $supermercatoVicino,
+            "supermercatoConsigliato" => $supermercatoConsigliato,
+            "prezziProdotti" => $prezziProdotti
+        );
+    
+        // Convertiamo l'array in formato JSON e lo restituiamo come risposta
+        header('Content-Type: application/json');
+        echo json_encode($responseData);
+        }
     
     //Per visualizzare tutti i prodotti
     else {
@@ -689,8 +714,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         }
         echo json_encode($products);
     }
-
 }
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Aggiungere prodotto al carrello o aumentare la quantità di esso all'interno del carrello
