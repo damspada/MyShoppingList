@@ -22,7 +22,7 @@ if(isset($_POST['email']) && isset($_POST['pass'])){
     $pass = $_POST['pass'];
 
     // Esegui una query per verificare le credenziali dell'utente nel database
-    $sql = "SELECT * FROM users WHERE email = '$email' AND pass = '$pass'";
+    $sql = "SELECT * FROM utenti WHERE email = '$email' AND pass = '$pass'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {

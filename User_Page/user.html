@@ -33,12 +33,13 @@
                 formData.append('password', document.getElementById('password').value);
                 formData.append('stile_di_vita', document.getElementById('stile_di_vita').value);
                 formData.append('importo', document.getElementById('importo').value);
-
+                formData.append('id', sessionStorage.getItem('sessionId'));
+               
                 // Esegui la richiesta AJAX
                 $.ajax({
                     url: "server.php",
                     type: "POST",
-                    data: formData,
+                    data:formData,
                     processData: false,  // Evita il parsing automatico dei dati
                     contentType: false,  // Evita l'impostazione del tipo di contenuto
                     success: function(data){
@@ -48,11 +49,12 @@
             });
         });
     </script>
-        $(document).ready(function(){
-            if(getLog())
-        });
     <script>
-
+        $(document).ready(function(){
+            if(sessionStorage.getItem('sessionId')){
+                
+            }
+        });
     </script>
 </head>
 
