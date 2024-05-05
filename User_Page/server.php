@@ -21,7 +21,7 @@ $email = $_POST['email'];
 $lifestyle = $_POST['stile_di_vita'];
 $maxamount = $_POST['importo'];
 $password = $_POST['password'];
-
+$ID=$_POST['id'];
 
 // Caricamento dell'immagine
 $target_dir = "C:/xampp/htdocs/uploads/"; // Directory di destinazione per il caricamento dell'immagine
@@ -39,8 +39,8 @@ if ($_FILES["avatar-upload"]["error"] !== UPLOAD_ERR_OK) {
     }
 
     // Query per inserire i dati nella tabella del database
-    $sql = "INSERT INTO users (immagine, email, pass, nome, cognome, dt, telefono, lifestyle, max_amount)
-    VALUES ('$target_file', '$email', '$password', '$name', '$surname', '$birthdate', '$phone', '$lifestyle', '$maxamount')";
+    $sql = "INSERT INTO utenti (id,immagine, email, pass, nome, cognome, born, cell, life, budget)
+    VALUES ('$ID','$target_file', '$email', '$password', '$name', '$surname', '$birthdate', '$phone', '$lifestyle', '$maxamount')";
 
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
