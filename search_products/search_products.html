@@ -985,30 +985,36 @@
             checkout_btnPopup.addEventListener('click', function (event) {
                 event.preventDefault();
 
+                var sessionId = getSessionId();
+
                 // Effettua la richiesta GET al server
                 // INPUT: None (posizione la trova dal datbase delle sessioni, i prodotti nel carrello dal database cart)
                 // OUTPUT: supermercato più economico, supermercato più vicino, supermercato consigliato, prezzi prodotti del supermercato consigliato
                 $.ajax({
                     url: "server.php?action=checkout",
                     method: "GET",
+                    data: { id: sessionId },
                     success: function (response) {
-                        // Handle the response from the server
-                        // Extract the information you need (supermercato più economico, supermercato più vicino, supermercato consigliato, prezzi prodotti del supermercato consigliato)
-                        var supermercatoEconomico = response.supermercatoEconomico;
-                        var supermercatoVicino = response.supermercatoVicino;
-                        var supermercatoConsigliato = response.supermercatoConsigliato;
-                        var prezziProdotti = response.prezziProdotti;
+                        // dato il response uguale a
+                        // $responseData = array(
+                        //    "nearestSupermarketChain" => $nearest_supermarket_chain,
+                        //    "nearestSupermarketName" => $nearest_supermarket_name,
+                        //    "nearestSupermarketLatitude" => $nearest_supermarket_latitude,
+                        //    "nearestSupermarketLongitude" => $nearest_supermarket_longitude,
+                        //    "supermercatoEconomico" => $supermercatoEconomico,
+                        //    "supermercatoConsigliato" => $supermercatoConsigliato,
+                        //    "prezziProdotti" => $prezziProdotti,
+                        //    "latitude" => $user_latitude, 
+                        //    "longitude" => $user_longitude
+                        //);
+                        // stampa nella classe vicino in h2 il nearestSupermarket con i suoi dati
 
-                        // Esempio di utilizzo dei dati
-                        console.log("Supermercato più economico: " + supermercatoEconomico);
-                        console.log("Supermercato più vicino: " + supermercatoVicino);
-                        console.log("Supermercato consigliato: " + supermercatoConsigliato);
-                        console.log("Prezzi prodotti del supermercato consigliato:");
-                        for (var prodotto in prezziProdotti) {
-                            console.log(prodotto + ": " + prezziProdotti[prodotto]);
-                        }
+                        const nearestSupermarket = document.querySelector('.vicino');
+                        nearestSupermarket.innerHTML = `<h2>${response.nearestSupermarketChain} ${response.nearestSupermarketName} ${response.latitude} ${response.longitude}</h2>`;
 
-                        // Puoi manipolare ulteriormente i dati qui, ad esempio, aggiornare l'interfaccia utente con queste informazioni
+        
+                        console.log(response);
+                        
                     },
                     error: function (xhr, status, error) {
                         console.error('Si è verificato un errore durante la richiesta.');
@@ -1025,7 +1031,6 @@
             checkout_iconClose.addEventListener('click', () => {
                 checkout_wrapper.classList.remove('active-popup');
                 checkout_body.classList.remove('popup-active');
-                hidePopup();
             });
         });
     </script>

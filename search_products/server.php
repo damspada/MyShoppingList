@@ -1,4 +1,6 @@
 <?php
+
+
 $servername = "127.0.0.1";
 $username = "root";
 $password = "";
@@ -11,6 +13,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
@@ -677,28 +680,57 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     // Verifica se l'azione è "checkout"
     else if(isset($_GET['action']) && $_GET['action'] === 'checkout') {
-        // Simuliamo un calcolo dei dati e dei risultati
+
+        $sessionId = isset($_GET['id']) ? $_GET['id'] : null;
+
+        // Trovo la posizione dell'utente
+        $check_session = "SELECT ST_X(location) AS latitude, ST_Y(location) AS longitude FROM `session_location` WHERE SessionID = '$sessionId'";
+        $result = $conn->query($check_session);
+        
+        $row = $result->fetch_assoc();
+        $user_latitude = $row['latitude'];
+        $user_longitude = $row['longitude'];
+
+        // nearest_supermarket è il supermercato più vicino rispetto alla posizione dell'utente
+
+        // Utilizzando le posizioni dei supermercati nella tabella TABLE `supermarkets` (chain varchar(255) NOT NULL, name varchar(255) NOT NULL, location` point NOT NULL, PRIMARY KEY (`chain`,`name`)); trovo il supermercato più vicino rispetto alla user_latitude e user_longitude e la user_location
+        $nearest_supermarket = "SELECT chain, name, ST_X(location) AS latitude, ST_Y(location) AS longitude, ST_Distance_Sphere(location, POINT($user_latitude, $user_longitude)) AS distance FROM `supermarkets` ORDER BY distance LIMIT 1";
+        $result = $conn->query($nearest_supermarket);
+
+        $row = $result->fetch_assoc();
+        $nearest_supermarket_chain = $row['chain'];
+        $nearest_supermarket_name = $row['name'];
+        $nearest_supermarket_latitude = $row['latitude'];
+        $nearest_supermarket_longitude = $row['longitude'];
+
+        
+        // Trovo il supermercato più vicino        
         $supermercatoEconomico = "Supermercato X";
-        $supermercatoVicino = "Supermercato Y";
         $supermercatoConsigliato = "Supermercato Z";
         $prezziProdotti = array(
             "Prodotto1" => 1.99,
             "Prodotto2" => 2.49,
             "Prodotto3" => 0.99
         );
-    
-        // Creiamo un array associativo con i dati da restituire
+
+        // Create an associative array with the data to return
         $responseData = array(
+            "nearestSupermarketChain" => $nearest_supermarket_chain,
+            "nearestSupermarketName" => $nearest_supermarket_name,
+            "nearestSupermarketLatitude" => $nearest_supermarket_latitude,
+            "nearestSupermarketLongitude" => $nearest_supermarket_longitude,
             "supermercatoEconomico" => $supermercatoEconomico,
-            "supermercatoVicino" => $supermercatoVicino,
             "supermercatoConsigliato" => $supermercatoConsigliato,
-            "prezziProdotti" => $prezziProdotti
+            "prezziProdotti" => $prezziProdotti,
+            "latitude" => $user_latitude, 
+            "longitude" => $user_longitude
         );
     
         // Convertiamo l'array in formato JSON e lo restituiamo come risposta
         header('Content-Type: application/json');
         echo json_encode($responseData);
-        }
+
+    }
     
     //Per visualizzare tutti i prodotti
     else {
