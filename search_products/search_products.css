@@ -936,7 +936,7 @@ h3{
     width: 40%;
     height: 30px;
     background-color:  #00BF63;
-    transition: transform .2s;
+    transition: transform .5s;
     border: none;
     font-weight: 600;
 }
@@ -1144,7 +1144,7 @@ h4{
     width: 40%;
     height: 30px;
     background-color:  #00BF63;
-    transition: transform .2s;
+    transition: transform .5s;
     border: none;
     font-weight: 600;
     margin: 3%;
