@@ -1,35 +1,21 @@
 <?php
-    $servername = "127.0.0.1";
-    $username = "root";
-    $password = "";
-    $dbname = "MyShopping";
-    
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+$servername = "127.0.0.1";
+$username = "root";
+$password = "";
+$dbname = "MyShopping";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     //Per visualizzare tutti i prodotti
-    if ($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_GET['Categoria']) && !isset($_GET['Nome']) && !isset($_GET['Ricetta']) && !isset($_GET['riavvio'])) {
-        
-        $sql = "SELECT * FROM products";
-        $result = $conn->query($sql);
-
-
-        $products = array();
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $products[] = $row;
-            }
-        }
-        echo json_encode($products);
-
-    }
-
-    if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['riavvio'])){
+    if (isset($_GET['riavvio'])) {
         $sql3 = "SELECT * FROM Cart";
         $risultato = $conn->query($sql3);
         $productsC = array();
@@ -42,8 +28,8 @@
     }
 
     //Per visualizzare i prodotti cercati tramite barra di ricerca
-    if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['Nome'])){
-        $Nome=$_GET['Nome'];
+    if (isset($_GET['Nome'])) {
+        $Nome = $_GET['Nome'];
         $sql3 = "SELECT * FROM `products` WHERE Nome LIKE '%$Nome%'";
         $risultato = $conn->query($sql3);
         $productsC = array();
@@ -56,9 +42,9 @@
     }
 
     //Per visualizzare i prodotti della categoria desiderata
-    if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['Categoria'])){
-        $categoria=$_GET['Categoria'];
-        if($categoria=="All"){
+    if (isset($_GET['Categoria'])) {
+        $categoria = $_GET['Categoria'];
+        if ($categoria == "All") {
             $sql2 = "SELECT * FROM `products`";
             $risultato = $conn->query($sql2);
             $productsC = array();
@@ -68,7 +54,7 @@
                 }
             }
             echo json_encode($productsC);
-        }else if($categoria=="Healty"){
+        } else if ($categoria == "Healty") {
             $sql2 = "SELECT * FROM `products` WHERE health>=8";
             $risultato = $conn->query($sql2);
             $productsC = array();
@@ -78,7 +64,7 @@
                 }
             }
             echo json_encode($productsC);
-        }else{
+        } else {
             $sql2 = "SELECT * FROM `products` WHERE category = '$categoria'";
             $risultato = $conn->query($sql2);
             $productsC = array();
@@ -90,14 +76,13 @@
             echo json_encode($productsC);
         }
     }
-
     // Per inserire nel carrello i prodotti in base alla ricetta selezionata
-    if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['Ricetta'])){
-        $Ricetta=$_GET['Ricetta'];
-        if($Ricetta=="Carbonara"){
+    if (isset($_GET['Ricetta'])) {
+        $Ricetta = $_GET['Ricetta'];
+        if ($Ricetta == "Carbonara") {
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Uova'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Uova'";
                 $res = $conn->query($update_product);
@@ -107,7 +92,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Mezze Maniche Barilla'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Mezze Maniche Barilla'";
                 $res = $conn->query($update_product);
@@ -117,7 +102,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Guanciale Beretta'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Guanciale Beretta'";
                 $res = $conn->query($update_product);
@@ -127,17 +112,17 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Pecorino Biraghi'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Pecorino Biraghi'";
                 $res = $conn->query($update_product);
             } else {
                 $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Pecorino Biraghi', 1, 'Salumi e Formaggi', 'products/Pecorino_Biraghi.jpg')";
-            $res = $conn->query($insert_product);
+                $res = $conn->query($insert_product);
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Pepe Nero Cannamela'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Pepe Nero Cannamela'";
                 $res = $conn->query($update_product);
@@ -180,10 +165,10 @@
             ];
             $json_prodotti = json_encode($prodotti);
             echo $json_prodotti;
-        }else if($Ricetta=="Amatriciana"){
+        } else if ($Ricetta == "Amatriciana") {
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Passata di pomodoro Mutti'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Passata di pomodoro Mutti'";
                 $res = $conn->query($update_product);
@@ -193,7 +178,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Bucatini Rummo'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Bucatini Rummo'";
                 $res = $conn->query($update_product);
@@ -203,7 +188,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Guanciale Beretta'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Guanciale Beretta'";
                 $res = $conn->query($update_product);
@@ -213,23 +198,23 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Pecorino Biraghi'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Pecorino Biraghi'";
                 $res = $conn->query($update_product);
             } else {
                 $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Pecorino Biraghi', 1, 'Salumi e Formaggi', 'products/Pecorino_Biraghi.jpg')";
-            $res = $conn->query($insert_product);
+                $res = $conn->query($insert_product);
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Pepe Nero Cannamela'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Pepe Nero Cannamela'";
                 $res = $conn->query($update_product);
             } else {
                 $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Pepe Nero Cannamela', 1, 'Dispensa', 'products/pepe_nero_cannamela.jpg')";
-            $res = $conn->query($insert_product);
+                $res = $conn->query($insert_product);
             }
 
             $prodotti = [
@@ -266,20 +251,20 @@
             ];
             $json_prodotti = json_encode($prodotti);
             echo $json_prodotti;
-        }else if($Ricetta=="Pollo"){
+        } else if ($Ricetta == "Pollo") {
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Pollo Aia'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Pollo Aia'";
                 $res = $conn->query($update_product);
             } else {
                 $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Pollo Aia', 1, 'Carne', 'products/Pollo.jpg')";
-            $res = $conn->query($insert_product);
+                $res = $conn->query($insert_product);
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Patate'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Patate'";
                 $res = $conn->query($update_product);
@@ -289,7 +274,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Cipolle'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Cipolle'";
                 $res = $conn->query($update_product);
@@ -299,7 +284,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Rosmarino Cannamela'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Rosmarino Cannamela'";
                 $res = $conn->query($update_product);
@@ -309,7 +294,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Olio De Cecco'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Olio De Cecco'";
                 $res = $conn->query($update_product);
@@ -352,10 +337,10 @@
             ];
             $json_prodotti = json_encode($prodotti);
             echo $json_prodotti;
-        }else if($Ricetta=="Lasagna"){
+        } else if ($Ricetta == "Lasagna") {
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Passata di pomodoro Mutti'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Passata di pomodoro Mutti'";
                 $res = $conn->query($update_product);
@@ -365,7 +350,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Lasagne Barilla'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Lasagne Barilla'";
                 $res = $conn->query($update_product);
@@ -375,7 +360,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Cipolle'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Cipolle'";
                 $res = $conn->query($update_product);
@@ -385,7 +370,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Carote'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Carote'";
                 $res = $conn->query($update_product);
@@ -395,7 +380,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Sedano'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Sedano'";
                 $res = $conn->query($update_product);
@@ -405,17 +390,17 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Besciamella Chef'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Besciamella Chef'";
                 $res = $conn->query($update_product);
             } else {
                 $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('Besciamella Chef', 1, 'Dispensa', 'products/besciamella_chef.jpg')";
-            $res = $conn->query($insert_product);
+                $res = $conn->query($insert_product);
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Macinato'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Macinato'";
                 $res = $conn->query($update_product);
@@ -425,7 +410,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Parmigiano Parmareggio'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Parmigiano Parmareggio'";
                 $res = $conn->query($update_product);
@@ -478,10 +463,10 @@
             ];
             $json_prodotti = json_encode($prodotti);
             echo $json_prodotti;
-        }else if($Ricetta=="Tiramisù"){
+        } else if ($Ricetta == "Tiramisù") {
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Caffè Kimbo'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Caffè Kimbo'";
                 $res = $conn->query($update_product);
@@ -491,7 +476,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Mascarpone Galbani'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Mascarpone Galbani'";
                 $res = $conn->query($update_product);
@@ -501,7 +486,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Vincezovo Savoiardi'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Vincezovo Savoiardi'";
                 $res = $conn->query($update_product);
@@ -511,7 +496,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Uova'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Uova'";
                 $res = $conn->query($update_product);
@@ -521,7 +506,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Zucchero Eridania'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Zucchero Eridania'";
                 $res = $conn->query($update_product);
@@ -531,7 +516,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Cacao Perugina'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Cacao Perugina'";
                 $res = $conn->query($update_product);
@@ -574,10 +559,10 @@
             ];
             $json_prodotti = json_encode($prodotti);
             echo $json_prodotti;
-        }else if($Ricetta=="Tortellini"){
+        } else if ($Ricetta == "Tortellini") {
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Tortellini Barilla'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Tortellini Barilla'";
                 $res = $conn->query($update_product);
@@ -587,7 +572,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Cipolle'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Cipolle'";
                 $res = $conn->query($update_product);
@@ -597,7 +582,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Carote'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Carote'";
                 $res = $conn->query($update_product);
@@ -607,7 +592,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Sedano'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Sedano'";
                 $res = $conn->query($update_product);
@@ -617,7 +602,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Pomodori San Marzano'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Pomodori San Marzano'";
                 $res = $conn->query($update_product);
@@ -627,7 +612,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Olio De Cecco'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Olio De Cecco'";
                 $res = $conn->query($update_product);
@@ -637,7 +622,7 @@
             }
 
             $existingProduct = "SELECT * FROM `Cart` WHERE Nome = 'Parmigiano Parmareggio'";
-            $res=$conn->query($existingProduct);
+            $res = $conn->query($existingProduct);
             if ($res->num_rows > 0) {
                 $update_product = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = 'Parmigiano Parmareggio'";
                 $res = $conn->query($update_product);
@@ -688,103 +673,110 @@
             echo $json_prodotti;
         }
     }
-
-
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        // Aggiungere prodotto al carrello o aumentare la quantità di esso all'interno del carrello
-        if (isset($_POST['product_name']) && isset($_POST['product_category']) && isset($_POST['product_image'])) {
-            // Sanificazione dei dati
-            $product_name = $_POST['product_name'];
-            $product_category = $_POST['product_category'];
-            $product_image = $_POST['product_image'];
-            $product_quantity = 1;
     
-            // Query per verificare se il prodotto è già nel carrello
-            $select_cart = "SELECT * FROM `Cart` WHERE Nome = '$product_name'";
-            $res = $conn->query($select_cart);
-    
-            if ($res->num_rows > 0) {
-                // Se il prodotto è già nel carrello, aggiorna la quantità
-                $update_query = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = '$product_name'";
-                $update_result = $conn->query($update_query);
-                
-            } else {
-                // Se il prodotto non è nel carrello, inseriscilo
-                $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('$product_name', '$product_quantity', '$product_category', '$product_image')";
-                $res = $conn->query($insert_product);
-               
+    //Per visualizzare tutti i prodotti
+    else {
+        $sql = "SELECT * FROM products";
+        $result = $conn->query($sql);
+
+
+        $products = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $products[] = $row;
             }
         }
-    
-        //Per aumentare e diminuire la quantità di un prodotto nel carrello 
-        if (isset($_POST['elemento']) && isset($_POST['valore'])) {
-            $valore = $_POST['valore'];
-            $prodotto=$_POST['elemento'];
-            if($valore == '-1'){
-                $Quantità="SELECT * FROM Cart WHERE  Nome = '$prodotto'";
-                $res=$conn->query($Quantità);
-                $row = $res->fetch_assoc();
-                $n=$row['Quantità'];
-                if($n>1){
-                    $update_quantity_query = "UPDATE `Cart` SET Quantità = Quantità - 1 WHERE Nome = '$prodotto'";
-                    $update=$conn->query($update_quantity_query);
-                }else{
-                    $update_cart = "DELETE FROM `Cart` WHERE Nome = '$prodotto'";
-                    $update=$conn->query($update_cart);
-                    
-                }
-            }else{
-                $update_quantity_query = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = '$prodotto'";
-                $update=$conn->query($update_quantity_query);
-            }
+        echo json_encode($products);
+    }
+}
 
-        }
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Aggiungere prodotto al carrello o aumentare la quantità di esso all'interno del carrello
+    if (isset($_POST['product_name']) && isset($_POST['product_category']) && isset($_POST['product_image'])) {
+        // Sanificazione dei dati
+        $product_name = $_POST['product_name'];
+        $product_category = $_POST['product_category'];
+        $product_image = $_POST['product_image'];
+        $product_quantity = 1;
 
-        //Per svuotare il carrello premendo l'icona del cestino
-        if (isset($_POST['cestino'])) {
-           $Elementi="DELETE FROM `Cart`";
-           $update=$conn->query($Elementi);
-        }
+        // Query per verificare se il prodotto è già nel carrello
+        $select_cart = "SELECT * FROM `Cart` WHERE Nome = '$product_name'";
+        $res = $conn->query($select_cart);
 
-        //Per svuotare il carrello alla chiusura della pagina 
-        if (isset($_POST['close'])){
-            $Elementi="DELETE FROM `Cart`";
-           $update=$conn->query($Elementi);
-        }
-
-        if(isset($_POST['latitude']) && isset($_POST['longitude']) && isset($_POST['session_id'])) {
-            // Retrieve latitude and longitude
-            $latitude = $_POST['latitude'];
-            $longitude = $_POST['longitude'];
-            $sessionId = $_POST['session_id'];
-
-            // Check if session ID already exists in the database
-            $check_session = "SELECT * FROM `session_location` WHERE SessionID = '$sessionId'";
-            $result = $conn->query($check_session);
-
-            if ($result->num_rows > 0) {
-                // If session ID exists, update the location
-                $update_location = "UPDATE `session_location` SET location = POINT($latitude, $longitude) WHERE SessionID = '$sessionId'";
-                $update = $conn->query($update_location);
-            } else {
-                // If session ID does not exist, insert a new record
-                $insert_location = "INSERT INTO `session_location` (SessionID, location) VALUES ('$sessionId', POINT($latitude, $longitude))";
-                $update = $conn->query($insert_location);
-            }
-
-            if (!$update) {
-                echo "Error: " . mysqli_error($conn);
-            }
-
-            else {
-                echo "Location saved successfully";
-            }
-
+        if ($res->num_rows > 0) {
+            // Se il prodotto è già nel carrello, aggiorna la quantità
+            $update_query = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = '$product_name'";
+            $update_result = $conn->query($update_query);
         } else {
-            // Send error response
-            echo "Error: Latitude and longitude not provided";
+            // Se il prodotto non è nel carrello, inseriscilo
+            $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('$product_name', '$product_quantity', '$product_category', '$product_image')";
+            $res = $conn->query($insert_product);
         }
     }
 
-    $conn->close();
-?>
+    //Per aumentare e diminuire la quantità di un prodotto nel carrello 
+    if (isset($_POST['elemento']) && isset($_POST['valore'])) {
+        $valore = $_POST['valore'];
+        $prodotto = $_POST['elemento'];
+        if ($valore == '-1') {
+            $Quantità = "SELECT * FROM Cart WHERE  Nome = '$prodotto'";
+            $res = $conn->query($Quantità);
+            $row = $res->fetch_assoc();
+            $n = $row['Quantità'];
+            if ($n > 1) {
+                $update_quantity_query = "UPDATE `Cart` SET Quantità = Quantità - 1 WHERE Nome = '$prodotto'";
+                $update = $conn->query($update_quantity_query);
+            } else {
+                $update_cart = "DELETE FROM `Cart` WHERE Nome = '$prodotto'";
+                $update = $conn->query($update_cart);
+            }
+        } else {
+            $update_quantity_query = "UPDATE `Cart` SET Quantità = Quantità + 1 WHERE Nome = '$prodotto'";
+            $update = $conn->query($update_quantity_query);
+        }
+    }
+
+    //Per svuotare il carrello premendo l'icona del cestino
+    if (isset($_POST['cestino'])) {
+        $Elementi = "DELETE FROM `Cart`";
+        $update = $conn->query($Elementi);
+    }
+
+    //Per svuotare il carrello alla chiusura della pagina 
+    if (isset($_POST['close'])) {
+        $Elementi = "DELETE FROM `Cart`";
+        $update = $conn->query($Elementi);
+    }
+
+    if (isset($_POST['latitude']) && isset($_POST['longitude']) && isset($_POST['session_id'])) {
+        // Retrieve latitude and longitude
+        $latitude = $_POST['latitude'];
+        $longitude = $_POST['longitude'];
+        $sessionId = $_POST['session_id'];
+
+        // Check if session ID already exists in the database
+        $check_session = "SELECT * FROM `session_location` WHERE SessionID = '$sessionId'";
+        $result = $conn->query($check_session);
+
+        if ($result->num_rows > 0) {
+            // If session ID exists, update the location
+            $update_location = "UPDATE `session_location` SET location = POINT($latitude, $longitude) WHERE SessionID = '$sessionId'";
+            $update = $conn->query($update_location);
+        } else {
+            // If session ID does not exist, insert a new record
+            $insert_location = "INSERT INTO `session_location` (SessionID, location) VALUES ('$sessionId', POINT($latitude, $longitude))";
+            $update = $conn->query($insert_location);
+        }
+
+        if (!$update) {
+            echo "Error: " . mysqli_error($conn);
+        } else {
+            echo "Location saved successfully";
+        }
+    } else {
+        // Send error response
+        echo "Error: Latitude and longitude not provided";
+    }
+}
+
+$conn->close();
