@@ -758,9 +758,19 @@
             $longitude = $_POST['longitude'];
             $sessionId = $_POST['session_id'];
 
-            // Save location
-            $insert_location = "INSERT INTO `session_location` (SessionID, location) VALUES ('$sessionId', POINT($latitude, $longitude))";
-            $update = $conn->query($insert_location);
+            // Check if session ID already exists in the database
+            $check_session = "SELECT * FROM `session_location` WHERE SessionID = '$sessionId'";
+            $result = $conn->query($check_session);
+
+            if ($result->num_rows > 0) {
+                // If session ID exists, update the location
+                $update_location = "UPDATE `session_location` SET location = POINT($latitude, $longitude) WHERE SessionID = '$sessionId'";
+                $update = $conn->query($update_location);
+            } else {
+                // If session ID does not exist, insert a new record
+                $insert_location = "INSERT INTO `session_location` (SessionID, location) VALUES ('$sessionId', POINT($latitude, $longitude))";
+                $update = $conn->query($insert_location);
+            }
 
             if (!$update) {
                 echo "Error: " . mysqli_error($conn);

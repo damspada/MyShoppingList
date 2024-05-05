@@ -85,6 +85,13 @@
 
         // Function to set a session ID cookie
         function setSessionCookie() {
+            // Check if session ID is already set
+            if (sessionStorage.getItem('sessionId')) {
+                // Session ID is already set
+                console.log('Session ID is already set');
+                return;
+            }
+
             // Generate a session ID
             var sessionId = generateSessionId();
 
