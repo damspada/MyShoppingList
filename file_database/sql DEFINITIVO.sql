@@ -106,7 +106,7 @@ CREATE TABLE products (
   category VARCHAR(50),
   description TEXT,
   nutrients TEXT,
-  health FLOAT CHECK (health >= 0.0 AND health <= 10.0) DEFAULT NULL,
+  health FLOAT CHECK (health >= 0.0 AND health <= 10.0),
   UNIQUE(Nome, category),
   FOREIGN KEY (category) REFERENCES categories(name)
 );
@@ -322,11 +322,9 @@ INSERT INTO products (Nome, peso, image, category, description, nutrients, healt
   ('Rosmarino Cannamela', 100, 'products/rosmarino_cannamela.jpg', 'Dispensa', 'Marmellata di frutti rossi Zueg, perfetta per colazioni e merende.', 'nutrienti da specificare', 7.0),
   ('Misura Privolat', 400, 'products/misura_privolat.jpg', 'Dolci', 'Marmellata di fragole Santa Rosa, dolce e profumata.', 'nutrienti da specificare', 8.5),
   ('Oro Saiwa', 300, 'products/oro_saiwa.jpg', 'Dispensa', 'Nutella Ferrero, crema di cioccolato e nocciole.', 'nutrienti da specificare', 4.5),
-  ('Sedano', 1000, 'products/Sedano.jpg', 'Vegetali', 'Crema alla nocciola Novi, irresistibile e cremosa.', 'nutrienti da specificare', 9.0);
+  ('Sedano', 1000, 'products/Sedano.jpg', 'Vegetali', 'Crema alla nocciola Novi, irresistibile e cremosa.', 'nutrienti da specificare', 9.0),
   ('Pepe Nero Cannamela', 100, 'products/pepe_nero_cannamela.jpg', 'Dispensa', 'Marmellata di frutti rossi Zueg, perfetta per colazioni e merende.', 'nutrienti da specificare', 6.5),
   ('Besciamella Chef', 250, 'products/besciamella_chef.jpg', 'Dispensa', 'Marmellata di frutti rossi Zueg, perfetta per colazioni e merende.', 'nutrienti da specificare', 6.5);
-  
-
 
 CREATE TABLE Cart (
  Nome varchar(255) NOT NULL,
