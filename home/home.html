@@ -61,6 +61,39 @@
             });
         });
     </script>
+    <script>
+        // Function to generate a random session ID
+        function generateSessionId() {
+            // Characters to be used in the session ID
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+            // Length of the session ID
+            var length = 10;
+
+            var sessionId = '';
+            for (var i = 0; i < length; i++) {
+                // Generate a random index to select a character from the characters string
+                var randomIndex = Math.floor(Math.random() * characters.length);
+                
+                // Append the randomly selected character to the session ID
+                sessionId += characters.charAt(randomIndex);
+            }
+            
+            return sessionId;
+        }
+
+
+        // Function to set a session ID cookie
+        function setSessionCookie() {
+            // Generate a session ID
+            var sessionId = generateSessionId();
+
+            sessionStorage.setItem('sessionId', sessionId); // Assuming sessionId is the variable holding the generated session ID
+        }
+
+        // Call function to set session cookie
+        setSessionCookie();
+    </script>
 
 </head>
 

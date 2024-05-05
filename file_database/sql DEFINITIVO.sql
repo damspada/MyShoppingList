@@ -335,6 +335,12 @@ CREATE TABLE Cart (
  Immagine varchar(255) NOT NULL,
  PRIMARY KEY (Nome)
 );
+
+CREATE TABLE session_location (
+  SessionID VARCHAR(255) NOT NULL,
+  location POINT NOT NULL
+);
+
 --- FINO A QUA TUTTO FUNZIONANTE ---
 
 CREATE TABLE recipes (
@@ -352,6 +358,7 @@ CREATE TABLE recipe_ingredients (
   FOREIGN KEY (recipe_name) REFERENCES recipes(name),
   FOREIGN KEY (ingredient) REFERENCES products(name)
 );
+
 
 
 

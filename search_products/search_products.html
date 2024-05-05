@@ -1017,6 +1017,56 @@
     });
     </script>
 
+    <script>
+        $(document).ready(function(){
+            // Request geolocation
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+
+                    // Save latitude and longitude to session storage
+                    sessionStorage.setItem("latitude", latitude);
+                    sessionStorage.setItem("longitude", longitude);
+
+                    var sessionId = getSessionId();
+
+                    var sessionId = getSessionId();
+
+                    // Check if session ID exists
+                    if (sessionId) {
+                        console.log('Session ID:', sessionId);
+                    } else {
+                        console.log('Session ID not found.');
+                    }
+                    
+                    // Send latitude and longitude to backend using AJAX
+                    $.ajax({
+                        type: "POST",
+                        url: "server.php",
+                        data: { latitude: latitude, longitude: longitude, session_id: sessionId },
+                        success: function(response) {
+                            console.log(response);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                });
+            } else {
+                console.log("Geolocation is not available");
+            }
+        });
+
+        function getSessionId() {
+            // Retrieve the session ID from sessionStorage
+            return sessionStorage.getItem('sessionId');
+        }
+
+        // Call function to get session ID
+
+    </script>
+
     
     <title>MyShoppingList</title>
 </head>

@@ -751,6 +751,29 @@
             $Elementi="DELETE FROM `Cart`";
            $update=$conn->query($Elementi);
         }
+
+        if(isset($_POST['latitude']) && isset($_POST['longitude']) && isset($_POST['session_id'])) {
+            // Retrieve latitude and longitude
+            $latitude = $_POST['latitude'];
+            $longitude = $_POST['longitude'];
+            $sessionId = $_POST['session_id'];
+
+            // Save location
+            $insert_location = "INSERT INTO `session_location` (SessionID, location) VALUES ('$sessionId', POINT($latitude, $longitude))";
+            $update = $conn->query($insert_location);
+
+            if (!$update) {
+                echo "Error: " . mysqli_error($conn);
+            }
+
+            else {
+                echo "Location saved successfully";
+            }
+
+        } else {
+            // Send error response
+            echo "Error: Latitude and longitude not provided";
+        }
     }
 
     $conn->close();
