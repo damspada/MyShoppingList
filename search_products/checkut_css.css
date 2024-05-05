@@ -55,35 +55,65 @@
 }
 
 .flex-container {
-
-
-
-    background-color: #bbdefb;
-
-
+    flex: 1;
+    background-color: white;
+    border-radius: 20px;
+    padding: 40px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1.3fr 2fr;
+    gap: 8px;
 }
 
-.flex-container > div{
+
+
+.left_checkout { 
+    background-color: gray;
+    border-radius: 20px;
+    display: grid;
+    grid-template-rows: 1fr 0.3fr;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+
+.carrello { 
     background: #ffecb3;
     border: 3px solid #ffcc80;
     border-radius: 5px;
 }
 
 
-.left_checkout { 
-    /* flex:0 1 300px; */
-    order:0;
-    flex-grow:0;
-    flex-shrink:1;
-    flex-basis:300px;
-    align-self:auto;
+.salva { 
+    background: #ffecb3;
+    border: 3px solid #ffcc80;
+    border-radius: 5px;
+
 }
         
 .right_checkout { 
-    /* flex:1 1 300px; */
-    flex-grow:1;
-    flex-basis:300px;
-    align-self:auto;
+    background-color: gray;
+    border-radius: 20px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1.5fr;
+    grid-template-columns: 1fr;
+    gap: 8px;
 }
 			
+.economico { 
+    background: #ffecb3;
+    border: 3px solid #ffcc80;
+    border-radius: 5px;
 
+}
+
+.vicino { 
+    background: #ffecb3;
+    border: 3px solid #ffcc80;
+    border-radius: 5px;
+}
+
+.consigliato { 
+    background: #ffecb3;
+    border: 3px solid #ffcc80;
+    border-radius: 5px;
+}

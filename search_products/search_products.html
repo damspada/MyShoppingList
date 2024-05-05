@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -878,7 +879,51 @@
             };
         });
     </script>
+    
+    <script> //script per la chiusura del checkout
+    $(document).ready(function() {
+        const checkout_wrapper = document.querySelector('.wrapper_checkout');
+        const checkout_body = document.querySelector('body');
+        const checkout_iconClose = document.querySelector('.icon_close_checkout');
+        const checkout_btnPopup = document.querySelector('.bottone_checkout');
+        
+        
+        //si attiva al click del bottone checkout
+        checkout_btnPopup.addEventListener('click', function(event) {
+            event.preventDefault();
 
+            // Effettua la richiesta GET al server
+            // INPUT: posizione, prodotti nel carrello
+            // OUTPUT: supermercato più economico, supermercato più vicino, supermercato consigliato, prezzi prodotti del supermercato consigliato
+            $.ajax({
+                url: "server.php",
+                method: "GET",
+                data: { posizione: 'latitudine,longitudine'},
+                success: function(response) {
+                    // Handle the response from the server
+                    // Extract the information you need (supermercato più economico, supermercato più vicino, supermercato consigliato, prezzi prodotti del supermercato consigliato)
+                },
+                error: function(xhr, status, error) {
+                    console.error('Si è verificato un errore durante la richiesta.');
+                }
+            });
+            
+            
+            checkout_wrapper.classList.add('active-popup');
+            checkout_body.classList.add('popup-active');
+
+        });
+
+        // si attiva al click della x nel checkout
+        checkout_iconClose.addEventListener('click', ()=>{
+            checkout_wrapper.classList.remove('active-popup');
+            checkout_body.classList.remove('popup-active');
+            hidePopup();
+        });
+    });
+    </script>
+
+    
     <title>MyShoppingList</title>
 </head>
 
@@ -1007,7 +1052,7 @@
             </div>
         </div>
     </div>
-
+    
     <div class="prodotti_div">
     </div>
 
@@ -1038,10 +1083,10 @@
 
             <div class="left_checkout">
 
-                <div class="riepilogo">
-                    <h2>Summary</h2>
+                <div class="carrello">
+                    <h2>Carrello</h2>
                 </div>
-                
+
                 <div class="salva">
                     <h2>Save</h2>
                 </div>
@@ -1205,5 +1250,4 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="login_script.js"></script>
     <script src="checkout_script.js"></script>
-
 </html>
