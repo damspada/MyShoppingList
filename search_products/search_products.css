@@ -943,7 +943,18 @@ h3{
 
 .bottone_carrello:hover{
     transform: scale(1.1);
+    background-color: #06e679 !important;
+    color: black;
+    box-shadow: #00BF63 0px 7px 29px 0px;
 }
+
+.bottone_carrello:active {
+    background-color: #00BF63 !important;
+    color: black;
+    box-shadow: #00BF63 0px 0px 0px 0px;
+    transition: 50ms;
+}
+
 
 /* CARRELLO */
 .carrello_div{
@@ -1142,6 +1153,16 @@ h4{
 
 .bottone_carrello2:hover{
     transform: scale(1.1);
+    background-color: #06e679 !important;
+    color: black;
+    box-shadow: #00BF63 0px 7px 29px 0px;
+}
+
+.bottone_carrello2:active {
+    background-color: #00BF63 !important;
+    color: black;
+    box-shadow: #00BF63 0px 0px 0px 0px;
+    transition: 50ms;
 }
 
 /*-------------------------------- Footer --------------------------------*/
