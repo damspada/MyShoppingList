@@ -33,9 +33,13 @@
                     data: { email: email, pass: pass },
                     success: function(response){
                         // Se la risposta è 'success', l'utente esiste nel database
+                        sessionStorage.setItem("Log",1);
+                        sessionStorage.setItem("email",email);
+                        console.log(sessionStorage.getItem("Log"));
+                        console.log(sessionStorage.getItem("email"));
                         if(response.trim() === 'success'){
                             // Reindirizza l'utente alla sua pagina utente
-                            window.location.href = '../User_Page/user.html';
+                             window.location.href = '../User_Page/user.html';
                         } else {
                             // Mostra il popup di errore
                             swal({

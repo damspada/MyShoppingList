@@ -50,9 +50,47 @@
         });
     </script>
     <script>
-        $(document).ready(function(){
-            if(sessionStorage.getItem('sessionId')){
-                
+        window.addEventListener('load', function (event) {
+            if(sessionStorage.getItem("Log")==1){
+                var email=sessionStorage.getItem("email");
+                $.ajax({
+                    url: "server.php",
+                    type: "GET",
+                    data:{
+                        email: email
+                    },
+                    dataType:'json',
+                    success: function(data){
+                        data.forEach(function (element) {
+                            console.log(element.nome);
+                            console.log(element.cognome);
+                            console.log(element.born);
+                            console.log(element.cell);
+                            console.log(element.email);
+
+                            const myDiv = document.querySelector('.avatar-container'); // Seleziona l'elemento <div>
+                            myDiv.innerHTML = '';
+                            const imgElement = document.createElement("img");
+                            imgElement.className="avatar"
+                            imgElement.src = element.immagine;
+                            myDiv.append(imgElement);
+
+                            
+                            document.getElementById("name").value = element.nome;
+                            document.getElementById("surname").value = element.cognome;
+                            document.getElementById("birthdate").valueAsDate = element.born;
+                            document.getElementById("phone").value = element.cell;
+                            document.getElementById("email").value = element.email;
+                            document.getElementById("stile_di_vita").value = element.life;
+                            document.getElementById("importo").value = element.budget;
+                            document.getElementById("password").value = element.pass;
+                        });
+                    },
+                    error: function(xhr, status, error){
+                        // Gestisci gli errori durante la chiamata AJAX
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                })
             }
         });
     </script>
