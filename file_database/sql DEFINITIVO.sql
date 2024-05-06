@@ -406,3 +406,18 @@ CROSS JOIN
     products p;
 
 
+CREATE TABLE `utenti` (
+ `id` varchar(255) NOT NULL,
+ `immagine` varchar(255) DEFAULT NULL,
+ `email` varchar(255) NOT NULL,
+ `pass` varchar(255) NOT NULL,
+ `nome` varchar(255) DEFAULT NULL,
+ `cognome` varchar(255) DEFAULT NULL,
+ `born` varchar(255) NOT NULL,
+ `cell` varchar(255) DEFAULT NULL,
+ `life` varchar(255) DEFAULT NULL,
+ `budget` int(11) DEFAULT NULL,
+ PRIMARY KEY (`id`),
+ UNIQUE KEY `email` (`email`,`pass`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
