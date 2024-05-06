@@ -678,7 +678,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         }
     }
 
-    // Verifica se l'azione è "checkout"
+    // Verifica se l'azione è "checkout" e calcola il supermercato più vicino, il supermercato più economico, il supermercato consigliato e il prezzi dei prodotti nel carrello per il supermercato consigliato
     else if(isset($_GET['action']) && $_GET['action'] === 'checkout') {
 
         $sessionId = isset($_GET['id']) ? $_GET['id'] : null;
@@ -994,6 +994,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $update = $conn->query($Elementi);
     }
 
+    //Per salvare la posizione dell'utente
     if (isset($_POST['latitude']) && isset($_POST['longitude']) && isset($_POST['session_id'])) {
         // Retrieve latitude and longitude
         $latitude = $_POST['latitude'];
@@ -1019,10 +1020,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             echo "Location saved successfully";
         }
-    } else {
-        // Send error response
-        echo "Error: Latitude and longitude not provided";
     }
+
 }
 
 $conn->close();
