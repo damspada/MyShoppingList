@@ -394,17 +394,6 @@ INSERT INTO recipe_ingredients (recipe_name, ingredient) VALUES
 ('Lasagna alla Bolognese', 'Parmesan Cheese');
 
 
-CREATE TABLE supermarkets_products AS
-SELECT 
-    s.name AS supermarket_name, 
-    s.chain AS supermarket_chain, 
-    p.name AS product_name, 
-    ROUND(RAND() * 10 + 1, 2) AS price
-FROM 
-    supermarkets s 
-CROSS JOIN 
-    products p;
-
 
 CREATE TABLE `utenti` (
  `id` varchar(255) NOT NULL,
