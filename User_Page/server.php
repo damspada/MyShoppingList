@@ -35,8 +35,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $realpath = realpath($target_dir);
 
-    $target_dir = $realpath . "/";
-
     $target_file = $target_dir . basename($_FILES["avatar-upload"]["name"]);
 
     // Controlla se si è verificato un errore durante il caricamento del file
