@@ -798,7 +798,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         //  Trovo il ranking dei supermercati più vicini rispetto alla posizione dell'utente senza usare RAW_NUMBER or RANK
 
         // Calcola il ranking dei supermercati più vicini rispetto alla posizione dell'utente
-        $nearestSupermarketRanking = "SELECT chain, name, ST_Distance_Sphere(location, POINT($user_latitude, $user_longitude)) AS distance FROM `supermarkets` ORDER BY distance";
+        $nearestSupermarketRanking = "SELECT chain, supermarkets.name, ST_Distance_Sphere(location, POINT($user_latitude, $user_longitude)) AS distance FROM `supermarkets` ORDER BY distance";
         $result = $conn->query($nearestSupermarketRanking);
         $nearestSupermarketRankingArray = array();
         $rank = 1;
