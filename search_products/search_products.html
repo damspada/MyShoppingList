@@ -995,9 +995,54 @@
                     method: "GET",
                     data: { id: sessionId },
                     success: function (response) {
-
                         console.log(response);
-                    
+
+                        const carrelloSpesa = document.querySelector('.carrello');
+
+                        // Inserisci informazioni sui supermercati
+                        const economico = document.querySelector('.economico');
+                        economico.innerHTML = `
+    <h3>Supermercato più economico:</h3>
+    <p>Nome: ${response.cheapestSupermarket.name}</p>
+    <p>Chain: ${response.cheapestSupermarket.chain}</p>
+    <p>Distanza: ${response.cheapestSupermarket.distance}</p>
+    <p>Prezzo totale: ${response.cheapestSupermarket.totalPrice} €</p>
+`;
+
+                        const vicino = document.querySelector('.vicino');
+                        vicino.innerHTML = `
+    <h3>Supermercato più vicino:</h3>
+    <p>Nome: ${response.nearestSupermarket.name}</p>
+    <p>Chain: ${response.nearestSupermarket.chain}</p>
+    <p>Distanza: ${response.nearestSupermarket.distance}</p>
+    <p>Prezzo totale: ${response.nearestSupermarket.totalPrice} €</p>
+`;
+
+                        const consigliato = document.querySelector('.consigliato');
+                        consigliato.innerHTML = `
+    <h3>Supermercato consigliato:</h3>
+    <p>Nome: ${response.recommendedSupermarket.name}</p>
+    <p>Chain: ${response.recommendedSupermarket.chain}</p>
+    <p>Distanza: ${response.recommendedSupermarket.distance}</p>
+    <p>Prezzo totale: ${response.recommendedSupermarket.totalPrice} €</p>
+`;
+
+                        // Inserisci lista dei prodotti nel carrello
+                        carrelloSpesa.innerHTML = `
+    <h3>Lista dei Prodotti:</h3>
+    <ul>
+        ${response.productsPrices.map(product => `
+            <li>
+                <p>Nome: ${product.Nome}</p>
+                <p>Quantità: ${product.Quantità}</p>
+                <p>Prezzo: ${product.price} €</p>
+            </li>
+        `).join('')}
+    </ul>
+    <h3>Prezzo totale: ${response.recommendedSupermarket.totalPrice} €</h3>
+`;
+
+
                     },
                     error: function (xhr, status, error) {
                         console.error('Si è verificato un errore durante la richiesta.');
