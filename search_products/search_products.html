@@ -995,32 +995,14 @@
                     method: "GET",
                     data: { id: sessionId },
                     success: function (response) {
-                        // dato il response uguale a
-                        // $responseData = array(
-                        //    "nearestSupermarketChain" => $nearest_supermarket_chain,
-                        //    "nearestSupermarketName" => $nearest_supermarket_name,
-                        //    "nearestSupermarketLatitude" => $nearest_supermarket_latitude,
-                        //    "nearestSupermarketLongitude" => $nearest_supermarket_longitude,
-                        //    "supermercatoEconomico" => $supermercatoEconomico,
-                        //    "supermercatoConsigliato" => $supermercatoConsigliato,
-                        //    "prezziProdotti" => $prezziProdotti,
-                        //    "latitude" => $user_latitude, 
-                        //    "longitude" => $user_longitude
-                        //);
-                        // stampa nella classe vicino in h2 il nearestSupermarket con i suoi dati
 
-                        const nearestSupermarket = document.querySelector('.vicino');
-                        nearestSupermarket.innerHTML = `<h2>${response.nearestSupermarketChain} ${response.nearestSupermarketName} ${response.latitude} ${response.longitude}</h2>`;
-
-        
                         console.log(response);
-                        
+                    
                     },
                     error: function (xhr, status, error) {
                         console.error('Si è verificato un errore durante la richiesta.');
                     }
                 });
-
 
                 checkout_wrapper.classList.add('active-popup');
                 checkout_body.classList.add('popup-active');

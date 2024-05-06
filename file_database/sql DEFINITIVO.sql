@@ -339,6 +339,18 @@ CREATE TABLE session_location (
   location POINT NOT NULL
 );
 
+CREATE TABLE supermarkets_products AS
+SELECT 
+    s.name AS supermarket_name, 
+    s.chain AS supermarket_chain, 
+    p.Nome AS product_name, 
+    ROUND(RAND() * 10 + 1, 2) AS price
+FROM 
+    supermarkets s 
+CROSS JOIN 
+    products p;
+
+
 --- FINO A QUA TUTTO FUNZIONANTE ---
 
 CREATE TABLE recipes (
