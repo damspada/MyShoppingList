@@ -797,11 +797,81 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         //  Trovo il ranking dei supermercati più vicini rispetto alla posizione dell'utente senza usare RAW_NUMBER or RANK
 
+        // Calcola il ranking dei supermercati più vicini rispetto alla posizione dell'utente
+        $nearestSupermarketRanking = "SELECT chain, name, ST_Distance_Sphere(location, POINT($user_latitude, $user_longitude)) AS distance FROM `supermarkets` ORDER BY distance";
+        $result = $conn->query($nearestSupermarketRanking);
+        $nearestSupermarketRankingArray = array();
+        $rank = 1;
+        while ($row = $result->fetch_assoc()) {
+            $nearestSupermarketRankingArray[$row['chain']][$row['name']] = $rank;
+            $rank++;
+        }
 
+        // Calcola il ranking dei supermercati più economici rispetto ai prodotti nel carrello
+        $cheapestSupermarketRanking = "SELECT supermarket_chain, supermarket_name, SUM(price * Quantità) AS totalPrice FROM Cart, supermarkets_products WHERE Cart.Nome = supermarkets_products.product_name GROUP BY supermarket_chain, supermarket_name ORDER BY totalPrice";
+        $result = $conn->query($cheapestSupermarketRanking);
+        $cheapestSupermarketRankingArray = array();
+        $rank = 1;
+        while ($row = $result->fetch_assoc()) {
+            $cheapestSupermarketRankingArray[$row['supermarket_chain']][$row['supermarket_name']] = $rank;
+            $rank++;
+        }
 
+        // Calcola il supermercato consigliato
+        $recommendedSupermarketRankingArray = array();
+        foreach ($nearestSupermarketRankingArray as $chain => $supermarkets) {
+            foreach ($supermarkets as $name => $nearestRank) {
+                if (isset($cheapestSupermarketRankingArray[$chain][$name])) {
+                    $recommendedRank = $nearestRank + $cheapestSupermarketRankingArray[$chain][$name];
+                    $recommendedSupermarketRankingArray[$chain][$name] = $recommendedRank;
+                }
+            }
+        }
+
+        // Trova il supermercato consigliato con il ranking più basso
+        $recommended_supermarket_chain = null;
+        $recommended_supermarket_name = null;
+        $recommended_supermarket_rank = PHP_INT_MAX; // Inizializzato con il valore massimo intero per trovare il minimo
+        foreach ($recommendedSupermarketRankingArray as $chain => $supermarkets) {
+            foreach ($supermarkets as $name => $rank) {
+                if ($rank < $recommended_supermarket_rank) {
+                    $recommended_supermarket_chain = $chain;
+                    $recommended_supermarket_name = $name;
+                    $recommended_supermarket_rank = $rank;
+                }
+            }
+        }
+
+        // Trova la posizione del supermercato consigliato
+        $recommended_supermarket_location = "SELECT ST_X(location) AS latitude, ST_Y(location) AS longitude FROM supermarkets WHERE chain = '$recommended_supermarket_chain' AND name = '$recommended_supermarket_name'";
+        $result = $conn->query($recommended_supermarket_location);
+        $row = $result->fetch_assoc();
+        $recommended_supermarket_latitude = $row['latitude'];
+        $recommended_supermarket_longitude = $row['longitude'];
         
+        // Trova la distanza del supermercato consigliato dalla user_location
+        $recommended_supermarket_distance = "SELECT ST_Distance_Sphere(location, POINT($user_latitude, $user_longitude)) AS distance FROM supermarkets WHERE chain = '$recommended_supermarket_chain' AND name = '$recommended_supermarket_name'";
+        $result = $conn->query($recommended_supermarket_distance);
+        $row = $result->fetch_assoc();
+        $recommended_supermarket_distance = $row['distance'];
+        $recommended_supermarket_distance = round($recommended_supermarket_distance / 1000, 2);
+        $recommended_supermarket_distance = strval($recommended_supermarket_distance) . " km";
 
+        // Calcola il prezzo totale dei prodotti nel carrello per il supermercato consigliato
+        $recommended_supermarket_totalPrice = "SELECT SUM(price * Quantità) AS totalPrice FROM Cart, supermarkets_products WHERE Cart.Nome = supermarkets_products.product_name AND supermarkets_products.supermarket_chain = '$recommended_supermarket_chain' AND supermarkets_products.supermarket_name = '$recommended_supermarket_name'";
+        $result = $conn->query($recommended_supermarket_totalPrice);
+        $row = $result->fetch_assoc();
+        $recommended_supermarket_totalPrice = $row['totalPrice'];
+        $recommended_supermarket_totalPrice = round($recommended_supermarket_totalPrice, 2);
 
+        $recommended_supermarket = [
+            "chain" => $recommended_supermarket_chain,
+            "name" => $recommended_supermarket_name,
+            "latitude" => $recommended_supermarket_latitude,
+            "longitude" => $recommended_supermarket_longitude,
+            "distance" => $recommended_supermarket_distance,
+            "totalPrice" => $recommended_supermarket_totalPrice
+        ];
 
         // Trovo i prezzi del supermercato consigliato dei prodotti nel carrello ossia nella tabella Cart
         // i prodotti nel carrello li troviamo nella tabella Cart
@@ -822,17 +892,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         // Creo l'array $productPrices, un array con tutti prodotti nel carrello, le loro quantità e i prezzi nel supermercato consigliato
         // [Nome, Quantità, Prezzo]
 
-        // SCOMMENTA QUANDO HAI FINITO DI IMPLEMENTARE IL CODICE PER IL SUPERMERCATO CONSIGLIATO
-
-        // $productsPrices = "SELECT Cart.Nome, Cart.Quantità, price FROM Cart, supermarkets_products WHERE Cart.Nome = supermarkets_products.product_name AND supermarket_chain = '$recommended_supermarket_chain' AND supermarket_name = '$recommended_supermarket_name'";
-        // $result = $conn->query($productsPrices);
-
-        // $productsPrices = array();
-        // if ($result->num_rows > 0) {
-        //     while ($row = $result->fetch_assoc()) {
-        //         $productsPrices[] = $row;
-        //     }
-        // }
+        $productsPrices = "SELECT Cart.Nome, Cart.Quantità, price FROM Cart, supermarkets_products WHERE Cart.Nome = supermarkets_products.product_name AND supermarket_chain = '$recommended_supermarket_chain' AND supermarket_name = '$recommended_supermarket_name'";
+        
+        $result = $conn->query($productsPrices);
+        $productsPrices = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $productsPrices[] = $row;
+            }
+        }
 
         // Create an associative array with the data to return
         $responseData = array(
