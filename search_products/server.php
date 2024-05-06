@@ -931,7 +931,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 $products[] = $row;
             }
         }
-        // echo json_encode($products);
+        echo json_encode($products);
     }
 }
 
