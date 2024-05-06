@@ -28,8 +28,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // $target_dir = "/Applications/XAMPP/xamppfiles/htdocs/uploads/";
     // $target_dir = "C:/xampp/htdocs/uploads/";
     // $target_dir = "/opt/lampp/htdocs/uploads";
-    // the relative path if the current directory is /htdocs/msl/MyShoppingList/User_Page
-    $target_dir = "../../uploads/";
+    // how to make a relative path if the current directory is /htdocs/msl/MyShoppingList/User_Page
+    // use realpath() to get the current directory and then go back to the directory where the uploads folder is
+
+    $target_dir = __DIR__ . "/../uploads/";
+
+    $realpath = realpath($target_dir);
+
+    $target_dir = $realpath . "/";
 
     $target_file = $target_dir . basename($_FILES["avatar-upload"]["name"]);
 
