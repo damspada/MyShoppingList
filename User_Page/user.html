@@ -68,22 +68,48 @@
                             console.log(element.cell);
                             console.log(element.email);
 
+                            var url = element.immagine;
+                            var path = url.split("htdocs")[1];
+
                             const myDiv = document.querySelector('.avatar-container'); // Seleziona l'elemento <div>
                             myDiv.innerHTML = '';
                             const imgElement = document.createElement("img");
                             imgElement.className="avatar"
-                            imgElement.src = element.immagine;
+                            imgElement.src = path;
                             myDiv.append(imgElement);
+
+                            //cambia pulsanti register e update 
+                            const div_register = document.getElementById("register_button");
+                            div_register.innerHTML = '';
+                            const shopping_button = document.createElement("button");
+                            shopping_button.className = "button_shopping";
+                            shopping_button.textContent = "Fill the cart now ➜";
+                            shopping_button.onclick = function() {
+                                window.location.href = "../search_products/search_products.html";
+                            };
+                            div_register.appendChild(shopping_button);
+
+                            
+                            document.getElementById("update").style.display = "block";
+
 
                             
                             document.getElementById("name").value = element.nome;
                             document.getElementById("surname").value = element.cognome;
-                            document.getElementById("birthdate").valueAsDate = element.born;
+                            document.getElementById("birthdate").value = element.born;
                             document.getElementById("phone").value = element.cell;
                             document.getElementById("email").value = element.email;
                             document.getElementById("stile_di_vita").value = element.life;
                             document.getElementById("importo").value = element.budget;
                             document.getElementById("password").value = element.pass;
+
+                            document.getElementById("name").setAttribute("readonly", true);
+                            document.getElementById("surname").setAttribute("readonly", true);
+                            document.getElementById("birthdate").setAttribute("readonly", true);
+                            document.getElementById("email").setAttribute("readonly", true);
+
+
+
                         });
                     },
                     error: function(xhr, status, error){
@@ -164,17 +190,17 @@
                         <label for="password">Password:</label>
                         <input type="password" id="password" name="password" placeholder="Insert here...">
                     </div>
-                    <!-- <div class="flex_item">
+                    <!-- <div class="flex_item" style="display: none;" id="btn_shopping">
                         <button class="button_shopping" onclick="window.location.href='../search_products/search_products.html';" >Fill the cart now ➜</button>
                     </div> -->
-                    <div class="flex_item">
+                    <div class="flex_item" id="register_button">
                         <button type="submit" class="button_register" id="log">Register Now!</button>
                     </div>
                 </div>
             </div>
         </div>
     </form>
-    <!-- <button type="submit" class="update-button" id="update">Update Profile</button> -->
+    <button type="submit" class="update-button" id="update" style="display: none;">Update Profile</button>
 
     
 

@@ -58,7 +58,6 @@
     flex: 1;
     background-color: white;
     border-radius: 20px;
-    padding: 40px;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1.3fr 2fr;
@@ -68,7 +67,7 @@
 
 
 .left_checkout { 
-    background-color: gray;
+    /* background-color: gray; */
     border-radius: 20px;
     display: grid;
     grid-template-rows: 1fr 0.3fr;
@@ -77,21 +76,26 @@
 }
 
 .carrello { 
-    background: #ffecb3;
-    border: 3px solid #ffcc80;
+    background: #f8f6f4;
     border-radius: 5px;
+}
+
+.checkout_font{
+    font-size: 30px;
+    font-weight: 600;
+    margin-left: 5%;
+    margin-top: 5%;
 }
 
 
 .salva { 
-    background: #ffecb3;
-    border: 3px solid #ffcc80;
+    background: #f8f6f4;
+    border: 3px solid #f8f6f4;
     border-radius: 5px;
-
 }
         
 .right_checkout { 
-    background-color: gray;
+    /* background-color: gray; */
     border-radius: 20px;
     display: grid;
     grid-template-rows: 1fr 1fr 1.5fr;
@@ -100,20 +104,20 @@
 }
 			
 .economico { 
-    background: #ffecb3;
-    border: 3px solid #ffcc80;
+    /* background: #ffecb3; */
+    /* border: 3px solid #f8f6f4; */
     border-radius: 5px;
 
 }
 
 .vicino { 
-    background: #ffecb3;
-    border: 3px solid #ffcc80;
+    /* background: #ffecb3;
+    border: 3px solid #ffcc80; */
     border-radius: 5px;
 }
 
 .consigliato { 
-    background: #ffecb3;
-    border: 3px solid #ffcc80;
+    /* background: #ffecb3;
+    border: 3px solid #ffcc80; */
     border-radius: 5px;
 }
