@@ -49,6 +49,14 @@
             });
         });
     </script>
+    <!-- <script>
+           $(document).ready(function(){
+            document.getElementById("register_button").addEventListener("click", function(event){
+                sessionStorage.setItem("Log", 1);
+                });
+           });
+    </script> -->
+
     <script>
         window.addEventListener('load', function (event) {
             if(sessionStorage.getItem("Log")==1){
@@ -194,7 +202,7 @@
                         <button class="button_shopping" onclick="window.location.href='../search_products/search_products.html';" >Fill the cart now ➜</button>
                     </div> -->
                     <div class="flex_item" id="register_button">
-                        <button type="submit" class="button_register" id="log">Register Now!</button>
+                        <button type="submit" class="button_register" id="log" onclick="window.location.href='../home/home.html';">Register Now!</button>
                     </div>
                 </div>
             </div>

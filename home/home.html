@@ -67,6 +67,101 @@
         });
     </script>
 
+    <script>
+        window.addEventListener('load', function (event) {
+        if (sessionStorage.getItem("Log") == 1) {
+            // Se l'utente è già loggato, reindirizza alla pagina utente
+            document.querySelector('.Btn').addEventListener('click', function () {
+                window.location.href = '../User_Page/user.html';
+                wrapper.classList.remove('active-popup');
+                body.classList.remove('popup-active');
+            });
+            } else {
+                // Se l'utente non è loggato, mostra il popup di login
+                const wrapper = document.querySelector('.wrapper');
+                const body = document.querySelector('body');
+                const loginLink = document.querySelector('.login-link');
+                const iconClose = document.querySelector('.icon-close');
+                const btnPopup = document.querySelector('.Btn');
+
+                loginLink.addEventListener('click', () => {
+                    wrapper.classList.remove('active');
+                });
+
+                btnPopup.addEventListener('click', () => {
+                    wrapper.classList.add('active-popup');
+                    body.classList.add('popup-active');
+                });
+
+                iconClose.addEventListener('click', () => {
+                    wrapper.classList.remove('active-popup');
+                    body.classList.remove('popup-active');
+                    hidePopup();
+                });
+            }
+        });
+    </script>
+
+    <script>
+        window.addEventListener('load', function (event) {
+            if(sessionStorage.getItem("Log")==1){
+                var email=sessionStorage.getItem("email");
+                $.ajax({
+                    url: "check_login.php",
+                    type: "GET",
+                    data:{
+                        email: email
+                    },
+                    dataType:'json',
+                    success: function(data){
+                        data.forEach(function (element) {
+
+                            var name_img = element.nome;
+
+                            function primaLetteraMaiuscola(parola) {
+                                var primaLettera = parola.charAt(0);
+                                return primaLettera.toUpperCase();
+                            }
+
+                            name_img = primaLetteraMaiuscola(name_img);
+
+                            // Trova l'elemento ion-icon all'interno del pulsante
+                            const iconElement = document.querySelector('.Btn ion-icon');
+
+                            // Rimuovi l'elemento ion-icon
+                            iconElement.remove();
+
+                            // Crea un nuovo elemento immagine
+                            const imgElement = document.createElement('h3');
+
+                            // Assegna il testo della variabile name_img all'elemento h2
+                            imgElement.textContent = name_img;
+
+                            imgElement.style.color = 'white';
+                            imgElement.style.margin = 'auto'
+                            imgElement.style.fontWeight = '700';
+
+                            // Aggiungi l'immagine al div con la classe "sign"
+                            const signDiv = document.querySelector('.Btn .sign');
+                            signDiv.appendChild(imgElement);
+
+                            // Seleziona l'elemento del pulsante
+                            const loginButton = document.querySelector('.text_btn');
+
+                            // Cambia il testo del pulsante a "Accedi"
+                            loginButton.textContent = 'Profile';
+
+                        });
+                    },
+                    error: function(xhr, status, error){
+                        // Gestisci gli errori durante la chiamata AJAX
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                })
+            }
+        });
+    </script>
+
     <!-- Script per la generazione di un session ID casuale -->
     <script>
         // Function to generate a random session ID
