@@ -889,25 +889,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         // Aurelia 	Carrefour 	Aglio 	1.45
         // Axa 	Carrefour 	Aglio 	5.44
 
-        // Creo l'array $productPrices, un array con tutti prodotti nel carrello, le loro quantità e i prezzi nel supermercato consigliato
+        // Creo l'array $productPrices, un array con tutti prodotti nel carrello, le loro quantità e i prezzi medi di tutti supermercati
         // [Nome, Quantità, Prezzo]
-
-        $productsPrices = "SELECT Cart.Nome, Cart.Quantità, price FROM Cart, supermarkets_products WHERE Cart.Nome = supermarkets_products.product_name AND supermarket_chain = '$recommended_supermarket_chain' AND supermarket_name = '$recommended_supermarket_name'";
-        
-        $result = $conn->query($productsPrices);
-        $productsPrices = array();
+        $MediumProductsPrices = array();
+        $MediumTotalPrice = 0;
+        $productPrices = "SELECT product_name, Quantità, AVG(price) AS price FROM Cart, supermarkets_products WHERE Cart.Nome = supermarkets_products.product_name GROUP BY product_name";
+        $result = $conn->query($productPrices);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $productsPrices[] = $row;
+                $row['price'] = round($row['price'], 2);
+                $MediumProductsPrices[] = $row;
+
+                $MediumTotalPrice += $row['price'] * $row['Quantità'];
             }
         }
-
+        
+        $MediumTotalPrice = round($MediumTotalPrice, 2);
+        
         // Create an associative array with the data to return
         $responseData = array(
             "nearestSupermarket" => $nearest_supermarket,
             "cheapestSupermarket" => $cheapest_supermarket,
             "recommendedSupermarket" => $recommended_supermarket,
-            "productsPrices" => $productsPrices,
+            "MediumProductsPrices" => $MediumProductsPrices,
+            "MediumTotalPrice" => $MediumTotalPrice,
             "user_latitude" => $user_latitude, 
             "user_longitude" => $user_longitude
         );

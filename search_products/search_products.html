@@ -1037,15 +1037,15 @@
                         carrelloSpesa.innerHTML = `
     <h3>Lista dei Prodotti:</h3>
     <ul>
-        ${response.productsPrices.map(product => `
+        ${response.MediumProductsPrices.map(product => `
             <li>
-                <p>Nome: ${product.Nome}</p>
+                <p>Nome: ${product.product_name}</p>
                 <p>Quantità: ${product.Quantità}</p>
                 <p>Prezzo: ${product.price} €</p>
             </li>
         `).join('')}
     </ul>
-    <h3>Prezzo totale: ${response.recommendedSupermarket.totalPrice} €</h3>
+    <h3>Prezzo totale: ${response.MediumTotalPrice} €</h3>
 `;
 
 
