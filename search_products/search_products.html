@@ -1227,18 +1227,25 @@
 
                             // Creo un array info con i dati da inviare al server
                             var info = response;
-                        
-                            $.ajax({
-                                url: "server.php?action=save",
-                                method: "GET",
-                                data: { id: sessionId, email: email, info: info},
-                                success: function (response) {
-                                    console.log(response);
-                                },
-                                error: function (xhr, status, error) {
-                                    console.error('Si è verificato un errore durante la richiesta.');
-                                }
-                            });
+
+                        $.ajax({
+                            url: "server.php?action=save",
+                            method: "GET",
+                            data: { id: sessionId, email: email, info: info },
+                            success: function (response) {
+                                console.log(response);
+
+                                // Create a link to download the PDF
+                                const downloadLink = document.createElement('a');
+                                downloadLink.href = 'data:application/pdf;base64,' + response;
+                                downloadLink.download = 'file.pdf';
+                                downloadLink.click();
+                            },
+                            error: function (xhr, status, error) {
+                                console.error('Si è verificato un errore durante la richiesta.');
+                            }
+                        });
+
 
                         } else {
                             console.log('Non loggato');
