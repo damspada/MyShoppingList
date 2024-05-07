@@ -5,7 +5,7 @@
     transform: translate(-50%, -50%);
     width: 80%;
     height: 80%;
-    background-color: rgba(255, 253, 253, 0.733);
+    background: #f8f6f4;
     border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 20px;
     backdrop-filter: blur(50px);
@@ -54,7 +54,7 @@
     }
 }
 
-.flex-container {
+/* .flex-container {
     flex: 1;
     background-color: white;
     border-radius: 20px;
@@ -62,47 +62,78 @@
     grid-template-rows: 1fr;
     grid-template-columns: 1.3fr 2fr;
     gap: 8px;
-}
+} */
 
 
 
 .left_checkout { 
-    /* background-color: gray; */
+    background-color: #f8f6f4;
     border-radius: 20px;
-    display: grid;
-    grid-template-rows: 80% 20%;
-    grid-template-columns: 1fr;
-    gap: 8px;
+    height: 96%;
+    width: 40%;
+    margin-left: 1.2%;
+    margin-top: 1.2%;
+    margin-bottom: 1.2%;
+    float: left;
+}
+
+.Titolo{
+    width: 100%;
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .carrello { 
-    background: #f8f6f4;
-    border-radius: 5px;
+    width: 100%;
+    height: 82.5%;
+    margin-bottom: 2%;
+    border-radius: 20px;
     overflow-y: scroll;
-    text-align: center;
-}
-
-.checkout_font{
-    font-size: 30px;
-    font-weight: 600;
-    margin-left: 5%;
-    margin-top: 5%;
 }
 
 
 .salva { 
-    background: #f8f6f4;
-    border: 3px solid #f8f6f4;
-    border-radius: 5px;
+    width: 100%;
+    height: 8%;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottone_salva{
+    border-radius: 10px;
+    width: 38%;
+    height: 75%;
+    margin: auto;
+    background-color:  #00BF63;
+    transition: transform .2s;
+    border: none;
+    font-weight: 600;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bottone_salva:hover{
+    transform: scale(1.1);
+}
+
+.bottone_salva:active{
+    background-color:#00BF63; 
 }
         
 .right_checkout { 
     /* background-color: gray; */
     border-radius: 20px;
-    display: grid;
-    grid-template-rows: 1fr 1fr 1.5fr;
-    grid-template-columns: 1fr;
-    gap: 8px;
+    width: 58%;
+    height: 96%;
+    margin-right: 1.2%;
+    margin-top: 1.2%;
+    margin-bottom: 1.2%;
+    margin-left: 1.2%;
+    background-color: white;
 }
 			
 .economico { 

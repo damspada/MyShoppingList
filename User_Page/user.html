@@ -60,6 +60,7 @@
                         contentType: false,  // Evita l'impostazione del tipo di contenuto
                         success: function(data){
                             console.log("All right!");
+                            sessionStorage.setItem("Log",1);
                             window.location.href = "../home/home.html";
                         }
                     });

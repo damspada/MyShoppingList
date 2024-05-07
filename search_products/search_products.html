@@ -1169,7 +1169,6 @@
                         var Cart="Cart";
                         const myDiv = document.querySelector('.carrello'); // Seleziona l'elemento <div>
                         myDiv.innerHTML = '';
-                        myDiv.innerHTML += '<h2>' + Cart + '</h2>';
 
                         // Inserisci informazioni sui supermercati
                         const economico = document.querySelector('.economico');
@@ -1221,11 +1220,6 @@
                         });
                     // Aggiungi al div di classe .salva un bottone salva
                     // sul bottone mettiamo un addEventListener che al click del bottone fa un richiesta get al server
-
-                    const salva = document.querySelector('.salva');
-                    salva.innerHTML = `
-    <button class="bottone_salva">Salva</button>
-`;
 
                     const bottoneSalva = document.querySelector('.bottone_salva');
                     bottoneSalva.addEventListener('click', function (event) {
@@ -1563,35 +1557,39 @@
         <span class="icon_close_checkout">
             <ion-icon name="close-outline"></ion-icon>
         </span>
-        <div class="flex-container">
 
             <div class="left_checkout">
 
+                <div class="Titolo">
+                    <h1>Shopping Cart</h1>
+                </div>
+
                 <div class="carrello">
-                    <!-- <p class="checkout_font">Cart</p> -->
+                    
                 </div>
 
                 <div class="salva">
-                    <p class="checkout_font">Save</p>
-                </div>
+                   <button class="bottone_salva">
+                    <h2>SAVE YOUR CART</h2>
+                   </button>
+                </div> 
 
             </div>
 
             <div class="right_checkout">
 
-                <div class="economico">
-                    <p class="checkout_font">Cheapest</p>
+                 <div class="economico">
+                    
                 </div>
                 <div class="vicino">
-                    <p class="checkout_font">Nearest</p>
+                    
                 </div>
                 <div class="consigliato">
-                    <p class="checkout_font">Recommended</p>
-                </div>
+                    
+                </div> 
 
             </div>
 
-        </div>
     </div>
 
 
