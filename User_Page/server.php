@@ -31,8 +31,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // how to make a relative path if the current directory is /htdocs/msl/MyShoppingList/User_Page
     // use realpath() to get the current directory and then go back to the directory where the uploads folder is
 
-    $dir = __DIR__;
-    $target_dir = __DIR__ . "/../uploads/";
+    // $dir = __DIR__;
+    // $target_dir = __DIR__ . "/../uploads/";
 
     $target_file = $target_dir . basename($_FILES["avatar-upload"]["name"]);
 
