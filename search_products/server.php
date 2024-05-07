@@ -895,6 +895,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $MediumTotalPrice = 0;
         $productPrices = "SELECT product_name, Quantità, AVG(price) AS price FROM Cart, supermarkets_products WHERE Cart.Nome = supermarkets_products.product_name GROUP BY product_name";
         $result = $conn->query($productPrices);
+        
+        $productsPrices = "SELECT Cart.Nome, Cart.Quantità, price FROM Cart, supermarkets_products WHERE Cart.Nome = supermarkets_products.product_name AND supermarket_chain = '$recommended_supermarket_chain' AND supermarket_name = '$recommended_supermarket_name'";
+        
+        $result = $conn->query($productsPrices);
+$productsPrices = array();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $row['price'] = round($row['price'], 2);
@@ -906,6 +911,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         
         $MediumTotalPrice = round($MediumTotalPrice, 2);
         
+                
         // Create an associative array with the data to return
         $responseData = array(
             "nearestSupermarket" => $nearest_supermarket,
@@ -914,6 +920,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             "MediumProductsPrices" => $MediumProductsPrices,
             "MediumTotalPrice" => $MediumTotalPrice,
             "user_latitude" => $user_latitude, 
+            "productsPrices" => $productsPrices,
+                        "user_latitude" => $user_latitude, 
             "user_longitude" => $user_longitude
         );
 
@@ -960,6 +968,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $update_result = $conn->query($update_query);
         } else {
             // Se il prodotto non è nel carrello, inseriscilo
+
+
+
             $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('$product_name', '$product_quantity', '$product_category', '$product_image')";
             $res = $conn->query($insert_product);
         }
