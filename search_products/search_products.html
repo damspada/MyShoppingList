@@ -1211,16 +1211,20 @@
 
                         // Inserisci lista dei prodotti nel carrello
                         response.productsPrices.forEach(function (element) {
-                            var carrelloCard = $('<div>').addClass('carrello_elemento');
+                            var carrelloCard = $('<div>').addClass('carrello_elemento2');
                             carrelloCard[0].id = element.Nome;
-                            var carrelloNome = $('<div>').addClass('carrello_nome');
+                            var carrelloNome = $('<div>').addClass('carrello_nome2');
                             carrelloNome.append('<h3>' + element.Nome + '</h3>');
                             carrelloCard.append(carrelloNome);
 
-                            var carrelloQuantità = $('<div>').addClass('carrello_quantità');
-                            carrelloQuantità.append('<h4>' + element.price + '</h4>');
+                            var carrelloQuantità = $('<div>').addClass('carrello_quantità2');
+                            carrelloQuantità.append('<h4>' + element.Quantità + '</h4>');
+
+                            var carrelloPrezzo = $('<div>').addClass('carrello_prezzo2');
+                            carrelloPrezzo.append('<h4>' + element.price + '</h4>');
                                 
                             carrelloCard.append(carrelloQuantità);
+                            carrelloCard.append(carrelloPrezzo);
                             $('.carrello').append(carrelloCard);
                         });
 
@@ -1571,6 +1575,22 @@
 
                 <div class="Titolo">
                     <h1>Shopping Cart</h1>
+                </div>
+
+                <div class="Colonne">
+
+                    <div class="colonna1">
+                        <h3>name</h3>
+                    </div>
+
+                    <div class="colonna2">
+                        <h3>quantity</h3>
+                    </div>
+
+                    <div class="colonna3">
+                        <h3>price</h3>
+                    </div>
+                    
                 </div>
 
                 <div class="carrello">
