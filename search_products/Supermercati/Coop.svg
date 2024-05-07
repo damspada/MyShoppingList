@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4f, 2020-05-01)"
+   sodipodi:docname="Coop_Italia_logo.svg"
+   id="svg8192"
+   version="1.1"
+   viewBox="0 0 90 35"
+   height="35"
+   width="90">
+  <metadata
+     id="metadata8196">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     inkscape:current-layer="svg8192"
+     inkscape:window-maximized="1"
+     inkscape:window-y="25"
+     inkscape:window-x="0"
+     inkscape:cy="17.5"
+     inkscape:cx="45"
+     inkscape:zoom="12.99842"
+     showgrid="false"
+     id="namedview8194"
+     inkscape:window-height="793"
+     inkscape:window-width="1440"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <defs
+     id="defs8181">
+    <path
+       d="M0 0L89.893 0 89.893 34.841 0 34.841z"
+       id="prefix__a" />
+  </defs>
+  <g
+     style="fill:#e4002b;fill-opacity:1"
+     id="g8190"
+     fill-rule="evenodd"
+     fill="none">
+    <g
+       style="fill:#e4002b;fill-opacity:1"
+       id="g8188"
+       transform="translate(-30 -25) translate(30 25)">
+      <mask
+         fill="#fff"
+         id="prefix__b">
+        <use
+           id="use8183"
+           xlink:href="#prefix__a" />
+      </mask>
+      <path
+         style="fill:#e4002b;fill-opacity:1"
+         id="path8186"
+         mask="url(#prefix__b)"
+         d="M65.642 4.779c2.533-2.929 6.248-4.78 10.4-4.78 7.65 0 13.851 6.276 13.851 14.016 0 7.741-6.2 14.016-13.85 14.016-1.706 0-3.352-.312-4.847-.883l-1.683-10.806c.937 2.77 3.518 4.758 6.542 4.758 3.82 0 6.916-3.172 6.916-7.085S79.874 6.93 76.055 6.93c-3.82 0-6.925 3.172-6.913 7.104l-.018 20.807h-6.998l.016-8.684c-2.032 1.187-4.397 1.874-6.913 1.874-4.1 0-7.777-1.803-10.307-4.667-2.536 2.851-6.217 4.675-10.306 4.675-4.134 0-7.839-1.833-10.368-4.74-2.539 2.916-6.28 4.74-10.42 4.74C6.177 28.04 0 21.764 0 14.024S6.178.008 13.827.008c1.849 0 3.6.367 5.226 1.032L20.3 11.493c-1.01-2.663-3.513-4.554-6.462-4.554-3.82 0-6.916 3.172-6.916 7.085s3.096 7.085 6.916 7.085c3.811 0 6.903-3.159 6.916-7.06 0-7.74 6.212-14.04 13.861-14.04 4.091 0 7.755 1.794 10.304 4.648C47.433 1.782 51.12 0 55.229 0c4.125 0 7.876 1.88 10.413 4.779m-30.976 16.33c3.82 0 6.916-3.172 6.916-7.085s-3.097-7.085-6.916-7.085c-3.82 0-6.917 3.172-6.917 7.085s3.097 7.085 6.917 7.085M55.24 21.1c3.82 0 6.916-3.172 6.916-7.085S59.06 6.93 55.24 6.93c-3.82 0-6.916 3.172-6.916 7.085S51.421 21.1 55.24 21.1"
+         fill="#E30613" />
+    </g>
+  </g>
+</svg>

@@ -5,7 +5,7 @@
     transform: translate(-50%, -50%);
     width: 80%;
     height: 80%;
-    background: #f8f6f4;
+    background: white;
     border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 20px;
     backdrop-filter: blur(50px);
@@ -34,7 +34,7 @@
     width: 45px;
     height: 45px;
     /* background: #162938; */
-    background-color: #048948c5;
+    background-color: #00BF63;
     font-size: 2em;
     color: white;
     display: flex;
@@ -88,7 +88,7 @@
 .carrello { 
     width: 100%;
     height: 82.5%;
-    margin-bottom: 2%;
+    margin-bottom: 1%;
     border-radius: 20px;
     overflow-y: scroll;
 }
@@ -98,22 +98,26 @@
     width: 100%;
     height: 8%;
     border-radius: 20px;
+}
+
+.BTN{
+    width: 50%;
+    height: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    float: left;
 }
 
 .bottone_salva{
     border-radius: 10px;
-    width: 38%;
+    width: 75%;
     height: 75%;
     margin: auto;
     background-color:  #00BF63;
     transition: transform .2s;
     border: none;
     font-weight: 600;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .bottone_salva:hover{
@@ -122,6 +126,14 @@
 
 .bottone_salva:active{
     background-color:#00BF63; 
+}
+
+.Totale{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
         
 .right_checkout { 
@@ -140,17 +152,37 @@
     /* background: #ffecb3; */
     /* border: 3px solid #f8f6f4; */
     border-radius: 5px;
-
+    height: 32.6%;
+    width: 100%;
+    margin-bottom: 1%;
 }
 
 .vicino { 
     /* background: #ffecb3;
     border: 3px solid #ffcc80; */
     border-radius: 5px;
+    height: 32.6%;
+    width: 100%;
+    margin-bottom: 1%;
 }
 
 .consigliato { 
     /* background: #ffecb3;
     border: 3px solid #ffcc80; */
     border-radius: 5px;
+    height: 32.6%;
+    width: 100%;
+}
+
+.right_checkout img {
+    margin: auto;
+    max-width: 30%; /* Imposta la larghezza massima dell'immagine al 100% della larghezza del contenitore */
+    max-height: 200px;
+    height: auto; /* Imposta l'altezza automaticamente per mantenere le proporzioni */
+    width: auto;
+}
+
+p{
+    font-size: large;
+    font-weight: 400;
 }
