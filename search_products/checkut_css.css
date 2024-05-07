@@ -70,7 +70,7 @@
     /* background-color: gray; */
     border-radius: 20px;
     display: grid;
-    grid-template-rows: 1fr 0.3fr;
+    grid-template-rows: 80% 20%;
     grid-template-columns: 1fr;
     gap: 8px;
 }
@@ -78,6 +78,8 @@
 .carrello { 
     background: #f8f6f4;
     border-radius: 5px;
+    overflow-y: scroll;
+    text-align: center;
 }
 
 .checkout_font{

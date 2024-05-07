@@ -25,7 +25,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $ID=$_POST['id'];
 
     // Caricamento dell'immagine
-    // $target_dir = "/Applications/XAMPP/xamppfiles/htdocs/uploads/";
+     $target_dir = "/Applications/XAMPP/xamppfiles/htdocs/uploads/";
     // $target_dir = "C:/xampp/htdocs/uploads/";
     // $target_dir = "/opt/lampp/htdocs/uploads";
     // how to make a relative path if the current directory is /htdocs/msl/MyShoppingList/User_Page

@@ -1139,7 +1139,6 @@
                 event.preventDefault();
 
                 var sessionId = getSessionId();
-
                 // Effettua la richiesta GET al server
                 // INPUT: None (posizione la trova dal datbase delle sessioni, i prodotti nel carrello dal database cart)
                 // OUTPUT: supermercato più economico, supermercato più vicino, supermercato consigliato, prezzi prodotti del supermercato consigliato
@@ -1149,58 +1148,59 @@
                     data: { id: sessionId },
                     success: function (response) {
                         console.log(response);
-
-                        const carrelloSpesa = document.querySelector('.carrello');
+                        var Cart="Cart";
+                        const myDiv = document.querySelector('.carrello'); // Seleziona l'elemento <div>
+                        myDiv.innerHTML = '';
+                        myDiv.innerHTML += '<h2>' + Cart + '</h2>';
 
                         // Inserisci informazioni sui supermercati
                         const economico = document.querySelector('.economico');
                         economico.innerHTML = `
-    <h3>Supermercato più economico:</h3>
-    <p>Nome: ${response.cheapestSupermarket.name}</p>
-    <p>Chain: ${response.cheapestSupermarket.chain}</p>
-    <p>Distanza: ${response.cheapestSupermarket.distance}</p>
-    <p>Latitudine: ${response.cheapestSupermarket.latitude}</p>
-    <p>Longitudine: ${response.cheapestSupermarket.longitude}</p>
-    <p>Prezzo totale: ${response.cheapestSupermarket.totalPrice} €</p>
-`;
+                            <h3>Supermercato più economico:</h3>
+                            <p>Nome: ${response.cheapestSupermarket.name}</p>
+                            <p>Chain: ${response.cheapestSupermarket.chain}</p>
+                            <p>Distanza: ${response.cheapestSupermarket.distance}</p>
+                            <p>Latitudine: ${response.cheapestSupermarket.latitude}</p>
+                            <p>Longitudine: ${response.cheapestSupermarket.longitude}</p>
+                            <p>Prezzo totale: ${response.cheapestSupermarket.totalPrice} €</p>
+                        `;
 
                         const vicino = document.querySelector('.vicino');
                         vicino.innerHTML = `
-    <h3>Supermercato più vicino:</h3>
-    <p>Nome: ${response.nearestSupermarket.name}</p>
-    <p>Chain: ${response.nearestSupermarket.chain}</p>
-    <p>Distanza: ${response.nearestSupermarket.distance}</p>
-    <p>Latitudine: ${response.nearestSupermarket.latitude}</p>
-    <p>Longitudine: ${response.nearestSupermarket.longitude}</p>
-    <p>Prezzo totale: ${response.nearestSupermarket.totalPrice} €</p>
-`;
+                            <h3>Supermercato più vicino:</h3>
+                            <p>Nome: ${response.nearestSupermarket.name}</p>
+                            <p>Chain: ${response.nearestSupermarket.chain}</p>
+                            <p>Distanza: ${response.nearestSupermarket.distance}</p>
+                            <p>Latitudine: ${response.nearestSupermarket.latitude}</p>
+                            <p>Longitudine: ${response.nearestSupermarket.longitude}</p>
+                            <p>Prezzo totale: ${response.nearestSupermarket.totalPrice} €</p>
+                        `;
 
                         const consigliato = document.querySelector('.consigliato');
                         consigliato.innerHTML = `
-    <h3>Supermercato consigliato:</h3>
-    <p>Nome: ${response.recommendedSupermarket.name}</p>
-    <p>Chain: ${response.recommendedSupermarket.chain}</p>
-    <p>Distanza: ${response.recommendedSupermarket.distance}</p>
-    <p>Latitudine: ${response.recommendedSupermarket.latitude}</p>
-    <p>Longitudine: ${response.recommendedSupermarket.longitude}</p>
-    <p>Prezzo totale: ${response.recommendedSupermarket.totalPrice} €</p>
-`;
+                            <h3>Supermercato consigliato:</h3>
+                            <p>Nome: ${response.recommendedSupermarket.name}</p>
+                            <p>Chain: ${response.recommendedSupermarket.chain}</p>
+                            <p>Distanza: ${response.recommendedSupermarket.distance}</p>
+                            <p>Latitudine: ${response.recommendedSupermarket.latitude}</p>
+                            <p>Longitudine: ${response.recommendedSupermarket.longitude}</p>
+                            <p>Prezzo totale: ${response.recommendedSupermarket.totalPrice} €</p>
+                        `;
 
                         // Inserisci lista dei prodotti nel carrello
-                        carrelloSpesa.innerHTML = `
-    <h3>Lista dei Prodotti:</h3>
-    <ul>
-        ${response.productsPrices.map(product => `
-            <li>
-                <p>Nome: ${product.Nome}</p>
-                <p>Quantità: ${product.Quantità}</p>
-                <p>Prezzo: ${product.price} €</p>
-            </li>
-        `).join('')}
-    </ul>
-    <h3>Prezzo totale: ${response.recommendedSupermarket.totalPrice} €</h3>
-`;
+                        response.productsPrices.forEach(function (element) {
+                            var carrelloCard = $('<div>').addClass('carrello_elemento');
+                            carrelloCard[0].id = element.Nome;
+                            var carrelloNome = $('<div>').addClass('carrello_nome');
+                            carrelloNome.append('<h3>' + element.Nome + '</h3>');
+                            carrelloCard.append(carrelloNome);
 
+                            var carrelloQuantità = $('<div>').addClass('carrello_quantità');
+                            carrelloQuantità.append('<h4>' + element.price + '</h4>');
+                                
+                            carrelloCard.append(carrelloQuantità);
+                            $('.carrello').append(carrelloCard);
+                        });
                     // Aggiungi al div di classe .salva un bottone salva
                     // sul bottone mettiamo un addEventListener che al click del bottone fa un richiesta get al server
 
@@ -1487,7 +1487,7 @@
             <div class="left_checkout">
 
                 <div class="carrello">
-                    <p class="checkout_font">Cart</p>
+                    <!-- <p class="checkout_font">Cart</p> -->
                 </div>
 
                 <div class="salva">
