@@ -911,12 +911,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             "user_latitude" => $user_latitude, 
             "user_longitude" => $user_longitude
         );
+        
 
     
         // Convertiamo l'array in formato JSON e lo restituiamo come risposta
         header('Content-Type: application/json');
         echo json_encode($responseData);
 
+    }
+
+    // Verifica se l'azione è "save"
+    else if(isset($_GET['action']) && $_GET['action'] == 'save') {
+        // Verifica se tutti i parametri richiesti sono stati passati
+        if(isset($_GET['id']) && isset($_GET['email']) && isset($_GET['info'])) {
+            // Recupera i valori passati nella richiesta AJAX
+            $sessionId = $_GET['id'];
+            $email = $_GET['email'];
+            $info = $_GET['info'];
+            
+            $dir = __DIR__;
+            echo $dir;
+
+            $target_dir = __DIR__ . "/../uploads/";
+
+            $target_file = $target_dir . basename($_FILES["avatar-upload"]["name"]);
+            
+           
+        } else {
+            // Invia una risposta di errore se mancano alcuni parametri
+            echo "Errore: Parametri mancanti nella richiesta.";
+        }
     }
     
     //Per visualizzare tutti i prodotti
@@ -955,6 +979,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $update_result = $conn->query($update_query);
         } else {
             // Se il prodotto non è nel carrello, inseriscilo
+
+
+
             $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('$product_name', '$product_quantity', '$product_category', '$product_image')";
             $res = $conn->query($insert_product);
         }

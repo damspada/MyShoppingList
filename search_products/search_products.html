@@ -1048,6 +1048,59 @@
     <h3>Prezzo totale: ${response.recommendedSupermarket.totalPrice} €</h3>
 `;
 
+                    // Aggiungi al div di classe .salva un bottone salva
+                    // sul bottone mettiamo un addEventListener che al click del bottone fa un richiesta get al server
+
+                    const salva = document.querySelector('.salva');
+                    salva.innerHTML = `
+    <button class="bottone_salva">Salva</button>
+`;
+
+                    const bottoneSalva = document.querySelector('.bottone_salva');
+                    bottoneSalva.addEventListener('click', function (event) {
+                        event.preventDefault();
+
+                        // prenditi dal sessionStorage il sessionID e l'email
+                        var sessionId = sessionStorage.getItem('sessionId');
+                        var email = sessionStorage.getItem('email');
+                        var log = sessionStorage.getItem('Log');
+
+                        console.log('Session ID:', sessionId);
+                        console.log('Email:', email);
+                        console.log('Log:', log);
+
+                        if(log == 1){
+                            console.log('Loggato');
+
+                            // Creo un array info con i dati da inviare al server
+                            var info = response;
+                        
+                            $.ajax({
+                                url: "server.php?action=save",
+                                method: "GET",
+                                data: { id: sessionId, email: email, info: info},
+                                success: function (response) {
+                                    console.log(response);
+                                },
+                                error: function (xhr, status, error) {
+                                    console.error('Si è verificato un errore durante la richiesta.');
+                                }
+                            });
+
+                        } else {
+                            console.log('Non loggato');
+                            const wrapper=document.querySelector('.wrapper');
+                            const body = document.querySelector('body');
+                            wrapper.classList.add('active-popup');
+                            body.classList.add('popup-active');
+                            checkout_wrapper.classList.remove('active-popup');
+                        }
+                    });
+                    
+
+
+
+
 
                     },
                     error: function (xhr, status, error) {
