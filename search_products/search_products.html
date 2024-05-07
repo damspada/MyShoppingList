@@ -13,6 +13,159 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <!-- Check del Login -->
+    <script>
+        $(document).ready(function(){
+            // Gestisci il submit del form di login
+            $('.login form').submit(function(event){
+                // Evita il comportamento predefinito del form (ricaricamento della pagina)
+                event.preventDefault();
+
+                // Ottieni i valori inseriti dall'utente nei campi email e password
+                var email = $(this).find('input[type="email"]').val();
+                var pass = $(this).find('input[type="password"]').val();
+
+                // Esegui una chiamata AJAX per controllare le credenziali nel database
+                $.ajax({
+                    url: 'check_login.php', // URL del file PHP che esegue la query al database
+                    type: 'POST',
+                    data: { email: email, pass: pass },
+                    success: function(response){
+                        // Se la risposta è 'success', l'utente esiste nel database
+                        sessionStorage.setItem("Log",1);
+                        sessionStorage.setItem("email",email);
+                        console.log(sessionStorage.getItem("Log"));
+                        console.log(sessionStorage.getItem("email"));
+                        if(response.trim() === 'success'){
+                            // Reindirizza l'utente alla sua pagina utente
+                                window.location.href = '../User_Page/user.html';
+                        } else {
+                            // Mostra il popup di errore
+                            swal({
+                                title: "Errore!",
+                                text: "Invalid credentials. Try again.",
+                                icon: "error",
+                                button: "OK",
+                                dangerMode: true,
+                                background: "#f8f9fa",
+                                confirmButtonColor: "#dc3545",
+                                textColor: "#343a40",
+                                width: "400px",
+                                padding: "3rem",
+                                titleFont: "Montserrat_Arabic_Regular",
+                                textFont: "Montserrat_Arabic_Regular"
+                            });
+                        }
+                    },
+                    error: function(xhr, status, error){
+                        // Gestisci gli errori durante la chiamata AJAX
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Popup Login -->
+    <script>
+        window.addEventListener('load', function (event) {
+        if (sessionStorage.getItem("Log") == 1) {
+            // Se l'utente è già loggato, reindirizza alla pagina utente
+            document.querySelector('.Btn').addEventListener('click', function () {
+                window.location.href = '../User_Page/user.html';
+                wrapper.classList.remove('active-popup');
+                body.classList.remove('popup-active');
+            });
+            } else {
+                // Se l'utente non è loggato, mostra il popup di login
+                const wrapper = document.querySelector('.wrapper');
+                const body = document.querySelector('body');
+                const loginLink = document.querySelector('.login-link');
+                const iconClose = document.querySelector('.icon-close');
+                const btnPopup = document.querySelector('.Btn');
+
+                loginLink.addEventListener('click', () => {
+                    wrapper.classList.remove('active');
+                });
+
+                btnPopup.addEventListener('click', () => {
+                    wrapper.classList.add('active-popup');
+                    body.classList.add('popup-active');
+                });
+
+                iconClose.addEventListener('click', () => {
+                    wrapper.classList.remove('active-popup');
+                    body.classList.remove('popup-active');
+                    hidePopup();
+                });
+            }
+        });
+    </script>
+
+    <!-- Cambia immagine Navbar -->
+    <script>
+        window.addEventListener('load', function (event) {
+            if(sessionStorage.getItem("Log")==1){
+                var email=sessionStorage.getItem("email");
+                $.ajax({
+                    url: "check_login.php",
+                    type: "GET",
+                    data:{
+                        email: email
+                    },
+                    dataType:'json',
+                    success: function(data){
+                        data.forEach(function (element) {
+
+                            var name_img = element.nome;
+
+                            function primaLetteraMaiuscola(parola) {
+                                var primaLettera = parola.charAt(0);
+                                return primaLettera.toUpperCase();
+                            }
+
+                            name_img = primaLetteraMaiuscola(name_img);
+
+                            // Trova l'elemento ion-icon all'interno del pulsante
+                            const iconElement = document.querySelector('.Btn ion-icon');
+
+                            // Rimuovi l'elemento ion-icon
+                            iconElement.remove();
+
+                            // Crea un nuovo elemento immagine
+                            const imgElement = document.createElement('h3');
+
+                            // Assegna il testo della variabile name_img all'elemento h2
+                            imgElement.textContent = name_img;
+                            imgElement.style.fontSize = '30px';
+                            imgElement.style.color = 'white';
+                            imgElement.style.margin = 'auto'
+                            imgElement.style.fontWeight = '700';
+
+                            // Aggiungi l'immagine al div con la classe "sign"
+                            const signDiv = document.querySelector('.Btn .sign');
+                            signDiv.appendChild(imgElement);
+
+                            // Seleziona l'elemento del pulsante
+                            const loginButton = document.querySelector('.text_btn');
+
+                            // Cambia il testo del pulsante a "Accedi"
+                            loginButton.textContent = 'Profile';
+
+                        });
+                    },
+                    error: function(xhr, status, error){
+                        // Gestisci gli errori durante la chiamata AJAX
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                })
+            }
+        });
+    </script>
+
+
     <script> //script per svuotare il carrello alla chiusura della pagina web
         // // window.addEventListener('beforeunload', function(event) {
         // //     $.ajax({
