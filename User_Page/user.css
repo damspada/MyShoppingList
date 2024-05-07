@@ -62,6 +62,12 @@ body {
     font-weight: 550;
 }
 
+.my_navbar a img {
+    width: 45px; 
+    height: 45px;
+}
+
+
 .my_navbar a::before{
     content: '';
     position: absolute;
@@ -73,9 +79,7 @@ body {
     transition: .3s;
 }
 
-.icon_contatti{
-    display: none; /* Nasconde l'icona inizialmente */
-}
+
 
 .my_navbar a:nth-child(1):hover::before {
     width: 100%;
@@ -84,6 +88,7 @@ body {
 .my_navbar a:nth-child(1) .sign:hover::before {
     width: 0;
 }
+
 
 
 
