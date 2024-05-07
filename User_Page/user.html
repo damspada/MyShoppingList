@@ -18,35 +18,51 @@
             document.getElementById("form_log").addEventListener("submit", function(event){
                 event.preventDefault();
 
-                // Crea un oggetto FormData
-                var formData = new FormData();
 
-                // Aggiungi l'immagine all'oggetto FormData
-                var fileInput = document.getElementById('avatar-upload');
-                formData.append('avatar-upload', fileInput.files[0]);
+                // Effettua la validazione dei campi richiesti
+                var name = document.getElementById("name").value;
+                var surname = document.getElementById("surname").value;
+                var birthdate = document.getElementById("birthdate").value;
+                var phone = document.getElementById("phone").value;
+                var email = document.getElementById("email").value;
+                var password = document.getElementById("password").value;
 
-                // Aggiungi gli altri dati al FormData
-                formData.append('name', document.getElementById('name').value);
-                formData.append('surname', document.getElementById('surname').value);
-                formData.append('birthdate', document.getElementById('birthdate').value);
-                formData.append('phone', document.getElementById('phone').value);
-                formData.append('email', document.getElementById('email').value);
-                formData.append('password', document.getElementById('password').value);
-                formData.append('stile_di_vita', document.getElementById('stile_di_vita').value);
-                formData.append('importo', document.getElementById('importo').value);
-                formData.append('id', sessionStorage.getItem('sessionId'));
-               
-                // Esegui la richiesta AJAX
-                $.ajax({
-                    url: "server.php",
-                    type: "POST",
-                    data: formData,
-                    processData: false,  // Evita il parsing automatico dei dati
-                    contentType: false,  // Evita l'impostazione del tipo di contenuto
-                    success: function(data){
-                        console.log("All right!");
-                    }
-                });
+                // Verifica se i campi richiesti sono compilati
+                if (name.trim() === "" || surname.trim() === "" || birthdate.trim() === "" || phone.trim() === "" || email.trim() === "" || password.trim() === "") {
+                    // Se uno dei campi richiesti non è compilato, mostra un messaggio di errore
+                    alert("Please fill in all required fields.");
+                }else{
+                    // Crea un oggetto FormData
+                    var formData = new FormData();
+
+                    // Aggiungi l'immagine all'oggetto FormData
+                    var fileInput = document.getElementById('avatar-upload');
+                    formData.append('avatar-upload', fileInput.files[0]);
+
+                    // Aggiungi gli altri dati al FormData
+                    formData.append('name', document.getElementById('name').value);
+                    formData.append('surname', document.getElementById('surname').value);
+                    formData.append('birthdate', document.getElementById('birthdate').value);
+                    formData.append('phone', document.getElementById('phone').value);
+                    formData.append('email', document.getElementById('email').value);
+                    formData.append('password', document.getElementById('password').value);
+                    formData.append('stile_di_vita', document.getElementById('stile_di_vita').value);
+                    formData.append('importo', document.getElementById('importo').value);
+                    formData.append('id', sessionStorage.getItem('sessionId'));
+                
+                    // Esegui la richiesta AJAX
+                    $.ajax({
+                        url: "server.php",
+                        type: "POST",
+                        data: formData,
+                        processData: false,  // Evita il parsing automatico dei dati
+                        contentType: false,  // Evita l'impostazione del tipo di contenuto
+                        success: function(data){
+                            console.log("All right!");
+                            window.location.href = "../home/home.html";
+                        }
+                    });
+                }
             });
         });
     </script>
@@ -236,19 +252,19 @@
             <div class="form-container">
                     <div class="form-row">
                         <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" placeholder="Insert here...">
+                        <input type="text" id="name" name="name" placeholder="Insert here..." required>
                     </div>
                     <div class="form-row">
                         <label for="surname">Surname:</label>
-                        <input type="text" id="surname" name="surname" placeholder="Insert here...">
+                        <input type="text" id="surname" name="surname" placeholder="Insert here..." required>
                     </div>
                     <div class="form-row">
                         <label for="birthdate">Birth-Day:</label>
-                        <input type="date" id="birthdate" name="birthdate" placeholder="Select Date">
+                        <input type="date" id="birthdate" name="birthdate" placeholder="Select Date" required>
                     </div>
                     <div class="form-row">
                         <label for="phone">Phone-Number:</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Insert here...">
+                        <input type="tel" id="phone" name="phone" placeholder="Insert here..." required>
                     </div>
             </div>
         </div>
@@ -259,7 +275,7 @@
                 <div class="flex_container_2">
                     <div class="flex_item_2 email">
                         <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" placeholder="Insert here...">
+                        <input type="email" id="email" name="email" placeholder="Insert here..." required>
                     </div>
                     <div class="flex_item_2 lifestyle">
                         <label for="stile_di_vita">Life-Style:</label>
@@ -277,13 +293,13 @@
                 <div class="flex_container_2">
                     <div class="flex_item">
                         <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" placeholder="Insert here...">
+                        <input type="password" id="password" name="password" placeholder="Insert here..." required>
                     </div>
                     <!-- <div class="flex_item" style="display: none;" id="btn_shopping">
                         <button class="button_shopping" onclick="window.location.href='../search_products/search_products.html';" >Fill the cart now ➜</button>
                     </div> -->
                     <div class="flex_item" id="register_button">
-                        <button type="submit" class="button_register" id="log" onclick="window.location.href='../home/home.html';">Register Now!</button>
+                        <button type="submit" class="button_register" id="log">Register Now!</button>
                     </div>
                 </div>
             </div>
