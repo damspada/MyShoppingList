@@ -12,6 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>MyShoppingList</title>
 
+    <!-- Salvare dati dal form -->
     <script>
         $(document).ready(function(){
             document.getElementById("form_log").addEventListener("submit", function(event){
@@ -39,7 +40,7 @@
                 $.ajax({
                     url: "server.php",
                     type: "POST",
-                    data:formData,
+                    data: formData,
                     processData: false,  // Evita il parsing automatico dei dati
                     contentType: false,  // Evita l'impostazione del tipo di contenuto
                     success: function(data){
@@ -49,14 +50,8 @@
             });
         });
     </script>
-    <!-- <script>
-           $(document).ready(function(){
-            document.getElementById("register_button").addEventListener("click", function(event){
-                sessionStorage.setItem("Log", 1);
-                });
-           });
-    </script> -->
 
+    <!-- Riempi Form -->
     <script>
         window.addEventListener('load', function (event) {
             if(sessionStorage.getItem("Log")==1){
@@ -79,12 +74,46 @@
                             var url = element.immagine;
                             var path = url.split("htdocs")[1];
 
-                            const myDiv = document.querySelector('.avatar-container'); // Seleziona l'elemento <div>
-                            myDiv.innerHTML = '';
+                            // Seleziona l'elemento div "avatar-container"
+                            const avatarContainer = document.querySelector('.avatar-container');
+                            avatarContainer.innerHTML= "";
+
+                            // Crea l'elemento img per visualizzare l'immagine
                             const imgElement = document.createElement("img");
-                            imgElement.className="avatar"
+                            imgElement.className = "avatar";
                             imgElement.src = path;
-                            myDiv.append(imgElement);
+
+                            // Crea il label per il pulsante "Choose Image"
+                            const uploadLabel = document.createElement('label');
+                            uploadLabel.setAttribute('for', 'avatar-upload');
+                            uploadLabel.classList.add('upload-button');
+                            uploadLabel.textContent = 'Choose Image';
+
+                            // Crea l'input file per il caricamento dell'immagine
+                            const inputFile = document.createElement('input');
+                            inputFile.setAttribute('type', 'file');
+                            inputFile.setAttribute('id', 'avatar-upload');
+                            inputFile.setAttribute('name', 'avatar-upload');
+                            inputFile.setAttribute('accept', 'image/*');
+                            inputFile.style.display = 'none'; // Imposta lo stile per nascondere l'input
+
+                            // Aggiungi l'elemento img e il label al div "avatarContainer"
+                            avatarContainer.appendChild(imgElement);
+                            avatarContainer.appendChild(uploadLabel);
+                            avatarContainer.appendChild(inputFile);
+
+                            // Aggiungi un listener per il cambiamento dell'input file
+                            inputFile.addEventListener('change', function() {
+                                const file = this.files[0];
+                                if (file) {
+                                    const reader = new FileReader();
+                                    reader.onload = function(e) {
+                                        imgElement.src = e.target.result;
+                                    }
+                                    reader.readAsDataURL(file);
+                                }
+                            });
+
 
                             //cambia pulsanti register e update 
                             const div_register = document.getElementById("register_button");
@@ -99,7 +128,8 @@
 
                             
                             document.getElementById("update").style.display = "block";
-
+                            document.getElementById("icon_log_out").style.display = "block";
+                            document.querySelector('.header').style.padding = '1% 5% 0.5% 6.5%';
 
                             
                             document.getElementById("name").value = element.nome;
@@ -128,6 +158,57 @@
             }
         });
     </script>
+
+    <!-- Logout -->
+    <script>
+        window.addEventListener('load', function(event) {
+            if (sessionStorage.getItem("Log") == 1) {
+                // Aggiungi un event listener al pulsante "Update Profile"
+                document.getElementById("icon_log_out").addEventListener("click", function(event){
+                    sessionStorage.setItem("Log", 0);
+                });
+            };
+        });
+    </script>
+
+    <!-- Update non funziona -->
+    <script>
+        window.addEventListener('load', function(event) {
+            if (sessionStorage.getItem("Log") == 1) {
+                // Aggiungi un event listener al pulsante "Update Profile"
+                document.getElementById("update").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    // Crea un oggetto FormData
+                    var formData = new FormData();
+
+                    // Aggiungi l'immagine all'oggetto FormData
+                    var fileInput = document.getElementById('avatar-upload');
+                    formData.append('avatar-upload', fileInput.files[0]);
+
+                    // Aggiungi gli altri dati al FormData
+                    formData.append('phone', document.getElementById('phone').value);
+                    formData.append('email', document.getElementById('email').value);
+                    formData.append('password', document.getElementById('password').value);
+                    formData.append('stile_di_vita', document.getElementById('stile_di_vita').value);
+                    formData.append('importo', document.getElementById('importo').value);
+                    formData.append('id', sessionStorage.getItem('sessionId'));
+
+                    // Esegui la richiesta AJAX
+                    $.ajax({
+                        url: "update_profile.php",
+                        type: "POST",
+                        data: formData,
+                        processData: false, // Evita il parsing automatico dei dati
+                        contentType: false, // Evita l'impostazione del tipo di contenuto
+                        success: function(data) {
+                            console.log("All right!");
+                        }
+                    });
+                });
+            };
+        });
+    </script>
 </head>
 
 <body>
@@ -138,7 +219,7 @@
             <a href="../home/home.html"><img src="./Immagini/MyShoppingList.png" class="logo"></a>
             <nav class="my_navbar">
                     <a href="../home/home.html" class="link_navbar">Home</a>
-                    <a href="../home/home.html" class="icon_contatti"><img src="./Immagini/home.png"></a>
+                    <a href="../home/home.html" class="icon_contatti" id="icon_log_out" style="display: none;"><img src="./Immagini/log_out.png"></a>
             </nav>
         </header>
     </div>
@@ -208,8 +289,9 @@
             </div>
         </div>
     </form>
-    <button type="submit" class="update-button" id="update" style="display: none;">Update Profile</button>
 
+    <button type="submit" class="update-button" id="update" style="display: none;">Update Profile</button>
+    
     
 
 
