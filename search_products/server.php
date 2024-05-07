@@ -17,6 +17,7 @@ if ($conn->connect_error) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
+
     //Per visualizzare tutti i prodotti
     if (isset($_GET['riavvio'])) {
         $sql3 = "SELECT * FROM Cart";
@@ -1160,46 +1161,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         echo json_encode($responseData);
 
     }
-    
-    
-    
-    // Verifica se l'azione è "save"
-    else if (isset($_GET['action']) && $_GET['action'] == 'save') {
-        // Verifica se tutti i parametri richiesti sono stati passati
-        if (isset($_GET['id']) && isset($_GET['email']) && isset($_GET['info'])) {
-            // Recupera i valori passati nella richiesta AJAX
-            $sessionId = $_GET['id'];
-            $email = $_GET['email'];
-            $info = $_GET['info'];
-
-            // Richiede la libreria TCPDF
-            require_once('tcpdf/tcpdf.php');
-
-            // Crea un oggetto TCPDF
-            $pdf = new TCPDF();
-
-            // Aggiunge una nuova pagina al PDF
-            $pdf->AddPage();
-
-            // Imposta il font per il testo
-            $pdf->SetFont('helvetica', '', 12);
-
-            // Scrive il contenuto del PDF
-            $pdf->Cell(0, 10, "Session ID: $sessionId", 0, 1);
-            $pdf->Cell(0, 10, "Email: $email", 0, 1);
-            $pdf->Cell(0, 10, "Info: $info", 0, 1);
-
-            // Recupera il contenuto del PDF come stringa
-            $pdfContent = $pdf->Output('', 'S');
-
-            // Invia intestazioni HTTP per il download del PDF
-            header('Content-Type: application/pdf');
-            header('Content-Disposition: attachment; filename="file.pdf"');
-
-            // Output del contenuto del PDF
-            echo $pdfContent;
-        }
-    }
 
     //Per visualizzare tutti i prodotti
     else {
@@ -1215,8 +1176,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         }
         echo json_encode($products);
     }
-}
 
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Aggiungere prodotto al carrello o aumentare la quantità di esso all'interno del carrello
@@ -1237,9 +1198,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $update_result = $conn->query($update_query);
         } else {
             // Se il prodotto non è nel carrello, inseriscilo
-
-
-
             $insert_product = "INSERT INTO `Cart` (Nome, Quantità, Categoria, Immagine) VALUES ('$product_name', '$product_quantity', '$product_category', '$product_image')";
             $res = $conn->query($insert_product);
         }
