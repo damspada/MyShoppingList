@@ -16,6 +16,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
 
+    <script src="https://unpkg.com/jspdf-autotable@3.5.22/dist/jspdf.plugin.autotable.js"></script>
 
     <!--
     <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
@@ -26,11 +27,9 @@
     <script src="jspdf.plugin.autotable.min.js"></script>
     <script src="https://raw.githubusercontent.com/simonbengtsson/jsPDF-AutoTable/master/dist/jspdf.plugin.autotable.js"></script>
     <script src="https://raw.githubusercontent.com/MrRio/jsPDF/master/dist/jspdf.umd.min.js"></script>
--->
+    -->
 
-    <script src="https://unpkg.com/jspdf-autotable@3.5.22/dist/jspdf.plugin.autotable.js"></script>
-
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
     <!-- Check del Login -->
@@ -61,19 +60,19 @@
                             window.location.href = '../User_Page/user.html';
                         } else {
                             // Mostra il popup di errore
-                            swal({
+                            Swal.fire({
                                 title: "Errore!",
-                                text: "Invalid credentials. Try again.",
+                                html: "Invalid credentials. <br>Try again.",
                                 icon: "error",
-                                button: "OK",
                                 dangerMode: true,
                                 background: "#f8f9fa",
-                                confirmButtonColor: "#dc3545",
                                 textColor: "#343a40",
                                 width: "400px",
                                 padding: "3rem",
                                 titleFont: "Montserrat_Arabic_Regular",
-                                textFont: "Montserrat_Arabic_Regular"
+                                textFont: "Montserrat_Arabic_Regular",
+                                showConfirmButton: false, // Nasconde il pulsante "OK"
+                                timer: 2000 // Tempo in millisecondi (3 secondi)
                             });
                         }
                     },
@@ -311,7 +310,6 @@
 
     <script> // script per visualizzare tutti i prodotti
         $(document).ready(function () {
-            // Effettua la richiesta al server per ottenere i prodotti
 
             // Function to create a product card element
             function createProductCard(productData) {
@@ -383,13 +381,36 @@
 
             // Function to handle successful addition to cart
             function handleAddToCartSuccess(productData) {
-                if (!(!!document.getElementById(productData.Nome))) {
-                    const carrelloCard = createCartCard(productData);
-                    $('.carrello_spesa').append(carrelloCard);
-                } else {
-                    const inputElement = document.querySelector(`[id="${productData.Nome}"] .quantity`);
-                    inputElement.value++;
-                }
+
+                checkHealth(productData, function (response) {
+                    if (response === false) {
+                        if (!document.getElementById(productData.Nome)) {
+                            const carrelloCard = createCartCard(productData);
+                            $('.carrello_spesa').append(carrelloCard);
+                        } else {
+                            const inputElement = document.querySelector(`[id="${productData.Nome}"] .quantity`);
+                            inputElement.value++;
+                        }
+                    } else {
+                        console.log('Prodotto non aggiunto');
+
+                        // Mostra il popup di errore
+                        Swal.fire({
+                            title: "Errore!",
+                            html: "The product does not match your health. <br>Try another product.",
+                            icon: "error",
+                            dangerMode: true,
+                            background: "#f8f9fa",
+                            textColor: "#343a40",
+                            width: "400px",
+                            padding: "3rem",
+                            titleFont: "Montserrat_Arabic_Regular",
+                            textFont: "Montserrat_Arabic_Regular",
+                            showConfirmButton: false, // Nasconde il pulsante "OK"
+                            timer: 2000 // Tempo in millisecondi (3 secondi)
+                        });
+                    }
+                });
             }
 
             // Function to create a cart card element
@@ -497,7 +518,34 @@
                 }
             }
 
-            // Call the initial function to fetch products
+            // Function to check the health of a product correspond to the health of the user
+
+            function checkHealth(productData, callback) {
+                var log = sessionStorage.getItem("Log");
+                var email = sessionStorage.getItem('email');
+
+                if (log == 1) {
+                    $.ajax({
+                        url: "server.php",
+                        method: "GET",
+                        data: { action: 'check_health', email: email, health: productData.health }, // Corrected 'productData.health'
+                        dataType: "json",
+                        success: function (response) {
+                            console.log(response);
+                            callback(response); // Call the callback function with the response
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('An error occurred during the request.');
+                            callback(false); // Call the callback function with false in case of error
+                        }
+                    });
+                } else {
+                    callback(false); // Call the callback function with false if log is not 1
+                }
+            }
+
+
+            // Effettua la richiesta al server per ottenere i prodotti
             $.ajax({
                 url: "server.php",
                 type: "GET",
@@ -553,7 +601,7 @@
                     }
                 });
             });
-            
+
 
             const searchBtn = document.getElementById("searchBtn");
             const searchBar = document.getElementById("searchBar");
@@ -581,7 +629,7 @@
                     }
                 });
             });
-            
+
             // Funzione per barra di ricerca premento il tasto invio
             searchBar.addEventListener("keydown", (e) => {
                 if (e.key === "Enter" && searchBar.value !== "") {
@@ -608,6 +656,7 @@
                 }
             });
 
+            // Funzione per le ricette
             var bottoni = document.getElementsByClassName('bottone_carrello2');
             for (var i = 0; i < bottoni.length; i++) {
                 bottoni[i].addEventListener('click', function (event) {
@@ -620,12 +669,7 @@
                         dataType: "json",
                         success: function (response) {
                             response.forEach(function (element) {
-                                if (!(!!document.getElementById(element.Nome))) {
-                                    handleAddToCartSuccess(element);
-                                } else {
-                                    const inputElement = document.querySelector(`[id="${element.Nome}"] .quantity`);
-                                    inputElement.value++;
-                                }
+                                handleAddToCartSuccess(element);
                             });
                         },
                         error: function (xhr, status, error) {
@@ -635,7 +679,7 @@
                     });
                 });
             };
-        
+
         });
 
     </script>
