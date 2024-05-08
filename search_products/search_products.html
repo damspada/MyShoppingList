@@ -87,6 +87,25 @@
 
     <!-- Popup Login -->
     <script>
+        window.addEventListener('beforeunload', function(event){
+            if (sessionStorage.getItem("Log") != 1) {
+                $.ajax({
+                    url: "server.php",
+                    type: "POST",
+                    data: {
+                        cestino: 1
+                    },
+                    success: function (data) {
+                        console.error('Richiesta andata a buon fine.');
+                    },
+                    error: function (xhr, status, error) {
+                        // Gestisci gli errori durante la chiamata AJAX
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                })
+            }
+        })
+
         window.addEventListener('load', function (event) {
             if (sessionStorage.getItem("Log") == 1) {
                 // Se l'utente è già loggato, reindirizza alla pagina utente

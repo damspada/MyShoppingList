@@ -35,8 +35,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             // L'utente non esiste nel database o le credenziali non sono valide
             echo "failure";
         }
-    } else {
-        echo "I dati inviati non sono validi.";
+    }
+    
+    if (isset($_POST['cestino'])) {
+        $Elementi = "DELETE FROM `Cart`";
+        $update = $conn->query($Elementi);
     }
 }
 
