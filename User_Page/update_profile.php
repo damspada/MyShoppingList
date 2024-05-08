@@ -24,19 +24,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Caricamento dell'immagine
     $target_dir = "C:/xampp/htdocs/uploads/";
     $target_file = $target_dir . basename($_FILES["avatar-upload"]["name"]);
+    $image_changed = false;
 
-    // Controlla se si è verificato un errore durante il caricamento del file
+    // Controllo dell'immagine
     if ($_FILES["avatar-upload"]["error"] !== UPLOAD_ERR_OK) {
         echo "Si è verificato un errore durante il caricamento del file: " . $_FILES["avatar-upload"]["error"];
     } else {
         // Se tutto è ok, prova a caricare il file
         if (move_uploaded_file($_FILES["avatar-upload"]["tmp_name"], $target_file)) {
             echo "Il file " . htmlspecialchars(basename($_FILES["avatar-upload"]["name"])) . " è stato caricato.";
+            $image_changed = true;
         } else {
             echo "Si è verificato un errore durante il caricamento del file.";
         }
+    }
 
-        // Query per aggiornare i dati nella tabella del database
+    // Query per aggiornare i dati nella tabella del database
+    if ($image_changed) {
         $sql = "UPDATE utenti SET  
                 immagine='$target_file', 
                 cell='$phone', 
@@ -44,12 +48,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 life='$lifestyle', 
                 budget='$maxamount' 
                 WHERE email='$email'";
+    } else {
+        $sql = "UPDATE utenti SET   
+                cell='$phone', 
+                pass='$password', 
+                life='$lifestyle', 
+                budget='$maxamount' 
+                WHERE email='$email'";
+    }
 
-        if ($conn->query($sql) === TRUE) {
-            echo "Profilo aggiornato con successo";
-        } else {
-            echo "Errore durante l'aggiornamento del profilo: " . $conn->error;
-        }
+    if ($conn->query($sql) === TRUE) {
+        echo "Profilo aggiornato con successo";
+    } else {
+        echo "Errore durante l'aggiornamento del profilo: " . $conn->error;
     }
 }
 
