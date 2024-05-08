@@ -54,18 +54,6 @@
     }
 }
 
-/* .flex-container {
-    flex: 1;
-    background-color: white;
-    border-radius: 20px;
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1.3fr 2fr;
-    gap: 8px;
-} */
-
-
-
 .left_checkout { 
     background-color: #f8f6f4;
     border-radius: 20px;
@@ -202,9 +190,10 @@
 }
 
 .right_checkout img {
-    margin: auto;
     max-width: 30%; /* Imposta la larghezza massima dell'immagine al 100% della larghezza del contenitore */
-    max-height: 200px;
+    max-height: 20%;
+    min-width:30%;
+    min-height: 20%;
     height: auto; /* Imposta l'altezza automaticamente per mantenere le proporzioni */
     width: auto;
 }

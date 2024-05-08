@@ -1167,8 +1167,6 @@
                     success: function (response) {
                         console.log(response);
                         var Cart="Cart";
-                        const myDiv = document.querySelector('.carrello'); // Seleziona l'elemento <div>
-                        myDiv.innerHTML = '';
 
                         // Inserisci informazioni sui supermercati
                         const economico = document.querySelector('.economico');
@@ -1358,6 +1356,8 @@
             checkout_iconClose.addEventListener('click', () => {
                 checkout_wrapper.classList.remove('active-popup');
                 checkout_body.classList.remove('popup-active');
+                const myDiv = document.querySelector('.carrello'); // Seleziona l'elemento <div>
+                myDiv.innerHTML = '';
             });
         });
     </script>
