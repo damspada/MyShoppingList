@@ -715,6 +715,11 @@
             checkout_btnPopup.addEventListener('click', function (event) {
                 event.preventDefault();
 
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // Opzionale: crea un effetto di scorrimento fluido
+                });
+
                 var sessionId = getSessionId();
                 // Effettua la richiesta GET al server
                 // INPUT: None (posizione la trova dal datbase delle sessioni, i prodotti nel carrello dal database cart)

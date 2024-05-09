@@ -305,7 +305,7 @@ body.popup-active {
     display: none;
   }
   .tooltip-top2:before {
-    content: "Dispensa";
+    content: "Pantry";
     font-weight: 600;
     position: absolute;
     width: 80%;
@@ -330,7 +330,7 @@ body.popup-active {
     display: none;
   }
   .tooltip-top3:before {
-    content: "Carne";
+    content: "Meat";
     font-weight: 600;
     position: absolute;
     width: 80%;
@@ -355,10 +355,10 @@ body.popup-active {
     display: none;
   }
   .tooltip-top4:before {
-    content: "Salumi";
+    content: "Cured Meat";
     font-weight: 600;
     position: absolute;
-    width: 80%;
+    width: 115%;
     text-align: center;
     background-color: #00BF63;
     transform: translateX(-50%);
@@ -380,7 +380,7 @@ body.popup-active {
     display: none;
   }
   .tooltip-top5:before {
-    content: "Pesce";
+    content: "Fish";
     font-weight: 600;
     position: absolute;
     width: 80%;
@@ -406,7 +406,7 @@ body.popup-active {
   }
 
   .tooltip-top6:before {
-    content: "Bevande";
+    content: "Drinks";
     font-weight: 600;
     position: absolute;
     width: 80%;
@@ -432,7 +432,7 @@ body.popup-active {
   }
 
   .tooltip-top7:before {
-    content: "Igiene";
+    content: "Hygiene";
     font-weight: 600;
     position: absolute;
     width: 80%;
@@ -458,7 +458,7 @@ body.popup-active {
   }
 
   .tooltip-top8:before {
-    content: "Vegetali";
+    content: "Vegetables";
     font-weight: 600;
     position: absolute;
     width: 80%;
@@ -484,7 +484,7 @@ body.popup-active {
   }
 
   .tooltip-top9:before {
-    content: "Snack";
+    content: "Snacks";
     font-weight: 600;
     position: absolute;
     width: 80%;
@@ -510,7 +510,7 @@ body.popup-active {
   }
 
   .tooltip-top10:before {
-    content: "Dolci";
+    content: "Sweets";
     font-weight: 600;
     position: absolute;
     width: 80%;
@@ -536,10 +536,10 @@ body.popup-active {
   }
 
   .tooltip-top11:before {
-    content: "Surgelati";
+    content: "Frozen Foods";
     font-weight: 600;
     position: absolute;
-    width: 80%;
+    width: 135%;
     text-align: center;
     background-color: #00BF63;
     transform: translateX(-50%);
