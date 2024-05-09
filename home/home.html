@@ -16,6 +16,8 @@
 
     <script>
         window.addEventListener('load', function (event) {
+            console.log(sessionStorage.getItem("Log"));
+            console.log(sessionStorage.getItem("email"));
             if (sessionStorage.getItem("Log") != 1) {
                 $.ajax({
                     url: "check_login.php",
@@ -24,7 +26,7 @@
                         cestino: 1
                     },
                     success: function (data) {
-                        console.error('Richiesta andata a buon fine.');
+                        console.log('Richiesta andata a buon fine.');
                     },
                     error: function (xhr, status, error) {
                         // Gestisci gli errori durante la chiamata AJAX

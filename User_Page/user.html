@@ -40,6 +40,8 @@
                     var fileInput = document.getElementById('avatar-upload');
                     formData.append('avatar-upload', fileInput.files[0]);
 
+                    var email_ut=document.getElementById('email').value;
+
                     // Aggiungi gli altri dati al FormData
                     formData.append('name', document.getElementById('name').value);
                     formData.append('surname', document.getElementById('surname').value);
@@ -60,8 +62,8 @@
                         contentType: false,  // Evita l'impostazione del tipo di contenuto
                         success: function(data){
                             console.log("All right!");
-                            // sessionStorage.setItem("Log", 1);
-                            // sessionStorage.setItem("email", data.email);
+                            sessionStorage.setItem("Log", 1);
+                            sessionStorage.setItem("email", email_ut);
                             window.location.href = "../home/home.html";
                         }
                     });
@@ -91,8 +93,9 @@
                             console.log(element.email);
 
                             var url = element.immagine;
-                            var path = url.split("htdocs")[1];
+                            var path = url.split("../../..")[1];
 
+                            console.log(path);
                             // Seleziona l'elemento div "avatar-container"
                             const avatarContainer = document.querySelector('.avatar-container');
                             avatarContainer.innerHTML= "";
