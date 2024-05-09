@@ -461,7 +461,7 @@ body.popup-active {
     content: "Vegetables";
     font-weight: 600;
     position: absolute;
-    width: 80%;
+    width: 110%;
     text-align: center;
     background-color: #00BF63;
     transform: translateX(-50%);
