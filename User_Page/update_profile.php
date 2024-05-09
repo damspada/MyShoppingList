@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $ID = $_POST['id'];
 
     // Caricamento dell'immagine
-    $target_dir = "C:/xampp/htdocs/uploads/";
+    $target_dir = "../../../uploads/";
     $target_file = $target_dir . basename($_FILES["avatar-upload"]["name"]);
     $image_changed = false;
 
