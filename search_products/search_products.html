@@ -519,22 +519,22 @@
             // Function to handle quantity decrease
             function handleQuantityDecrease(productName) {
                 const inputElement = document.querySelector(`[id="${productName}"] .quantity`);
-                if (inputElement.value === 1) {
-                    const myDiv = document.getElementById(productName);
-                    myDiv.remove();
-                } else {
-                    $.ajax({
-                        url: 'server.php', // Specifica l'URL del server
-                        type: 'POST', // Metodo HTTP (PUT)
-                        data: { elemento: productName, valore: '-1' }, // Dati da inviare al server
-                        success: function (response) {
+                $.ajax({
+                    url: 'server.php', // Specifica l'URL del server
+                    type: 'POST', // Metodo HTTP (PUT)
+                    data: { elemento: productName, valore: '-1' }, // Dati da inviare al server
+                    success: function (response) {
+                        if (inputElement.value == 1) {
+                            const myDiv = document.getElementById(productName);
+                            myDiv.remove();
+                        }else{
                             inputElement.value--;
-                        },
-                        error: function (xhr, status, error) {
-                            console.error('Si è verificato un errore durante la richiesta.');
                         }
-                    });
-                }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                });
             }
 
             // Function to check the health of a product correspond to the health of the user
@@ -733,11 +733,14 @@
                         const economico = document.querySelector('.economico');
                         economico.innerHTML = `
                             <h2>Cheapest Supermarket :</h2>
-                            <p>Name: ${response.cheapestSupermarket.chain} ${response.cheapestSupermarket.name}</p>
-                            <p>Distance: ${response.cheapestSupermarket.distance}</p>
-                            <p>Total cost: ${response.cheapestSupermarket.totalPrice} €</p>
                             <br>
                             <img src="./Supermercati/${response.cheapestSupermarket.chain}.svg">
+                            <br>
+                            <br>
+                            <p class="p2">Placed: </p> <p>${response.cheapestSupermarket.name}</p>
+                            <p class="p2">Distance: </p> <p>${response.cheapestSupermarket.distance}</p>
+                            <p class="p2">Total cost: </p> <p>${response.cheapestSupermarket.totalPrice} €</p>
+                            <br>
                         `;
                         // <p>Latitudine: ${response.cheapestSupermarket.latitude}</p>
                         // <p>Longitudine: ${response.cheapestSupermarket.longitude}</p>
@@ -745,11 +748,14 @@
                         const vicino = document.querySelector('.vicino');
                         vicino.innerHTML = `
                             <h2>Closest Supermarket:</h2>
-                            <p>Name: ${response.nearestSupermarket.chain} ${response.nearestSupermarket.name}</p>
-                            <p>Distance: ${response.nearestSupermarket.distance}</p>
-                            <p>Total cost: ${response.nearestSupermarket.totalPrice} €</p>
                             <br>
                             <img src="./Supermercati/${response.nearestSupermarket.chain}.svg">
+                            <br>
+                            <br>
+                            <p class="p2">Placed: </p> <p>${response.nearestSupermarket.name}</p>
+                            <p class="p2">Distance: </p> <p>${response.nearestSupermarket.distance}</p>
+                            <p class="p2">Total cost: </p> <p>${response.nearestSupermarket.totalPrice} €</p>
+                            <br>
                         `;
 
                         // <p>Latitudine: ${response.nearestSupermarket.latitude}</p>
@@ -758,11 +764,14 @@
                         const consigliato = document.querySelector('.consigliato');
                         consigliato.innerHTML = `
                             <h2>Suggested Supermarked:</h2>
-                            <p>Name: ${response.recommendedSupermarket.chain} ${response.recommendedSupermarket.name}</p>
-                            <p>Distance: ${response.recommendedSupermarket.distance}</p>
-                            <p>Total cost: ${response.recommendedSupermarket.totalPrice} €</p>
                             <br>
                             <img src="./Supermercati/${response.recommendedSupermarket.chain}.svg">
+                            <br>
+                            <br>
+                            <p class="p2">Placed: </p> <p>${response.recommendedSupermarket.name}</p>
+                            <p class="p2">Distance: </p> <p>${response.recommendedSupermarket.distance}</p>
+                            <p class="p2">Total cost: </p> <p>${response.recommendedSupermarket.totalPrice} €</p>
+                            <br>
                         `;
 
                         // <p>Latitudine: ${response.recommendedSupermarket.latitude}</p>

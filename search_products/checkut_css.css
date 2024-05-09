@@ -194,13 +194,16 @@
     max-height: 20%;
     min-width:30%;
     min-height: 20%;
-    height: auto; /* Imposta l'altezza automaticamente per mantenere le proporzioni */
-    width: auto;
 }
 
-p{
-    font-size: large;
+.right_checkout p{
+    font-size: 20px;
     font-weight: 400;
+}
+
+.right_checkout .p2{
+    font-weight: 500;
+    float: left;
 }
 
 
