@@ -92,49 +92,51 @@
                             console.log(element.cell);
                             console.log(element.email);
 
-                            var url = element.immagine;
-                            var path = url.split("../../..")[1];
+                            if(element.immagine){
+                                var url = element.immagine;
+                                var path = url.split("../../..")[1];
 
-                            console.log(path);
-                            // Seleziona l'elemento div "avatar-container"
-                            const avatarContainer = document.querySelector('.avatar-container');
-                            avatarContainer.innerHTML= "";
+                                console.log(path);
+                                // Seleziona l'elemento div "avatar-container"
+                                const avatarContainer = document.querySelector('.avatar-container');
+                                avatarContainer.innerHTML= "";
 
-                            // Crea l'elemento img per visualizzare l'immagine
-                            const imgElement = document.createElement("img");
-                            imgElement.className = "avatar";
-                            imgElement.src = path;
+                                // Crea l'elemento img per visualizzare l'immagine
+                                const imgElement = document.createElement("img");
+                                imgElement.className = "avatar";
+                                imgElement.src = path;
 
-                            // Crea il label per il pulsante "Choose Image"
-                            const uploadLabel = document.createElement('label');
-                            uploadLabel.setAttribute('for', 'avatar-upload');
-                            uploadLabel.classList.add('upload-button');
-                            uploadLabel.textContent = 'Choose Image';
+                                // Crea il label per il pulsante "Choose Image"
+                                const uploadLabel = document.createElement('label');
+                                uploadLabel.setAttribute('for', 'avatar-upload');
+                                uploadLabel.classList.add('upload-button');
+                                uploadLabel.textContent = 'Choose Image';
 
-                            // Crea l'input file per il caricamento dell'immagine
-                            const inputFile = document.createElement('input');
-                            inputFile.setAttribute('type', 'file');
-                            inputFile.setAttribute('id', 'avatar-upload');
-                            inputFile.setAttribute('name', 'avatar-upload');
-                            inputFile.setAttribute('accept', 'image/*');
-                            inputFile.style.display = 'none'; // Imposta lo stile per nascondere l'input
+                                // Crea l'input file per il caricamento dell'immagine
+                                const inputFile = document.createElement('input');
+                                inputFile.setAttribute('type', 'file');
+                                inputFile.setAttribute('id', 'avatar-upload');
+                                inputFile.setAttribute('name', 'avatar-upload');
+                                inputFile.setAttribute('accept', 'image/*');
+                                inputFile.style.display = 'none'; // Imposta lo stile per nascondere l'input
 
-                            // Aggiungi l'elemento img e il label al div "avatarContainer"
-                            avatarContainer.appendChild(imgElement);
-                            avatarContainer.appendChild(uploadLabel);
-                            avatarContainer.appendChild(inputFile);
+                                // Aggiungi l'elemento img e il label al div "avatarContainer"
+                                avatarContainer.appendChild(imgElement);
+                                avatarContainer.appendChild(uploadLabel);
+                                avatarContainer.appendChild(inputFile);
 
-                            // Aggiungi un listener per il cambiamento dell'input file
-                            inputFile.addEventListener('change', function() {
-                                const file = this.files[0];
-                                if (file) {
-                                    const reader = new FileReader();
-                                    reader.onload = function(e) {
-                                        imgElement.src = e.target.result;
+                                // Aggiungi un listener per il cambiamento dell'input file
+                                inputFile.addEventListener('change', function() {
+                                    const file = this.files[0];
+                                    if (file) {
+                                        const reader = new FileReader();
+                                        reader.onload = function(e) {
+                                            imgElement.src = e.target.result;
+                                        }
+                                        reader.readAsDataURL(file);
                                     }
-                                    reader.readAsDataURL(file);
-                                }
-                            });
+                                });
+                            }
 
 
                             //cambia pulsanti register e update 

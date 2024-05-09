@@ -31,6 +31,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // Controlla se si è verificato un errore durante il caricamento del file
     if ($_FILES["avatar-upload"]["error"] !== UPLOAD_ERR_OK) {
         echo "Si è verificato un errore durante il caricamento del file: " . $_FILES["avatar-upload"]["error"];
+
+        // Query per inserire i dati nella tabella del database
+        $sql = "INSERT INTO utenti (id, email, pass, nome, cognome, born, cell, life, budget)
+        VALUES ('$ID', '$email', '$password', '$name', '$surname', '$birthdate', '$phone', '$lifestyle', '$maxamount')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
     } else {
         // Se tutto è ok, prova a caricare il file
         if (move_uploaded_file($_FILES["avatar-upload"]["tmp_name"], $target_file)) {
