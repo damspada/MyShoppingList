@@ -1166,7 +1166,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $email = $_GET['email'];
             $health = $_GET['health'];
 
-            if ($health < 7) {
+            if ($health < 6) {
                 // Check if the user with the email and 'Sportivo' life exists
                 $check_health = "SELECT * FROM `utenti` WHERE email = '$email' AND life = 'Sportivo'";
                 $result = $conn->query($check_health);
