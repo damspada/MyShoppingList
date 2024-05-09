@@ -54,7 +54,7 @@ body.popup-active {
 }
 
 
-/* NavBar*/
+/*-------------------------------- Navbar --------------------------------*/
 #login_div{
     height: 100vh;
     display: flex;
@@ -241,8 +241,7 @@ body.popup-active {
 }
 
 
-/*catalogo dei filtri*/
-
+/*-------------------------------- Filtri --------------------------------*/
 .filter-wrapper {
     position: absolute;
     top: 20.5%;
@@ -819,8 +818,7 @@ body.popup-active {
     }
 }
 
-/* Barra di ricerca*/
-
+/*-------------------------------- Search --------------------------------*/
 .search {
     display: inline-block;
     position: absolute;
@@ -859,14 +857,19 @@ body.popup-active {
     height: 50px;
     transform: scale(1.1);
     color: rgb(255, 255, 255);
-    background-color: #06e679 ;
+    /* background-color: #06e679 ; */
+}
+
+.search button[type="submit"]:active{
+    background-color: #048948;
+    transition: 50ms;
 }
 
 #search-icon{
     font-size: 20px;
 }
 
-/* card dei prodotti*/
+/*-------------------------------- Card Prodotti --------------------------------*/
 .card {
     /* border: 1px solid black; */
     border-radius: 10px;
@@ -952,7 +955,7 @@ h3{
 }
 
 
-/* CARRELLO */
+/*-------------------------------- Carrello --------------------------------*/
 .carrello_div{
     margin-left:29px;
     margin-top: 20px;
@@ -1003,6 +1006,11 @@ h3{
 
 .bottone_checkout:hover{
     transform: scale(1.1);
+}
+
+.bottone_checkout:active{
+    background-color: #048948;
+    transition: 50ms;
 }
 
 .carrello_elemento{
@@ -1067,9 +1075,13 @@ h3{
     transform: scale(1.1);
 }
 
+@media screen and (max-width: 1100px) {
+    .carrello_div {
+        display: none;
+    }
+}
 
-/* Ricette */
-  
+/*-------------------------------- Ricette --------------------------------*/
 h1{
     text-align: center;
 }
@@ -1340,8 +1352,3 @@ h4{
         height: 40px !important;
     }
 }
-
-
-
-
-
