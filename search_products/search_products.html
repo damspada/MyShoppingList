@@ -18,6 +18,17 @@
 
     <script src="https://unpkg.com/jspdf-autotable@3.5.22/dist/jspdf.plugin.autotable.js"></script>
 
+    <script>
+        (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+          key: "AIzaSyBKmiR3vhiQGXT9qZBFDQInSqjXSsVL664",
+          v: "weekly",
+          // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
+          // Add other bootstrap parameters as needed, using camel case.
+        });
+      </script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKmiR3vhiQGXT9qZBFDQInSqjXSsVL664"></script>
+
     <!--
     <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -634,7 +645,6 @@
                     data: { Nome: searchQuery },
                     dataType: "json",
                     success: function (response) {
-                        console.log("Hello, world!");
                         const myDiv = document.querySelector('.prodotti_div'); // Seleziona l'elemento <div>
                         myDiv.innerHTML = '';
                         response.forEach(function (element) {
@@ -729,7 +739,6 @@
                     method: "GET",
                     data: { id: sessionId },
                     success: function (response) {
-                        console.log(response);
                         var Cart = "Cart";
                         const myDiv = document.querySelector('.carrello'); // Seleziona l'elemento <div>
                         myDiv.innerHTML = '';
@@ -737,47 +746,91 @@
                         // Inserisci informazioni sui supermercati
                         const economico = document.querySelector('.economico');
                         economico.innerHTML = `
-                            <h2>Cheapest Supermarket :</h2>
-                            <br>
-                            <img src="./Supermercati/${response.cheapestSupermarket.chain}.svg">
-                            <br>
-                            <br>
-                            <p class="p2">Placed: </p> <p>${response.cheapestSupermarket.name}</p>
-                            <p class="p2">Distance: </p> <p>${response.cheapestSupermarket.distance}</p>
-                            <p class="p2">Total cost: </p> <p>${response.cheapestSupermarket.totalPrice} €</p>
-                            <br>
+                            <div class="descrizione">
+                                <h2>Cheapest Supermarket :</h2>
+                                <br>
+                                <img src="./Supermercati/${response.cheapestSupermarket.chain}.svg">
+                                <br>
+                                <br>
+                                <p class="p2">Placed: </p> <p>${response.cheapestSupermarket.name}</p>
+                                <p class="p2">Distance: </p> <p>${response.cheapestSupermarket.distance}</p>
+                                <p class="p2">Total cost: </p> <p>${response.cheapestSupermarket.totalPrice} €</p>
+                                <br>
+                            </div>
+                            <div class="maps" id="map">
+                            </div>
                         `;
-                        // <p>Latitudine: ${response.cheapestSupermarket.latitude}</p>
-                        // <p>Longitudine: ${response.cheapestSupermarket.longitude}</p>
 
+
+                        var Latitudine=parseFloat(response.cheapestSupermarket.latitude);
+                        var Longitudine= parseFloat(response.cheapestSupermarket.longitude);
+                        console.log(Latitudine);
+                        console.log(Longitudine);
+                        var pos = {lat: Latitudine, lng: Longitudine} ;
+                        var map = new google.maps.Map(document.getElementById('map'), {center: pos, zoom: 14, tilt:0}); 
+                        var marker = new google.maps.Marker({
+                            position: pos,
+                            map: map,
+                        });
+                       
                         const vicino = document.querySelector('.vicino');
                         vicino.innerHTML = `
-                            <h2>Closest Supermarket:</h2>
-                            <br>
-                            <img src="./Supermercati/${response.nearestSupermarket.chain}.svg">
-                            <br>
-                            <br>
-                            <p class="p2">Placed: </p> <p>${response.nearestSupermarket.name}</p>
-                            <p class="p2">Distance: </p> <p>${response.nearestSupermarket.distance}</p>
-                            <p class="p2">Total cost: </p> <p>${response.nearestSupermarket.totalPrice} €</p>
-                            <br>
+                            <div class="descrizione">
+                                <h2>Closest Supermarket:</h2>
+                                <br>
+                                <img src="./Supermercati/${response.nearestSupermarket.chain}.svg">
+                                <br>
+                                <br>
+                                <p class="p2">Placed: </p> <p>${response.nearestSupermarket.name}</p>
+                                <p class="p2">Distance: </p> <p>${response.nearestSupermarket.distance}</p>
+                                <p class="p2">Total cost: </p> <p>${response.nearestSupermarket.totalPrice} €</p>
+                                <br>
+                            </div>
+                            <div class="maps" id="map2">
+                            </div>
                         `;
+
+                        var Latitudine=parseFloat(response.nearestSupermarket.latitude);
+                        var Longitudine= parseFloat(response.nearestSupermarket.longitude);
+                        console.log(Latitudine);
+                        console.log(Longitudine);
+                        var pos = {lat: Latitudine, lng: Longitudine} ;
+                        var map = new google.maps.Map(document.getElementById('map2'), {center: pos, zoom: 14, tilt:0}); 
+                        marker = new google.maps.Marker({
+                            position: pos,
+                            map: map,
+                        });
 
                         // <p>Latitudine: ${response.nearestSupermarket.latitude}</p>
                         // <p>Longitudine: ${response.nearestSupermarket.longitude}</p>
 
                         const consigliato = document.querySelector('.consigliato');
                         consigliato.innerHTML = `
-                            <h2>Suggested Supermarked:</h2>
-                            <br>
-                            <img src="./Supermercati/${response.recommendedSupermarket.chain}.svg">
-                            <br>
-                            <br>
-                            <p class="p2">Placed: </p> <p>${response.recommendedSupermarket.name}</p>
-                            <p class="p2">Distance: </p> <p>${response.recommendedSupermarket.distance}</p>
-                            <p class="p2">Total cost: </p> <p>${response.recommendedSupermarket.totalPrice} €</p>
-                            <br>
+                            <div class="descrizione">
+                                <h2>Suggested Supermarket:</h2>
+                                <br>
+                                <img src="./Supermercati/${response.recommendedSupermarket.chain}.svg">
+                                <br>
+                                <br>
+                                <p class="p2">Placed: </p> <p>${response.recommendedSupermarket.name}</p>
+                                <p class="p2">Distance: </p> <p>${response.recommendedSupermarket.distance}</p>
+                                <p class="p2">Total cost: </p> <p>${response.recommendedSupermarket.totalPrice} €</p>
+                                <br>
+                            </div>
+                            <div class="maps" id="map3">
+                            </div>
                         `;
+
+                        var Latitudine=parseFloat(response.recommendedSupermarket.latitude);
+                        var Longitudine= parseFloat(response.recommendedSupermarket.longitude);
+                        console.log(Latitudine);
+                        console.log(Longitudine);
+                        var pos = {lat: Latitudine, lng: Longitudine} ;
+                        var map = new google.maps.Map(document.getElementById('map3'), {center: pos, zoom: 14, tilt:0}); 
+                        marker = new google.maps.Marker({
+                            position: pos,
+                            map: map,
+                        });
 
                         // <p>Latitudine: ${response.recommendedSupermarket.latitude}</p>
                         // <p>Longitudine: ${response.recommendedSupermarket.longitude}</p>
@@ -1183,7 +1236,7 @@
 
         <div class="right_checkout">
             <div class="economico">
-
+               
             </div>
 
             <div class="vicino">

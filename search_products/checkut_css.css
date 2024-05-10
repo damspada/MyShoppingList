@@ -190,10 +190,10 @@
 }
 
 .right_checkout img {
-    max-width: 30%; /* Imposta la larghezza massima dell'immagine al 100% della larghezza del contenitore */
-    max-height: 20%;
-    min-width:30%;
-    min-height: 20%;
+    max-width: 50%; /* Imposta la larghezza massima dell'immagine al 100% della larghezza del contenitore */
+    max-height: 40%;
+    min-width:50%;
+    min-height: 40%;
 }
 
 .right_checkout p{
@@ -242,4 +242,23 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+.descrizione{
+    height: 80%;
+    width: 40%;
+    float:left ;
+}
+
+.maps{
+    height: 80%;
+    width: 45%;
+    float: left;
+    margin-left: 6%;
+    border-radius: 20px;
+    border:1px black
+}
+
+.descrizione h2{
+    font-size: 22px;
 }
