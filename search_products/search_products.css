@@ -34,9 +34,10 @@ body.popup-active {
 
 .top_div {
     height:25%;
+    background-color: #e1306c;
     width: 70%;
     margin:20px;
-    display:flex;
+    /* display:flex; */
     justify-content: left;
 }
 
@@ -51,6 +52,12 @@ body.popup-active {
     overflow-x: hidden;
     overflow-y: scroll;
     background-color: #f8f6f4;
+}
+
+@media screen and (max-width: 1100px){
+    .prodotti_div{
+        width: 95%;
+    }
 }
 
 
@@ -247,9 +254,11 @@ body.popup-active {
     top: 20.5%;
     display: flex;
     justify-content: flex-start;
-    width: 70%;
+    width: 75%;
     height: 10%;
-    gap: 1.2rem;
+    gap: 1rem;
+    padding-left: 1%;
+    padding-right: 4%;
 }
 
 
@@ -258,10 +267,10 @@ body.popup-active {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    /* height: 82px;
-    width: 82px; */
-    height: 85%;
-    width: 10%;
+    height: 82px;
+    width: 82px;
+    /* height: 85%;
+    width: 10%; */
     background-color: white;
     color: black;
     /*border-radius: 8px;*/
@@ -270,6 +279,12 @@ body.popup-active {
     font-size: 14px;
     cursor: pointer;
     transition: transform .2s;
+    padding: 0 0.8%;
+}
+
+.filter-card img{
+    width: 60px;
+    height: 60px;
 }
 
 
@@ -291,8 +306,8 @@ body.popup-active {
     padding: 0.8em 1em;
     display: none;
     border-radius: 10px;
-  }
-  .tooltip-top:after {
+}
+.tooltip-top:after {
     content: "";
     position: absolute;
     border-top: 1.25em solid  #00BF63;
@@ -302,8 +317,9 @@ body.popup-active {
     left: 50%;
     top: -1.5em;
     display: none;
-  }
-  .tooltip-top2:before {
+}
+
+.tooltip-top2:before {
     content: "Pantry";
     font-weight: 600;
     position: absolute;
@@ -316,8 +332,8 @@ body.popup-active {
     padding: 0.8em 1em;
     display: none;
     border-radius: 10px;
-  }
-  .tooltip-top2:after {
+}
+.tooltip-top2:after {
     content: "";
     position: absolute;
     border-top: 1.25em solid  #00BF63;
@@ -327,8 +343,9 @@ body.popup-active {
     left: 50%;
     top: -1.5em;
     display: none;
-  }
-  .tooltip-top3:before {
+}
+
+.tooltip-top3:before {
     content: "Meat";
     font-weight: 600;
     position: absolute;
@@ -341,8 +358,8 @@ body.popup-active {
     padding: 0.8em 1em;
     display: none;
     border-radius: 10px;
-  }
-  .tooltip-top3:after {
+}
+.tooltip-top3:after {
     content: "";
     position: absolute;
     border-top: 1.25em solid  #00BF63;
@@ -352,8 +369,9 @@ body.popup-active {
     left: 50%;
     top: -1.5em;
     display: none;
-  }
-  .tooltip-top4:before {
+}
+
+.tooltip-top4:before {
     content: "Cured Meat";
     font-weight: 600;
     position: absolute;
@@ -366,8 +384,8 @@ body.popup-active {
     padding: 0.8em 1em;
     display: none;
     border-radius: 10px;
-  }
-  .tooltip-top4:after {
+}
+.tooltip-top4:after {
     content: "";
     position: absolute;
     border-top: 1.25em solid  #00BF63;
@@ -377,8 +395,9 @@ body.popup-active {
     left: 50%;
     top: -1.5em;
     display: none;
-  }
-  .tooltip-top5:before {
+}
+
+.tooltip-top5:before {
     content: "Fish";
     font-weight: 600;
     position: absolute;
@@ -391,8 +410,8 @@ body.popup-active {
     padding: 0.8em 1em;
     display: none;
     border-radius: 10px;
-  }
-  .tooltip-top5:after {
+}
+.tooltip-top5:after {
     content: "";
     position: absolute;
     border-top: 1.25em solid  #00BF63;
@@ -402,9 +421,9 @@ body.popup-active {
     left: 50%;
     top: -1.5em;
     display: none;
-  }
+}
 
-  .tooltip-top6:before {
+.tooltip-top6:before {
     content: "Drinks";
     font-weight: 600;
     position: absolute;
@@ -417,8 +436,8 @@ body.popup-active {
     padding: 0.8em 1em;
     display: none;
     border-radius: 10px;
-  }
-  .tooltip-top6:after {
+}
+.tooltip-top6:after {
     content: "";
     position: absolute;
     border-top: 1.25em solid  #00BF63;
@@ -428,9 +447,9 @@ body.popup-active {
     left: 50%;
     top: -1.5em;
     display: none;
-  }
+}
 
-  .tooltip-top7:before {
+.tooltip-top7:before {
     content: "Hygiene";
     font-weight: 600;
     position: absolute;
@@ -443,8 +462,8 @@ body.popup-active {
     padding: 0.8em 1em;
     display: none;
     border-radius: 10px;
-  }
-  .tooltip-top7:after {
+}
+.tooltip-top7:after {
     content: "";
     position: absolute;
     border-top: 1.25em solid  #00BF63;
@@ -454,9 +473,9 @@ body.popup-active {
     left: 50%;
     top: -1.5em;
     display: none;
-  }
+}
 
-  .tooltip-top8:before {
+.tooltip-top8:before {
     content: "Vegetables";
     font-weight: 600;
     position: absolute;
@@ -469,8 +488,8 @@ body.popup-active {
     padding: 0.8em 1em;
     display: none;
     border-radius: 10px;
-  }
-  .tooltip-top8:after {
+}
+.tooltip-top8:after {
     content: "";
     position: absolute;
     border-top: 1.25em solid  #00BF63;
@@ -480,9 +499,9 @@ body.popup-active {
     left: 50%;
     top: -1.5em;
     display: none;
-  }
+}
 
-  .tooltip-top9:before {
+.tooltip-top9:before {
     content: "Snacks";
     font-weight: 600;
     position: absolute;
@@ -495,8 +514,8 @@ body.popup-active {
     padding: 0.8em 1em;
     display: none;
     border-radius: 10px;
-  }
-  .tooltip-top9:after {
+}
+.tooltip-top9:after {
     content: "";
     position: absolute;
     border-top: 1.25em solid  #00BF63;
@@ -506,9 +525,9 @@ body.popup-active {
     left: 50%;
     top: -1.5em;
     display: none;
-  }
+}
 
-  .tooltip-top10:before {
+.tooltip-top10:before {
     content: "Sweets";
     font-weight: 600;
     position: absolute;
@@ -521,8 +540,8 @@ body.popup-active {
     padding: 0.8em 1em;
     display: none;
     border-radius: 10px;
-  }
-  .tooltip-top10:after {
+}
+.tooltip-top10:after {
     content: "";
     position: absolute;
     border-top: 1.25em solid  #00BF63;
@@ -532,9 +551,9 @@ body.popup-active {
     left: 50%;
     top: -1.5em;
     display: none;
-  }
+}
 
-  .tooltip-top11:before {
+.tooltip-top11:before {
     content: "Frozen Foods";
     font-weight: 600;
     position: absolute;
@@ -547,8 +566,8 @@ body.popup-active {
     padding: 0.8em 1em;
     display: none;
     border-radius: 10px;
-  }
-  .tooltip-top11:after {
+}
+.tooltip-top11:after {
     content: "";
     position: absolute;
     border-top: 1.25em solid  #00BF63;
@@ -558,9 +577,9 @@ body.popup-active {
     left: 50%;
     top: -1.5em;
     display: none;
-  }
+}
 
-  .tooltip-top12:before {
+.tooltip-top12:before {
     content: "Healty";
     font-weight: 600;
     position: absolute;
@@ -573,8 +592,8 @@ body.popup-active {
     padding: 0.8em 1em;
     display: none;
     border-radius: 10px;
-  }
-  .tooltip-top12:after {
+}
+.tooltip-top12:after {
     content: "";
     position: absolute;
     border-top: 1.25em solid  #00BF63;
@@ -584,15 +603,79 @@ body.popup-active {
     left: 50%;
     top: -1.5em;
     display: none;
-  } 
+} 
 
-  .filter-card:hover:before {
+.filter-card:hover:before {
     display: block;
-  }
-  .filter-card:hover:after {
+}
+.filter-card:hover:after {
     display: block;
-  }
+}
 
+
+@media screen and (min-width: 1350px) and (max-width: 1500px){
+    .filter-wrapper{
+        width: 69%;
+        margin-top: 2%;
+        margin: auto;
+        overflow-x: scroll;
+        white-space: nowrap; 
+        align-items: center;
+        margin-left: 2%;
+        height: 19%;
+        top: 16%;
+    }
+    .filter-card img{
+        width: 60px;
+        height: 60px;
+    }
+    .filter-card{
+        padding: 0 4%;
+    }
+}
+
+
+@media screen and (min-width: 1101px) and (max-width: 1350px){
+    .filter-wrapper{
+        width: 69%;
+        margin-top: 2%;
+        margin: auto;
+        overflow-x: scroll;
+        white-space: nowrap; 
+        align-items: center;
+        margin-left: 2%;
+        height: 19%;
+        top: 16%;
+    }
+    .filter-card img{
+        width: 60px;
+        height: 60px;
+    }
+    .filter-card{
+        padding: 0 4%;
+    }
+}
+
+@media screen and (max-width: 1100px){
+    .filter-wrapper{
+        width: 94%;
+        margin-top: 2%;
+        margin: auto;
+        overflow-x: scroll;
+        white-space: nowrap; 
+        align-items: center;
+        margin-left: 3%;
+        height: 19%;
+        top: 16%;
+    }
+    .filter-card img{
+        width: 55px;
+        height: 55px;
+    }
+    .filter-card{
+        padding: 0 4%;
+    }
+}
 
 
 
