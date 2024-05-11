@@ -1045,6 +1045,8 @@
 <body>
 
     <div class="overlay"></div>
+    <div class="overlay2"></div>
+    <div class="overlay3"></div>
 
     <!-- NavBar-->
     <div>
@@ -1066,52 +1068,84 @@
 
     
 
-        <!-- Search -->
+    <!-- Search -->
+    <div class="search-container" id="searchContainerLarge">
+        <div class="search">
+            <!-- <input placeholder="Search Products..." type="text" id="searchBar">
+            <button type="submit" id="searchBtn">
+                <ion-icon id="search-icon" name="search" size="medium"></ion-icon>
+            </button> -->
+        </div>
+    </div>
+    
+    <div class="search-container2" id="searchContainerSmall">
         <div class="search">
             <input placeholder="Search Products..." type="text" id="searchBar">
-            <button type="submit" id="searchBtn"><ion-icon id="search-icon" name="search"
-                    size="medium"></ion-icon></button>
+            <button type="submit" id="searchBtn">
+                <ion-icon id="search-icon" name="search" size="medium"></ion-icon>
+            </button>
         </div>
+        <div class="cart-icon" id="cart_icon">
+            <img src="./Icone/cart_media.png" alt="Cart Icon">
+        </div>
+    </div>
+    
+    <!-- <div class="search">
+        <input placeholder="Search Products..." type="text" id="searchBar">
+        <button type="submit" id="searchBtn"><ion-icon id="search-icon" name="search" size="medium"></ion-icon></button>
+    </div> -->
 
-        <!-- Filtri -->
-        <div class="filter-wrapper">
-            <button class="filter-card tooltip-top" id="All">
-                <img src="Icone/icons8-coltello-e-spatchula-50.png">
+    <!-- <div class="search-container">
+        <div class="search">
+            <input placeholder="Search Products..." type="text" id="searchBar">
+            <button type="submit" id="searchBtn">
+                <ion-icon id="search-icon" name="search" size="medium"></ion-icon>
             </button>
-            <button class="filter-card tooltip-top2" id="Dispensa">
-                <img src="Icone/icons8-pasta-64.png">
-            </button>
-            <button class="filter-card tooltip-top3" id="Carne">
-                <img src="Icone/icons8-carre-di-agnello-60.png">
-            </button>
-            <div class="filter-card tooltip-top4" id="Salumi e Formaggi">
-                <img src="Icone/icons8-cheese-64-2.png">
-            </div>
-            <div class="filter-card tooltip-top5" id="Pesce">
-                <img src="Icone/icons8-salmone-64.png">
-            </div>
-            <div class="filter-card tooltip-top6" id="Bevande">
-                <img src="Icone/icons8-softdrink-64.png">
-            </div>
-            <div class="filter-card tooltip-top7" id="Igiene e Casa">
-                <img src="Icone/icons8-sapone-60.png">
-            </div>
-            <div class="filter-card tooltip-top8" id="Vegetali">
-                <img src="Icone/icons8-carrot-64.png">
-            </div>
-            <div class="filter-card tooltip-top9" id="Snack">
-                <img src="Icone/icons8-snack-64 (2).png">
-            </div>
-            <div class="filter-card tooltip-top10" id="Dolci">
-                <img src="Icone/icons8-barra-di-cioccolato-64 (1).png">
-            </div>
-            <div class="filter-card tooltip-top11" id="Surgelati">
-                <img src="Icone/icons8-inverno-64.png">
-            </div>
-            <div class="filter-card tooltip-top12" id="Healty">
-                <img src="Icone/icons8-healthy-food-64.png">
-            </div>
         </div>
+        <div class="cart-icon">
+            <img src="./Icone/cart_media.png" alt="Cart Icon">
+        </div>
+    </div> -->
+
+    <!-- Filtri -->
+    <div class="filter-wrapper">
+        <button class="filter-card tooltip-top" id="All">
+            <img src="Icone/icons8-coltello-e-spatchula-50.png">
+        </button>
+        <button class="filter-card tooltip-top2" id="Dispensa">
+            <img src="Icone/icons8-pasta-64.png">
+        </button>
+        <button class="filter-card tooltip-top3" id="Carne">
+            <img src="Icone/icons8-carre-di-agnello-60.png">
+        </button>
+        <div class="filter-card tooltip-top4" id="Salumi e Formaggi">
+            <img src="Icone/icons8-cheese-64-2.png">
+        </div>
+        <div class="filter-card tooltip-top5" id="Pesce">
+            <img src="Icone/icons8-salmone-64.png">
+        </div>
+        <div class="filter-card tooltip-top6" id="Bevande">
+            <img src="Icone/icons8-softdrink-64.png">
+        </div>
+        <div class="filter-card tooltip-top7" id="Igiene e Casa">
+            <img src="Icone/icons8-sapone-60.png">
+        </div>
+        <div class="filter-card tooltip-top8" id="Vegetali">
+            <img src="Icone/icons8-carrot-64.png">
+        </div>
+        <div class="filter-card tooltip-top9" id="Snack">
+            <img src="Icone/icons8-snack-64 (2).png">
+        </div>
+        <div class="filter-card tooltip-top10" id="Dolci">
+            <img src="Icone/icons8-barra-di-cioccolato-64 (1).png">
+        </div>
+        <div class="filter-card tooltip-top11" id="Surgelati">
+            <img src="Icone/icons8-inverno-64.png">
+        </div>
+        <div class="filter-card tooltip-top12" id="Healty">
+            <img src="Icone/icons8-healthy-food-64.png">
+        </div>
+    </div>
     
     <!--Login e Signin-->
     <div id="login_div">
@@ -1177,7 +1211,7 @@
 
 
     <!-- Carrello -->
-    <div class="carrello_div">
+    <div class="carrello_div" id="carrello_div">
         <div class="carrello_titolo">
             <h2>Shopping Cart</h2>
         </div>
@@ -1395,5 +1429,6 @@
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="login_script.js"></script>
+<script src="search_products.js"></script>
 
 </html>

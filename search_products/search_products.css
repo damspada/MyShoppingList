@@ -855,16 +855,18 @@ body.popup-active {
 }
 
 .popup-active .overlay {
-    display: block; /* Mostra l'overlay quando il popup è attivo */
+    display: block; 
 }
 
 
 @media screen and (max-width: 1200px) {
     .wrapper {
-        width: 80%;
-        height: auto;
+        width: 40% !important;
+        height: 45% !important;
         max-width: 400px;
         margin-top: 20%;
+        top: 25%;
+        padding: 0 2%;
     }
 
     .wrapper .form-box {
@@ -872,7 +874,7 @@ body.popup-active {
     }
 
     .form-box h2 {
-        font-size: 1.5em;
+        font-size: 30px;
     }
 
     .input-box {
@@ -880,39 +882,37 @@ body.popup-active {
     }
 
     .input-box label {
-        font-size: 0.8em;
+        font-size: 15px;
     }
 
     .input-box input {
-        font-size: 0.8em;
-    }
-
-    .remember-forgot {
-        margin: -10px 0 10px;
-        font-size: 0.7em;
+        font-size: 15px;
     }
 
     .login-register {
-        margin: 15px 0 5px;
-        font-size: 0.7em;
+        margin: 30px 0 5px 0;
+        font-size: 13px;
     }
 
     .login-register p a {
-        font-size: 0.9em;
+        font-size: 13px;
     }
 }
 
 /*-------------------------------- Search --------------------------------*/
-.search {
-    display: inline-block;
+
+/* senza carrello */
+/* .search {
+    display: flex;
     position: absolute;
     top: 10%;
     left: 18%;
     transition: left 0.5s ease;
+    align-items: center;
 }
 
 .search input[type="text"] {
-    width: 600px; /* Larghezza desiderata */
+    width: 600px; 
     height: 50px;
     padding: 10px;
     border: none;
@@ -943,7 +943,60 @@ body.popup-active {
     height: 50px;
     transform: scale(1.1);
     color: rgb(255, 255, 255);
-    /* background-color: #06e679 ; */
+
+}
+
+.search button[type="submit"]:active{
+    background-color: #048948;
+    transition: 50ms;
+}
+
+#search-icon{
+    font-size: 20px;
+} */
+
+/* con carrello */
+/* .search-container {
+    display: flex;
+    position: absolute;
+    top: 10%;
+    left: 18%;
+    transition: left 0.5s ease;
+    align-items: center;
+}
+
+.search input[type="text"] {
+    width: 600px; 
+    height: 50px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+    background-color: #f8f6f4;
+    transition: width 0.5s ease;
+}
+
+.search button[type="submit"] {
+    background-color:  #00BF63;
+    position: absolute;
+    top: 0;
+    right: 6%;
+    height: 50px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: .5s ease;
+}
+
+.search button[type="submit"]:hover {
+    height: 50px;
+    transform: scale(1.1);
+    color: rgb(255, 255, 255);
 }
 
 .search button[type="submit"]:active{
@@ -955,6 +1008,145 @@ body.popup-active {
     font-size: 20px;
 }
 
+.cart-icon img {
+    max-width: 40px; 
+    margin-left: 80%;
+} */
+
+
+/* Regole di stile per quando lo schermo è al di sopra dei 1100px */
+@media screen and (min-width: 1100px) {
+    .search {
+        display: flex;
+        position: absolute;
+        top: 10%;
+        left: 18%;
+        transition: left 0.5s ease;
+        align-items: center;
+    }
+
+    .search input[type="text"] {
+        width: 600px; 
+        height: 50px;
+        padding: 10px;
+        border: none;
+        outline: none;
+        border-radius: 20px;
+        box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+        font-size: 20px;
+        background-color: #f8f6f4;
+        transition: width 0.5s ease;
+    }
+
+    .search button[type="submit"] {
+        background-color:  #00BF63;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 50px;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        padding: 10px 20px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: .5s ease;
+    }
+
+    .search button[type="submit"]:hover {
+        height: 50px;
+        transform: scale(1.1);
+        color: rgb(255, 255, 255);
+    }
+
+    .search button[type="submit"]:active{
+        background-color: #048948;
+        transition: 50ms;
+    }
+
+    .cart-icon {
+        display: none; /* Nasconde l'icona del carrello di default */
+    }
+
+    #search-icon {
+        font-size: 20px;
+    }
+}
+
+/* Regole di stile per quando lo schermo è al di sotto dei 1100px */
+@media screen and (max-width: 1100px) {
+    .search-container2 {
+        display: flex;
+        position: absolute;
+        top: 10%;
+        left: 18%;
+        transition: left 0.5s ease;
+        align-items: center;
+    }
+
+    .search-container2 .search input[type="text"] {
+        width: 600px; 
+        height: 50px;
+        padding: 10px;
+        border: none;
+        outline: none;
+        border-radius: 20px;
+        box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+        font-size: 20px;
+        background-color: #f8f6f4;
+        transition: width 0.5s ease;
+    }
+
+    .search-container2 .search button[type="submit"] {
+        background-color:  #00BF63;
+        position: absolute;
+        top: 0;
+        right: 10.4%;
+        height: 50px;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        padding: 10px 20px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: .5s ease;
+    }
+
+    .search-container2 .search button[type="submit"]:hover {
+        height: 50px;
+        transform: scale(1.1);
+        color: rgb(255, 255, 255);
+    }
+
+    .search-container2 .search button[type="submit"]:active{
+        background-color: #048948;
+        transition: 50ms;
+    }
+
+    .search-container2 #search-icon {
+        font-size: 20px;
+    }
+
+    .cart-icon img {
+        display: block; 
+        width: 70px;
+        height: 45px;
+        cursor: pointer;
+    }
+
+    .cart-icon{
+        margin-left: 5%;
+        transition: transform 0.2s ease;
+        
+    }
+
+    .cart-icon:hover{
+        transform: scale(1.1);
+    }
+
+}
+
+
 
 @media screen and (min-width: 1100px) and (max-width:1350px){
     .search {
@@ -962,11 +1154,17 @@ body.popup-active {
     }
 }
 
-@media screen and (max-width: 850px){
-    .search {
-        left: 26%;
+@media screen and (max-width: 950px){
+    .search-container2 {
+        left: 12%;
     }
-    .search input[type="text"] {
+}
+
+@media screen and (max-width: 850px){
+    .search-container2 {
+        left: 22%;
+    }
+    .search-container2 .search input[type="text"] {
         width: 400px; /* Larghezza desiderata */
         height: 50px;
         padding: 10px;
@@ -975,32 +1173,38 @@ body.popup-active {
 }
 
 @media screen and (max-width: 800px){
-    .search {
-        left: 24%;
-    }
-}
-
-@media screen and (max-width: 750px){
-    .search {
-        left: 22%;
-    }
-}
-
-@media screen and (max-width: 700px){
-    .search {
+    .search-container2 {
         left: 20%;
     }
 }
 
-@media screen and (max-width: 650px){
-    .search {
+@media screen and (max-width: 750px){
+    .search-container2 {
         left: 16%;
     }
 }
 
-@media screen and (max-width: 600px){
-    .search {
+@media screen and (max-width: 700px){
+    .search-container2 {
         left: 14%;
+    }
+}
+
+@media screen and (max-width: 650px){
+    .search-container2 {
+        left: 12%;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .search-container2 {
+        left: 8%;
+    }
+}
+
+@media screen and (max-width: 550px){
+    .search-container2 {
+        left: 5%;
     }
 }
 
@@ -1183,18 +1387,18 @@ h3{
     border: 1px solid black;
     border-radius: 10px;
     text-align: center;
- }
+}
 
- .bottone_cestino{
+.bottone_cestino{
     border-radius: 50%;
     height: 1rem;
     width: 1rem;
     left: 20%;
     background-color: #eb1906; 
- }
+}
 
 
- .bottoni_tondi3{
+.bottoni_tondi3{
     border-radius: 50%;
     height: 40px;
     width: 40px;
@@ -1210,11 +1414,40 @@ h3{
     transform: scale(1.1);
 }
 
+.overlay2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 120; 
+    display: none; 
+}
+
+.overlay3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 120; 
+    display: none; 
+}
+
 @media screen and (max-width: 1100px) {
     .carrello_div {
-        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50%;
+        height: 80%;
+        z-index: 999999;
     }
 }
+
 
 /*-------------------------------- Ricette --------------------------------*/
 h1{
