@@ -761,16 +761,16 @@
                         `;
 
 
-                        var Latitudine=parseFloat(response.cheapestSupermarket.latitude);
-                        var Longitudine= parseFloat(response.cheapestSupermarket.longitude);
-                        console.log(Latitudine);
-                        console.log(Longitudine);
-                        var pos = {lat: Latitudine, lng: Longitudine} ;
-                        var map = new google.maps.Map(document.getElementById('map'), {center: pos, zoom: 14, tilt:0}); 
-                        var marker = new google.maps.Marker({
-                            position: pos,
-                            map: map,
-                        });
+                        // var Latitudine=parseFloat(response.cheapestSupermarket.latitude);
+                        // var Longitudine= parseFloat(response.cheapestSupermarket.longitude);
+                        // console.log(Latitudine);
+                        // console.log(Longitudine);
+                        // var pos = {lat: Latitudine, lng: Longitudine} ;
+                        // var map = new google.maps.Map(document.getElementById('map'), {center: pos, zoom: 14, tilt:0}); 
+                        // var marker = new google.maps.Marker({
+                        //     position: pos,
+                        //     map: map,
+                        // });
                        
                         const vicino = document.querySelector('.vicino');
                         vicino.innerHTML = `
@@ -789,16 +789,16 @@
                             </div>
                         `;
 
-                        var Latitudine=parseFloat(response.nearestSupermarket.latitude);
-                        var Longitudine= parseFloat(response.nearestSupermarket.longitude);
-                        console.log(Latitudine);
-                        console.log(Longitudine);
-                        var pos = {lat: Latitudine, lng: Longitudine} ;
-                        var map = new google.maps.Map(document.getElementById('map2'), {center: pos, zoom: 14, tilt:0}); 
-                        marker = new google.maps.Marker({
-                            position: pos,
-                            map: map,
-                        });
+                        // var Latitudine=parseFloat(response.nearestSupermarket.latitude);
+                        // var Longitudine= parseFloat(response.nearestSupermarket.longitude);
+                        // console.log(Latitudine);
+                        // console.log(Longitudine);
+                        // var pos = {lat: Latitudine, lng: Longitudine} ;
+                        // var map = new google.maps.Map(document.getElementById('map2'), {center: pos, zoom: 14, tilt:0}); 
+                        // marker = new google.maps.Marker({
+                        //     position: pos,
+                        //     map: map,
+                        // });
 
                         // <p>Latitudine: ${response.nearestSupermarket.latitude}</p>
                         // <p>Longitudine: ${response.nearestSupermarket.longitude}</p>
@@ -820,16 +820,16 @@
                             </div>
                         `;
 
-                        var Latitudine=parseFloat(response.recommendedSupermarket.latitude);
-                        var Longitudine= parseFloat(response.recommendedSupermarket.longitude);
-                        console.log(Latitudine);
-                        console.log(Longitudine);
-                        var pos = {lat: Latitudine, lng: Longitudine} ;
-                        var map = new google.maps.Map(document.getElementById('map3'), {center: pos, zoom: 14, tilt:0}); 
-                        marker = new google.maps.Marker({
-                            position: pos,
-                            map: map,
-                        });
+                        // var Latitudine=parseFloat(response.recommendedSupermarket.latitude);
+                        // var Longitudine= parseFloat(response.recommendedSupermarket.longitude);
+                        // console.log(Latitudine);
+                        // console.log(Longitudine);
+                        // var pos = {lat: Latitudine, lng: Longitudine} ;
+                        // var map = new google.maps.Map(document.getElementById('map3'), {center: pos, zoom: 14, tilt:0}); 
+                        // marker = new google.maps.Marker({
+                        //     position: pos,
+                        //     map: map,
+                        // });
 
                         // <p>Latitudine: ${response.recommendedSupermarket.latitude}</p>
                         // <p>Longitudine: ${response.recommendedSupermarket.longitude}</p>
