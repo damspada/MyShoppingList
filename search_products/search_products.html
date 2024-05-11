@@ -392,15 +392,36 @@
 
                     const formData = $(this).serialize();
 
-                    $.ajax({
-                        type: "POST",
-                        url: "server.php",
-                        data: formData,
-                        success: function (response) {
-                            handleAddToCartSuccess(productData);
-                        },
-                        error: function (xhr, status, error) {
-                            console.error('Si è verificato un errore durante la richiesta.');
+                    checkHealth(productData, function (response) {
+                        if (response === false) {
+                            $.ajax({
+                                type: "POST",
+                                url: "server.php",
+                                data: formData,
+                                success: function (response) {
+                                    handleAddToCartSuccess(productData);
+                                },
+                                error: function (xhr, status, error) {
+                                    console.error('Si è verificato un errore durante la richiesta.');
+                                }
+                            });
+                        }else {
+                            console.log('Prodotto non aggiunto');
+                    //// Mostra il popup di errore
+                            Swal.fire({
+                                title: "Errore!",
+                                html: "The product does not match your health. <br>Try another product.",
+                                icon: "error",
+                                dangerMode: true,
+                                background: "#f8f9fa",
+                                textColor: "#343a40",
+                                width: "400px",
+                                padding: "3rem",
+                                titleFont: "Montserrat_Arabic_Regular",
+                                textFont: "Montserrat_Arabic_Regular",
+                                showConfirmButton: false, // Nasconde il pulsante "OK"
+                                timer: 2000 // Tempo in millisecondi (3 secondi)
+                        });
                         }
                     });
                 });
@@ -411,8 +432,8 @@
             // Function to handle successful addition to cart
             function handleAddToCartSuccess(productData) {
 
-                checkHealth(productData, function (response) {
-                    if (response === false) {
+                // checkHealth(productData, function (response) {
+                    // if (response === false) {
                         if (!document.getElementById(productData.Nome)) {
                             const carrelloCard = createCartCard(productData);
                             $('.carrello_spesa').append(carrelloCard);
@@ -420,26 +441,26 @@
                             const inputElement = document.querySelector(`[id="${productData.Nome}"] .quantity`);
                             inputElement.value++;
                         }
-                    } else {
-                        console.log('Prodotto non aggiunto');
+                //     } else {
+                //         console.log('Prodotto non aggiunto');
 
-                        // Mostra il popup di errore
-                        Swal.fire({
-                            title: "Errore!",
-                            html: "The product does not match your health. <br>Try another product.",
-                            icon: "error",
-                            dangerMode: true,
-                            background: "#f8f9fa",
-                            textColor: "#343a40",
-                            width: "400px",
-                            padding: "3rem",
-                            titleFont: "Montserrat_Arabic_Regular",
-                            textFont: "Montserrat_Arabic_Regular",
-                            showConfirmButton: false, // Nasconde il pulsante "OK"
-                            timer: 2000 // Tempo in millisecondi (3 secondi)
-                        });
-                    }
-                });
+                //         // Mostra il popup di errore
+                //         Swal.fire({
+                //             title: "Errore!",
+                //             html: "The product does not match your health. <br>Try another product.",
+                //             icon: "error",
+                //             dangerMode: true,
+                //             background: "#f8f9fa",
+                //             textColor: "#343a40",
+                //             width: "400px",
+                //             padding: "3rem",
+                //             titleFont: "Montserrat_Arabic_Regular",
+                //             textFont: "Montserrat_Arabic_Regular",
+                //             showConfirmButton: false, // Nasconde il pulsante "OK"
+                //             timer: 2000 // Tempo in millisecondi (3 secondi)
+                //         });
+                //     }
+                // });
             }
 
             // Function to create a cart card element
@@ -989,7 +1010,7 @@
         });
     </script>
 
-    <script>
+    <script> //funzione per la geolocalizzazione
         $(document).ready(function () {
             // Request geolocation
             if ("geolocation" in navigator) {
