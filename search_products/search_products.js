@@ -1,12 +1,12 @@
 // Funzione per mostrare il carrello quando la larghezza della finestra è superiore a 1100px
 function mostraCarrello() {
+    var carrelloDiv = document.getElementById("carrello_div");
     if (window.innerWidth > 1100) {
-        var carrelloDiv = document.getElementById("carrello_div");
         carrelloDiv.style.display = "block";
         document.body.classList.remove('popup-active');
     } else {
-        var carrelloDiv = document.getElementById("carrello_div");
         carrelloDiv.style.display = "none";
+        document.body.classList.remove('popup-active');
     }
 }
 
