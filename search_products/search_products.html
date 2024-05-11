@@ -20,7 +20,7 @@
 
     <script async
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKmiR3vhiQGXT9qZBFDQInSqjXSsVL664&loading=async&callback=initMap">
-    </script>
+        </script>
 
 
     <!--
@@ -91,7 +91,7 @@
 
     <!-- Popup Login -->
     <script>
-        window.addEventListener('beforeunload', function(event){
+        window.addEventListener('beforeunload', function (event) {
             if (sessionStorage.getItem("Log") != 1) {
                 $.ajax({
                     url: "server.php",
@@ -343,8 +343,8 @@
 
                 const cardText = $('<div>').addClass('card_text');
                 cardText.append('<h3>' + productData.Nome + '</h3>');
-                if(productData.health!= null){
-                    cardText.append('<p>Healty: '+productData.health+'</p>');
+                if (productData.health != null) {
+                    cardText.append('<p>Healty: ' + productData.health + '</p>');
                 }
                 productCard.append(cardText);
 
@@ -405,23 +405,8 @@
                                     console.error('Si è verificato un errore durante la richiesta.');
                                 }
                             });
-                        }else {
+                        } else {
                             console.log('Prodotto non aggiunto');
-                    //// Mostra il popup di errore
-                            Swal.fire({
-                                title: "Errore!",
-                                html: "The product does not match your health. <br>Try another product.",
-                                icon: "error",
-                                dangerMode: true,
-                                background: "#f8f9fa",
-                                textColor: "#343a40",
-                                width: "400px",
-                                padding: "3rem",
-                                titleFont: "Montserrat_Arabic_Regular",
-                                textFont: "Montserrat_Arabic_Regular",
-                                showConfirmButton: false, // Nasconde il pulsante "OK"
-                                timer: 2000 // Tempo in millisecondi (3 secondi)
-                        });
                         }
                     });
                 });
@@ -433,14 +418,14 @@
             function handleAddToCartSuccess(productData) {
 
                 // checkHealth(productData, function (response) {
-                    // if (response === false) {
-                        if (!document.getElementById(productData.Nome)) {
-                            const carrelloCard = createCartCard(productData);
-                            $('.carrello_spesa').append(carrelloCard);
-                        } else {
-                            const inputElement = document.querySelector(`[id="${productData.Nome}"] .quantity`);
-                            inputElement.value++;
-                        }
+                // if (response === false) {
+                if (!document.getElementById(productData.Nome)) {
+                    const carrelloCard = createCartCard(productData);
+                    $('.carrello_spesa').append(carrelloCard);
+                } else {
+                    const inputElement = document.querySelector(`[id="${productData.Nome}"] .quantity`);
+                    inputElement.value++;
+                }
                 //     } else {
                 //         console.log('Prodotto non aggiunto');
 
@@ -558,7 +543,7 @@
                         if (inputElement.value == 1) {
                             const myDiv = document.getElementById(productName);
                             myDiv.remove();
-                        }else{
+                        } else {
                             inputElement.value--;
                         }
                     },
@@ -582,7 +567,33 @@
                         dataType: "json",
                         success: function (response) {
                             console.log(response);
-                            callback(response); // Call the callback function with the response
+                            if (response == true) {
+                                Swal.fire({
+                                    title: "Are you sure?",
+                                    text: "The product does not match your health",
+                                    icon: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#3085d6",
+                                    cancelButtonColor: "#d33",
+                                    confirmButtonText: "Yes, add it!"
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        Swal.fire({
+                                            title: "Added!",
+                                            text: "Product was added.",
+                                            icon: "success"
+                                        });
+                                        callback(false);
+                                    }
+                                    else{
+                                        callback(true);
+                                    }
+                                });
+
+                            }
+                            else {
+                                callback(false);
+                            }
                         },
                         error: function (xhr, status, error) {
                             console.error('An error occurred during the request.');
@@ -747,7 +758,7 @@
 
                 window.scrollTo({
                     top: 0,
-                    behavior: 'smooth' 
+                    behavior: 'smooth'
                 });
 
                 var sessionId = getSessionId();
@@ -792,7 +803,7 @@
                         //     position: pos,
                         //     map: map,
                         // });
-                       
+
                         const vicino = document.querySelector('.vicino');
                         vicino.innerHTML = `
                             <div class="descrizione">
@@ -1086,7 +1097,7 @@
         </header>
     </div>
 
-    
+
 
     <!-- Search -->
     <div class="search-container" id="searchContainerLarge">
@@ -1097,7 +1108,7 @@
             </button> -->
         </div>
     </div>
-    
+
     <div class="search-container2" id="searchContainerSmall">
         <div class="search">
             <input placeholder="Search Products..." type="text" id="searchBar">
@@ -1109,7 +1120,7 @@
             <img src="./Icone/cart_media.png" alt="Cart Icon">
         </div>
     </div>
-    
+
     <!-- <div class="search">
         <input placeholder="Search Products..." type="text" id="searchBar">
         <button type="submit" id="searchBtn"><ion-icon id="search-icon" name="search" size="medium"></ion-icon></button>
@@ -1166,7 +1177,7 @@
             <img src="Icone/icons8-healthy-food-64.png">
         </div>
     </div>
-    
+
     <!--Login e Signin-->
     <div id="login_div">
         <div class="wrapper">
@@ -1289,7 +1300,7 @@
 
         <div class="right_checkout">
             <div class="economico">
-               
+
             </div>
 
             <div class="vicino">
