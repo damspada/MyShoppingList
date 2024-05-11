@@ -1031,6 +1031,14 @@ body.popup-active {
     margin-bottom: 3%;
 }
 
+.card_text{
+    width: 99%;
+    height: 20%;
+}
+
+.card_text p{
+    color: rgb(147, 143, 143);
+}
 
 .card img {
     max-width: 100%;

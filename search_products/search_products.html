@@ -36,7 +36,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-
     <!-- Check del Login -->
     <script>
         $(document).ready(function () {
@@ -207,7 +206,6 @@
     </script>
 
 
-
     <script> //script per svuotare il carrello alla chiusura della pagina web
         // // window.addEventListener('beforeunload', function(event) {
         // //     $.ajax({
@@ -338,10 +336,17 @@
             // Function to create a product card element
             function createProductCard(productData) {
                 const productCard = $('<div>').addClass('card');
+
                 const cardImage = $('<div>').addClass('card_image');
                 cardImage.append('<img src="' + productData.image + '" alt="' + productData.Nome + '">');
                 productCard.append(cardImage);
-                productCard.append('<h3>' + productData.Nome + '</h3>');
+
+                const cardText = $('<div>').addClass('card_text');
+                cardText.append('<h3>' + productData.Nome + '</h3>');
+                if(productData.health!= null){
+                    cardText.append('<p>Healty: '+productData.health+'</p>');
+                }
+                productCard.append(cardText);
 
                 const productForm = createProductForm(productData);
                 productCard.append(productForm);
