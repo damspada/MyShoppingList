@@ -573,15 +573,18 @@
                                     text: "The product does not match your health",
                                     icon: "warning",
                                     showCancelButton: true,
-                                    confirmButtonColor: "#3085d6",
+                                    confirmButtonColor: "#28A745",
                                     cancelButtonColor: "#d33",
-                                    confirmButtonText: "Yes, add it!"
+                                    confirmButtonText: "Yes, add it!",
+                                    reverseButtons: true,
                                 }).then((result) => {
                                     if (result.isConfirmed) {
                                         Swal.fire({
                                             title: "Added!",
-                                            text: "Product was added.",
-                                            icon: "success"
+                                            icon: "success",
+                                            showConfirmButton: false,
+                                            timer: 1000,
+
                                         });
                                         callback(false);
                                     }
