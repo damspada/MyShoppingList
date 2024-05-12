@@ -263,6 +263,7 @@
     height: 80%;
     width: 45%;
     float: left;
+    margin-top: 3%;
     margin-left: 6%;
     border-radius: 20px;
     border:1px black
@@ -296,6 +297,10 @@
     .bottone_salva{
         font-size: 9px;
     }
+
+    .maps{
+        margin-top: 5%;
+    }
 }
 
 @media screen and (min-width: 901px) and (max-width: 1100px){
@@ -305,6 +310,12 @@
 
     .Totale{
         font-size: 15px;
+    }
+    
+    .maps{
+        height: 60%;
+        width: 45%;
+        margin-top: 10%;
     }
 }
 
@@ -344,6 +355,12 @@
     .carrello_prezzo2 h4{
         font-size: 14px;
     }
+
+    .maps{
+        height: 60%;
+        width: 45%;
+        margin-top: 15%;
+    }
 }
 
 @media screen and (min-width: 500px) and (max-width: 700px){
@@ -381,6 +398,12 @@
 
     .Colonne .colonna3 h3{
         font-size: 11px;
+    }
+
+    .maps{
+        height: 50%;
+        width: 45%;
+        margin-top: 15%;
     }
 }
 
