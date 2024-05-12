@@ -71,6 +71,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: font-size 0.5s ease;
 }
 
 .Colonne{
@@ -84,6 +85,7 @@
     height: 100%;
     float: left;
     text-align: center;
+    transition: font-size 0.5s ease;
 }
 
 .colonna2{
@@ -91,6 +93,7 @@
     height: 100%;
     float: left;
     text-align: center;
+    transition: font-size 0.5s ease;
 }
 
 .colonna3{
@@ -98,6 +101,7 @@
     height: 100%;
     text-align: center; 
     float: left;
+    transition: font-size 0.5s ease;
 }
 
 .carrello { 
@@ -128,11 +132,12 @@
     border-radius: 10px;
     width: 75%;
     height: 75%;
+    font-size: 12px;
     margin: auto;
     background-color:  #00BF63;
-    transition: transform .2s;
     border: none;
     font-weight: 600;
+    transition: transform .2s, font-size 0.5s ease;
 }
 
 .bottone_salva:hover{
@@ -149,6 +154,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: font-size 0.5s ease;
 }
         
 .right_checkout { 
@@ -223,6 +229,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    transition: font-size 0.5s ease;
 }
 
 .carrello_quantità2{
@@ -233,6 +240,7 @@
     justify-content: center;
     text-align: center;
     float: left;
+    transition: font-size 0.5s ease;
 }
 
 .carrello_prezzo2{
@@ -242,12 +250,13 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    transition: font-size 0.5s ease;
 }
 
 .descrizione{
     height: 80%;
     width: 40%;
-    float:left ;
+    float: left;
 }
 
 .maps{
@@ -261,4 +270,174 @@
 
 .descrizione h2{
     font-size: 22px;
+    margin-bottom: 5%;
+    transition: font-size 0.5s ease;
+}
+
+.descrizione .p2{
+    transition: font-size 0.5s ease;
+}
+
+.descrizione .p{
+    transition: font-size 0.5s ease;
+}
+
+.descrizione img{
+    margin-bottom: 5%;
+}
+
+@media screen and (min-width: 1201px) and (max-width: 1400px){
+    .bottone_salva{
+        font-size: 10px;
+    }
+}
+
+@media screen and (min-width: 1101px) and (max-width: 1200px){
+    .bottone_salva{
+        font-size: 9px;
+    }
+}
+
+@media screen and (min-width: 901px) and (max-width: 1100px){
+    .bottone_salva{
+        font-size: 8px;
+    }
+
+    .Totale{
+        font-size: 15px;
+    }
+}
+
+@media screen and (min-width: 701px) and (max-width: 900px){
+    .bottone_salva{
+        font-size: 7px;
+    }
+
+    .Totale{
+        font-size: 13px;
+    }
+
+    .Titolo{
+        font-size: 13px;
+    }
+
+    .Colonne .colonna1 h3{
+        font-size: 13px;
+    }
+
+    .Colonne .colonna2 h3{
+        font-size: 13px;
+    }
+
+    .Colonne .colonna3 h3{
+        font-size: 13px;
+    }
+
+    .carrello_nome2 h3{
+        font-size: 14px;
+    }
+    
+    .carrello_quantità2 h4{
+        font-size: 14px;
+    }
+
+    .carrello_prezzo2 h4{
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 500px) and (max-width: 700px){
+    .bottone_salva{
+        font-size: 6px;
+    }
+
+    .Totale{
+        font-size: 11px;
+    }
+
+    .Titolo{
+        font-size: 11px;
+    }
+
+    .carrello_nome2 h3{
+        font-size: 12px;
+    }
+    
+    .carrello_quantità2 h4{
+        font-size: 12px;
+    }
+
+    .carrello_prezzo2 h4{
+        font-size: 12px;
+    }
+
+    .Colonne .colonna1 h3{
+        font-size: 11px;
+    }
+
+    .Colonne .colonna2 h3{
+        font-size: 11px;
+    }
+
+    .Colonne .colonna3 h3{
+        font-size: 11px;
+    }
+}
+
+
+@media screen and (min-width: 1101px) and (max-width: 1300px){
+    .descrizione h2{
+        font-size: 20px;
+        margin-bottom: 4%;
+    }
+
+    .descrizione .p2{
+        font-size: 18px;
+    }
+
+    .descrizione p{
+        font-size: 18px;
+    }
+
+    .descrizione img{
+        margin-bottom: 4%;
+    }
+}
+
+@media screen and (max-width: 1100px){
+    .descrizione h2{
+        font-size: 18px;
+        margin-bottom: 5%;
+    }
+
+    .descrizione .p2{
+        font-size: 16px;
+    }
+
+    .descrizione p{
+        font-size: 16px;
+    }
+
+    .descrizione img{
+        margin-bottom: 5%;
+    }
+}
+
+@media screen and (max-width: 750px){
+    .descrizione h2{
+        font-size: 16px;
+        margin-bottom: 3%;
+    }
+
+    .descrizione .p2{
+        font-size: 14px;
+    }
+
+    .descrizione p{
+        font-size: 14px;
+    }
+
+    .descrizione img{
+        margin-bottom: 3%;
+    }
 }
