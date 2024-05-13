@@ -1234,8 +1234,13 @@ body.popup-active {
     float: left;
     background-color: white;
     text-align: center;
-    transition: width 0.5s ease;
+    transition: width 0.5s ease, box-shadow 0.2s ease;
 }
+
+.card:hover {
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2); /* Aggiungi un'ombra al passaggio del mouse */
+}
+
 
 .card_image{
     border: 1px solid #ccc;
