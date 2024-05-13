@@ -9,6 +9,7 @@
     <link rel="shortcut icon" href="Icone/favicon.png">
     <link rel="stylesheet" href="search_products.css">
     <link rel="stylesheet" href="checkut_css.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
@@ -18,9 +19,12 @@
 
     <script src="https://unpkg.com/jspdf-autotable@3.5.22/dist/jspdf.plugin.autotable.js"></script>
 
-    <script async
+    <!-- API google maps -->
+    <!-- <script async
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKmiR3vhiQGXT9qZBFDQInSqjXSsVL664&loading=async&callback=initMap">
-        </script>
+    </script> -->
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 
     <!--
@@ -793,17 +797,18 @@
                             </div>
                         `;
 
-
-                        // var Latitudine=parseFloat(response.cheapestSupermarket.latitude);
-                        // var Longitudine= parseFloat(response.cheapestSupermarket.longitude);
-                        // console.log(Latitudine);
-                        // console.log(Longitudine);
-                        // var pos = {lat: Latitudine, lng: Longitudine} ;
-                        // var map = new google.maps.Map(document.getElementById('map'), {center: pos, zoom: 14, tilt:0}); 
-                        // var marker = new google.maps.Marker({
-                        //     position: pos,
-                        //     map: map,
-                        // });
+                        var greenIcon = L.icon({
+                            iconUrl: 'Icone/icons8-marker-48 (1).png',
+                            iconSize:     [35, 40], // size of the icon
+                        });
+                        var Latitudine=parseFloat(response.cheapestSupermarket.latitude);
+                        var Longitudine= parseFloat(response.cheapestSupermarket.longitude);
+                        var map = L.map('map').setView([Latitudine, Longitudine], 15);
+                        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            maxZoom: 19,
+                            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                        }).addTo(map);
+                        L.marker([Latitudine, Longitudine], {icon: greenIcon}).addTo(map);
 
                         const vicino = document.querySelector('.vicino');
                         vicino.innerHTML = `
@@ -820,19 +825,15 @@
                             </div>
                         `;
 
-                        // var Latitudine=parseFloat(response.nearestSupermarket.latitude);
-                        // var Longitudine= parseFloat(response.nearestSupermarket.longitude);
-                        // console.log(Latitudine);
-                        // console.log(Longitudine);
-                        // var pos = {lat: Latitudine, lng: Longitudine} ;
-                        // var map = new google.maps.Map(document.getElementById('map2'), {center: pos, zoom: 14, tilt:0}); 
-                        // marker = new google.maps.Marker({
-                        //     position: pos,
-                        //     map: map,
-                        // });
+                        Latitudine=parseFloat(response.nearestSupermarket.latitude);
+                        Longitudine= parseFloat(response.nearestSupermarket.longitude);
+                        var map = L.map('map2').setView([Latitudine, Longitudine], 15);
+                        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            maxZoom: 19,
+                            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                        }).addTo(map);
+                        L.marker([Latitudine, Longitudine], {icon: greenIcon}).addTo(map);
 
-                        // <p>Latitudine: ${response.nearestSupermarket.latitude}</p>
-                        // <p>Longitudine: ${response.nearestSupermarket.longitude}</p>
 
                         const consigliato = document.querySelector('.consigliato');
                         consigliato.innerHTML = `
@@ -849,19 +850,15 @@
                             </div>
                         `;
 
-                        // var Latitudine=parseFloat(response.recommendedSupermarket.latitude);
-                        // var Longitudine= parseFloat(response.recommendedSupermarket.longitude);
-                        // console.log(Latitudine);
-                        // console.log(Longitudine);
-                        // var pos = {lat: Latitudine, lng: Longitudine} ;
-                        // var map = new google.maps.Map(document.getElementById('map3'), {center: pos, zoom: 14, tilt:0}); 
-                        // marker = new google.maps.Marker({
-                        //     position: pos,
-                        //     map: map,
-                        // });
+                        Latitudine=parseFloat(response.recommendedSupermarket.latitude);
+                        Longitudine= parseFloat(response.recommendedSupermarket.longitude);
+                        var map = L.map('map3').setView([Latitudine, Longitudine], 15);
+                        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            maxZoom: 19,
+                            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                        }).addTo(map);
+                        L.marker([Latitudine, Longitudine], {icon: greenIcon}).addTo(map);
 
-                        // <p>Latitudine: ${response.recommendedSupermarket.latitude}</p>
-                        // <p>Longitudine: ${response.recommendedSupermarket.longitude}</p>
 
                         // Inserisci lista dei prodotti nel carrello
                         response.productsPrices.forEach(function (element) {
