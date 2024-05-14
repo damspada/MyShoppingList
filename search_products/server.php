@@ -1187,6 +1187,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             // Retrieve email and health from the URL
             $email = $_GET['email'];
             $health = $_GET['health'];
+            $nome = $_GET['nome'];
+
+            // controlla se $nome ossia il nome del prodotto è già presente nel carrello
+
+            $check_prodotto = "SELECT * FROM `Cart` WHERE Nome = '$nome'";
+            $result = $conn->query($check_prodotto);
+
+            if ($result->num_rows > 0) {
+                echo json_encode(false);
+                exit; // Terminate the script
+            }
 
             if ($health < 6 && $health != null) {
                 // Check if the user with the email and 'Sportivo' life exists

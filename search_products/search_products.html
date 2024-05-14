@@ -538,14 +538,14 @@
 
 
             // Variabile per memorizzare i prodotti non conformi già aggiunti al carrello dall'utente
-            var nonConformingProducts = [];
+/*             var nonConformingProducts = [];
 
             window.onload = function() {
                 var prodotti = sessionStorage.getItem("nonConformingProducts");
                 if (prodotti !== null) {
                     nonConformingProducts = JSON.parse(prodotti);
                 }
-            };
+            }; */
 
             // Function to check the health of a product correspond to the health of the user            
             function checkHealth(productData, callback) {
@@ -554,17 +554,17 @@
 
                 if (log == 1) {
 
-                    // Controlla se il prodotto non è stato già aggiunto al carrello dall'utente
+/*                     // Controlla se il prodotto non è stato già aggiunto al carrello dall'utente
                     if (nonConformingProducts.includes(productData.Nome)) {
                         // Se il prodotto è già stato aggiunto, consenti all'utente di aggiungerlo senza mostrare l'avviso
                         callback(false);
                         return;
-                    }
+                    } */
 
                     $.ajax({
                         url: "server.php",
                         method: "GET",
-                        data: { action: 'check_health', email: email, health: productData.health }, // Corrected 'productData.health'
+                        data: { action: 'check_health', email: email, health: productData.health, nome: productData.Nome}, // Corrected 'productData.health'
                         dataType: "json",
                         success: function (response) {
                             console.log(response);
@@ -587,11 +587,12 @@
                                             timer: 1000,
                                             width: "400px"
                                         });
-
+/* 
                                         // Aggiungi il prodotto alla lista dei prodotti non conformi aggiunti al carrello
                                         nonConformingProducts.push(productData.Nome);
                                         updateNonConformingProducts(); 
-                                        callback(false);
+                                        */
+                                        callback(false); 
                                     }
                                     else {
                                         callback(true);
@@ -612,10 +613,10 @@
                     callback(false); // Call the callback function with false if log is not 1
                 }
             }
-
+/* 
             function updateNonConformingProducts() {
                 sessionStorage.setItem("nonConformingProducts", JSON.stringify(nonConformingProducts));
-            }
+            } */
 
 
             // Effettua la richiesta al server per ottenere i prodotti
