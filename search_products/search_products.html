@@ -561,6 +561,13 @@
             // Variabile per memorizzare i prodotti non conformi già aggiunti al carrello dall'utente
             var nonConformingProducts = [];
 
+            window.onload = function() {
+                var prodotti = sessionStorage.getItem("nonConformingProducts");
+                if (prodotti !== null) {
+                    nonConformingProducts = JSON.parse(prodotti);
+                }
+            };
+
             // Function to check the health of a product correspond to the health of the user            
             function checkHealth(productData, callback) {
                 var log = sessionStorage.getItem("Log");
@@ -604,6 +611,7 @@
                                         
                                         // Aggiungi il prodotto alla lista dei prodotti non conformi aggiunti al carrello
                                         nonConformingProducts.push(productData.Nome);
+                                        updateNonConformingProducts(); 
                                         callback(false);
                                     }
                                     else{
@@ -624,6 +632,10 @@
                 } else {
                     callback(false); // Call the callback function with false if log is not 1
                 }
+            }
+
+            function updateNonConformingProducts() {
+                sessionStorage.setItem("nonConformingProducts", JSON.stringify(nonConformingProducts));
             }
 
 
