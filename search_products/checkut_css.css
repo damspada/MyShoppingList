@@ -138,6 +138,7 @@
     border: none;
     font-weight: 600;
     transition: transform .2s, font-size 0.5s ease;
+    cursor: pointer;
 }
 
 .bottone_salva:hover{
@@ -194,6 +195,46 @@
     height: 32.6%;
     width: 100%;
 }
+
+.blurred {
+    filter: blur(15px);
+    pointer-events: none;
+    user-select: none;
+}
+
+.blurred-text-wrapper {
+    position: absolute;
+    top: 25%;
+    text-align: center;
+    font-size: 16px;
+    padding: 20px;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 999999999;
+}
+
+.blurred-text{
+    font-size: 25px;
+    color: black;
+    font-weight: 800;
+}
+
+.register-button-check{
+    cursor: pointer;
+    background-color: #00BF63;
+    color: white;
+    padding: 5px 10px;
+    margin-top: 5%;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    font-size: 25px;
+    font-weight: 600;
+    border: none;
+}
+
+.register-button-check:hover{
+    background-color: #048948; 
+}
+
 
 .right_checkout img {
     max-width: 50%; /* Imposta la larghezza massima dell'immagine al 100% della larghezza del contenitore */

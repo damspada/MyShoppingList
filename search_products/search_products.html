@@ -874,12 +874,12 @@
                             });
                             var Latitudine = parseFloat(response.cheapestSupermarket.latitude);
                             var Longitudine = parseFloat(response.cheapestSupermarket.longitude);
-                            var map = L.map('map').setView([Latitudine, Longitudine], 15);
+                            var map1 = L.map('map').setView([Latitudine, Longitudine], 15);
                             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                                 maxZoom: 19,
                                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                            }).addTo(map);
-                            L.marker([Latitudine, Longitudine], { icon: greenIcon }).addTo(map);
+                            }).addTo(map1);
+                            var markerEconomico = L.marker([Latitudine, Longitudine], { icon: greenIcon }).addTo(map1);
 
                             const vicino = document.querySelector('.vicino');
                             vicino.innerHTML = `
@@ -898,12 +898,12 @@
 
                             Latitudine = parseFloat(response.nearestSupermarket.latitude);
                             Longitudine = parseFloat(response.nearestSupermarket.longitude);
-                            var map = L.map('map2').setView([Latitudine, Longitudine], 15);
+                            var map2 = L.map('map2').setView([Latitudine, Longitudine], 15);
                             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                                 maxZoom: 19,
                                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                            }).addTo(map);
-                            L.marker([Latitudine, Longitudine], { icon: greenIcon }).addTo(map);
+                            }).addTo(map2);
+                            var markerVicino = L.marker([Latitudine, Longitudine], { icon: greenIcon }).addTo(map2);
 
 
                             const consigliato = document.querySelector('.consigliato');
@@ -930,6 +930,50 @@
                             }).addTo(map);
                             L.marker([Latitudine, Longitudine], { icon: greenIcon }).addTo(map);
 
+                            
+                            if (sessionStorage.getItem('Log') != 1) {
+                                document.querySelector('.vicino').classList.add('blurred');
+                                document.querySelector('.economico').classList.add('blurred');
+
+                                // Rimozione dei marker dalle mappe
+                                map1.removeLayer(markerEconomico);
+                                map2.removeLayer(markerVicino);
+
+                                // Verifica se l'elemento del testo è già presente
+                                if (!document.querySelector('.blurred-text-wrapper')) {
+                                    // Creazione dell'elemento wrapper esterno
+                                    const blurredTextWrapper = document.createElement('div');
+                                    blurredTextWrapper.classList.add('blurred-text-wrapper');
+
+                                    // Creazione del testo e del bottone
+                                    const blurredTextContent = `
+                                        <div class="blurred-text">
+                                            Want to know the closest or cheapest supermarkets?
+                                            <br>
+                                            <button class="register-button-check">Register Now!</button>
+                                        </div>
+                                    `;
+
+                                    // Aggiunta del testo e del bottone all'elemento wrapper esterno
+                                    blurredTextWrapper.innerHTML = blurredTextContent;
+
+                                    // Aggiunta dell'elemento wrapper esterno tra i due div blurrati
+                                    const vicinoDiv = document.querySelector('.vicino');
+                                    const economicoDiv = document.querySelector('.economico');
+                                    vicinoDiv.parentNode.insertBefore(blurredTextWrapper, economicoDiv);
+
+                                    // Aggiungi un evento click al bottone "Registrati ora"
+                                    blurredTextWrapper.querySelector('.register-button').addEventListener('click', function () {
+                                        const wrapper = document.querySelector('.wrapper');
+                                        const body = document.querySelector('body');
+                                        wrapper.classList.add('active-popup');
+                                        body.classList.add('popup-active');
+                                        checkout_wrapper.classList.remove('active-popup');
+                                    });
+                                }
+                            }
+
+ 
 
                             // Inserisci lista dei prodotti nel carrello
                             response.productsPrices.forEach(function (element) {

@@ -1282,6 +1282,7 @@ h3{
     background-color: #00BF63;
     transition: transform .2s;
     border: none;
+    cursor: pointer;
 }
 
 .bottoni_tondi:hover{
@@ -1295,6 +1296,7 @@ h3{
     background-color: #eb1906;
     transition: transform .2s;
     border: none;
+    cursor: pointer;
 }
 
 .bottoni_tondi2:hover{
@@ -1309,6 +1311,7 @@ h3{
     transition: transform .2s, width 0.5s ease;
     border: none;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .bottone_carrello:hover{
@@ -1402,6 +1405,7 @@ h3{
     font-weight: 600;
     margin-left: auto;
     margin-right: auto;
+    cursor: pointer;
 }
 
 .bottone_checkout:hover{
@@ -1456,6 +1460,7 @@ h3{
     width: 1rem;
     left: 20%;
     background-color: #eb1906; 
+    cursor: pointer;
 }
 
 
@@ -1589,6 +1594,7 @@ h4{
     font-weight: 600;
     margin: 3%;
     font-size: 20px;
+    cursor: pointer;
 }
 
 .bottone_carrello2:hover{
