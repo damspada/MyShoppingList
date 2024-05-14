@@ -18,7 +18,8 @@
         window.addEventListener('load', function (event) {
             console.log(sessionStorage.getItem("Log"));
             console.log(sessionStorage.getItem("email"));
-            if (sessionStorage.getItem("Log") != 1) {
+            console.log(sessionStorage.getItem("sessionId"));
+            if (sessionStorage.getItem("Log") != 1 && sessionStorage.getItem("sessionId")==null) {
                 $.ajax({
                     url: "check_login.php",
                     type: "POST",
@@ -228,7 +229,9 @@
         }
 
         // Call function to set session cookie
-        setSessionCookie();
+        $(document).ready(function(){
+            setSessionCookie();
+        })
     </script>
 
 </head>
