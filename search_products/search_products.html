@@ -776,7 +776,7 @@
                 if (maxAmount == true) {
                     Swal.fire({
                         title: "Are you sure?",
-                        text: "The product does not match your health",
+                        text: "The total is grater than your max amount",
                         icon: "warning",
                         showCancelButton: true,
                         confirmButtonColor: "#28A745",
@@ -786,7 +786,7 @@
                     }).then((result) => {
                         if (result.isConfirmed) {
                             Swal.fire({
-                                title: "Added!",
+                                title: "Continued!",
                                 icon: "success",
                                 showConfirmButton: false,
                                 timer: 1000,
