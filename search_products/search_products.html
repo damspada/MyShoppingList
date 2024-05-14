@@ -9,7 +9,8 @@
     <link rel="shortcut icon" href="Icone/favicon.png">
     <link rel="stylesheet" href="search_products.css">
     <link rel="stylesheet" href="checkut_css.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
@@ -24,7 +25,8 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKmiR3vhiQGXT9qZBFDQInSqjXSsVL664&loading=async&callback=initMap">
     </script> -->
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 
     <!--
@@ -551,14 +553,14 @@
                 var email = sessionStorage.getItem('email');
 
                 if (log == 1) {
-                    
+
                     // Controlla se il prodotto non è stato già aggiunto al carrello dall'utente
                     if (nonConformingProducts.includes(productData.Nome)) {
                         // Se il prodotto è già stato aggiunto, consenti all'utente di aggiungerlo senza mostrare l'avviso
                         callback(false);
                         return;
                     }
-                    
+
                     $.ajax({
                         url: "server.php",
                         method: "GET",
@@ -585,13 +587,13 @@
                                             timer: 1000,
                                             width: "400px"
                                         });
-                                        
+
                                         // Aggiungi il prodotto alla lista dei prodotti non conformi aggiunti al carrello
                                         nonConformingProducts.push(productData.Nome);
                                         updateNonConformingProducts(); 
                                         callback(false);
                                     }
-                                    else{
+                                    else {
                                         callback(true);
                                     }
                                 });
@@ -757,6 +759,62 @@
 
     <script> //script per la chiusura del checkout
         $(document).ready(function () {
+
+            // Function to display empty cart message
+            function showEmptyCartMessage() {
+                Swal.fire({
+                    title: "The cart is empty!",
+                    text: "Add products to your cart before proceeding to checkout.",
+                    icon: "warning",
+                    showCancelButton: false,
+                    showConfirmButton: false, // Hides "OK" button
+                    timer: 2000
+                });
+            }
+
+            function checkMaxAmount(maxAmount) {
+                if (maxAmount == true) {
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "The product does not match your health",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#28A745",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, add it!",
+                        reverseButtons: true,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                                title: "Added!",
+                                icon: "success",
+                                showConfirmButton: false,
+                                timer: 1000,
+                                width: "400px"
+                            });
+                            callback(false);
+                        }
+                        else {
+                            callback(true);
+                        }
+                    });
+
+                }
+                else {
+                    callback(false);
+                }
+            }
+
+            // Function to scroll to top smoothly
+            function scrollToTop() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+
+
+
             const checkout_wrapper = document.querySelector('.wrapper_checkout');
             const checkout_body = document.querySelector('body');
             const checkout_iconClose = document.querySelector('.icon_close_checkout');
@@ -774,21 +832,10 @@
                 event.preventDefault();
 
                 if (!checkCartNotEmpty()) {
-                    // Il carrello è vuoto, mostra l'alert Swal
-                    Swal.fire({
-                        title: "The cart is empty!",
-                        text: "Add products to your cart before proceeding to checkout.",
-                        icon: "warning",
-                        showCancelButton: false,
-                        showConfirmButton: false, // Nasconde il pulsante "OK"
-                        timer: 2000
-                    });
+                    showEmptyCartMessage();
                 } else {
 
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
+
 
                     var sessionId = getSessionId();
                     // Effettua la richiesta GET al server
@@ -799,6 +846,7 @@
                         method: "GET",
                         data: { id: sessionId },
                         success: function (response) {
+
                             var Cart = "Cart";
                             const myDiv = document.querySelector('.carrello'); // Seleziona l'elemento <div>
                             myDiv.innerHTML = '';
@@ -821,16 +869,16 @@
 
                             var greenIcon = L.icon({
                                 iconUrl: 'Icone/icons8-marker-48 (1).png',
-                                iconSize:     [35, 40], // size of the icon
+                                iconSize: [35, 40], // size of the icon
                             });
-                            var Latitudine=parseFloat(response.cheapestSupermarket.latitude);
-                            var Longitudine= parseFloat(response.cheapestSupermarket.longitude);
+                            var Latitudine = parseFloat(response.cheapestSupermarket.latitude);
+                            var Longitudine = parseFloat(response.cheapestSupermarket.longitude);
                             var map = L.map('map').setView([Latitudine, Longitudine], 15);
                             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                                 maxZoom: 19,
                                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                             }).addTo(map);
-                            L.marker([Latitudine, Longitudine], {icon: greenIcon}).addTo(map);
+                            L.marker([Latitudine, Longitudine], { icon: greenIcon }).addTo(map);
 
                             const vicino = document.querySelector('.vicino');
                             vicino.innerHTML = `
@@ -847,14 +895,14 @@
                                 </div>
                             `;
 
-                            Latitudine=parseFloat(response.nearestSupermarket.latitude);
-                            Longitudine= parseFloat(response.nearestSupermarket.longitude);
+                            Latitudine = parseFloat(response.nearestSupermarket.latitude);
+                            Longitudine = parseFloat(response.nearestSupermarket.longitude);
                             var map = L.map('map2').setView([Latitudine, Longitudine], 15);
                             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                                 maxZoom: 19,
                                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                             }).addTo(map);
-                            L.marker([Latitudine, Longitudine], {icon: greenIcon}).addTo(map);
+                            L.marker([Latitudine, Longitudine], { icon: greenIcon }).addTo(map);
 
 
                             const consigliato = document.querySelector('.consigliato');
@@ -872,14 +920,14 @@
                                 </div>
                             `;
 
-                            Latitudine=parseFloat(response.recommendedSupermarket.latitude);
-                            Longitudine= parseFloat(response.recommendedSupermarket.longitude);
+                            Latitudine = parseFloat(response.recommendedSupermarket.latitude);
+                            Longitudine = parseFloat(response.recommendedSupermarket.longitude);
                             var map = L.map('map3').setView([Latitudine, Longitudine], 15);
                             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                                 maxZoom: 19,
                                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                             }).addTo(map);
-                            L.marker([Latitudine, Longitudine], {icon: greenIcon}).addTo(map);
+                            L.marker([Latitudine, Longitudine], { icon: greenIcon }).addTo(map);
 
 
                             // Inserisci lista dei prodotti nel carrello
@@ -1014,16 +1062,17 @@
 
 
 
-
-
                         },
                         error: function (xhr, status, error) {
                             console.error('Si è verificato un errore durante la richiesta.');
                         }
                     });
 
+                    scrollToTop();
                     checkout_wrapper.classList.add('active-popup');
                     checkout_body.classList.add('popup-active');
+
+
                 }
             });
 

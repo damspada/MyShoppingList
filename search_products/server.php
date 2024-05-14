@@ -1140,6 +1140,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 $productsPrices[] = $row;
             }
         }
+        
+        $check_sessionID = "SELECT id FROM `utenti` WHERE id = '$sessionId'";
+        $result = $conn->query($check_sessionID);
+        $check_sessionID = $result->num_rows > 0 ? true : false;
+
+        if ($check_sessionID) {
+            $MaxAmount = "SELECT budget FROM `utenti` WHERE id = '$sessionId'";
+            $result = $conn->query($check_MaxAmount);
+            $row = $result->fetch_assoc();
+            $MaxAmount = $row['budget'];
+
+            if ($MaxAmount < $recommended_supermarket_totalPrice) {
+                $check_MaxAmount = true;
+            } else {
+                $check_MaxAmount = false;
+            }
+        } else {
+            $check_MaxAmount = false;
+        }
+
+        $check_MaxAmount = false;
 
         // Create an associative array with the data to return
         $responseData = array(
@@ -1148,7 +1169,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             "recommendedSupermarket" => $recommended_supermarket,
             "productsPrices" => $productsPrices,
             "user_latitude" => $user_latitude,
-            "user_longitude" => $user_longitude
+            "user_longitude" => $user_longitude,
+            "check_MaxAmount" => $check_MaxAmount
         );
 
 
@@ -1166,7 +1188,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $email = $_GET['email'];
             $health = $_GET['health'];
 
-            if ($health < 6 && $health!=null) {
+            if ($health < 6 && $health != null) {
                 // Check if the user with the email and 'Sportivo' life exists
                 $check_health = "SELECT * FROM `utenti` WHERE email = '$email' AND life = 'Sportivo'";
                 $result = $conn->query($check_health);
