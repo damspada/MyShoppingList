@@ -369,6 +369,12 @@
     }
 }
 
+@media screen and (max-width: 1400px) and (max-height: 700px){
+    .carrello_elemento2{
+        height: 15%;
+    }
+}
+
 @media screen and (min-width: 701px) and (max-width: 900px){
     .bottone_salva{
         font-size: 7px;

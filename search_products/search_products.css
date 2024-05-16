@@ -988,6 +988,24 @@ body.popup-active {
     }
 }
 
+@media screen and (max-width: 1200px) and (max-height: 800px){
+    .wrapper{
+        padding: 16% 0 !important;
+    }
+}
+
+@media screen and (max-width: 900px) and (max-height: 700px){
+    .wrapper{
+        padding: 20% 0 !important;
+    }
+}
+
+@media screen and (max-width: 700px) and (max-height: 700px){
+    .wrapper{
+        padding: 24% 0 !important;
+    }
+}
+
 /*-------------------------------- Search --------------------------------*/
 
 /* senza carrello */
