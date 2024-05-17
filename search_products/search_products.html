@@ -761,6 +761,10 @@
     <script> //script per la chiusura del checkout
         $(document).ready(function () {
 
+            const checkout_wrapper = document.querySelector('.wrapper_checkout');
+            const checkout_body = document.querySelector('body');
+            const checkout_iconClose = document.querySelector('.icon_close_checkout');
+            const checkout_btnPopup = document.querySelector('.bottone_checkout');
             // Function to display empty cart message
             function showEmptyCartMessage() {
                 Swal.fire({
@@ -782,20 +786,16 @@
                         showCancelButton: true,
                         confirmButtonColor: "#28A745",
                         cancelButtonColor: "#d33",
-                        confirmButtonText: "Yes, add it!",
+                        confirmButtonText: "Yes, continue!",
                         reverseButtons: true,
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            Swal.fire({
-                                title: "Continued!",
-                                icon: "success",
-                                showConfirmButton: false,
-                                timer: 1000,
-                                width: "400px"
-                            });
+                            checkout_wrapper.classList.add('active-popup');
+                            checkout_body.classList.add('popup-active');
                             callback(false);
                         }
                         else {
+
                             callback(true);
                         }
                     });
@@ -815,12 +815,6 @@
             }
 
 
-
-            const checkout_wrapper = document.querySelector('.wrapper_checkout');
-            const checkout_body = document.querySelector('body');
-            const checkout_iconClose = document.querySelector('.icon_close_checkout');
-            const checkout_btnPopup = document.querySelector('.bottone_checkout');
-
             // Funzione per controllare se il carrello è vuoto
             function checkCartNotEmpty() {
                 var carrelloSpesa = document.querySelector('.carrello_spesa');
@@ -836,8 +830,6 @@
                     showEmptyCartMessage();
                 } else {
 
-
-
                     var sessionId = getSessionId();
                     // Effettua la richiesta GET al server
                     // INPUT: None (posizione la trova dal datbase delle sessioni, i prodotti nel carrello dal database cart)
@@ -847,6 +839,13 @@
                         method: "GET",
                         data: { id: sessionId },
                         success: function (response) {
+
+                            if(response.cheapestSupermarket.totalPrice>sessionStorage.getItem("budget") && sessionStorage.getItem("budget")!=null){
+                                checkMaxAmount(true);
+                            }else{
+                                checkout_wrapper.classList.add('active-popup');
+                                checkout_body.classList.add('popup-active');
+                            }
 
                             var Cart = "Cart";
                             const myDiv = document.querySelector('.carrello'); // Seleziona l'elemento <div>
@@ -1110,9 +1109,7 @@
                     });
 
                     scrollToTop();
-                    checkout_wrapper.classList.add('active-popup');
-                    checkout_body.classList.add('popup-active');
-
+                  
 
                 }
             });

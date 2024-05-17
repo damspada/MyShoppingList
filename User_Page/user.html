@@ -51,6 +51,7 @@
                     formData.append('password', document.getElementById('password').value);
                     formData.append('stile_di_vita', document.getElementById('stile_di_vita').value);
                     formData.append('importo', document.getElementById('importo').value);
+                    sessionStorage.setItem("budget",document.getElementById('importo').value);
                     formData.append('id', sessionStorage.getItem('sessionId'));
                 
                     // Esegui la richiesta AJAX
@@ -91,7 +92,8 @@
                             console.log(element.born);
                             console.log(element.cell);
                             console.log(element.email);
-
+                            console.log(element.budget);
+                            sessionStorage.setItem("budget",element.budget);
                             if(element.immagine){
                                 var url = element.immagine;
                                 var path = url.split("../../..")[1];
@@ -190,6 +192,7 @@
                 // Aggiungi un event listener al pulsante "Update Profile"
                 document.getElementById("icon_log_out").addEventListener("click", function(event){
                     sessionStorage.setItem("Log", 0);
+                    sessionStorage.removeItem("budget");
                 });
             };
         });
@@ -216,6 +219,7 @@
                     formData.append('password', document.getElementById('password').value);
                     formData.append('stile_di_vita', document.getElementById('stile_di_vita').value);
                     formData.append('importo', document.getElementById('importo').value);
+                    sessionStorage.setItem("budget",document.getElementById('importo').value);
                     formData.append('id', sessionStorage.getItem('sessionId'));
 
                     // Esegui la richiesta AJAX

@@ -57,16 +57,14 @@
                     data: { email: email, pass: pass },
                     success: function(response){
                         // Se la risposta è 'success', l'utente esiste nel database
-
-                        console.log(sessionStorage.getItem("Log"));
-                        console.log(sessionStorage.getItem("email"));
+                        console.log(response)
                         if(response.trim() === 'success'){
                             // Reindirizza l'utente alla sua pagina utente
-                             window.location.href = '../User_Page/user.html';
-                             sessionStorage.setItem("Log",1);
-                             sessionStorage.setItem("email",email);
+                            window.location.href = '../User_Page/user.html';
+                            sessionStorage.setItem("Log",1);
+                            sessionStorage.setItem("email",email);
+
                         } else {
-                            // Mostra il popup di errore
                             Swal.fire({
                                 title: "Errore!",
                                 html: "Invalid credentials. <br>Try again.",
