@@ -61,13 +61,25 @@
                     data: { email: email, pass: pass },
                     success: function (response) {
                         // Se la risposta è 'success', l'utente esiste nel database
-                        sessionStorage.setItem("Log", 1);
-                        sessionStorage.setItem("email", email);
-                        console.log(sessionStorage.getItem("Log"));
-                        console.log(sessionStorage.getItem("email"));
                         if (response.trim() === 'success') {
                             // Reindirizza l'utente alla sua pagina utente
                             window.location.href = '../User_Page/user.html';
+                            sessionStorage.setItem("Log",1);
+                            sessionStorage.setItem("email",email);
+                            // $.ajax({
+                            //     url: "server.php",
+                            //     type: "POST",
+                            //     data: {
+                            //         cestino: 1
+                            //     },
+                            //     success: function (data) {
+                            //         console.log('Richiesta andata a buon fine.');
+                            //     },
+                            //     error: function (xhr, status, error) {
+                            //         // Gestisci gli errori durante la chiamata AJAX
+                            //         console.error('Si è verificato un errore durante la richiesta.');
+                            //     }
+                            // })
                         } else {
                             // Mostra il popup di errore
                             Swal.fire({
@@ -706,7 +718,7 @@
 
             // Funzione per barra di ricerca premento il tasto invio
             searchBar.addEventListener("keydown", (e) => {
-                if (e.key === "Enter" && searchBar.value !== "") {
+                if (e.key === "Enter" ) {
                     const searchQuery = searchBar.value;
                     $.ajax({
                         url: "server.php",

@@ -28,6 +28,7 @@
                     },
                     success: function (data) {
                         console.log('Richiesta andata a buon fine.');
+                        setSessionCookie();
                     },
                     error: function (xhr, status, error) {
                         // Gestisci gli errori durante la chiamata AJAX
@@ -63,7 +64,20 @@
                             window.location.href = '../User_Page/user.html';
                             sessionStorage.setItem("Log",1);
                             sessionStorage.setItem("email",email);
-
+                            // $.ajax({
+                            //     url: "check_login.php",
+                            //     type: "POST",
+                            //     data: {
+                            //         cestino: 1
+                            //     },
+                            //     success: function (data) {
+                            //         console.log('Richiesta andata a buon fine.');
+                            //     },
+                            //     error: function (xhr, status, error) {
+                            //         // Gestisci gli errori durante la chiamata AJAX
+                            //         console.error('Si è verificato un errore durante la richiesta.');
+                            //     }
+                            // })
                         } else {
                             Swal.fire({
                                 title: "Errore!",
@@ -227,9 +241,9 @@
         }
 
         // Call function to set session cookie
-        $(document).ready(function(){
-            setSessionCookie();
-        })
+        // $(document).ready(function(){
+        //     setSessionCookie();
+        // })
     </script>
 
 </head>
