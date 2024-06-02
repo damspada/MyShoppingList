@@ -410,10 +410,10 @@ body.popup-active {
 }
 
 .tooltip-top4:before {
-    content: "Cured Meat";
+    content: "Hams & Cheeses";
     font-weight: 600;
     position: absolute;
-    width: 115%;
+    width: 155%;
     text-align: center;
     background-color: #00BF63;
     transform: translateX(-50%);
@@ -657,6 +657,7 @@ body.popup-active {
         margin-top: 2%;
         margin: auto;
         overflow-x: scroll;
+        overflow-y: hidden;
         white-space: nowrap; 
         align-items: center;
         margin-left: 2%;
@@ -679,6 +680,7 @@ body.popup-active {
         margin-top: 2%;
         margin: auto;
         overflow-x: scroll;
+        overflow-y: hidden;
         white-space: nowrap; 
         align-items: center;
         margin-left: 2%;
@@ -700,6 +702,7 @@ body.popup-active {
         margin-top: 2%;
         margin: auto;
         overflow-x: scroll;
+        overflow-y: hidden;
         white-space: nowrap; 
         align-items: center;
         margin-left: 2.5%;
