@@ -721,12 +721,14 @@ body.popup-active {
 @media screen and (max-width: 900px){
     .filter-wrapper{
         margin-left: 3%;
+        overflow-y: hidden;
     }
 }
 
 @media screen and (max-width: 700px){
     .filter-wrapper{
         margin-left: 3.5%;
+        overflow-y: hidden;
     }
 }
 
@@ -735,6 +737,7 @@ body.popup-active {
         top: 16%;
         padding-top: 5%;
         transition: top 0.5s ease;
+        overflow-y: hidden;
     }
 }
 
@@ -743,6 +746,7 @@ body.popup-active {
         top: 18%;
         height: 20%;
         padding-top: 5%;
+        overflow-y: hidden;
     }
 }
 
@@ -750,6 +754,7 @@ body.popup-active {
     .filter-wrapper {
         top: 15% !important;
         padding: 10% 0 5% 0 !important;
+        overflow-y: hidden;
     }
 }
 
@@ -757,18 +762,21 @@ body.popup-active {
     .filter-wrapper {
         top: 25%;
         padding: 15% 0 10% 0;
+        overflow-y: hidden;
     }
 }
 
 @media screen and (max-height: 500px){
     .filter-wrapper {
         top: 30%;
+        overflow-y: hidden;
     }
 }
 
 @media screen and (max-height: 400px){
     .filter-wrapper {
         top: 40%;
+        overflow-y: hidden;
     }
 }
 
