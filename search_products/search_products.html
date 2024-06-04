@@ -968,6 +968,9 @@
                             // sul bottone mettiamo un addEventListener che al click del bottone fa un richiesta get al server
 
                             const bottoneSalva = document.querySelector('.bottone_salva');
+                            bottoneSalva.removeEventListener('click', function (event) {
+                                event.preventDefault();
+                            });
                             bottoneSalva.addEventListener('click', function (event) {
                                 event.preventDefault();
 
