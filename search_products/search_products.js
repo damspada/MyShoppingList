@@ -3,10 +3,10 @@ function mostraCarrello() {
     var carrelloDiv = document.getElementById("carrello_div");
     if (window.innerWidth > 1100) {
         carrelloDiv.style.display = "block";
-        document.body.classList.remove('popup-active');
+        // document.body.classList.remove('popup-active');
     } else {
         carrelloDiv.style.display = "none";
-        document.body.classList.remove('popup-active');
+        // document.body.classList.remove('popup-active');
     }
 }
 
