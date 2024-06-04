@@ -1005,24 +1005,26 @@
 
                                         // Decrease font size for Session ID and Email
                                         doc.setFontSize(8);
-                                        doc.text('Session ID: ' + sessionId, 10, yOffset);
-                                        doc.text('Email: ' + email, 10, 56 - yOffset);
+                                        // doc.text('Session ID: ' + sessionId, 10, yOffset);
+                                        doc.text('Email: ' + email, 10, 46 - yOffset);
 
                                         // Reset font to default
                                         doc.setFontSize(10);
 
                                         // Insert recommended supermarket info with clear formatting
-                                        insertSupermarketInfo(doc, 64 - yOffset, response.recommendedSupermarket);
+                                        insertSupermarketInfo(doc, 54 - yOffset, response.recommendedSupermarket);
 
                                         // Add a separating line with some margin
-                                        doc.line(10, 80 - yOffset, 200, 80 - yOffset);
+                                        // doc.line(10, 80 - yOffset, 200, 80 - yOffset);
 
                                         // Insert product prices with table headers
                                         doc.setFontSize(10);
-                                        doc.text('Product Prices (Recommended Supermarket):', 10, 85 - yOffset);
+                                        doc.setFontType("bold");
+                                        doc.text('Product Prices (Recommended Supermarket)', 10, 75 - yOffset);
+                                        doc.setFontType("normal");
 
                                         // Create a table with borders for better structure
-                                        var tableStart = 90 - yOffset;
+                                        var tableStart = 80 - yOffset;
                                         doc.autoTable({
                                             startY: tableStart,
                                             head: [['Name', 'Quantity', 'Price (€)']],
@@ -1049,7 +1051,7 @@
 
                                         // Use doc.textWithLink for a clickable link (ensure proper encoding for supermarket name)
                                         doc.textWithLink('View on Google Maps', 10, Offset + 7, {
-                                            url: 'https://maps.google.com/?q=' + encodeURIComponent(supermarket.name) + ',' + supermarket.latitude + ',' + supermarket.longitude
+                                            url: 'https://maps.google.com/maps?q=loc:' + supermarket.latitude + ',' + supermarket.longitude
                                         });
 
                                         doc.text('Distance: ' + supermarket.distance, 10, Offset + 14);
