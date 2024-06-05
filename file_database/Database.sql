@@ -258,7 +258,7 @@ INSERT INTO products (Nome, peso, image, category, description, nutrients, healt
   ('Marmellata di lamponi Zueg', 500, 'products/marmellata_lamponi_zueg.jpg', 'Dispensa', 'Marmellata di lamponi Zueg, dolce e fruttata.', 'nutrienti da specificare', 8.5),
   ('Marmellata di albicocca Zueg', 500, 'products/marmellata_albicocca_zueg.jpg', 'Dispensa', 'Marmellata di albicocca Zueg, perfetta per la colazione.', 'nutrienti da specificare', 8.5),
   ('Marmellata di frutti rossi Zueg', 500, 'products/marmellata_frutti_rossi_zueg.jpg', 'Dispensa', 'Marmellata di frutti rossi Zueg, perfetta per colazioni e merende.', 'nutrienti da specificare', 8.5),
-  ('Marmellata di fragole Santa Rosa', 500, 'products/marmellata_fragole_santa_rosa.jpg', 'Dispensa', 'Marmellata di fragole Santa Rosa, dolce e profumata.', 'nutrienti da specificare', 8.5),
+  ('Marmellata di fragole Zueg', 500, 'products/marmellata_fragole_zueg.jpg', 'Dispensa', 'Marmellata di fragole Santa Rosa, dolce e profumata.', 'nutrienti da specificare', 8.5),
   ('Nutella Ferrero', 500, 'products/nutella_ferrero.jpg', 'Dispensa', 'Nutella Ferrero, crema di cioccolato e nocciole.', 'nutrienti da specificare', 4.5),
   ('CremaNovi alla nocciola', 500, 'products/crema_novi_nocciola.jpg', 'Dispensa', 'Crema alla nocciola Novi, irresistibile e cremosa.', 'nutrienti da specificare', 5.5);
 
@@ -280,7 +280,7 @@ INSERT INTO products (Nome, peso, image, category, description, nutrients) VALUE
   ('Shampoo Garnier Fructis', 400, 'products/shampoo_garnier_fructis.jpg', 'Igiene e Casa', 'Shampoo rinforzante con estratti di frutta per capelli più forti e lucenti.', 'Estratto di mela, Estratto di limone, Pantenolo'),
   ('Shampoo Sunsilk Brillantezza', 300, 'products/shampoo_sunsilk.jpg', 'Igiene e Casa', 'Shampoo con agenti illuminanti per capelli più luminosi e setosi.', 'Olio di Argan, Proteine della seta, Pantenolo'),
   ('Detersivo Dash Freschezza', 1000, 'products/detersivo_dash.jpg', 'Igiene e Casa', 'Detersivo concentrato per un bucato fresco e profumato a lungo.', 'Tensioattivi anionici, Enzimi, Profumo'),
-  ('Ammorbidente Lenor Primavera', 500, 'products/ammo_bounce.jpg', 'Igiene e Casa', 'Ammorbidente con fragranze floreali per tessuti morbidi e profumati.', 'Quaternario di ammonio, Profumo'),
+  ('Ammorbidente Lenor Primavera', 500, 'products/ammo_lenor.jpg', 'Igiene e Casa', 'Ammorbidente con fragranze floreali per tessuti morbidi e profumati.', 'Quaternario di ammonio, Profumo'),
   ('Sgrassatore Cif Power & Shine', 750, 'products/sgrassatore_cif.jpg', 'Igiene e Casa', 'Sgrassatore con formula potente per una pulizia brillante e senza sforzo.', 'Tensioattivi non ionici, Solventi alcalini'),
   ('Ammorbidente Bounce', 500, 'products/ammo_bounce.jpg', 'Igiene e Casa', 'Ammorbidente con profumo di primavera per tessuti morbidi e freschi.', 'Quaternario di ammonio, Profumo');
   
