@@ -25,9 +25,9 @@ window.onscroll = function() {scrollFunction()};
 function scrollFunction() {
     var backToTopBtn = document.getElementById("back-to-top-btn");
     if (document.body.scrollTop > 2000 || document.documentElement.scrollTop > 2000) {
-        backToTopBtn.classList.add("show"); /* Aggiungi la classe "show" per visualizzare il bottone */
+        backToTopBtn.classList.add("show"); 
     } else {
-        backToTopBtn.classList.remove("show"); /* Rimuovi la classe "show" per nascondere il bottone */
+        backToTopBtn.classList.remove("show");
     }
 
     if(window.innerWidth <= 720){

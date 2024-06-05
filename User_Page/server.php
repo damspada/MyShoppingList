@@ -4,16 +4,14 @@ $username = "root";
 $password = "";
 $dbname = "MyShopping";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-// Prendi i valori inviati dal form
+
     $name = $_POST['name'];
     $surname = $_POST['surname'];
     $birthdate = $_POST['birthdate'];
@@ -28,11 +26,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $target_dir = "../../../uploads/";
     $target_file = $target_dir . basename($_FILES["avatar-upload"]["name"]);
 
-    // Controlla se si è verificato un errore durante il caricamento del file
     if ($_FILES["avatar-upload"]["error"] !== UPLOAD_ERR_OK) {
         echo "Si è verificato un errore durante il caricamento del file: " . $_FILES["avatar-upload"]["error"];
 
-        // Query per inserire i dati nella tabella del database
+        //Query per inserire i dati nella tabella del database
         $sql = "INSERT INTO utenti (id, email, pass, nome, cognome, born, cell, life, budget)
         VALUES ('$ID', '$email', '$password', '$name', '$surname', '$birthdate', '$phone', '$lifestyle', '$maxamount')";
 
@@ -42,14 +39,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     } else {
-        // Se tutto è ok, prova a caricare il file
         if (move_uploaded_file($_FILES["avatar-upload"]["tmp_name"], $target_file)) {
             echo "Il file ". htmlspecialchars( basename( $_FILES["avatar-upload"]["name"])). " è stato caricato.";
         } else {
             echo "Si è verificato un errore durante il caricamento del file.";
         }
 
-        // Query per inserire i dati nella tabella del database
+        //Query per inserire i dati nella tabella del database
         $sql = "INSERT INTO utenti (id,immagine, email, pass, nome, cognome, born, cell, life, budget)
         VALUES ('$ID','$target_file', '$email', '$password', '$name', '$surname', '$birthdate', '$phone', '$lifestyle', '$maxamount')";
 

@@ -10,7 +10,7 @@
     border-radius: 20px;
     backdrop-filter: blur(50px);
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
-    display: none; /* should be none but i use inline-flex */
+    display: none; 
     justify-content: normal;
     align-items: normal;
     overflow: hidden;
@@ -33,7 +33,6 @@
     right: 0;
     width: 45px;
     height: 45px;
-    /* background: #162938; */
     background-color: #00BF63;
     font-size: 2em;
     color: white;
@@ -159,7 +158,6 @@
 }
         
 .right_checkout { 
-    /* background-color: gray; */
     border-radius: 20px;
     width: 58%;
     height: 96%;
@@ -171,8 +169,6 @@
 }
 			
 .economico { 
-    /* background: #ffecb3; */
-    /* border: 3px solid #f8f6f4; */
     border-radius: 5px;
     height: 32.6%;
     width: 100%;
@@ -180,8 +176,6 @@
 }
 
 .vicino { 
-    /* background: #ffecb3;
-    border: 3px solid #ffcc80; */
     border-radius: 5px;
     height: 32.6%;
     width: 100%;
@@ -189,8 +183,6 @@
 }
 
 .consigliato { 
-    /* background: #ffecb3;
-    border: 3px solid #ffcc80; */
     border-radius: 5px;
     height: 32.6%;
     width: 100%;
@@ -238,7 +230,7 @@
 
 
 .right_checkout img {
-    max-width: 50%; /* Imposta la larghezza massima dell'immagine al 100% della larghezza del contenitore */
+    max-width: 50%; 
     max-height: 40%;
     min-width:50%;
     min-height: 40%;
