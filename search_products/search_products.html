@@ -193,20 +193,19 @@
                             quantityForm.setAttribute('action', '');
                             quantityForm.setAttribute('method', 'post');
 
-                            // Create the hidden input for update_quantity_name
+                            
                             const updateQuantityNameInput = document.createElement('input');
                             updateQuantityNameInput.setAttribute('type', 'hidden');
                             updateQuantityNameInput.setAttribute('name', 'update_quantity_name');
                             updateQuantityNameInput.value = element.Nome;
 
-                            // Create the "-" button
+            
                             const decreaseButton = document.createElement('button');
                             decreaseButton.setAttribute('type', 'submit');
                             decreaseButton.setAttribute('class', 'bottoni_tondi2');
                             decreaseButton.setAttribute('name', 'decrease_btn');
                             decreaseButton.textContent = "-";
 
-                            // Create the input for quantity
                             const quantityInput = document.createElement('input');
                             quantityInput.setAttribute('type', 'number');
                             quantityInput.setAttribute('class', 'quantity');
@@ -215,14 +214,12 @@
                             quantityInput.setAttribute('value', element.Quantità);
                             quantityInput.setAttribute('readonly', true);
 
-                            // Create the "+" button
                             const increaseButton = document.createElement('button');
                             increaseButton.setAttribute('type', 'submit');
                             increaseButton.setAttribute('class', 'bottoni_tondi');
                             increaseButton.setAttribute('name', 'update_btn');
                             increaseButton.textContent = "+";
 
-                            // Append elements to the form
                             quantityForm.append(updateQuantityNameInput);
                             quantityForm.append(decreaseButton);
                             quantityForm.append(quantityInput);
@@ -234,7 +231,7 @@
                                 if (addButtonClicked) {
                                     $.ajax({
                                         url: 'server.php', // Specifica l'URL del server
-                                        type: 'POST', // Metodo HTTP (PUT)
+                                        type: 'POST', // Metodo HTTP 
                                         data: { elemento: element.Nome, valore: '+1' }, // Dati da inviare al server
                                         success: function (response) {
                                             const inputElement = document.querySelector(`[id="${element.Nome}"] .quantity`);
@@ -242,12 +239,13 @@
                                         },
                                         error: function (error) {
                                             // Gestisci eventuali errori
+                                            console.error('Si è verificato un errore durante la richiesta.');
                                         }
                                     });
                                 } else if (lowButtonClicked) {
                                     $.ajax({
                                         url: 'server.php', // Specifica l'URL del server
-                                        type: 'POST', // Metodo HTTP (PUT)
+                                        type: 'POST', // Metodo HTTP
                                         data: { elemento: element.Nome, valore: '-1' }, // Dati da inviare al server
                                         success: function (response) {
                                             const inputElement = document.querySelector(`[id="${element.Nome}"] .quantity`);
@@ -284,7 +282,6 @@
     <script> 
         $(document).ready(function () {
 
-            // Function to create a product card element
             function createProductCard(productData) {
                 const productCard = $('<div>').addClass('card');
 
@@ -305,7 +302,6 @@
                 return productCard;
             }
 
-            // Function to create a product form element with hidden inputs
             function createProductForm(productData) {
                 const productForm = document.createElement('form');
                 productForm.id = 'productForm';
@@ -365,7 +361,7 @@
                 return productForm;
             }
 
-            // Function to handle successful addition to cart
+
             function handleAddToCartSuccess(productData) {
                 if (!document.getElementById(productData.Nome)) {
                     const carrelloCard = createCartCard(productData);
@@ -376,7 +372,6 @@
                 }
             }
 
-            // Function to create a cart card element
             function createCartCard(productData) {
                 const carrelloCard = $('<div>').addClass('carrello_elemento');
                 carrelloCard[0].id = productData.Nome;
@@ -392,7 +387,6 @@
                 return carrelloCard;
             }
 
-            // Function to create a quantity form element
             function createQuantityForm(productData) {
                 const quantityForm = document.createElement('form');
                 quantityForm.setAttribute('id', productData.Nome);
@@ -444,12 +438,11 @@
                 return quantityForm;
             }
 
-            // Function to handle quantity increase
             function handleQuantityIncrease(productName) {
                 $.ajax({
-                    url: 'server.php', // Specifica l'URL del server
-                    type: 'POST', // Metodo HTTP (PUT)
-                    data: { elemento: productName, valore: '+1' }, // Dati da inviare al server
+                    url: 'server.php', 
+                    type: 'POST', 
+                    data: { elemento: productName, valore: '+1' }, 
                     success: function (response) {
                         const inputElement = document.querySelector(`[id="${productName}"] .quantity`);
                         inputElement.value++;
@@ -460,13 +453,13 @@
                 });
             }
 
-            // Function to handle quantity decrease
+            
             function handleQuantityDecrease(productName) {
                 const inputElement = document.querySelector(`[id="${productName}"] .quantity`);
                 $.ajax({
-                    url: 'server.php', // Specifica l'URL del server
-                    type: 'POST', // Metodo HTTP (PUT)
-                    data: { elemento: productName, valore: '-1' }, // Dati da inviare al server
+                    url: 'server.php',
+                    type: 'POST', 
+                    data: { elemento: productName, valore: '-1' }, 
                     success: function (response) {
                         if (inputElement.value == 1) {
                             const myDiv = document.getElementById(productName);
@@ -482,7 +475,7 @@
             }
 
 
-            // Function to check the health of a product correspond to the health of the user            
+            // Funzione che verifica se l'healthy del prodotto selezionato combacia con lo stile di vita dell'utente        
             function checkHealth(productData, callback) {
                 var log = sessionStorage.getItem("Log");
                 var email = sessionStorage.getItem('email');
@@ -491,7 +484,7 @@
                     $.ajax({
                         url: "server.php",
                         method: "GET",
-                        data: { action: 'check_health', email: email, health: productData.health, nome: productData.Nome}, // Corrected 'productData.health'
+                        data: { action: 'check_health', email: email, health: productData.health, nome: productData.Nome},
                         dataType: "json",
                         success: function (response) {
                             console.log(response);
@@ -528,11 +521,11 @@
                         },
                         error: function (xhr, status, error) {
                             console.error('An error occurred during the request.');
-                            callback(false); // Call the callback function with false in case of error
+                            callback(false); 
                         }
                     });
                 } else {
-                    callback(false); // Call the callback function with false if log is not 1
+                    callback(false); 
                 }
             }
 
@@ -550,7 +543,7 @@
                 }
             });
 
-            // Function to handle the filter click event
+            // Funzione che gestisce i filtri
             var filterCards = document.getElementsByClassName('filter-card');
             for (var i = 0; i < filterCards.length; i++) {
                 filterCards[i].addEventListener('click', function (event) {
@@ -750,9 +743,6 @@
                 } else {
 
                     var sessionId = getSessionId();
-                    // Effettua la richiesta GET al server
-                    // INPUT: None (posizione la trova dal datbase delle sessioni, i prodotti nel carrello dal database cart)
-                    // OUTPUT: supermercato più economico, supermercato più vicino, supermercato consigliato, prezzi prodotti del supermercato consigliato
                     $.ajax({
                         url: "server.php?action=checkout",
                         method: "GET",
