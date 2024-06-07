@@ -867,35 +867,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     else if (isset($_GET['action']) && $_GET['action'] === 'check_health') {
         if (isset($_GET['email']) && isset($_GET['health'])) {
 
-            // Retrieve email and health from the URL
             $email = $_GET['email'];
             $health = $_GET['health'];
             $nome = $_GET['nome'];
-
-            // controlla se $nome ossia il nome del prodotto è già presente nel carrello
 
             $check_prodotto = "SELECT * FROM `Cart` WHERE Nome = '$nome'";
             $result = $conn->query($check_prodotto);
 
             if ($result->num_rows > 0) {
                 echo json_encode(false);
-                exit; // Terminate the script
+                exit; 
             }
 
             if ($health < 6 && $health != null) {
-                // Check if the user with the email and 'Sportivo' life exists
                 $check_health = "SELECT * FROM `utenti` WHERE email = '$email' AND life = 'Sportivo'";
                 $result = $conn->query($check_health);
 
-                // If found, return true
                 if ($result && $result->num_rows > 0) {
                     echo json_encode(true);
-                    exit; // Terminate the script
+                    exit; 
                 }
             }
 
             echo json_encode(false);
-            exit; // Terminate the script
+            exit; 
         }
     }
 
