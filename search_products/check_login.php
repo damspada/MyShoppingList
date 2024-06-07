@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $email = $_POST['email'];
         $pass = $_POST['pass'];
 
-        // Esegui una query per verificare le credenziali dell'utente nel database
+        // Query per verificare le credenziali dell'utente nel database
         $sql = "SELECT * FROM utenti WHERE email = '$email' AND pass = '$pass'";
         $result = $conn->query($sql);
 
