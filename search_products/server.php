@@ -1237,13 +1237,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Aggiungere prodotto al carrello o aumentare la quantità di esso all'interno del carrello
     if (isset($_POST['product_name']) && isset($_POST['product_category']) && isset($_POST['product_image'])) {
-        // Sanificazione dei dati
         $product_name = $_POST['product_name'];
         $product_category = $_POST['product_category'];
         $product_image = $_POST['product_image'];
         $product_quantity = 1;
 
-        // Query per verificare se il prodotto è già nel carrello
         $select_cart = "SELECT * FROM `Cart` WHERE Nome = '$product_name'";
         $res = $conn->query($select_cart);
 
