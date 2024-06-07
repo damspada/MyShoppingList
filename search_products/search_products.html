@@ -8,7 +8,7 @@
 
     <link rel="shortcut icon" href="Icone/favicon.png">
     <link rel="stylesheet" href="search_products.css">
-    <link rel="stylesheet" href="checkut_css.css">
+    <link rel="stylesheet" href="checkout.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
@@ -20,43 +20,22 @@
 
     <script src="https://unpkg.com/jspdf-autotable@3.5.22/dist/jspdf.plugin.autotable.js"></script>
 
-    <!-- API google maps -->
-    <!-- <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKmiR3vhiQGXT9qZBFDQInSqjXSsVL664&loading=async&callback=initMap">
-    </script> -->
-
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
-
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="jspdf.plugin.autotable.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.es.min.js"></script>
-    <script src="jspdf.plugin.autotable.min.js"></script>
-    <script src="https://raw.githubusercontent.com/simonbengtsson/jsPDF-AutoTable/master/dist/jspdf.plugin.autotable.js"></script>
-    <script src="https://raw.githubusercontent.com/MrRio/jsPDF/master/dist/jspdf.umd.min.js"></script>
-    -->
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <!-- Check del Login -->
     <script>
         $(document).ready(function () {
-            // Gestisci il submit del form di login
             $('.login form').submit(function (event) {
-                // Evita il comportamento predefinito del form (ricaricamento della pagina)
                 event.preventDefault();
 
-                // Ottieni i valori inseriti dall'utente nei campi email e password
                 var email = $(this).find('input[type="email"]').val();
                 var pass = $(this).find('input[type="password"]').val();
 
-                // Esegui una chiamata AJAX per controllare le credenziali nel database
                 $.ajax({
-                    url: 'check_login.php', // URL del file PHP che esegue la query al database
+                    url: 'check_login.php', 
                     type: 'POST',
                     data: { email: email, pass: pass },
                     success: function (response) {
@@ -66,20 +45,6 @@
                             window.location.href = '../User_Page/user.html';
                             sessionStorage.setItem("Log",1);
                             sessionStorage.setItem("email",email);
-                            // $.ajax({
-                            //     url: "server.php",
-                            //     type: "POST",
-                            //     data: {
-                            //         cestino: 1
-                            //     },
-                            //     success: function (data) {
-                            //         console.log('Richiesta andata a buon fine.');
-                            //     },
-                            //     error: function (xhr, status, error) {
-                            //         // Gestisci gli errori durante la chiamata AJAX
-                            //         console.error('Si è verificato un errore durante la richiesta.');
-                            //     }
-                            // })
                         } else {
                             // Mostra il popup di errore
                             Swal.fire({
@@ -109,25 +74,6 @@
 
     <!-- Popup Login -->
     <script>
-        // window.addEventListener('beforeunload', function (event) {
-        //     if (sessionStorage.getItem("Log") != 1) {
-        //         $.ajax({
-        //             url: "server.php",
-        //             type: "POST",
-        //             data: {
-        //                 cestino: 1
-        //             },
-        //             success: function (data) {
-        //                 console.error('Richiesta andata a buon fine.');
-        //             },
-        //             error: function (xhr, status, error) {
-        //                 // Gestisci gli errori durante la chiamata AJAX
-        //                 console.error('Si è verificato un errore durante la richiesta.');
-        //             }
-        //         })
-        //     }
-        // })
-
         window.addEventListener('load', function (event) {
             if (sessionStorage.getItem("Log") == 1) {
                 // Se l'utente è già loggato, reindirizza alla pagina utente
@@ -224,21 +170,7 @@
     </script>
 
 
-    <script> //script per svuotare il carrello alla chiusura della pagina web
-        // // window.addEventListener('beforeunload', function(event) {
-        // //     $.ajax({
-        // //         url: "server.php",
-        // //         method: "POST",
-        // //         data: { close : '1' },
-        // //         success: function(response) {
-        // //             console.log('Richiesta andata a buon fine.');
-        // //         },
-        // //         error: function(xhr, status, error) {
-        // //             console.error('Si è verificato un errore durante la richiesta.');
-        // //         }
-        // //     });
-        // // })
-
+    <script> 
         window.addEventListener('load', function (event) {
             $.ajax({
                 url: "server.php",
@@ -549,30 +481,12 @@
             }
 
 
-            // Variabile per memorizzare i prodotti non conformi già aggiunti al carrello dall'utente
-/*             var nonConformingProducts = [];
-
-            window.onload = function() {
-                var prodotti = sessionStorage.getItem("nonConformingProducts");
-                if (prodotti !== null) {
-                    nonConformingProducts = JSON.parse(prodotti);
-                }
-            }; */
-
             // Function to check the health of a product correspond to the health of the user            
             function checkHealth(productData, callback) {
                 var log = sessionStorage.getItem("Log");
                 var email = sessionStorage.getItem('email');
 
                 if (log == 1) {
-
-/*                     // Controlla se il prodotto non è stato già aggiunto al carrello dall'utente
-                    if (nonConformingProducts.includes(productData.Nome)) {
-                        // Se il prodotto è già stato aggiunto, consenti all'utente di aggiungerlo senza mostrare l'avviso
-                        callback(false);
-                        return;
-                    } */
-
                     $.ajax({
                         url: "server.php",
                         method: "GET",
@@ -599,11 +513,6 @@
                                             timer: 1000,
                                             width: "400px"
                                         });
-/* 
-                                        // Aggiungi il prodotto alla lista dei prodotti non conformi aggiunti al carrello
-                                        nonConformingProducts.push(productData.Nome);
-                                        updateNonConformingProducts(); 
-                                        */
                                         callback(false); 
                                     }
                                     else {
@@ -625,10 +534,6 @@
                     callback(false); // Call the callback function with false if log is not 1
                 }
             }
-/* 
-            function updateNonConformingProducts() {
-                sessionStorage.setItem("nonConformingProducts", JSON.stringify(nonConformingProducts));
-            } */
 
 
             // Effettua la richiesta al server per ottenere i prodotti
@@ -1014,9 +919,6 @@
                                         // Insert recommended supermarket info with clear formatting
                                         insertSupermarketInfo(doc, 54 - yOffset, response.recommendedSupermarket);
 
-                                        // Add a separating line with some margin
-                                        // doc.line(10, 80 - yOffset, 200, 80 - yOffset);
-
                                         // Insert product prices with table headers
                                         doc.setFontSize(10);
                                         doc.setFontType("bold");
@@ -1219,10 +1121,6 @@
     <!-- Search -->
     <div class="search-container" id="searchContainerLarge">
         <div class="search">
-            <!-- <input placeholder="Search Products..." type="text" id="searchBar">
-            <button type="submit" id="searchBtn">
-                <ion-icon id="search-icon" name="search" size="medium"></ion-icon>
-            </button> -->
         </div>
     </div>
 
@@ -1238,22 +1136,6 @@
         </div>
     </div>
 
-    <!-- <div class="search">
-        <input placeholder="Search Products..." type="text" id="searchBar">
-        <button type="submit" id="searchBtn"><ion-icon id="search-icon" name="search" size="medium"></ion-icon></button>
-    </div> -->
-
-    <!-- <div class="search-container">
-        <div class="search">
-            <input placeholder="Search Products..." type="text" id="searchBar">
-            <button type="submit" id="searchBtn">
-                <ion-icon id="search-icon" name="search" size="medium"></ion-icon>
-            </button>
-        </div>
-        <div class="cart-icon">
-            <img src="./Icone/cart_media.png" alt="Cart Icon">
-        </div>
-    </div> -->
 
     <!-- Filtri -->
     <div class="filter-wrapper">
