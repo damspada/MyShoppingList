@@ -42,42 +42,24 @@
     <!-- Check del Login -->
     <script>
         $(document).ready(function(){
-            // Gestisci il submit del form di login
             $('.login form').submit(function(event){
-                // Evita il comportamento predefinito del form (ricaricamento della pagina)
                 event.preventDefault();
 
                 // Ottieni i valori inseriti dall'utente nei campi email e password
                 var email = $(this).find('input[type="email"]').val();
                 var pass = $(this).find('input[type="password"]').val();
 
-                // Esegui una chiamata AJAX per controllare le credenziali nel database
                 $.ajax({
-                    url: 'check_login.php', // URL del file PHP che esegue la query al database
+                    url: 'check_login.php', 
                     type: 'POST',
                     data: { email: email, pass: pass },
                     success: function(response){
-                        // Se la risposta è 'success', l'utente esiste nel database
                         console.log(response)
                         if(response.trim() === 'success'){
                             // Reindirizza l'utente alla sua pagina utente
                             window.location.href = '../User_Page/user.html';
                             sessionStorage.setItem("Log",1);
                             sessionStorage.setItem("email",email);
-                            // $.ajax({
-                            //     url: "check_login.php",
-                            //     type: "POST",
-                            //     data: {
-                            //         cestino: 1
-                            //     },
-                            //     success: function (data) {
-                            //         console.log('Richiesta andata a buon fine.');
-                            //     },
-                            //     error: function (xhr, status, error) {
-                            //         // Gestisci gli errori durante la chiamata AJAX
-                            //         console.error('Si è verificato un errore durante la richiesta.');
-                            //     }
-                            // })
                         } else {
                             Swal.fire({
                                 title: "Errore!",
@@ -90,13 +72,12 @@
                                 padding: "3rem",
                                 titleFont: "Montserrat_Arabic_Regular",
                                 textFont: "Montserrat_Arabic_Regular",
-                                showConfirmButton: false, // Nasconde il pulsante "OK"
-                                timer: 2000 // Tempo in millisecondi (3 secondi)
+                                showConfirmButton: false, 
+                                timer: 2000 
                             });
                         }
                     },
                     error: function(xhr, status, error){
-                        // Gestisci gli errori durante la chiamata AJAX
                         console.error('Si è verificato un errore durante la richiesta.');
                     }
                 });
@@ -164,36 +145,27 @@
 
                             name_img = primaLetteraMaiuscola(name_img);
 
-                            // Trova l'elemento ion-icon all'interno del pulsante
+                            
                             const iconElement = document.querySelector('.Btn ion-icon');
-
-                            // Rimuovi l'elemento ion-icon
                             iconElement.remove();
-
-                            // Crea un nuovo elemento immagine
                             const imgElement = document.createElement('h3');
 
-                            // Assegna il testo della variabile name_img all'elemento h2
                             imgElement.textContent = name_img;
 
                             imgElement.style.color = 'white';
                             imgElement.style.margin = 'auto'
                             imgElement.style.fontWeight = '700';
 
-                            // Aggiungi l'immagine al div con la classe "sign"
                             const signDiv = document.querySelector('.Btn .sign');
                             signDiv.appendChild(imgElement);
 
-                            // Seleziona l'elemento del pulsante
                             const loginButton = document.querySelector('.text_btn');
 
-                            // Cambia il testo del pulsante a "Accedi"
                             loginButton.textContent = 'Profile';
 
                         });
                     },
                     error: function(xhr, status, error){
-                        // Gestisci gli errori durante la chiamata AJAX
                         console.error('Si è verificato un errore durante la richiesta.');
                     }
                 })
@@ -203,20 +175,15 @@
 
     <!-- Script per la generazione di un session ID casuale -->
     <script>
-        // Function to generate a random session ID
         function generateSessionId() {
-            // Characters to be used in the session ID
             var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-            // Length of the session ID
             var length = 10;
 
             var sessionId = '';
             for (var i = 0; i < length; i++) {
-                // Generate a random index to select a character from the characters string
                 var randomIndex = Math.floor(Math.random() * characters.length);
                 
-                // Append the randomly selected character to the session ID
                 sessionId += characters.charAt(randomIndex);
             }
             
@@ -224,26 +191,17 @@
         }
 
 
-        // Function to set a session ID cookie
         function setSessionCookie() {
-            // Check if session ID is already set
             if (sessionStorage.getItem('sessionId')) {
-                // Session ID is already set
                 var sessionId = sessionStorage.getItem('sessionId');
                 console.log('Session ID is already set: ' + sessionId);
                 return;
             }
 
-            // Generate a session ID
             var sessionId = generateSessionId();
 
-            sessionStorage.setItem('sessionId', sessionId); // Assuming sessionId is the variable holding the generated session ID
+            sessionStorage.setItem('sessionId', sessionId); 
         }
-
-        // Call function to set session cookie
-        // $(document).ready(function(){
-        //     setSessionCookie();
-        // })
     </script>
 
 </head>
@@ -397,7 +355,7 @@
         </section>
     </div>
 
-    <!-- SuperMercati  e Marche-->
+    <!-- SuperMercati e Marche-->
     <div class="text_supermercati">
         <p>From the best supermarkets...</p>
     </div>

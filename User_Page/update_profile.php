@@ -4,16 +4,14 @@ $username = "root";
 $password = "";
 $dbname = "MyShopping";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Prendi i valori inviati dal form
+    
     $phone = $_POST['phone'];
     $email = $_POST['email'];
     $lifestyle = $_POST['stile_di_vita'];
@@ -21,16 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
     $ID = $_POST['id'];
 
-    // Caricamento dell'immagine
+    
     $target_dir = "../../../uploads/";
     $target_file = $target_dir . basename($_FILES["avatar-upload"]["name"]);
     $image_changed = false;
 
-    // Controllo dell'immagine
     if ($_FILES["avatar-upload"]["error"] !== UPLOAD_ERR_OK) {
         echo "Si è verificato un errore durante il caricamento del file: " . $_FILES["avatar-upload"]["error"];
     } else {
-        // Se tutto è ok, prova a caricare il file
         if (move_uploaded_file($_FILES["avatar-upload"]["tmp_name"], $target_file)) {
             echo "Il file " . htmlspecialchars(basename($_FILES["avatar-upload"]["name"])) . " è stato caricato.";
             $image_changed = true;

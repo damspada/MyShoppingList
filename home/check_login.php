@@ -1,6 +1,4 @@
 <?php
-// Inizio della sessione
-session_start();
 
 // Connessione al database
 $servername = "127.0.0.1";
@@ -28,8 +26,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         if ($result->num_rows > 0) {
             // L'utente esiste nel database e le credenziali sono valide
-            // Memorizza i dettagli dell'utente nella sessione
-            $_SESSION['user_details'] = $result->fetch_assoc();
             echo "success";
         } else {
             // L'utente non esiste nel database o le credenziali non sono valide
