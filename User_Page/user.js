@@ -1,4 +1,6 @@
 /*-------------------------------- Immagine Avatar --------------------------------*/
+//Gestisce la corretta visualizzazione dell'immagine utente nel form
+
 const avatarUpload = document.getElementById('avatar-upload');
 const avatarPreview = document.getElementById('avatar-preview');
 
