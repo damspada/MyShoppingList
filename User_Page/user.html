@@ -28,6 +28,12 @@
                 var email = document.getElementById("email").value;
                 var password = document.getElementById("password").value;
 
+                var selectedRadio = document.querySelector('input[name="Admin"]:checked');
+                if (selectedRadio) {
+                    alert("Il valore selezionato è: " + selectedRadio.value);
+                }
+
+
                 // Verifica se i campi richiesti sono compilati
                 if (name.trim() === "" || surname.trim() === "" || birthdate.trim() === "" || phone.trim() === "" || email.trim() === "" || password.trim() === "") {
                     // Se uno dei campi richiesti non è compilato, mostra un messaggio di errore
@@ -266,14 +272,32 @@
                         <label for="surname">Surname:</label>
                         <input type="text" id="surname" name="surname" placeholder="Insert here..." required>
                     </div>
-                    <div class="form-row">
-                        <label for="birthdate">Birth-Day:</label>
-                        <input type="date" id="birthdate" name="birthdate" placeholder="Select Date" required>
+                        <div class="form-row">
+                            <label for="birthdate">Birth-Day:</label>
+                            <input type="date" id="birthdate" name="birthdate" placeholder="Select Date" required>
                     </div>
+                    
                     <div class="form-row">
                         <label for="phone">Phone-Number:</label>
                         <input type="tel" id="phone" name="phone" placeholder="Insert here..." required>
                     </div>
+                    
+
+                    <label for="admin">Admin?</label>
+                    <div class="form-Admin">
+                        <label for="option1">
+                            Sì
+                            <input type="radio" id="option1" name="Admin" value="1" required>
+                        
+                        </label>
+                        <label for="option2">
+                            No
+                            <input type="radio" id="option2" name="Admin" value="0" required>
+                            
+                        </label>
+                    </div>
+
+
             </div>
         </div>
 
