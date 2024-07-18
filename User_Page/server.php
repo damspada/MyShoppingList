@@ -21,6 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $maxamount = $_POST['importo'];
     $password = $_POST['password'];
     $ID=$_POST['id'];
+    $admin=$_POST['admin'];
 
     // Caricamento dell'immagine
     $target_dir = "../../../uploads/";
@@ -30,8 +31,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         echo "Si è verificato un errore durante il caricamento del file: " . $_FILES["avatar-upload"]["error"];
 
         //Query per inserire i dati nella tabella del database
-        $sql = "INSERT INTO utenti (id, email, pass, nome, cognome, born, cell, life, budget)
-        VALUES ('$ID', '$email', '$password', '$name', '$surname', '$birthdate', '$phone', '$lifestyle', '$maxamount')";
+        $sql = "INSERT INTO utenti (id, email, pass, nome, cognome, born, cell, life, budget, adm)
+        VALUES ('$ID', '$email', '$password', '$name', '$surname', '$birthdate', '$phone', '$lifestyle', '$maxamount', '$admin')";
 
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
@@ -46,8 +47,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
 
         //Query per inserire i dati nella tabella del database
-        $sql = "INSERT INTO utenti (id,immagine, email, pass, nome, cognome, born, cell, life, budget)
-        VALUES ('$ID','$target_file', '$email', '$password', '$name', '$surname', '$birthdate', '$phone', '$lifestyle', '$maxamount')";
+        $sql = "INSERT INTO utenti (id,immagine, email, pass, nome, cognome, born, cell, life, budget, adm)
+        VALUES ('$ID','$target_file', '$email', '$password', '$name', '$surname', '$birthdate', '$phone', '$lifestyle', '$maxamount', '$admin')";
 
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

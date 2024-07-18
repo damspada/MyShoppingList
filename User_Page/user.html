@@ -27,12 +27,7 @@
                 var phone = document.getElementById("phone").value;
                 var email = document.getElementById("email").value;
                 var password = document.getElementById("password").value;
-
-                var selectedRadio = document.querySelector('input[name="Admin"]:checked');
-                if (selectedRadio) {
-                    alert("Il valore selezionato è: " + selectedRadio.value);
-                }
-
+                var selectedRadio = document.querySelector('input[name="Admin"]:checked').value;
 
                 // Verifica se i campi richiesti sono compilati
                 if (name.trim() === "" || surname.trim() === "" || birthdate.trim() === "" || phone.trim() === "" || email.trim() === "" || password.trim() === "") {
@@ -54,8 +49,10 @@
                     formData.append('password', document.getElementById('password').value);
                     formData.append('stile_di_vita', document.getElementById('stile_di_vita').value);
                     formData.append('importo', document.getElementById('importo').value);
-                    sessionStorage.setItem("budget",document.getElementById('importo').value);
                     formData.append('id', sessionStorage.getItem('sessionId'));
+                    formData.append('admin',selectedRadio);
+
+                    sessionStorage.setItem("budget",document.getElementById('importo').value);
                 
                     $.ajax({
                         url: "server.php",
