@@ -139,18 +139,34 @@
                                 });
                             }
 
-
                             //cambia pulsanti register e update 
-                            const div_register = document.getElementById("register_button");
-                            div_register.innerHTML = '';
-                            const shopping_button = document.createElement("button");
-                            shopping_button.className = "button_shopping";
-                            shopping_button.textContent = "Fill the cart now ➜";
-                            shopping_button.onclick = function() {
-                                window.location.href = "../search_products/search_products.html";
-                            };
-                            div_register.appendChild(shopping_button);
-
+                            //se utente non Admin
+                            if(element.admin != 1){
+                                const div_register = document.getElementById("register_button");
+                                div_register.innerHTML = '';
+                                const shopping_button = document.createElement("button");
+                                shopping_button.className = "button_shopping";
+                                shopping_button.textContent = "Fill the cart now ➜";
+                                shopping_button.onclick = function() {
+                                    window.location.href = "../search_products/search_products.html";
+                                };
+                                div_register.appendChild(shopping_button);
+                                //soluzione provvissoria
+                                document.getElementById("stile_di_vita").value = element.life;
+                                document.getElementById("importo").value = element.budget;
+                            }
+                            //se Admin
+                            else{
+                                const div_register = document.getElementById("register_button");
+                                div_register.innerHTML = '';
+                                const shopping_button = document.createElement("button");
+                                shopping_button.className = "button_shopping";
+                                shopping_button.textContent = "Back to Home";
+                                shopping_button.onclick = function() {
+                                    window.location.href = "../home/home.html";
+                                };
+                                div_register.appendChild(shopping_button);
+                            }
                             
                             document.getElementById("update").style.display = "block";
                             document.getElementById("icon_log_out").style.display = "block";
@@ -168,6 +184,8 @@
                             //aggiungo il valore admin
                             if(element.admin == 1){
                                 document.getElementById("option1").checked = true;
+                                document.getElementById("stile_di_vita").disabled = true;
+                                document.getElementById("importo").disabled = true;
                             } else {
                                 document.getElementById("option2").checked = true;
                             }
