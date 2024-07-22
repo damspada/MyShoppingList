@@ -54,12 +54,14 @@
                     type: 'POST',
                     data: { email: email, pass: pass },
                     success: function(response){
-                        console.log(response)
-                        if(response.trim() === 'success'){
+                        var jsonResponse = JSON.parse(response);
+                        //console.log(response)
+                        if(jsonResponse.status === 'success'){
                             // Reindirizza l'utente alla sua pagina utente
                             window.location.href = '../User_Page/user.html';
                             sessionStorage.setItem("Log",1);
                             sessionStorage.setItem("email",email);
+                            sessionStorage.setItem("admin", jsonResponse.admin);
                         } else {
                             Swal.fire({
                                 title: "Errore!",
@@ -88,7 +90,16 @@
     <!-- Popup Login -->
     <script>
         window.addEventListener('load', function (event) {
+            
         if (sessionStorage.getItem("Log") == 1) {
+            //se admin non c' è il pulsante fill the cart
+            if(sessionStorage.getItem("admin") == 1){
+                var buttonShopping = document.querySelector('.button_shopping');
+                if (buttonShopping) {
+                    buttonShopping.style.display = 'none';
+                }
+            }
+            
             // Se l'utente è già loggato, reindirizza alla pagina utente
             document.querySelector('.Btn').addEventListener('click', function () {
                 window.location.href = '../User_Page/user.html';
@@ -118,6 +129,7 @@
                     hidePopup();
                 });
             }
+           
         });
     </script>
 

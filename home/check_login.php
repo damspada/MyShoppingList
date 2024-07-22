@@ -4,7 +4,7 @@
 $servername = "127.0.0.1";
 $username = "root";
 $password = "";
-$dbname = "MyShopping";
+$dbname = "myshopping";
 
 // Creazione della connessione
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -26,7 +26,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         if ($result->num_rows > 0) {
             // L'utente esiste nel database e le credenziali sono valide
-            echo "success";
+            $row = $result->fetch_assoc();
+            echo json_encode(['status' => 'success', 'admin' => $row['admin']]);
         } else {
             // L'utente non esiste nel database o le credenziali non sono valide
             echo "failure";
