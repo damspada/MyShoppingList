@@ -87,6 +87,28 @@
         });
     </script>
 
+<!-- pulsante preferenze su NavBar-->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const preferencesLink = document.getElementById('preferences-link');
+        const wrapper = document.querySelector('.wrapper');
+        const body = document.querySelector('body');
+        const iconClose = document.querySelector('.icon-close');
+        const btnPopup = document.querySelector('.Btn');
+
+        preferencesLink.addEventListener('click', function (event) {
+            event.preventDefault(); // Impedisce il comportamento predefinito del link
+            if (sessionStorage.getItem("Log") != 1) {
+                wrapper.classList.add('active-popup');
+                body.classList.add('popup-active');
+            } else {
+                window.location.href = '/MS/MyShoppingList/preferences/preferences.html'; //se loggato manda alla pagina di preferenze
+            }
+        });
+    });
+</script>
+
+
     <!-- Popup Login -->
     <script>
         window.addEventListener('load', function (event) {
@@ -233,6 +255,7 @@
             <a href="home.html"><img src="./Immagini/MyShoppingList.png" class="logo"></a>
             <nav class="my_navbar">
                     <a href="home.html" class="link_navbar">Home</a>
+                    <a href="#" id="preferences-link" class="link_navbar">Preferenze</a>
                     <a href="#contatti">Contacts</a>
                     <a href="#contatti" class="icon_contatti"><img src="./Immagini/phone.png"></a>
                     <a href="#">        
@@ -324,9 +347,9 @@
 
     <!-- bottoni per l'admin di gestione-->
     <div class="admin-buttons" style="display: none;">
-        <button class="button_admin" onclick="window.location.href='../some_page_A.html';">PRODOTTI</button>
-        <button class="button_admin" onclick="window.location.href='../some_page_B.html';">RECENSIONI</button>
-        <button class="button_admin" onclick="window.location.href='../some_page_C.html';">SUPERMERCATI</button>
+        <button class="button_admin" onclick="window.location.href='../home/home.html';">PRODOTTI</button>
+        <button class="button_admin" onclick="window.location.href='../home/home.html';">RECENSIONI</button>
+        <button class="button_admin" onclick="window.location.href='../home/home.html';">SUPERMERCATI</button>
     </div>
 
     <!-- Obiettivi -->
