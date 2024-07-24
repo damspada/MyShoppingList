@@ -676,7 +676,36 @@ body.popup-active {
     }
 }
 
-    
+/*----------------------------- pulsanti provvissori admin -------------------*/
+.admin-buttons {
+    display: flex; /* Assicurati che il contenitore usi il flexbox */
+    flex-direction: row; /* Disposizione orizzontale */
+    position: absolute; /* Posizionamento assoluto per poterli posizionare più facilmente */
+    top: 90%; /* Centra verticalmente */
+    left: 35%; /* Centra orizzontalmente */
+    transform: translate(-50%, -50%); /* Compensa il posizionamento assoluto per centrare esattamente */
+    z-index: 90; /* Posiziona i pulsanti davanti ad altri elementi */
+}
+
+.button_admin {
+    background-color: #00BF63; /* Colore di sfondo */
+    color: white; /* Colore del testo */
+    border: none; /* Rimuovi il bordo */
+    padding: 20px 40px; /* Spaziatura interna */
+    margin: 0 10px; /* Margine tra i pulsanti */
+    font-size: 18px; /* Dimensione del testo aumentata */
+    cursor: pointer; /* Mostra un cursore a mano quando si passa sopra il pulsante */
+    border-radius: 10px; /* Aggiungi angoli arrotondati ai pulsanti */
+}
+
+.button_admin:hover {
+    background-color: #06e679;
+    color: black;
+    box-shadow: #00BF63;
+}
+
+/*-------------------------------------------------------------------------------------------*/
+
 
 /*-------------------------------- Obiettivi --------------------------------*/
 .obiettivi_container{

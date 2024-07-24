@@ -95,8 +95,12 @@
             //se admin non c' è il pulsante fill the cart
             if(sessionStorage.getItem("admin") == 1){
                 var buttonShopping = document.querySelector('.button_shopping');
+                var adminButtons = document.querySelector('.admin-buttons');
                 if (buttonShopping) {
                     buttonShopping.style.display = 'none';
+                }
+                if (adminButtons) {
+                    adminButtons.style.display = 'block';  // Mostra i pulsanti A, B e C
                 }
             }
             
@@ -316,6 +320,13 @@
             </div>
         </div>
 
+    </div>
+
+    <!-- bottoni per l'admin di gestione-->
+    <div class="admin-buttons" style="display: none;">
+        <button class="button_admin" onclick="window.location.href='../some_page_A.html';">PRODOTTI</button>
+        <button class="button_admin" onclick="window.location.href='../some_page_B.html';">RECENSIONI</button>
+        <button class="button_admin" onclick="window.location.href='../some_page_C.html';">SUPERMERCATI</button>
     </div>
 
     <!-- Obiettivi -->
