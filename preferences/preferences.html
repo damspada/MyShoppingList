@@ -114,6 +114,8 @@
             }
         });
     </script>
+
+    
 <head>
     
 <body>
@@ -148,7 +150,26 @@
 </div>
 
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    // Seleziona tutte le card
+    var cards = document.querySelectorAll('.card');
+    
+    // Itera attraverso ogni card
+    cards.forEach(function(card) {
+        // Crea il pulsante
+        var button = document.createElement('button');
+        button.classList.add('checkout-btn');
+        button.textContent = 'Checkout'; // Imposta il testo del pulsante
+        
+        // Aggiungi il pulsante alla card
+        card.appendChild(button);
+    });
+});
 
+
+
+</script>
 
 
 </body>

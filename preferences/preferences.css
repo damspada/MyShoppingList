@@ -231,19 +231,22 @@ h1 {
 
 .scroll-container {
     height: 400px; /* Altezza fissa dell'area scrollabile */
-    background-color: rgba(0, 0, 0, 0.1); /* Sfondo visibile */
-    border: 2px solid #000; /* Bordo visibile */
+    background-color:#40dbdb; /* Sfondo visibile */
+    border: none; /* Bordo visibile */
     overflow-y: auto; /* Abilita lo scorrimento verticale */
     padding: 10px; /* Spazio interno */
-    margin-top: 7%; /* Spazio sopra il contenitore scrollabile */
+    margin-top: 5%; /* Spazio sopra il contenitore scrollabile */
 }
 
 .card {
-    background-color: #a32525; /* Colore di sfondo delle card */
+    display: flex;
+    align-items: center; /* Allinea verticalmente il contenuto della card */
+    justify-content: space-between; /* Spazio tra il contenuto e il pulsante */
+    background-color: #f9fdff; /* Colore di sfondo delle card */
     border-radius: 5px; /* Angoli arrotondati */
     padding: 10px; /* Spazio interno delle card */
     margin: 10px 0; /* Spazio tra le card */
-    color: #fff; /* Colore del testo nelle card */
+    color: #030303; /* Colore del testo nelle card */
 }
 
 /* Classe per le card più piccole */
@@ -490,4 +493,31 @@ h1 {
     }
 }
 
+/*-------------------Checkout Button.-----------------*/
+.checkout-btn {
+    display: flex;
+    align-items: center; /* Centra verticalmente il testo */
+    justify-content: center; /* Centra orizzontalmente il testo */
+    width: 150px; /* Larghezza del pulsante */
+    height: 45px; /* Altezza del pulsante */
+    border: none;
+    border-radius: 22px; /* Rende il pulsante leggermente arrotondato */
+    cursor: pointer;
+    background-color: #00BF63; /* Colore di sfondo */
+    color: white; /* Colore del testo */
+    font-size: 16px; /* Dimensione del testo */
+    font-weight: 600; /* Peso del testo */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199); /* Ombra */
+    overflow: hidden; /* Assicura che il testo non esca dai bordi */
+    text-align: center; /* Centra il testo orizzontalmente */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transizioni per hover e active */
+}
 
+.checkout-btn:hover {
+    background-color: #009d49; /* Colore di sfondo al passaggio del mouse */
+    transform: scale(1.05); /* Leggero ingrandimento al passaggio del mouse */
+}
+
+.checkout-btn:active {
+    transform: scale(0.95); /* Leggero effetto di schiacciamento al clic */
+}
