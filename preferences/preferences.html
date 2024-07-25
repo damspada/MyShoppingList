@@ -6,7 +6,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./Immagini/favicon.png">
     <link rel="stylesheet" href="preferences.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
 
+    <script>
+        window.addEventListener('load', function (event) {
+            console.log(sessionStorage.getItem("Log"));
+            console.log(sessionStorage.getItem("email"));
+            console.log(sessionStorage.getItem("sessionId"));
+            if (sessionStorage.getItem("Log") != 1 && sessionStorage.getItem("sessionId")==null) {
+                $.ajax({
+                    url: "check_login.php",
+                    type: "POST",
+                    data: {
+                        cestino: 1
+                    },
+                    success: function (data) {
+                        console.log('Richiesta andata a buon fine.');
+                    },
+                    error: function (xhr, status, error) {
+                        // Gestisci gli errori durante la chiamata AJAX
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                })
+            }
+            setSessionCookie();
+        });
+    </script>
+
+    <!-- Tasto Login -->
+    <script>
+        window.addEventListener('load', function (event) {
+            
+            // Se l'utente è già loggato, reindirizza alla pagina utente
+            document.querySelector('.Btn').addEventListener('click', function () {
+                window.location.href = '../User_Page/user.html';
+            });
+ 
+        });
+    </script>
+
+<!-- setSessionCookie -->
+<script>
+    function setSessionCookie() {
+        if (sessionStorage.getItem('sessionId')) {
+            var sessionId = sessionStorage.getItem('sessionId');
+            console.log('Session ID is already set: ' + sessionId);
+            return;
+        }
+
+        var sessionId = generateSessionId();
+
+        sessionStorage.setItem('sessionId', sessionId); 
+    }
+</script>
+
+
+     <!-- Cambia immagine Navbar -->
+     <script>
+        window.addEventListener('load', function (event) {
+            if(sessionStorage.getItem("Log")==1){
+                var email=sessionStorage.getItem("email");
+                $.ajax({
+                    url: "check_login.php",
+                    type: "GET",
+                    data:{
+                        email: email
+                    },
+                    dataType:'json',
+                    success: function(data){
+                        data.forEach(function (element) {
+
+                            var name_img = element.nome;
+
+                            function primaLetteraMaiuscola(parola) {
+                                var primaLettera = parola.charAt(0);
+                                return primaLettera.toUpperCase();
+                            }
+
+                            name_img = primaLetteraMaiuscola(name_img);
+
+                            
+                            const iconElement = document.querySelector('.Btn ion-icon');
+                            iconElement.remove();
+                            const imgElement = document.createElement('h3');
+
+                            imgElement.textContent = name_img;
+
+                            imgElement.style.color = 'white';
+                            imgElement.style.margin = 'auto'
+                            imgElement.style.fontWeight = '700';
+
+                            const signDiv = document.querySelector('.Btn .sign');
+                            signDiv.appendChild(imgElement);
+
+                            const loginButton = document.querySelector('.text_btn');
+
+                            loginButton.textContent = 'Profile';
+
+                        });
+                    },
+                    error: function(xhr, status, error){
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                })
+            }
+        });
+    </script>
+<head>
+    
 <body>
 
    <!-- NavBar-->
@@ -26,6 +135,21 @@
         </nav>
     </header>
 </div>
+
+<!-- Ricette -->
+
+<div class="scroll-container">
+    <h1>ECCO I TUOI CARRELLI PREFERITI...</h1>
+    <div class="card">Card 1</div>
+    <div class="card">Card 2</div>
+    <div class="card">Card 3</div>
+    <div class="card">Card 4</div>
+    <div class="card">Card 5</div>
+</div>
+
+
+
+
 
 </body>
 
