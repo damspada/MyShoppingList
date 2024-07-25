@@ -101,8 +101,17 @@
             if (sessionStorage.getItem("Log") != 1) {
                 wrapper.classList.add('active-popup');
                 body.classList.add('popup-active');
-            } else {
+            } 
+            else if (sessionStorage.getItem("admin") !=1) {
                 window.location.href = '/MS/MyShoppingList/preferences/preferences.html'; //se loggato manda alla pagina di preferenze
+            }
+            else{ 
+                document.getElementById('popup-overlay').style.display = 'flex';
+                
+                function hidePopup() {
+                    document.getElementById('popup-overlay').style.display = 'none';
+                }
+                document.getElementById('popup-close').addEventListener('click', hidePopup);
             }
         });
     });
@@ -241,6 +250,7 @@
             sessionStorage.setItem('sessionId', sessionId); 
         }
     </script>
+
 
 </head>
 
@@ -456,6 +466,16 @@
             <img src="./Immagini/Nestlé.svg">
         </div>
     </div>
+
+    <!--Pop up Preferenze Admin-->
+    
+    <div class="popup-overlay" id="popup-overlay">
+        <div class="popup-content">
+            <span class="popup-close" id="popup-close">&times;</span>
+            <p>Un ADMIN non può accedere a Preferenze</p>
+        </div>
+    </div>
+
 
     <!-- Back To Top -->
     <a href="#" id="back-to-top-btn" class="back_to_top">

@@ -678,23 +678,25 @@ body.popup-active {
 
 /*----------------------------- pulsanti provvissori admin -------------------*/
 .admin-buttons {
-    display: flex; /* Assicurati che il contenitore usi il flexbox */
+    display: flex; 
     flex-direction: row; /* Disposizione orizzontale */
-    position: absolute; /* Posizionamento assoluto per poterli posizionare più facilmente */
-    top: 90%; /* Centra verticalmente */
-    left: 35%; /* Centra orizzontalmente */
-    transform: translate(-50%, -50%); /* Compensa il posizionamento assoluto per centrare esattamente */
+    position: absolute; 
+    top: 90%; 
+    left: 35%; 
+    transform: translate(-50%, -50%); 
     z-index: 90; /* Posiziona i pulsanti davanti ad altri elementi */
+    
+    
 }
 
 .button_admin {
     background-color: #00BF63; /* Colore di sfondo */
-    color: white; /* Colore del testo */
+    color: white; 
     border: none; /* Rimuovi il bordo */
-    padding: 20px 40px; /* Spaziatura interna */
-    margin: 0 10px; /* Margine tra i pulsanti */
-    font-size: 18px; /* Dimensione del testo aumentata */
-    cursor: pointer; /* Mostra un cursore a mano quando si passa sopra il pulsante */
+    padding: 20px 40px; 
+    margin: 0 10px; 
+    font-size: 18px; 
+    cursor: pointer; 
     border-radius: 10px; /* Aggiungi angoli arrotondati ai pulsanti */
 }
 
@@ -703,8 +705,6 @@ body.popup-active {
     color: black;
     box-shadow: #00BF63;
 }
-
-/*-------------------------------------------------------------------------------------------*/
 
 
 /*-------------------------------- Obiettivi --------------------------------*/
@@ -1317,6 +1317,65 @@ h3{
         width: 40px !important; 
         height: 40px !important;
     }
+}
+
+/*--------------Pop-up Prefrenze---------------------*/
+.popup-overlay {
+    display: none; /* Nasconde il pop-up di default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente */
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: #fff;
+    padding: 40px; /* Diminuito per adattarsi meglio al contenuto */
+    width: 50%; /* Aumenta la larghezza del pop-up */
+    max-width: 600px; /* Limita la larghezza massima */
+    border-radius: 5px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Aggiunge un'ombra per maggiore profondità */
+}
+
+.popup-content p {
+    font-size: 18px; /* Dimensione del testo maggiore */
+    margin: 0;
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #555; /* Bordo grigio scuro */
+    border-radius: 50%; /* Rende il bordo circolare */
+    background-color: #fff; /* Sfondo bianco */
+    color: #555; /* Colore del testo (X) */
+}
+
+.popup-close:hover {
+    background-color: #555; /* Cambia il colore di sfondo al grigio scuro */
+    color: #fff; /* Cambia il colore del testo a bianco */
+}
+
+#popup-overlay:target {
+    display: flex; /* Mostra il pop-up quando viene targettato */
+}
+
+#open-popup {
+    cursor: pointer;
 }
 
 
