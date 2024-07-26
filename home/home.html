@@ -281,8 +281,16 @@
             var reviewText = $('#testo-recensione').val();
 
             if(sessionStorage.getItem("Log") != 1){
-                    wrapper.classList.add('active-popup');
-                    body.classList.add('popup-active');
+                wrapper.classList.add('active-popup');
+                body.classList.add('popup-active');
+            }
+            else if (sessionStorage.getItem("admin")==1){
+                document.getElementById('popup-recensione-admin').style.display = 'flex';
+                
+                function hidePopup() {
+                    document.getElementById('popup-recensione-admin').style.display = 'none';
+                }
+                document.getElementById('popup-recensione-admin-close').addEventListener('click', hidePopup);
             }
             else{
                 var email = sessionStorage.getItem("email");
@@ -291,7 +299,7 @@
                     type: 'POST',
                     data: { text: reviewText, email: email },
                     success: function(response) {
-                        alert(response);
+                        //alert(response);
                         location.reload(); // Ricarica la pagina per mostrare la nuova recensione
                     },
                     error: function(error) {
@@ -526,6 +534,13 @@
         </div>
     </div>
 
+    <!--Pop up  recensione Admin-->
+    <div class="popup-overlay" id="popup-recensione-admin">
+        <div class="popup-content">
+            <span class="popup-close" id="popup-recensione-admin-close">&times;</span>
+            <p>Un ADMIN non può scrivere recensioni</p>
+        </div>
+    </div>
 
     <!-- Back To Top -->
     <a href="#" id="back-to-top-btn" class="back_to_top">
