@@ -312,26 +312,54 @@
         });
         //elimina una recensione
     document.getElementById('elimina').addEventListener('click', function(event) {
+            var admin = sessionStorage.getItem("admin");
+            if(admin!=1){
                 var email = sessionStorage.getItem("email");
-                var admin = sessionStorage.getItem("admin");
                 $.ajax({
-                    url: 'recensioni.php',
-                    type: 'DELETE',
-                    data: {email: email, admin: admin },
+                url: 'recensioni.php',
+                type: 'DELETE',
+                data: {email: email, admin: admin },
 
-                success: function(response){
-                    //alert(result);
-                    location.reload(); // Ricarica le recensioni dopo l'eliminazione
-                },
-                error: function(error){
-                    console.error('Errore nell\'eliminazione della recensione:', error);
-                }
+            success: function(response){
+                //alert(result);
+                location.reload(); // Ricarica le recensioni dopo l'eliminazione
+            },
+            error: function(error){
+                console.error('Errore nell\'eliminazione della recensione:', error);
+            }
             });
+            }
+            else{
+                //var email = prompt('Inserisci l\'email per cancellare la recensione:');
+                document.getElementById('emailModal').style.display = 'block';
+                document.getElementById('submitEmail').onclick = function() {
+                var email = document.getElementById('emailInput').value;
+                
+                $.ajax({
+                url: 'recensioni.php',
+                type: 'DELETE',
+                data: {email: email, admin: admin },
+
+            success: function(response){
+                //alert(result);
+                location.reload(); // Ricarica le recensioni dopo l'eliminazione
+                document.getElementById('emailModal').style.display = 'none';
+            },
+            error: function(error){
+                console.error('Errore nell\'eliminazione della recensione:', error);
+            }
+            });
+                };
+                
+            }
+           
+                
         });
     });
 
-
     </script>
+
+
 </head>
 
 <body>
@@ -556,11 +584,21 @@
         </div>
     </div>
 
-    <!--Pop up  recensione Admin-->
+    <!--Pop up Inserisci recensione Admin-->
     <div class="popup-overlay" id="popup-recensione-admin">
         <div class="popup-content">
             <span class="popup-close" id="popup-recensione-admin-close">&times;</span>
             <p>Un ADMIN non può scrivere recensioni</p>
+        </div>
+    </div>
+
+    <!--Pop up Elima Recensione Admin-->
+    <div id="emailModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Inserisci l'email per cancellare la recensione</h2>
+            <input type="email" id="emailInput" placeholder="Email">
+            <button id="submitEmail">Conferma</button>
         </div>
     </div>
 
