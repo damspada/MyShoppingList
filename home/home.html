@@ -253,7 +253,7 @@
 
 <!--recensioni gestione-->
     <script>
-       $(document).ready(function() {
+    $(document).ready(function() {
         // Caricamento delle recensioni
         $.ajax({
             url: 'recensioni.php',
@@ -271,6 +271,7 @@
 
         // Aggiunta di una nuova recensione
         $('#form-recensione').submit(function(event) {
+            //per il login-popup
             event.preventDefault();
             const preferencesLink = document.getElementById('preferences-link');
             const wrapper = document.querySelector('.wrapper');
@@ -278,6 +279,7 @@
             const loginLink = document.querySelector('.login-link');
             const iconClose = document.querySelector('.icon-close');
             const btnPopup = document.querySelector('.Btn');
+            //per la recensione
             var reviewText = $('#testo-recensione').val();
 
             if(sessionStorage.getItem("Log") != 1){
@@ -308,7 +310,27 @@
                 });
             }
         });
+        //elimina una recensione
+    document.getElementById('elimina').addEventListener('click', function(event) {
+                var email = sessionStorage.getItem("email");
+                var admin = sessionStorage.getItem("admin");
+                $.ajax({
+                    url: 'recensioni.php',
+                    type: 'DELETE',
+                    data: {email: email, admin: admin },
+
+                success: function(response){
+                    //alert(result);
+                    location.reload(); // Ricarica le recensioni dopo l'eliminazione
+                },
+                error: function(error){
+                    console.error('Errore nell\'eliminazione della recensione:', error);
+                }
+            });
+        });
     });
+
+
     </script>
 </head>
 
@@ -556,6 +578,7 @@
             <h3>Lascia una recensione</h3>
             <textarea id="testo-recensione" placeholder="Scrivi la tua recensione qui..." required></textarea>
             <button type="submit">Invia</button>
+            <button id="elimina" type="button">Elimina</button>
         </form>
         <h2>Recensioni</h2>
         <div id="recensioni-list">

@@ -18,9 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = isset($_POST['email']) ? $_POST['email'] : 'No session ID set';
     $text = $_POST['text'];
 
+    // Concatenazione di email e text
+    $fullText = $email . ": " . $text;
+
     // Preparazione della query per evitare SQL injection
     $stmt = $conn->prepare("INSERT INTO recensioni (email, text) VALUES (?, ?)");
-    $stmt->bind_param("ss", $email, $text);
+    $stmt->bind_param("ss", $email, $fullText);
 
     if ($stmt->execute()) {
         echo "Recensione aggiunta con successo!";
@@ -42,5 +45,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo json_encode($reviews);
 }
 
+// Verifica se è stata effettuata una richiesta DELETE
+if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
+    parse_str(file_get_contents("php://input"), $data);
+    $email = $data['email'];
+
+    // Preparazione della query per evitare SQL injection
+    $stmt = $conn->prepare("DELETE FROM recensioni WHERE email = ?");
+    $stmt->bind_param("s", $email);
+
+    if ($stmt->execute()) {
+        echo "Recensione eliminata con successo!";
+    } else {
+        echo "Errore: " . $stmt->error;
+    }
+
+}
+
 $conn->close();
+
 ?>

@@ -1157,6 +1157,19 @@ body.popup-active {
     cursor: pointer;
 }
 
+#form-recensione button:nth-of-type(2){
+    display: inline-block;
+    background-color: #dc3545; 
+    color: #fff; 
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10%; 
+}
+
+
+
 /*-------------------------------- Footer --------------------------------*/
 .footer_container{
     background-color: #f8f6f4;
