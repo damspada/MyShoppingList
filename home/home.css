@@ -1128,6 +1128,34 @@ body.popup-active {
     }
 }
 
+/*--------------------------------Recensioni---------------*/
+.recensioni-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+#recensioni-list p {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+#form-recensione textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+#form-recensione button {
+    display: inline-block;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
 /*-------------------------------- Footer --------------------------------*/
 .footer_container{

@@ -570,8 +570,13 @@ CREATE TABLE `utenti` (
  `cell` varchar(255) DEFAULT NULL,
  `life` varchar(255) DEFAULT NULL,
  `budget` int(11) DEFAULT NULL,
- 'adm' varchar(255) DEFAULT NULL,
+ `adm` varchar(255) DEFAULT NULL,
  PRIMARY KEY (`id`),
  UNIQUE KEY `email` (`email`,`pass`)
 );
 
+/*--------- recensioni------------*/
+CREATE TABLE reviews (
+    `email` varchar(255) PRIMARY KEY,
+    `text` varchar(500) NOT NULL,
+);

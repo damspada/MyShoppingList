@@ -103,7 +103,7 @@
                 body.classList.add('popup-active');
             } 
             else if (sessionStorage.getItem("admin") !=1) {
-                window.location.href = '/MS/MyShoppingList/preferences/preferences.html'; //se loggato manda alla pagina di preferenze
+                window.location.href = '../preferences/preferences.html'; //se loggato manda alla pagina di preferenze
             }
             else{ 
                 document.getElementById('popup-overlay').style.display = 'flex';
@@ -251,7 +251,57 @@
         }
     </script>
 
+<!--recensioni gestione-->
+    <script>
+       $(document).ready(function() {
+        // Caricamento delle recensioni
+        $.ajax({
+            url: 'recensioni.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function(reviews) {
+                reviews.forEach(function(review) {
+                    $('#recensioni-list').append(`<p>${review.text}</p>`);
+                });
+            },
+            error: function(error) {
+                console.error('Errore durante il caricamento delle recensioni:', error);
+            }
+        });
 
+        // Aggiunta di una nuova recensione
+        $('#form-recensione').submit(function(event) {
+            event.preventDefault();
+            const preferencesLink = document.getElementById('preferences-link');
+            const wrapper = document.querySelector('.wrapper');
+            const body = document.querySelector('body');
+            const loginLink = document.querySelector('.login-link');
+            const iconClose = document.querySelector('.icon-close');
+            const btnPopup = document.querySelector('.Btn');
+            var reviewText = $('#testo-recensione').val();
+
+            if(sessionStorage.getItem("Log") != 1){
+                    wrapper.classList.add('active-popup');
+                    body.classList.add('popup-active');
+            }
+            else{
+                var email = sessionStorage.getItem("email");
+                $.ajax({
+                    url: 'recensioni.php',
+                    type: 'POST',
+                    data: { text: reviewText, email: email },
+                    success: function(response) {
+                        alert(response);
+                        location.reload(); // Ricarica la pagina per mostrare la nuova recensione
+                    },
+                    error: function(error) {
+                        console.error('Errore durante l\'aggiunta della recensione:', error);
+                    }
+                });
+            }
+        });
+    });
+    </script>
 </head>
 
 <body>
@@ -483,6 +533,23 @@
         <img src="./Immagini/arrow_up.png">
         </span>
     </a>
+
+
+    <!--Recensioni-->
+    <div class="recensioni-container">
+        <form id="form-recensione">
+            <h3>Lascia una recensione</h3>
+            <textarea id="testo-recensione" placeholder="Scrivi la tua recensione qui..." required></textarea>
+            <button type="submit">Invia</button>
+        </form>
+        <h2>Recensioni</h2>
+        <div id="recensioni-list">
+            <!-- Qui verranno caricate le recensioni dal database -->
+        </div>
+        
+    </div>
+    
+
 
     <!-- Footer -->
     <div class="footer_container">
