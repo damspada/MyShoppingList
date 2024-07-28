@@ -313,7 +313,19 @@
         //elimina una recensione
     document.getElementById('elimina').addEventListener('click', function(event) {
             var admin = sessionStorage.getItem("admin");
-            if(admin!=1){
+            //per il pop-up login
+            event.preventDefault();
+            const preferencesLink = document.getElementById('preferences-link');
+            const wrapper = document.querySelector('.wrapper');
+            const body = document.querySelector('body');
+            const loginLink = document.querySelector('.login-link');
+            const iconClose = document.querySelector('.icon-close');
+            const btnPopup = document.querySelector('.Btn');
+            if(sessionStorage.getItem("Log") != 1){
+                wrapper.classList.add('active-popup');
+                body.classList.add('popup-active');
+            }
+            else if(admin!=1){
                 var email = sessionStorage.getItem("email");
                 $.ajax({
                 url: 'recensioni.php',
@@ -332,6 +344,10 @@
             else{
                 //var email = prompt('Inserisci l\'email per cancellare la recensione:');
                 document.getElementById('emailModal').style.display = 'block';
+                document.querySelector('.close').addEventListener('click', function() {
+                    document.getElementById('emailModal').style.display = 'none';
+                });
+
                 document.getElementById('submitEmail').onclick = function() {
                 var email = document.getElementById('emailInput').value;
                 
@@ -352,8 +368,57 @@
                 };
                 
             }
-           
+        });
+
+        //modifica-recensione
+        document.getElementById('modifica').addEventListener('click', function(event) {
+            var admin = sessionStorage.getItem("admin");
+            //per il pop-up login
+            event.preventDefault();
+            const preferencesLink = document.getElementById('preferences-link');
+            const wrapper = document.querySelector('.wrapper');
+            const body = document.querySelector('body');
+            const loginLink = document.querySelector('.login-link');
+            const iconClose = document.querySelector('.icon-close');
+            const btnPopup = document.querySelector('.Btn');
+            if(sessionStorage.getItem("Log") != 1){
+                wrapper.classList.add('active-popup');
+                body.classList.add('popup-active');
+            }
+            else if(admin==1){
+                document.getElementById('popup-modifica-recensione-admin').style.display = 'flex';
                 
+                function hidePopup() {
+                    document.getElementById('popup-modifica-recensione-admin').style.display = 'none';
+                }
+                document.getElementById('popup-modifica-recensione-admin-close').addEventListener('click', hidePopup);
+            }
+            else{
+                document.getElementById('modificaModal').style.display = 'block';
+                document.querySelector('.close2').addEventListener('click', function() {
+                    document.getElementById('modificaModal').style.display = 'none';
+                });
+
+                document.getElementById('submittext').onclick = function() {
+                    var email=sessionStorage.getItem("email");
+                    var text = document.getElementById('textInput').value;
+                    var text = document.getElementById('textInput').value;
+                        $.ajax({
+                        url: 'recensioni.php',
+                        type: 'MODIFICA',
+                        data: {email: email, admin: admin, text: text},
+
+                    success: function(response){
+                        //alert(result);
+                        location.reload(); // Ricarica le recensioni dopo la modifica
+                        document.getElementById('modificaModal').style.display = 'none';
+                    },
+                    error: function(error){
+                        console.error('Errore nella modifica della recensione:', error);
+                    }
+                    });
+                }
+            }
         });
     });
 
@@ -466,7 +531,7 @@
     <!-- bottoni per l'admin di gestione-->
     <div class="admin-buttons" style="display: none;">
         <button class="button_admin" onclick="window.location.href='../home/home.html';">PRODOTTI</button>
-        <button class="button_admin" onclick="window.location.href='../home/home.html';">RECENSIONI</button>
+        <button class="button_admin" onclick="window.location.href='../home/home.html#recensioni';">RECENSIONI</button>
         <button class="button_admin" onclick="window.location.href='../home/home.html';">SUPERMERCATI</button>
     </div>
 
@@ -592,6 +657,14 @@
         </div>
     </div>
 
+    <!--Pop up Modifica recensione Admin-->
+    <div class="popup-overlay" id="popup-modifica-recensione-admin">
+        <div class="popup-content">
+            <span class="popup-close" id="popup-modifica-recensione-admin-close">&times;</span>
+            <p>Un ADMIN non può modificare recensioni</p>
+        </div>
+    </div>
+
     <!--Pop up Elima Recensione Admin-->
     <div id="emailModal" class="modal">
         <div class="modal-content">
@@ -599,6 +672,16 @@
             <h2>Inserisci l'email per cancellare la recensione</h2>
             <input type="email" id="emailInput" placeholder="Email">
             <button id="submitEmail">Conferma</button>
+        </div>
+    </div>
+
+    <!--Pop up Modifica Recensione-->
+    <div id="modificaModal" class="modal2">
+        <div class="modal-content2">
+            <span class="close2">&times;</span>
+            <h2>Inserisci la tua nuova recensione</h2>
+            <input type="text" id="textInput" placeholder="text">
+            <button id="submittext">Conferma</button>
         </div>
     </div>
 
@@ -611,12 +694,13 @@
 
 
     <!--Recensioni-->
-    <div class="recensioni-container">
+    <div class="recensioni-container" id="recensioni">
         <form id="form-recensione">
             <h3>Lascia una recensione</h3>
             <textarea id="testo-recensione" placeholder="Scrivi la tua recensione qui..." required></textarea>
             <button type="submit">Invia</button>
             <button id="elimina" type="button">Elimina</button>
+            <button id="modifica" type="button">Modifica</button>
         </form>
         <h2>Recensioni</h2>
         <div id="recensioni-list">

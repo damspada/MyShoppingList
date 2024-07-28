@@ -62,6 +62,29 @@ if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
 
 }
 
+// Verifica se è stata effettuata una richiesta MODIFICA
+if ($_SERVER["REQUEST_METHOD"] == "MODIFICA") {
+    parse_str(file_get_contents("php://input"), $data);
+    $email = $data['email'];
+    $text = $data['text'];
+
+    // Concatenazione di email e text
+    $fullText = $email . ": " . $text;
+
+    // elimina vecchia recensione nel database
+    $stmt = $conn->prepare("UPDATE recensioni SET text = ? WHERE email = ?");
+    $stmt->bind_param("ss", $fullText,$email);
+
+    if ($stmt->execute()) {
+        echo "Recensione eliminata con successo!";
+    } else {
+        echo "Errore: " . $stmt->error;
+    }
+
+}
+
+
+
 $conn->close();
 
 ?>
