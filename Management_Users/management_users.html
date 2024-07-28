@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./Immagini/favicon.png">
+    <link rel="stylesheet" href="management_users.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        window.addEventListener('load', function (event) {
+            console.log(sessionStorage.getItem("Log"));
+            console.log(sessionStorage.getItem("email"));
+            console.log(sessionStorage.getItem("sessionId"));
+            if (sessionStorage.getItem("Log") != 1 && sessionStorage.getItem("sessionId")==null) {
+                $.ajax({
+                    url: "check_login.php",
+                    type: "POST",
+                    data: {
+                        cestino: 1
+                    },
+                    success: function (data) {
+                        console.log('Richiesta andata a buon fine.');
+                    },
+                    error: function (xhr, status, error) {
+                        // Gestisci gli errori durante la chiamata AJAX
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                })
+            }
+            setSessionCookie();
+            loadUsers(); // Carica gli utenti alla pagina
+        });
+
+        // Funzione per caricare gli utenti
+        function loadUsers() {
+            $.ajax({
+                url: "management_users.php", // Endpoint per ottenere i dati degli utenti
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    var userTableBody = document.getElementById('userTableBody');
+                    data.forEach(function (user) {
+                        var row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${user.email}</td>
+                            <td>${user.cell}</td>
+                            <td>${user.life}</td>
+                            <td>${user.budget}</td>
+                        `;
+                        userTableBody.appendChild(row);
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error('Errore nel caricamento degli utenti.');
+                }
+            });
+        }
+    </script>
+
+        
+    <!-- Tasto Login -->
+    <script>
+        window.addEventListener('load', function (event) {
+            
+            // Se l'utente è già loggato, reindirizza alla pagina utente
+            document.querySelector('.Btn').addEventListener('click', function () {
+                window.location.href = '../User_Page/user.html';
+            });
+ 
+        });
+    </script>
+
+    <!-- setSessionCookie -->
+    <script>
+        function setSessionCookie() {
+            if (sessionStorage.getItem('sessionId')) {
+                var sessionId = sessionStorage.getItem('sessionId');
+                console.log('Session ID is already set: ' + sessionId);
+                return;
+            }
+
+            var sessionId = generateSessionId();
+
+            sessionStorage.setItem('sessionId', sessionId); 
+        }
+    </script>
+    
+     <!-- Cambia immagine Navbar -->
+     <script>
+        window.addEventListener('load', function (event) {
+            if(sessionStorage.getItem("Log")==1){
+                var email=sessionStorage.getItem("email");
+                $.ajax({
+                    url: "check_login.php",
+                    type: "GET",
+                    data:{
+                        email: email
+                    },
+                    dataType:'json',
+                    success: function(data){
+                        data.forEach(function (element) {
+
+                            var name_img = element.nome;
+
+                            function primaLetteraMaiuscola(parola) {
+                                var primaLettera = parola.charAt(0);
+                                return primaLettera.toUpperCase();
+                            }
+
+                            name_img = primaLetteraMaiuscola(name_img);
+
+                            
+                            const iconElement = document.querySelector('.Btn ion-icon');
+                            iconElement.remove();
+                            const imgElement = document.createElement('h3');
+
+                            imgElement.textContent = name_img;
+
+                            imgElement.style.color = 'white';
+                            imgElement.style.margin = 'auto'
+                            imgElement.style.fontWeight = '700';
+
+                            const signDiv = document.querySelector('.Btn .sign');
+                            signDiv.appendChild(imgElement);
+
+                            const loginButton = document.querySelector('.text_btn');
+
+                            loginButton.textContent = 'Profile';
+
+                        });
+                    },
+                    error: function(xhr, status, error){
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                })
+            }
+        });
+
+    //elimina utenti registrati
+
+    // Quando l'utente clicca sul bottone, apri il modal
+    window.onload = function() {
+        document.getElementById("elimina").addEventListener('click', function(event) {
+            document.getElementById("deleteUserModal").style.display = "block";
+            document.getElementById("submitEmail").onclick = function() {
+            var email = document.getElementById("emailInput").value;
+            $.ajax({
+                url: 'management_users.php',
+                type: 'DELETE',
+                data: {email: email},
+
+                success: function(response){
+                            //alert(result);
+                            location.reload(); // Ricarica le recensioni dopo l'eliminazione
+                            document.getElementById("deleteUserModal").style.display = "none";
+                        },
+                        error: function(error){
+                            console.error('Errore nell\'eliminazione dell\'utente:', error);
+                        }
+            });
+            };
+
+        });
+
+        // Quando l'utente clicca sulla X, chiudi il modal
+        document.getElementsByClassName("close")[0].onclick = function() {
+            document.getElementById("deleteUserModal").style.display = "none";
+        }
+    }
+
+    
+    </script>
+
+    <title>User Management</title>
+<head>
+    
+<body>
+
+   <!-- NavBar-->
+    <div>
+        <header class="header">
+            <a href="../home/home.html"><img src="Icone/MyShoppingList.png" class="logo"></a>
+            <nav class="my_navbar">
+                <a href="../home/home.html" class="link_navbar">Home</a>
+                <a href="#contatti">Contacts</a>
+                <a href="#contatti" class="icon_contatti"><img src="./Icone/phone.png"></a>
+                <a href="#">
+                    <button class="Btn">
+                        <div class="sign"><ion-icon name="person-circle-outline" size="large"></ion-icon></div>
+                        <div class="text_btn">Login</div>
+                    </button>
+                </a>
+            </nav>
+        </header>
+    </div>
+
+     <!-- User Table -->
+     <div class="user-table-container">
+        
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Cell</th>
+                    <th>Life</th>
+                    <th>Budget</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody">
+                <!-- Le righe degli utenti verranno aggiunte qui tramite JavaScript -->
+            </tbody>
+        </table>
+        <button class="action-button" id="elimina" type="button">Elimina un Utente Registrato</button>
+    </div>
+ 
+    <!--Pop up elimina utente registrato-->
+    <div id="deleteUserModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Elimina Utente</h2>
+            <p>Inserisci l'email dell'utente che desideri eliminare:</p>
+            <input type="text" id="emailInput" placeholder="Email">
+            <button id="submitEmail" class="action-button">Elimina</button>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -344,27 +344,27 @@
             else{
                 //var email = prompt('Inserisci l\'email per cancellare la recensione:');
                 document.getElementById('emailModal').style.display = 'block';
-                document.querySelector('.close').addEventListener('click', function() {
+                ctordocument.querySele('.close').addEventListener('click', function() {
                     document.getElementById('emailModal').style.display = 'none';
                 });
 
                 document.getElementById('submitEmail').onclick = function() {
-                var email = document.getElementById('emailInput').value;
-                
-                $.ajax({
-                url: 'recensioni.php',
-                type: 'DELETE',
-                data: {email: email, admin: admin },
+                    var email = document.getElementById('emailInput').value;
+                    
+                    $.ajax({
+                    url: 'recensioni.php',
+                    type: 'DELETE',
+                    data: {email: email, admin: admin },
 
-            success: function(response){
-                //alert(result);
-                location.reload(); // Ricarica le recensioni dopo l'eliminazione
-                document.getElementById('emailModal').style.display = 'none';
-            },
-            error: function(error){
-                console.error('Errore nell\'eliminazione della recensione:', error);
-            }
-            });
+                    success: function(response){
+                        //alert(result);
+                        location.reload(); // Ricarica le recensioni dopo l'eliminazione
+                        document.getElementById('emailModal').style.display = 'none';
+                    },
+                    error: function(error){
+                        console.error('Errore nell\'eliminazione della recensione:', error);
+                    }
+                    });
                 };
                 
             }
@@ -531,7 +531,7 @@
     <!-- bottoni per l'admin di gestione-->
     <div class="admin-buttons" style="display: none;">
         <button class="button_admin" onclick="window.location.href='../home/home.html';">PRODOTTI</button>
-        <button class="button_admin" onclick="window.location.href='../home/home.html#recensioni';">RECENSIONI</button>
+        <button class="button_admin" onclick="window.location.href='../Management_Users/management_users.html';">UTENTI</button>
         <button class="button_admin" onclick="window.location.href='../home/home.html';">SUPERMERCATI</button>
     </div>
 
