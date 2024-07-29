@@ -490,14 +490,31 @@ tr:hover {
 }
 
 button.action-button {
-    display: inline-block;
-    background-color: #dc3545; 
+    display: inline-block; 
     color: #fff;
     border: none;
     padding: 20px 20px;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
+}
+
+/* Stile specifico per il pulsante "Aggiungi" */
+.action-button.aggiungi {
+    background-color: #4CAF50; /* Verde */
+}
+
+.action-button.aggiungi:hover {
+    background-color: #45a049; /* Verde più scuro */
+}
+
+/* Stile specifico per il pulsante "Elimina" */
+.action-button.elimina {
+    background-color: #f44336; /* Rosso */
+}
+
+.action-button.elimina:hover {
+    background-color: #d32f2f; /* Rosso più scuro */
 }
 
 
@@ -557,12 +574,171 @@ button.action-button {
 #submitDeleteSupermarkets {
     width: 100%;
     padding: 14px;
-    background-color: #4CAF50; /* Verde */
+    background-color: #f44336; 
     color: white;
     border: none;
     cursor: pointer;
 }
 
 #submitDeleteSupermarkets:hover {
+    background-color: #d32f2f;
+}
+
+/*-------------Popup-Aggiungi-Supermercato-------------*/
+/* Stile del modale */
+.modalAggiungi {
+    display: none; /* Nascondi il modale per impostazione predefinita */
+    position: fixed;
+    z-index: 1; /* Posiziona il modale sopra gli altri contenuti */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Sfondo semi-trasparente */
+}
+
+/* Contenuto del modale */
+.modalAggiungi-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Larghezza del modale */
+}
+
+/* Pulsante di chiusura */
+.close_modalAggiungi {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close_modalAggiungi:hover,
+.close_modalAggiungi:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Stile dell'input e del pulsante */
+#Aggiungi_nameInput {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+#Aggiungi_chainInput {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+#Aggiungi_latitudineInput {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+#Aggiungi_longitudineInput {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+#submitAggiungiSupermarkets {
+    width: 100%;
+    padding: 14px;
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#submitAggiungiSupermarkets:hover {
+    background-color: #45a049; /* Verde più scuro */
+}
+
+
+/*-------------Popup-Aggiungi-Supermercato-------------*/
+/* Stile del modale */
+.modalModifica {
+    display: none; /* Nascondi il modale per impostazione predefinita */
+    position: fixed;
+    z-index: 1; /* Posiziona il modale sopra gli altri contenuti */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Sfondo semi-trasparente */
+}
+
+/* Contenuto del modale */
+.modalModifica-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Larghezza del modale */
+}
+
+/* Pulsante di chiusura */
+.close_modalModifica {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close_modalModifica:hover,
+.close_modalModifica:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Stile dell'input e del pulsante */
+#Modifica_nameInput {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+#Modifica_chainInput {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+#Modifica_latitudineInput {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+#Modifica_longitudineInput {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+#submitModificaSupermarkets {
+    width: 100%;
+    padding: 14px;
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#submitModificaSupermarkets:hover {
     background-color: #45a049; /* Verde più scuro */
 }

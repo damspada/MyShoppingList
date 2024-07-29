@@ -171,7 +171,95 @@
         }
     }
 
+    document.addEventListener('DOMContentLoaded', (event) => {
 
+        // Quando l'utente clicca sul pulsante, apri il modale
+        document.getElementById("aggiungi").onclick = function() {
+            document.getElementById("modalAggiungi").style.display = "block";
+        }
+
+        // Quando l'utente clicca su(x), chiudi il modale
+        document.getElementsByClassName("close_modalAggiungi")[0].onclick = function() {
+            document.getElementById("modalAggiungi").style.display = "none";
+        }
+
+        // Gestione invio dati
+        document.getElementById('submitAggiungiSupermarkets').addEventListener('click', function() {
+            var chain = document.getElementById('Aggiungi_chainInput').value;
+            var name = document.getElementById('Aggiungi_nameInput').value;
+            var latitude = document.getElementById('Aggiungi_latitudineInput').value;
+            var longitude = document.getElementById('Aggiungi_longitudineInput').value;
+
+            if (!chain || !name || !latitude || !longitude) {
+                alert("Per favore inserisci tutti i campi!");
+                return;
+            }
+
+            // Invia i dati al server
+            $.ajax({
+                url: 'management_supermarkets.php', // Endpoint per l'aggiunta
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    chain: chain,
+                    name: name,
+                    latitude: latitude,
+                    longitude: longitude,
+                    add: true // Flag to indicate add operation
+                }),
+                success: function(response) {
+                    //alert("Supermercato aggiunto con successo!");
+                    document.getElementById("modalAggiungi").style.display = "none";
+                    loadSupermarkets(); // Aggiorna la lista dei supermercati
+                },
+                error: function(xhr, status, error) {
+                    alert("Si è verificato un errore durante l'aggiunta.");
+                }
+            });
+        });
+
+        
+        document.getElementById("modifica").onclick = function () {
+                document.getElementById("modalModifica").style.display = "block";
+            }
+
+            document.getElementsByClassName("close_modalModifica")[0].onclick = function () {
+                document.getElementById("modalModifica").style.display = "none";
+            }
+
+            document.getElementById('submitModificaSupermarkets').addEventListener('click', function () {
+                var chain = document.getElementById('Modifica_chainInput').value;
+                var name = document.getElementById('Modifica_nameInput').value;
+                var latitude = document.getElementById('Modifica_latitudineInput').value;
+                var longitude = document.getElementById('Modifica_longitudineInput').value;
+
+                if (!chain || !name || !latitude || !longitude) {
+                    alert("Per favore inserisci tutti i campi!");
+                    return;
+                }
+
+                $.ajax({
+                    url: 'management_supermarkets.php',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        chain: chain,
+                        name: name,
+                        latitude: latitude,
+                        longitude: longitude,
+                        mod: true // Flag to indicate add operation
+                    }),
+                    success: function (response) {
+                        //alert("ao");
+                        document.getElementById("modalModifica").style.display = "none";
+                        loadSupermarkets(); // Aggiorna la lista dei supermercati
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Si è verificato un errore durante la modifica.");
+                    }
+                });
+            });
+        });
 
     </script>
 
@@ -213,7 +301,9 @@
                 </tbody>
             </table>
         </div>
-        <button class="action-button" id="elimina" type="button">Elimina un Supermercato Registrato</button>
+        <button class="action-button aggiungi" id="aggiungi" type="button">Registra un Nuovo Supermercato</button>
+        <button class="action-button aggiungi" id="modifica" type="button">Modifica un Supermercato Registrato</button>
+        <button class="action-button elimina" id="elimina" type="button">Elimina un Supermercato Registrato</button>
     </div>
 
     <!--Pop up elimina supermercato registrato-->
@@ -226,6 +316,32 @@
             <p>Inserisci il nome del supermercato che desideri eliminare:</p>
             <input type="text" id="Delete_nameInput" placeholder="Name">
             <button id="submitDeleteSupermarkets" class="action-button">Elimina</button>
+        </div>
+    </div>
+
+    <!-- Pop up aggiungi nuovo supermercato -->
+    <div id="modalAggiungi" class="modalAggiungi">
+        <div class="modalAggiungi-content">
+            <span class="close_modalAggiungi">&times;</span>
+            <h2>Aggiungi un Supermercato</h2>
+            <input type="text" id="Aggiungi_chainInput" placeholder="Catena">
+            <input type="text" id="Aggiungi_nameInput" placeholder="Nome">
+            <input type="text" id="Aggiungi_latitudineInput" placeholder="Latitudine">
+            <input type="text" id="Aggiungi_longitudineInput" placeholder="Longitudine">
+            <button id="submitAggiungiSupermarkets">Aggiungi Supermercato</button>
+        </div>
+    </div>
+
+     <!-- Pop up MODIFICA nuovo supermercato -->
+     <div id="modalModifica" class="modalModifica">
+        <div class="modalModifica-content">
+            <span class="close_modalModifica">&times;</span>
+            <h2>Modifica un Supermercato</h2>
+            <input type="text" id="Modifica_chainInput" placeholder="Catena">
+            <input type="text" id="Modifica_nameInput" placeholder="Nome">
+            <input type="text" id="Modifica_latitudineInput" placeholder="Latitudine">
+            <input type="text" id="Modifica_longitudineInput" placeholder="Longitudine">
+            <button id="submitModificaSupermarkets">Modifica Supermercato</button>
         </div>
     </div>
      

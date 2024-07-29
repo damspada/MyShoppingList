@@ -48,9 +48,58 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
     }
 }
 
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $data = json_decode(file_get_contents('php://input'), true);
+
+    if (isset($data['add']) && $data['add']) {
+        $chain = $data['chain'];
+        $name = $data['name'];
+        $latitude = $data['latitude'];
+        $longitude = $data['longitude'];
+
+        if (empty($chain) || empty($name) || empty($latitude) || empty($longitude)) {
+            echo "Errore: Tutti i campi sono obbligatori.";
+            $conn->close();
+            exit();
+        }
+
+        $location = "POINT($latitude $longitude)";
+
+        $stmt = $conn->prepare("INSERT INTO supermarkets (chain, name, location) VALUES (?, ?, ST_GeomFromText(?))");
+        $stmt->bind_param("sss", $chain, $name, $location);
+
+        if ($stmt->execute()) {
+            echo "Supermercato aggiunto con successo!";
+        } else {
+            echo "Errore: " . $stmt->error;
+        }
+    }
+
+    if (isset($data['mod']) && $data['mod']) {
+        $chain = $data['chain'];
+        $name = $data['name'];
+        $latitude = $data['latitude'];
+        $longitude = $data['longitude'];
+
+        if (empty($chain) || empty($name) || empty($latitude) || empty($longitude)) {
+            echo "Errore: Tutti i campi sono obbligatori.";
+            $conn->close();
+            exit();
+        }
+
+        $location = "POINT($latitude $longitude)";
+
+        $stmt = $conn->prepare("UPDATE supermarkets SET location = ST_GeomFromText(?) WHERE (chain = ? AND name = ?)");
+        $stmt->bind_param("sss", $location, $chain, $name);
+
+        if ($stmt->execute()) {
+            echo "Supermercato aggiornato con successo!";
+        } else {
+            echo "Errore: " . $stmt->error;
+        }
+    }
+}
+
 $conn->close();
-
-
-
-
 ?>
