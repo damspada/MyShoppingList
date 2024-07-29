@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
     $email = $data['email'];
 
     // Preparazione della query per evitare SQL injection
-    $stmt = $conn->prepare("DELETE FROM utenti WHERE email = ? AND admin LIKE 0 OR admin IS NULL");
+    $stmt = $conn->prepare("DELETE FROM utenti WHERE email = ? AND (admin LIKE 0 OR admin IS NULL)");
     $stmt->bind_param("s", $email);
 
     if ($stmt->execute()) {

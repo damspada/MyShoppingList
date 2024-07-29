@@ -454,6 +454,12 @@ body.popup-active {
     width: 80%;
     overflow-x: auto;
     margin-top: 100px;
+    max-height: 500px; /* Imposta l'altezza massima del contenitore */
+}
+
+.table-scrollable {
+    overflow-y: auto;  /* Abilita lo scorrimento verticale */
+    max-height: 400px; /* Imposta l'altezza massima desiderata per la parte scrollabile */
 }
 
 table {
@@ -490,6 +496,7 @@ button.action-button {
     padding: 20px 20px;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 20px;
 }
 
 /*-------------Popup-Elimina-User-------------*/
