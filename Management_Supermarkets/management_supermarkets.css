@@ -1,0 +1,568 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Serif+Display:ital@0;1&family=Orelega+One&family=Ultra&display=swap');
+
+@font-face {
+    font-family: "Montserrat_Arabic_Regular";
+    src: url("Montserrat-Arabic\ Regular\ 400.otf") format("opentype");
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+html, body{
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body.popup-active {
+    overflow: hidden;
+}
+
+
+/*-------------------------------- Navbar --------------------------------*/
+#login_div{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1% 1% 1% 6.5%;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    font-family: "Montserrat", sans-serif;
+}
+
+.logo{
+    font-size: 32px;
+    color: black;
+    text-decoration: none;
+    font-weight: 700;
+    
+}
+
+.my_navbar{
+    display: flex;
+    align-items: center;
+}
+
+.my_navbar a{
+    position: relative;
+    font-size: 120%;
+    color: black;
+    margin-left: 4em; 
+    text-decoration: none;
+    font-weight: 550;
+}
+
+.my_navbar a::before{
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 13%;
+    background: #00BF63;
+    transition: .3s;
+}
+
+.icon_contatti{
+    display: none; 
+}
+
+.my_navbar a:nth-child(1):hover::before {
+    width: 100%;
+}
+
+.my_navbar a:nth-child(1) .sign:hover::before {
+    width: 0;
+}
+
+.my_navbar a:nth-child(2):hover::before {
+    width: 100%;
+}
+
+.my_navbar a:nth-child(2) .sign:hover::before {
+    width: 0;
+}
+
+@media screen and (max-width: 900px){
+    html, body {
+        overflow-x: hidden;
+        transition: all 0.5s ease;
+    }
+    
+    .header{
+        padding: 1% 6% 1% 6.5%;;
+    }
+    .my_navbar a:nth-child(2) {
+        display: none; 
+    }
+    .my_navbar a:nth-child(1) {
+        display: none; 
+    }
+    .logo{
+        width: 160px;
+        height: auto;
+    }
+    .Btn{
+        width: 30px;
+        height: 30px;    
+    }
+    .icon_contatti {
+        display: inline-block; 
+    }
+    .icon_contatti img{
+        width: 30px;
+        height: 30px; 
+    }
+    .my_navbar a{
+        margin-left: 1em;
+    }
+}
+
+/*-------------------------------- botton_user --------------------------------*/
+.Btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: #00BF63;
+}
+
+.sign {
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign svg {
+    width: 30px;
+}
+
+.sign svg path {
+    fill: white;
+}
+
+.sign img {
+    width: 30px; 
+    height: 30px;
+    border-radius: 50%; 
+    object-fit: cover; 
+}
+
+.text_btn {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
+    transition-duration: .3s;
+}
+
+.Btn:hover {
+    width: 150px;
+    border-radius: 40px;
+    transition-duration: .3s;
+}
+
+.Btn:hover .sign {
+    width: 30%;
+    transition-duration: .3s;
+    padding-left: 10px;
+}
+
+.Btn:hover .text_btn {
+    opacity: 1;
+    width: 70%;
+    transition-duration: .3s;
+    padding-right: 10px;
+}
+
+.Btn:active {
+    transform: translate(2px ,2px);
+}
+
+
+
+/*-------------------------------- pop-up login --------------------------------*/
+.wrapper{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 440px;
+    background-color: rgba(255, 253, 253, 0.733);
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(50px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: transform .5s ease,height .2s ease;
+    z-index: 150;
+}
+
+.wrapper.active-popup{
+    display: inline-flex;
+    overflow: hidden;
+}
+
+.wrapper.active{
+    height: 520px;
+}
+
+.wrapper .form-box{
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper .form-box.login{
+    transition: transform .18s ease;
+    transform: translate(0);
+}
+
+.wrapper.active .form-box.login{
+    transition: none;
+    transform: translateX(-400px);
+}
+
+
+.wrapper .form-box.register{
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+}
+
+.wrapper.active .form-box.register{
+    transition: transform .18s ease;
+    transform: translate(0);
+}
+
+.wrapper .icon-close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background-color: #048948c5;
+    font-size: 2em;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.form-box h2{
+    font-size: 2em;
+    color: black;
+    text-align: center;
+}
+
+.input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid black;
+    margin: 30px 0;
+}
+
+.input-box label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: black;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label{
+    top: -5px;
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: black;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+
+.input-box .icon{
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: black;
+    line-height: 57px;
+}
+
+.btn{
+    width: 100%;
+    height: 45px;
+    background: #048948c5 !important;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    color: white !important;
+}
+
+.btn:hover{
+    background-color: #109052 !important;
+}
+
+.login-register{
+    font-size: .9em;
+    color: black;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+
+.login-register p a{
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-register p a:hover{
+    text-decoration: underline;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 120; 
+    display: none; 
+}
+
+.popup-active .overlay {
+    display: block; 
+}
+
+
+@media screen and (max-width: 1200px) {
+    .wrapper {
+        width: 40% !important;
+        height: 45% !important;
+        max-width: 400px;
+        margin-top: 20%;
+        top: 25%;
+        padding: 0 2%;
+    }
+
+    .wrapper .form-box {
+        padding: 20px;
+    }
+
+    .form-box h2 {
+        font-size: 30px;
+    }
+
+    .input-box {
+        margin: 20px 0;
+    }
+
+    .input-box label {
+        font-size: 15px;
+    }
+
+    .input-box input {
+        font-size: 15px;
+    }
+
+    .login-register {
+        margin: 30px 0 5px 0;
+        font-size: 13px;
+    }
+
+    .login-register p a {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 1200px) and (max-height: 800px){
+    .wrapper{
+        padding: 16% 0 !important;
+    }
+}
+
+@media screen and (max-width: 900px) and (max-height: 700px){
+    .wrapper{
+        padding: 20% 0 !important;
+    }
+}
+
+@media screen and (max-width: 700px) and (max-height: 700px){
+    .wrapper{
+        padding: 24% 0 !important;
+    }
+}
+
+
+/*-------------------------------- Tabella utenti -------------------------------------------*/
+.supermarkets-table-container {
+    margin: 20px auto;
+    width: 80%;
+    overflow-x: auto;
+    margin-top: 100px;
+    max-height: 500px; /* Imposta l'altezza massima del contenitore */
+}
+
+.table-scrollable {
+    overflow-y: auto;  /* Abilita lo scorrimento verticale */
+    max-height: 400px; /* Imposta l'altezza massima desiderata per la parte scrollabile */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #00BF63;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+button.action-button {
+    display: inline-block;
+    background-color: #dc3545; 
+    color: #fff;
+    border: none;
+    padding: 20px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+
+/*-------------Popup-Elimina-Supermercato-------------*/
+/* Stile del modale */
+.modal {
+    display: none; /* Nascondi il modale per impostazione predefinita */
+    position: fixed;
+    z-index: 1; /* Posiziona il modale sopra gli altri contenuti */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Sfondo semi-trasparente */
+}
+
+/* Contenuto del modale */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Larghezza del modale */
+}
+
+/* Pulsante di chiusura */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Stile dell'input e del pulsante */
+#Delete_nameInput {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+#Delete_chainInput {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+#submitDeleteSupermarkets {
+    width: 100%;
+    padding: 14px;
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#submitDeleteSupermarkets:hover {
+    background-color: #45a049; /* Verde più scuro */
+}

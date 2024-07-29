@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./Immagini/favicon.png">
+    <link rel="stylesheet" href="management_supermarkets.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        window.addEventListener('load', function (event) {
+            console.log(sessionStorage.getItem("Log"));
+            console.log(sessionStorage.getItem("email"));
+            console.log(sessionStorage.getItem("sessionId"));
+            if (sessionStorage.getItem("Log") != 1 && sessionStorage.getItem("sessionId")==null) {
+                $.ajax({
+                    url: "check_login.php",
+                    type: "POST",
+                    data: {
+                        cestino: 1
+                    },
+                    success: function (data) {
+                        console.log('Richiesta andata a buon fine.');
+                    },
+                    error: function (xhr, status, error) {
+                        // Gestisci gli errori durante la chiamata AJAX
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                })
+            }
+            setSessionCookie();
+            loadSupermarkets(); // Carica i supermercati alla pagina
+        });
+
+        function loadSupermarkets() {
+            $.ajax({
+                url: "management_supermarkets.php",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    if (Array.isArray(data)) {
+                        var supermarketsTableBody = document.getElementById('supermarketsTableBody');
+                        supermarketsTableBody.innerHTML = ''; // Clear the table before adding new rows
+                        data.forEach(function (supermarket) {
+                            var row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${supermarket.chain}</td>
+                                <td>${supermarket.name}</td>
+                                <td>${supermarket.location}</td>
+                            `;
+                            supermarketsTableBody.appendChild(row);
+                        });
+                    } else {
+                        console.error('Data format is not as expected:', data);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Errore nel caricamento dei supermercati:', status, error);
+                }
+            });
+        }
+    </script>
+       
+        
+    <!-- Tasto Login -->
+    <script>
+        window.addEventListener('load', function (event) {
+            
+            // Se l'utente è già loggato, reindirizza alla pagina utente
+            document.querySelector('.Btn').addEventListener('click', function () {
+                window.location.href = '../User_Page/user.html';
+            });
+ 
+        });
+    </script>
+
+    <!-- setSessionCookie -->
+    <script>
+        function setSessionCookie() {
+            if (sessionStorage.getItem('sessionId')) {
+                var sessionId = sessionStorage.getItem('sessionId');
+                console.log('Session ID is already set: ' + sessionId);
+                return;
+            }
+
+            var sessionId = generateSessionId();
+
+            sessionStorage.setItem('sessionId', sessionId); 
+        }
+    </script>
+    
+     <!-- Cambia immagine Navbar -->
+     <script>
+        window.addEventListener('load', function (event) {
+            if(sessionStorage.getItem("Log")==1){
+                var email=sessionStorage.getItem("email");
+                $.ajax({
+                    url: "check_login.php",
+                    type: "GET",
+                    data:{
+                        email: email
+                    },
+                    dataType:'json',
+                    success: function(data){
+                        data.forEach(function (element) {
+
+                            var name_img = element.nome;
+
+                            function primaLetteraMaiuscola(parola) {
+                                var primaLettera = parola.charAt(0);
+                                return primaLettera.toUpperCase();
+                            }
+
+                            name_img = primaLetteraMaiuscola(name_img);
+
+                            
+                            const iconElement = document.querySelector('.Btn ion-icon');
+                            iconElement.remove();
+                            const imgElement = document.createElement('h3');
+
+                            imgElement.textContent = name_img;
+
+                            imgElement.style.color = 'white';
+                            imgElement.style.margin = 'auto'
+                            imgElement.style.fontWeight = '700';
+
+                            const signDiv = document.querySelector('.Btn .sign');
+                            signDiv.appendChild(imgElement);
+
+                            const loginButton = document.querySelector('.text_btn');
+
+                            loginButton.textContent = 'Profile';
+
+                        });
+                    },
+                    error: function(xhr, status, error){
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                })
+            }
+        });
+         // Quando l'utente clicca sul bottone, apri il modal
+    window.onload = function() {
+        document.getElementById("elimina").addEventListener('click', function(event) {
+            document.getElementById("deleteSupermarketsModal").style.display = "block";
+            document.getElementById("submitDeleteSupermarkets").onclick = function() {
+            var chain = document.getElementById("Delete_chainInput").value;
+            var name = document.getElementById("Delete_nameInput").value;
+            $.ajax({
+                url: 'management_supermarkets.php',
+                type: 'DELETE',
+                data: {chain: chain, name: name},
+
+                success: function(response){
+                            //alert(result);
+                            location.reload(); // Ricarica le recensioni dopo l'eliminazione
+                            document.getElementById("deleteSupermarketsModal").style.display = "none";
+                        },
+                        error: function(error){
+                            console.error('Errore nell\'eliminazione dell\'utente:', error);
+                        }
+            });
+            };
+
+        });
+
+        // Quando l'utente clicca sulla X, chiudi il modal
+        document.getElementsByClassName("close")[0].onclick = function() {
+            document.getElementById("deleteSupermarketsModal").style.display = "none";
+        }
+    }
+
+
+
+    </script>
+
+<head>
+    
+<body>
+
+   <!-- NavBar-->
+    <div>
+        <header class="header">
+            <a href="../home/home.html"><img src="Icone/MyShoppingList.png" class="logo"></a>
+            <nav class="my_navbar">
+                <a href="../home/home.html" class="link_navbar">Home</a>
+                <a href="#contatti">Contacts</a>
+                <a href="#contatti" class="icon_contatti"><img src="./Icone/phone.png"></a>
+                <a href="#">
+                    <button class="Btn">
+                        <div class="sign"><ion-icon name="person-circle-outline" size="large"></ion-icon></div>
+                        <div class="text_btn">Login</div>
+                    </button>
+                </a>
+            </nav>
+        </header>
+    </div>
+
+    <!-- Supermarkets Table -->
+    <div class="supermarkets-table-container">
+        <div class="table-scrollable">  
+            <table id="supermarketsTable">
+                <thead>
+                    <tr>
+                        <th>Chain</th>
+                        <th>Name</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody id="supermarketsTableBody">
+                    <!-- Le righe degli utenti verranno aggiunte qui tramite JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        <button class="action-button" id="elimina" type="button">Elimina un Supermercato Registrato</button>
+    </div>
+
+    <!--Pop up elimina supermercato registrato-->
+    <div id="deleteSupermarketsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Elimina Supermercato</h2>
+            <p>Inserisci la catena del supermercato che desideri eliminare:</p>
+            <input type="text" id="Delete_chainInput" placeholder="Chain">
+            <p>Inserisci il nome del supermercato che desideri eliminare:</p>
+            <input type="text" id="Delete_nameInput" placeholder="Name">
+            <button id="submitDeleteSupermarkets" class="action-button">Elimina</button>
+        </div>
+    </div>
+     
+
+</html>
