@@ -299,7 +299,7 @@
                 $.ajax({
                     url: 'recensioni.php',
                     type: 'POST',
-                    data: { text: reviewText, email: email },
+                    data: { text: reviewText, email: email, add: true },
                     success: function(response) {
                         //alert(response);
                         location.reload(); // Ricarica la pagina per mostrare la nuova recensione
@@ -405,8 +405,8 @@
                     var text = document.getElementById('textInput').value;
                         $.ajax({
                         url: 'recensioni.php',
-                        type: 'MODIFICA',
-                        data: {email: email, admin: admin, text: text},
+                        type: 'POST',
+                        data: {email: email, admin: admin, text: text, mod: true},
 
                     success: function(response){
                         //alert(result);
