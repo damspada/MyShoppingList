@@ -27,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         if ($result->num_rows > 0) {
             // L'utente esiste nel database e le credenziali sono valide
             $row = $result->fetch_assoc();
-            echo json_encode(['status' => 'success', 'admin' => $row['admin']]);
+            echo json_encode(['status' => 'success', 'admin' => $row['adm']]);
         } else {
             // L'utente non esiste nel database o le credenziali non sono valide
             echo "failure";
