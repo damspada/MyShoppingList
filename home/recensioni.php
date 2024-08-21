@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "GET"){
-    $sql = "SELECT email, text FROM recensioni";
+    $sql = "SELECT email, text FROM reviews";
     $result = $conn->query($sql);
 
     $reviews = [];
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if(isset($data['add']) && $data['add']){
         // Preparazione della query per evitare SQL injection
-        $stmt = $conn->prepare("INSERT INTO recensioni (email, text) VALUES (?, ?)");
+        $stmt = $conn->prepare("INSERT INTO reviews (email, text) VALUES (?, ?)");
         $stmt->bind_param("ss", $email, $fullText);
 
         if ($stmt->execute()) {
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($data['mod']) && $data['mod']) {
         
         // modifica vecchia recensione nel database
-        $stmt = $conn->prepare("UPDATE recensioni SET text = ? WHERE email = ?");
+        $stmt = $conn->prepare("UPDATE reviews SET text = ? WHERE email = ?");
         $stmt->bind_param("ss", $fullText,$email);
 
         if ($stmt->execute()) {
@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
     $email = $data['email'];
 
     // Preparazione della query per evitare SQL injection
-    $stmt = $conn->prepare("DELETE FROM recensioni WHERE email = ?");
+    $stmt = $conn->prepare("DELETE FROM reviews WHERE email = ?");
     $stmt->bind_param("s", $email);
 
     if ($stmt->execute()) {
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "MODIFICA") {
     $fullText = $email . ": " . $text;
 
     // elimina vecchia recensione nel database
-    $stmt = $conn->prepare("UPDATE recensioni SET text = ? WHERE email = ?");
+    $stmt = $conn->prepare("UPDATE reviews SET text = ? WHERE email = ?");
     $stmt->bind_param("ss", $fullText,$email);
 
     if ($stmt->execute()) {
