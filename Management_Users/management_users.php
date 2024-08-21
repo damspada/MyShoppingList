@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     // Query SQL per ottenere i dati degli utenti
-    $sql = "SELECT email, cell, life, budget FROM utenti WHERE admin = 0 OR admin IS NULL;"; // Sostituire 'utenti' con il nome della tua tabella
+    $sql = "SELECT email, cell, life, budget FROM utenti WHERE adm = 0 OR adm IS NULL;"; // Sostituire 'utenti' con il nome della tua tabella
     $result = $conn->query($sql);
     
     // Creazione di un array per contenere i dati degli utenti
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
     $email = $data['email'];
 
     // Preparazione della query per evitare SQL injection
-    $stmt = $conn->prepare("DELETE FROM utenti WHERE email = ? AND (admin LIKE 0 OR admin IS NULL)");
+    $stmt = $conn->prepare("DELETE FROM utenti WHERE email = ? AND (adm LIKE 0 OR adm IS NULL)");
     $stmt->bind_param("s", $email);
 
     if ($stmt->execute()) {
