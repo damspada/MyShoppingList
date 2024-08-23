@@ -41,27 +41,30 @@
 
     <!-- Check del Login -->
     <script>
+        
         $(document).ready(function(){
             $('.login form').submit(function(event){
                 event.preventDefault();
-
+                
                 // Ottieni i valori inseriti dall'utente nei campi email e password
                 var email = $(this).find('input[type="email"]').val();
                 var pass = $(this).find('input[type="password"]').val();
-
+                console.log(pass);
                 $.ajax({
+                    
                     url: 'check_login.php', 
                     type: 'POST',
                     data: { email: email, pass: pass },
                     success: function(response){
                         var jsonResponse = JSON.parse(response);
-                        //console.log(response)
+                        console.log(response)
                         if(jsonResponse.status === 'success'){
                             // Reindirizza l'utente alla sua pagina utente
                             window.location.href = '../User_Page/user.html';
                             sessionStorage.setItem("Log",1);
                             sessionStorage.setItem("email",email);
                             sessionStorage.setItem("admin", jsonResponse.admin);
+                            
                         } else {
                             Swal.fire({
                                 title: "Errore!",
@@ -83,6 +86,7 @@
                         console.error('Si è verificato un errore durante la richiesta.');
                     }
                 });
+                
             });
         });
     </script>
@@ -121,17 +125,40 @@
     <!-- Popup Login -->
     <script>
         window.addEventListener('load', function (event) {
-            
+        /*mantenere il numero di telefono modificato*/
+        var savedPhoneNumber = localStorage.getItem('phoneNumber');
+        if (savedPhoneNumber) {
+            document.getElementById('tel').innerHTML = '<img src="./Immagini/phone.png">' + savedPhoneNumber;
+        }
+        var savedEmailAddress = localStorage.getItem('emailAddress');
+        if (savedEmailAddress) {
+            document.getElementById('email').innerHTML = '<img src="./Immagini/mail.png">' + savedEmailAddress;
+        }
+
         if (sessionStorage.getItem("Log") == 1) {
             //se admin non c' è il pulsante fill the cart
             if(sessionStorage.getItem("admin") == 1){
                 var buttonShopping = document.querySelector('.button_shopping');
                 var adminButtons = document.querySelector('.admin-buttons');
+                var contactsButton = document.querySelectorAll('.modifica_contatti');
                 if (buttonShopping) {
                     buttonShopping.style.display = 'none';
                 }
                 if (adminButtons) {
                     adminButtons.style.display = 'block';  // Mostra i pulsanti A, B e C
+                }
+                if(contactsButton.length > 0){
+                    contactsButton.forEach(function(button) {
+                        button.style.display = 'block';  // Mostra tutti i pulsanti Modifica
+                        button.addEventListener('click', function() {
+                                if (button.id === 'modTel') {
+                                    openModalTel();
+                                }
+                                if(button.id==='modMail'){
+                                    openModalEmail();
+                                }
+                            });
+                });
                 }
             }
             
@@ -530,7 +557,7 @@
 
     <!-- bottoni per l'admin di gestione-->
     <div class="admin-buttons" style="display: none;">
-        <button class="button_admin" onclick="window.location.href='../home/home.html';">PRODOTTI</button>
+        <button class="button_admin" onclick="window.location.href='../Management_Products/management_products.html';">PRODOTTI</button>
         <button class="button_admin" onclick="window.location.href='../Management_Users/management_users.html';">UTENTI</button>
         <button class="button_admin" onclick="window.location.href='../Management_Supermarkets/management_supermarkets.html';">SUPERMERCATI</button>
     </div>
@@ -738,15 +765,97 @@
             </div>
         </div>
 
+        
+
         <div class="contatti" id="contatti">
             <div class="contatto">
-                <p><img src="./Immagini/phone.png">+39 340-559-5344</p>
+                <p id="tel"><img src="./Immagini/phone.png">+39 340-559-5344</p>
             </div>
+
+            <button class="modifica_contatti" id="modTel" style="display: none;">Modifica</button>
             
             <div class="contatto">
-                <p><img src="./Immagini/mail.png"><a href="mailto:MyShoppingList@gmail.com">MyShoppingList@gmail.com</a></p>
+                <p id="email"><img src="./Immagini/mail.png"><a href="mailto:MyShoppingList@gmail.com">MyShoppingList@gmail.com</a></p>
+            </div>
+
+            <button class="modifica_contatti" id="modMail" style="display: none;">Modifica</button>
+            
+            
+        </div>
+        <!--pop to change the contacts-->
+        <div id="modalTel" class="modalC" style="display: none;">
+            <div class="modalcontatti-content">
+                <span class="close" id="closeModalC">&times;</span>
+                <h2>Modifica Numero di Telefono</h2>
+                <input type="text" id="new-phone-number" placeholder="Enter new phone number">
+                <button id="save-phone-number">Save</button>
             </div>
         </div>
+
+        <div id="modalMail" class="modalC" style="display: none;">
+            <div class="modalcontatti-content">
+                <span class="close" id="closeModalC">&times;</span>
+                <h2>Modifica Indirizzo Email</h2>
+                <input type="text" id="new-email" placeholder="Enter new email">
+                <button id="save-email">Save</button>
+            </div>
+        </div>
+
+        <script>
+            function openModalTel() {
+            var modal = document.getElementById('modalTel');
+            modal.style.display = 'block';
+
+            var closeBtn = document.querySelector('#closeModalC');
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+            }
+
+            var saveBtn = document.getElementById('save-phone-number');
+            saveBtn.onclick = function() {
+                var newPhoneNumber = document.getElementById('new-phone-number').value;
+                if (newPhoneNumber) {
+                    document.getElementById('tel').innerHTML = '<img src="./Immagini/phone.png">' + newPhoneNumber;
+                    localStorage.setItem('phoneNumber', newPhoneNumber);
+                    modal.style.display = 'none';
+                }
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        }
+
+        function openModalEmail() {
+            var modal = document.getElementById('modalMail');
+            modal.style.display = 'block';
+
+            var closeBtn = document.querySelector('#closeModalC');
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+            }
+
+            var saveBtn = document.getElementById('save-email');
+            saveBtn.onclick = function() {
+                var newEmailAddress = document.getElementById('new-email').value;
+                if (newEmailAddress) {
+                    document.getElementById('email').innerHTML = '<img src="./Immagini/mail.png">' + newEmailAddress;
+                    localStorage.setItem('emailAddress', newEmailAddress);
+                    modal.style.display = 'none';
+                }
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        }
+        </script>
+        
+        
 
     </div>
    

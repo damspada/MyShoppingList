@@ -112,6 +112,15 @@
     <!-- Cambia immagine Navbar -->
     <script>
         window.addEventListener('load', function (event) {
+            /*mantenere il numero di telefono modificato*/
+            var savedPhoneNumber = localStorage.getItem('phoneNumber');
+            if (savedPhoneNumber) {
+                document.getElementById('tel').innerHTML = '<img src="./Immagini/phone.png">' + savedPhoneNumber;
+            }
+            var savedEmailAddress = localStorage.getItem('emailAddress');
+            if (savedEmailAddress) {
+                document.getElementById('email').innerHTML = '<img src="./Immagini/mail.png">' + savedEmailAddress;
+            }
             if (sessionStorage.getItem("Log") == 1) {
                 var email = sessionStorage.getItem("email");
                 $.ajax({
@@ -1407,11 +1416,11 @@
 
         <div class="contatti" id="contatti">
             <div class="contatto">
-                <p><img src="./Icone/phone.png">+39 340-559-5344</p>
+                <p id="tel"><img src="./Icone/phone.png">+39 340-559-5344</p>
             </div>
 
             <div class="contatto">
-                <p><img src="./Icone/mail.png"><a href="mailto:MyShoppingList@gmail.com">MyShoppingList@gmail.com</a>
+                <p id="email"><img src="./Icone/mail.png"><a href="mailto:MyShoppingList@gmail.com">MyShoppingList@gmail.com</a>
                 </p>
             </div>
         </div>
