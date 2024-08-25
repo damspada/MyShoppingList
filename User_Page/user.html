@@ -88,6 +88,26 @@
             if (savedEmailAddress) {
                 document.getElementById('email').innerHTML = '<img src="./Immagini/mail.png">' + savedEmailAddress;
             }
+            var savedFacebook = localStorage.getItem('facebookLink');
+            if(savedFacebook){
+                document.querySelector('.icon.facebook').setAttribute('href', savedFacebook);
+            }
+            var savedInstagram = localStorage.getItem('instagramLink');
+            if(savedInstagram){
+                document.querySelector('.icon.instagram').setAttribute('href', savedInstagram);
+            }
+            var savedGithub = localStorage.getItem('githubLink');
+            if(savedGithub){
+                document.querySelector('.icon.github').setAttribute('href', savedGithub);
+            }
+            var savedLinkedin = localStorage.getItem('linkedinLink');
+            if(savedLinkedin){
+                document.querySelector('.icon.linkedin').setAttribute('href', savedLinkedin);
+            }
+            var savedYoutube = localStorage.getItem('youtubeLink');
+            if(savedYoutube){
+                document.querySelector('.icon.youtube').setAttribute('href', savedYoutube);
+            }
 
             if(sessionStorage.getItem("Log")==1){
                 var email=sessionStorage.getItem("email");

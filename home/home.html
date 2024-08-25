@@ -134,6 +134,26 @@
         if (savedEmailAddress) {
             document.getElementById('email').innerHTML = '<img src="./Immagini/mail.png">' + savedEmailAddress;
         }
+        var savedFacebook = localStorage.getItem('facebookLink');
+        if(savedFacebook){
+            document.querySelector('.icon.facebook').setAttribute('href', savedFacebook);
+        }
+        var savedInstagram = localStorage.getItem('instagramLink');
+        if(savedInstagram){
+            document.querySelector('.icon.instagram').setAttribute('href', savedInstagram);
+        }
+        var savedGithub = localStorage.getItem('githubLink');
+        if(savedGithub){
+            document.querySelector('.icon.github').setAttribute('href', savedGithub);
+        }
+        var savedLinkedin = localStorage.getItem('linkedinLink');
+        if(savedLinkedin){
+            document.querySelector('.icon.linkedin').setAttribute('href', savedLinkedin);
+        }
+        var savedYoutube = localStorage.getItem('youtubeLink');
+        if(savedYoutube){
+            document.querySelector('.icon.youtube').setAttribute('href', savedYoutube);
+        }
 
         if (sessionStorage.getItem("Log") == 1) {
             //se admin non c' è il pulsante fill the cart
@@ -141,6 +161,7 @@
                 var buttonShopping = document.querySelector('.button_shopping');
                 var adminButtons = document.querySelector('.admin-buttons');
                 var contactsButton = document.querySelectorAll('.modifica_contatti');
+                var socialModButtons = document.querySelectorAll('.modifica_social');
                 if (buttonShopping) {
                     buttonShopping.style.display = 'none';
                 }
@@ -160,6 +181,29 @@
                             });
                 });
                 }
+                if(socialModButtons.length > 0){
+                    socialModButtons.forEach(function(button) {
+                        button.style.display = 'block';
+                        button.addEventListener('click', function() {
+                            if (button.id === 'facebook') {
+                                openModalFacebook();
+                            }
+                            if (button.id === 'instagram') {
+                                openModalInstagram();
+                            }
+                            if (button.id === 'github') {
+                                openModalGithub();
+                            }
+                            if (button.id === 'linkedin') {
+                                openModalLinkedin();
+                            }
+                            if (button.id === 'youtube') {
+                                openModalYoutube();
+                            }
+                        });
+                        
+                });
+            }
             }
             
             // Se l'utente è già loggato, reindirizza alla pagina utente
@@ -742,26 +786,43 @@
     <div class="footer_container">
         <div class="social_container">
             <div class="wrapper_social">
+                <div class="social_item">
+                    <button class="modifica_social" id="facebook">!</button>
+                    <a href="https://www.facebook.com/" class="icon facebook">
+                        <span><i class="fab fa-facebook-f"></i></span>
+                    </a>
+                    
+                </div>
 
-                <a href="https://www.facebook.com/" class="icon facebook">
-                    <span><i class="fab fa-facebook-f"></i></span>
-                </a>
+                <div class="social_item">
+                    <button class="modifica_social" id="instagram">!</button>
+                    <a href="https://www.instagram.com/" class="icon instagram">
+                        <span><i class="fab fa-instagram"></i></span>
+                    </a>
+                </div>
 
-                <a href="https://www.instagram.com/" class="icon instagram">
-                    <span><i class="fab fa-instagram"></i></span>
-                </a>
+                <div class="social_item">
+                    <button class="modifica_social" id="github">!</button>
+                    <a href="https://github.com/damspada/MyShoppingList" class="icon github">
+                        <span><i class="fab fa-github"></i></span>
+                    </a>
+                </div>
 
-                <a href="https://github.com/damspada/MyShoppingList" class="icon github">
-                    <span><i class="fab fa-github"></i></span>
-                </a>
+                <div class="social_item">
+                    <button class="modifica_social" id="linkedin">!</button>
+                    <a href="https://it.linkedin.com/" class="icon linkedin">
+                        <span><i class="fab fa-linkedin"></i></span>
+                    </a>
+                </div>
 
-                <a href="https://it.linkedin.com/" class="icon linkedin">
-                    <span><i class="fab fa-linkedin"></i></span>
-                </a>
+                <div class="social_item">
+                    <button class="modifica_social" id="youtube">!</button>
+                    <a href="https://www.youtube.com/" class="icon youtube">
+                        <span><i class="fab fa-youtube"></i></span>
+                    </a>
+                </div>
 
-                <a href="https://www.youtube.com/" class="icon youtube">
-                    <span><i class="fab fa-youtube"></i></span>
-                </a>
+                
             </div>
         </div>
 
@@ -782,7 +843,7 @@
             
             
         </div>
-        <!--pop to change the contacts-->
+        <!--pop up per cambiare social e contatti-->
         <div id="modalTel" class="modalC" style="display: none;">
             <div class="modalcontatti-content">
                 <span class="close" id="closeModalC">&times;</span>
@@ -801,6 +862,52 @@
             </div>
         </div>
 
+        <div id="modalFacebook" class="modalC" style="display: none;">
+            <div class="modalcontatti-content">
+                <span class="close" id="closeModalC">&times;</span>
+                <h2>Inserisci nuova URL di Facebook</h2>
+                <input type="text" id="new-facebook" placeholder="URL">
+                <button id="save-facebook">Save</button>
+            </div>
+        </div>
+
+        <div id="modalInstagram" class="modalC" style="display: none;">
+            <div class="modalcontatti-content">
+                <span class="close" id="closeModalC">&times;</span>
+                <h2>Inserisci nuova URL di Instagram</h2>
+                <input type="text" id="new-insta" placeholder="URL">
+                <button id="save-insta">Save</button>
+            </div>
+        </div>
+
+        <div id="modalGit" class="modalC" style="display: none;">
+            <div class="modalcontatti-content">
+                <span class="close" id="closeModalC">&times;</span>
+                <h2>Inserisci nuova URL di Github</h2>
+                <input type="text" id="new-git" placeholder="URL">
+                <button id="save-git">Save</button>
+            </div>
+        </div>
+
+        <div id="modalLinkedin" class="modalC" style="display: none;">
+            <div class="modalcontatti-content">
+                <span class="close" id="closeModalC">&times;</span>
+                <h2>Inserisci nuova URL Linkedin</h2>
+                <input type="text" id="new-linkedin" placeholder="URL">
+                <button id="save-linkedin">Save</button>
+            </div>
+        </div>
+
+        <div id="modalYoutube" class="modalC" style="display: none;">
+            <div class="modalcontatti-content">
+                <span class="close" id="closeModalC">&times;</span>
+                <h2>Inserisci nuova URL di Youtube</h2>
+                <input type="text" id="new-yt" placeholder="URL">
+                <button id="save-yt">Save</button>
+            </div>
+        </div>
+
+        <!--funzioni per modificare contatti e social-->
         <script>
             function openModalTel() {
             var modal = document.getElementById('modalTel');
@@ -853,6 +960,137 @@
                 }
             }
         }
+
+        function openModalFacebook(){
+            var modal = document.getElementById('modalFacebook');
+            modal.style.display = 'block';
+
+            var closeBtn = document.querySelector('#closeModalC');
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+            }
+
+            var saveBtn = document.getElementById('save-facebook');
+            saveBtn.onclick = function() {
+                var newFacebookLink = document.getElementById('new-facebook').value;
+                if (newFacebookLink) {
+                    document.querySelector('.icon.facebook').setAttribute('href', newFacebookLink);
+                    localStorage.setItem('facebookLink', newFacebookLink);
+                    modal.style.display = 'none';
+                }
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        }
+
+        function openModalInstagram(){
+            var modal = document.getElementById('modalInstagram');
+            modal.style.display = 'block';
+
+            var closeBtn = document.querySelector('#closeModalC');
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+            }
+
+            var saveBtn = document.getElementById('save-insta');
+            saveBtn.onclick = function() {
+                var newInstagramLink = document.getElementById('new-insta').value;
+                if (newInstagramLink) {
+                    document.querySelector('.icon.instagram').setAttribute('href', newInstagramLink);
+                    localStorage.setItem('instagramLink', newInstagramLink);
+                    modal.style.display = 'none';
+                }
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        }
+        
+        function openModalGithub(){
+            var modal = document.getElementById('modalGit');
+            modal.style.display = 'block';
+
+            var closeBtn = document.querySelector('#closeModalC');
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+            }
+
+            var saveBtn = document.getElementById('save-git');
+            saveBtn.onclick = function() {
+                var newGithubLink = document.getElementById('new-git').value;
+                if (newGithubLink) {
+                    document.querySelector('.icon.github').setAttribute('href', newGithubLink);
+                    localStorage.setItem('githubLink', newGithubLink);
+                    modal.style.display = 'none';
+                }
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        }
+
+        function openModalLinkedin(){
+            var modal = document.getElementById('modalLinkedin');
+            modal.style.display = 'block';
+
+            var closeBtn = document.querySelector('#closeModalC');
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+            }
+
+            var saveBtn = document.getElementById('save-linkedin');
+            saveBtn.onclick = function() {
+                var newLinkedinLink = document.getElementById('new-linkedin').value;
+                if (newLinkedinLink) {
+                    document.querySelector('.icon.linkedin').setAttribute('href', newLinkedinLink);
+                    localStorage.setItem('linkedinLink', newLinkedinLink);
+                    modal.style.display = 'none';
+                }
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        }
+
+        function openModalYoutube(){
+            var modal = document.getElementById('modalYoutube');
+            modal.style.display = 'block';
+
+            var closeBtn = document.querySelector('#closeModalC');
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+            }
+
+            var saveBtn = document.getElementById('save-yt');
+            saveBtn.onclick = function() {
+                var newYoutubeLink = document.getElementById('new-yt').value;
+                if (newYoutubeLink) {
+                    document.querySelector('.icon.youtube').setAttribute('href', newYoutubeLink);
+                    localStorage.setItem('youtubeLink', newYoutubeLink);
+                    modal.style.display = 'none';
+                }
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        }
+
         </script>
         
         
