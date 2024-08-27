@@ -871,14 +871,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $health = $_GET['health'];
             $nome = $_GET['nome'];
 
+            // Verifica se già presente nel carrello
             $check_prodotto = "SELECT * FROM `Cart` WHERE Nome = '$nome'";
             $result = $conn->query($check_prodotto);
 
+            //Se è gia presente ritorna false, ovvero il prodotto verrà aggiunto al carrello senza controlli
             if ($result->num_rows > 0) {
                 echo json_encode(false);
                 exit; 
             }
 
+            //Controllo per verificare se l'utente è sportivo
             if ($health < 6 && $health != null) {
                 $check_health = "SELECT * FROM `utenti` WHERE email = '$email' AND life = 'Sportivo'";
                 $result = $conn->query($check_health);
