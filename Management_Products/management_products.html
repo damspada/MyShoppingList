@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./Immagini/favicon.png">
+    <link rel="stylesheet" href="management_products.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        window.addEventListener('load', function (event) {
+            console.log(sessionStorage.getItem("Log"));
+            console.log(sessionStorage.getItem("email"));
+            console.log(sessionStorage.getItem("sessionId"));
+            if (sessionStorage.getItem("Log") != 1 && sessionStorage.getItem("sessionId")==null) {
+                $.ajax({
+                    url: "check_login.php",
+                    type: "POST",
+                    data: {
+                        cestino: 1
+                    },
+                    success: function (data) {
+                        console.log('Richiesta andata a buon fine.');
+                    },
+                    error: function (xhr, status, error) {
+                        // Gestisci gli errori durante la chiamata AJAX
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                })
+            }
+            setSessionCookie();
+            loadProducts(); 
+        });
+
+        //mostra il database dei prodotti
+        function loadProducts() {
+            $.ajax({
+                url: "management_products.php",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    if (Array.isArray(data)) {
+                        var productsTableBody = document.getElementById('productsTableBody');
+                        productsTableBody.innerHTML = ''; // Clear the table before adding new rows
+                        data.forEach(function (product) {
+                            var row = document.createElement('tr');
+                            if(product.image != null){
+                                row.innerHTML = `
+                                    <td><img src="${product.image}" alt="Product Image" style="width: 100px; height: 100px;"></td>
+                                    <td>${product.Nome}</td>
+                                    <td>${product.category}</td>
+                                    <td>${product.peso}</td>
+                                    <td>${product.description}</td>
+                                    <td>${product.nutrients}</td>
+                                    <td>${product.health}</td>
+                                `;
+                                productsTableBody.appendChild(row);
+                            }
+                            else{
+                                row.innerHTML = `
+                                    <td>null</td>
+                                    <td>${product.Nome}</td>
+                                    <td>${product.category}</td>
+                                    <td>${product.peso}</td>
+                                    <td>${product.description}</td>
+                                    <td>${product.nutrients}</td>
+                                    <td>${product.health}</td>
+                                `;
+                                productsTableBody.appendChild(row);
+                            }
+                        });
+                    } else {
+                        console.error('Data format is not as expected:', data);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Errore nel caricamento dei prodotti:', status, error);
+                }
+            });
+        }
+    </script>
+       
+        
+    <!-- Tasto Login -->
+    <script>
+        window.addEventListener('load', function (event) {
+            
+            // Se l'utente è già loggato, reindirizza alla pagina utente
+            document.querySelector('.Btn').addEventListener('click', function () {
+                window.location.href = '../User_Page/user.html';
+            });
+ 
+        });
+    </script>
+
+    <!-- setSessionCookie -->
+    <script>
+        function setSessionCookie() {
+            if (sessionStorage.getItem('sessionId')) {
+                var sessionId = sessionStorage.getItem('sessionId');
+                console.log('Session ID is already set: ' + sessionId);
+                return;
+            }
+
+            var sessionId = generateSessionId();
+
+            sessionStorage.setItem('sessionId', sessionId); 
+        }
+    </script>
+    
+     <!-- Cambia immagine Navbar -->
+     <script>
+        window.addEventListener('load', function (event) {
+            if(sessionStorage.getItem("Log")==1){
+                var email=sessionStorage.getItem("email");
+                $.ajax({
+                    url: "check_login.php",
+                    type: "GET",
+                    data:{
+                        email: email
+                    },
+                    dataType:'json',
+                    success: function(data){
+                        data.forEach(function (element) {
+
+                            var name_img = element.nome;
+
+                            function primaLetteraMaiuscola(parola) {
+                                var primaLettera = parola.charAt(0);
+                                return primaLettera.toUpperCase();
+                            }
+
+                            name_img = primaLetteraMaiuscola(name_img);
+
+                            
+                            const iconElement = document.querySelector('.Btn ion-icon');
+                            iconElement.remove();
+                            const imgElement = document.createElement('h3');
+
+                            imgElement.textContent = name_img;
+
+                            imgElement.style.color = 'white';
+                            imgElement.style.margin = 'auto'
+                            imgElement.style.fontWeight = '700';
+
+                            const signDiv = document.querySelector('.Btn .sign');
+                            signDiv.appendChild(imgElement);
+
+                            const loginButton = document.querySelector('.text_btn');
+
+                            loginButton.textContent = 'Profile';
+
+                        });
+                    },
+                    error: function(xhr, status, error){
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                })
+            }
+        });
+         
+
+        //ELIMINAZIONE PRODOTTO
+    window.onload = function() {
+        document.getElementById("elimina").addEventListener('click', function(event) {
+            document.getElementById("deleteProductModal").style.display = "block";
+            document.getElementById("submitDeleteProducts").onclick = function() {
+            var name = document.getElementById("Delete_nameInput").value;
+            $.ajax({
+                url: 'management_products.php',
+                type: 'DELETE',
+                data: {name: name},
+
+                success: function(response){
+                            //alert(result);
+                            location.reload(); // Ricarica le recensioni dopo l'eliminazione
+                            document.getElementById("deleteProductModal").style.display = "none";
+                        },
+                        error: function(error){
+                            console.error('Errore nell\'eliminazione dell\'utente:', error);
+                        }
+            });
+            };
+
+        });
+
+        // Quando l'utente clicca sulla X, chiudi il modal
+        document.getElementsByClassName("close")[0].onclick = function() {
+            document.getElementById("deleteProductModal").style.display = "none";
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+
+        //AGGIUNTA PRODOTTO
+        // Quando l'utente clicca sul pulsante, apri il modale
+        document.getElementById("aggiungi").onclick = function() {
+            document.getElementById("modalAggiungiProdotto").style.display = "block";
+        }
+
+        // Quando l'utente clicca su(x), chiudi il modale
+        document.getElementsByClassName("close_modalAggiungi")[0].onclick = function() {
+            document.getElementById("modalAggiungiProdotto").style.display = "none";
+        }
+
+        // Gestione invio dati
+        document.getElementById('submitAggiungiProdotto').addEventListener('click', function() {
+            var nome = document.getElementById('Aggiungi_nomeInput').value;
+            var peso = document.getElementById('Aggiungi_pesoInput').value;
+            var categoria = document.getElementById('Aggiungi_categoriaInput').value;
+            var descrizione = document.getElementById('Aggiungi_descrizioneInput').value;
+            var nutrients = document.getElementById('Aggiungi_nutrientsInput').value;
+            var health = document.getElementById('Aggiungi_healthInput').value;
+            var image = document.getElementById('Aggiungi_imageInput').value;
+
+            if (!nome) {
+                alert("Per favore inserisci tutti i campi!");
+                return;
+            }
+
+            // Invia i dati al server
+            $.ajax({
+                url: 'management_products.php', // Endpoint per l'aggiunta
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    nome: nome,
+                    peso: peso,
+                    categoria: categoria,
+                    descrizione: descrizione,
+                    nutrients: nutrients,
+                    health: health,
+                    image: image,
+                    add: true // Flag to indicate add operation
+                }),
+                success: function(response) {
+                    //alert("Supermercato aggiunto con successo!");
+                    document.getElementById("modalAggiungiProdotto").style.display = "none";
+                    loadProducts(); 
+                    console.log('Prodotto aggiunto con successo!');
+                },
+                error: function(xhr, status, error) {
+                    alert("Si è verificato un errore durante l'aggiunta.");
+                }
+            });
+        });
+
+        
+        //MODIFICA PRODOTTO
+        document.getElementById("modifica").onclick = function () {
+                document.getElementById("modalModificaProdotto").style.display = "block";
+            }
+
+            document.getElementsByClassName("close_modalModifica")[0].onclick = function () {
+                document.getElementById("modalModificaProdotto").style.display = "none";
+            }
+
+            document.getElementById('submitModificaProdotto').addEventListener('click', function () {
+                var nome = document.getElementById('Modifica_nomeInput').value;
+                var peso = document.getElementById('Modifica_pesoInput').value;
+                var descrizione = document.getElementById('Modifica_descrizioneInput').value;
+                var nutrients = document.getElementById('Modifica_nutrientsInput').value;
+                var health = document.getElementById('Modifica_healthInput').value;
+                var image = document.getElementById('Modifica_imageInput').value;
+
+                if (!nome) {
+                    alert("Per favore inserisci tutti i campi!");
+                    return;
+                }
+
+                
+
+                $.ajax({
+                    url: 'management_products.php',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        nome: nome,
+                        peso: peso,
+                        descrizione: descrizione,
+                        nutrients: nutrients,
+                        health: health,
+                        image: image,
+                        mod: true // Flag to indicate add operation
+                    }),
+                    success: function (response) {
+
+                        document.getElementById("modalModificaProdotto").style.display = "none";
+                        loadProducts(); // Aggiorna la lista dei supermercati
+                        //console.log('Prodotto modificato con successo!');
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Si è verificato un errore durante la modifica.");
+                    }
+                });
+            });
+        });
+
+    </script>
+
+<head>
+    
+<body>
+
+   <!-- NavBar-->
+    <div>
+        <header class="header">
+            <a href="../home/home.html"><img src="Icone/MyShoppingList.png" class="logo"></a>
+            <nav class="my_navbar">
+                <a href="../home/home.html" class="link_navbar">Home</a>
+                <a href="#contatti">Contacts</a>
+                <a href="#contatti" class="icon_contatti"><img src="./Icone/phone.png"></a>
+                <a href="#">
+                    <button class="Btn">
+                        <div class="sign"><ion-icon name="person-circle-outline" size="large"></ion-icon></div>
+                        <div class="text_btn">Login</div>
+                    </button>
+                </a>
+            </nav>
+        </header>
+    </div>
+
+    <!-- Supermarkets Table -->
+    <div class="supermarkets-table-container">
+        <div class="table-scrollable">  
+            <table id="productsTable">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Weight</th>
+                        <th>Description</th>
+                        <th>Nutrients</th>
+                        <th>Health</th>
+                    </tr>
+                </thead>
+                <tbody id="productsTableBody">
+                    <!-- Le righe degli utenti verranno aggiunte qui tramite JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        <button class="action-button aggiungi" id="aggiungi" type="button">Registra un Nuovo Prodotto</button>
+        <button class="action-button aggiungi" id="modifica" type="button">Modifica un Prodotto Registrato</button>
+        <button class="action-button elimina" id="elimina" type="button">Elimina un Prodotto Registrato</button>
+    </div>
+
+    
+    <div id="deleteProductModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Elimina Prodotto</h2>
+            <p>Inserisci il nome del prodotto che desideri eliminare:</p>
+            <input type="text" id="Delete_nameInput" placeholder="Name">
+            <button id="submitDeleteProducts">Elimina</button>
+        </div>
+    </div>
+
+    
+    <div id="modalAggiungiProdotto" class="modal">
+        <div class="modal-content">
+            <span class="close_modalAggiungi">&times;</span>
+            <h2>Aggiungi un Prodotto</h2>
+            <p style="color: rgb(81, 79, 79); font-size: 8; margin-bottom: 10px;">attenzione! assicurati l'immagine che vuoi inserire appartenga alla cartella products</p>
+            <input type="text" id="Aggiungi_nomeInput" placeholder="Nome">
+            <input type="text" id="Aggiungi_pesoInput" placeholder="Peso">
+            <!--input type="text" id="Aggiungi_categoriaInput" placeholder="Categoria"-->
+            <select id="Aggiungi_categoriaInput" placeholder="Category">
+                <option value="Vegetali">Vegetali</option>
+                <option value="Carne">Carne</option>
+                <option value="Pesce">Pesce</option>
+                <option value="Dispensa">Dispensa</option>
+                <option value="Dolci">Dolci</option>
+                <option value="Bevande">Bevande</option>
+                <option value="Halthy">Healthy</option>
+                <option value="Igiene e Casa">Igiene e Casa</option>
+                <option value="Salumi e Formaggi">Salumi e Formaggi</option>
+                <option value="Snack">Snack</option>
+                <option value="Surgelati">Surgelati</option>
+            </select>
+            <input type="text" id="Aggiungi_descrizioneInput" placeholder="Description">
+            <input type="text" id="Aggiungi_nutrientsInput" placeholder="Nutrients">
+            <input type="text" id="Aggiungi_healthInput" placeholder="health">
+            <input type="text" id="Aggiungi_imageInput" placeholder="path immagine">
+            <br>
+            <button id="submitAggiungiProdotto">Aggiungi Prodotto</button>
+        </div>
+    </div>
+
+     
+     <div id="modalModificaProdotto" class="modal">
+        <div class="modal-content">
+            <span class="close_modalModifica">&times;</span>
+            <h2>Modifica un Prodotto</h2>
+            <p style="color: rgb(81, 79, 79); font-size: 8; margin-bottom: 10px;">attenzione! assicurati l'immagine che vuoi inserire appartenga alla cartella products</p>
+            <input type="text" id="Modifica_nomeInput" placeholder="Nome">
+            <input type="text" id="Modifica_pesoInput" placeholder="Peso">
+            <input type="text" id="Modifica_descrizioneInput" placeholder="Descrizione">
+            <input type="text" id="Modifica_nutrientsInput" placeholder="Nutrients">
+            <input type="text" id="Modifica_healthInput" placeholder="Health">
+            <input type="text" id="Modifica_imageInput" placeholder="Path immagine">
+            <button id="submitModificaProdotto">Modifica Prodotto</button>
+        </div>
+    </div>
+     
+
+</html>
