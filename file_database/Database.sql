@@ -582,7 +582,7 @@ CREATE TABLE reviews (
 );
 
 /*---------preferenze------------*/
-CREATE TABLE prefernces(
+CREATE TABLE preferences(
   user_id varchar(255) NOT NULL,
   name_cart varchar(100) NOT NULL,
   products varchar(2500) NOT NULL,
