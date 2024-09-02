@@ -993,6 +993,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "Location saved successfully";
         }
     }
+
+    if(isset($_POST['email']) && isset($_POST['nome']) && isset($_POST['contenuto'])){
+        $utente=$_POST['email'];
+        $nomeCarrello=$_POST['nome'];
+        $contenuto=$_POST['contenuto'];
+        
+        //check if this cart for this user already exists
+        $check_cart="SELECT * FROM `preferences` WHERE user_id = '$utente' AND name_cart = '$nomeCarrello'";
+        $result_check=$conn->query($check_cart);
+
+        if($result_check->num_rows>0){
+            echo "Questo carrello è già presente!";
+    
+        }
+        else{
+            $insert_cart="INSERT INTO `preferences` (user_id, name_cart, products) VALUES ('$utente', '$nomeCarrello', '$contenuto')";
+            $result_insert=$conn->query($insert_cart);
+        }
+
+        if (!$result_insert) {
+            echo "Error: " . mysqli_error($conn);
+        } else {
+            echo "Cart saved correctly";
+        }
+    }
 }
 
 $conn->close();

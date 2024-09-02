@@ -580,3 +580,12 @@ CREATE TABLE reviews (
     `email` varchar(255) PRIMARY KEY,
     `text` varchar(500) NOT NULL,
 );
+
+/*---------preferenze------------*/
+CREATE TABLE prefernces(
+  user_id varchar(255) NOT NULL,
+  name_cart varchar(100) NOT NULL,
+  products varchar(2500) NOT NULL,
+  PRIMARY KEY (user_id, name_cart),
+  FOREIGN KEY (user_id) REFERENCES `utenti`(`id`)
+);

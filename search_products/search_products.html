@@ -1034,6 +1034,7 @@
                 checkout_body.classList.remove('popup-active');
                 const myDiv = document.querySelector('.carrello'); // Seleziona l'elemento <div>
                 myDiv.innerHTML = '';
+
             });
         });
     </script>
@@ -1079,6 +1080,64 @@
         }
 
     </script>
+
+    <!-- aggiunta ai Preferiti-->
+     <script>
+        window.addEventListener('load', function (event){
+            var buttonPref=document.getElementById('preferito');
+            var log=sessionStorage.getItem('Log');
+            var popupCarrello=document.getElementById('popup_nome_carrello');
+            var closePopup=document.getElementById('close-popup-carrello');
+            var salvaCarrello=document.getElementById('conferma_carrello');
+            if(log){
+                
+                buttonPref.style.display='block';
+                buttonPref.addEventListener('click', function(event){
+                    //buttonPref.innerHTML='<ion-icon name="star">';
+                    var popupCarrello=document.getElementById('popup_nome_carrello');
+                    popupCarrello.style.display='block';
+                });
+                closePopup.addEventListener('click', function(event){
+                    popupCarrello.style.display='none';
+                });
+                var iconClose=document.querySelector('.icon_close_checkout');
+                iconClose.addEventListener('click', function(event){
+                    popupCarrello.style.display='none';
+                });
+                salvaCarrello.addEventListener('click', function(event){
+                    var nomeCarrello=document.getElementById('nome_carrello').value;
+                    var userEmail=sessionStorage.getItem('email');
+                    var contenutoCarrello="";
+                    var elementi_carrello=document.querySelectorAll('.carrello_elemento2');
+                    elementi_carrello.forEach(function(element){
+                        var nome=element.querySelector('.carrello_nome2 h3').textContent;
+                        var quantita=element.querySelector('.carrello_quantità2 h4').textContent;
+                        contenutoCarrello+=nome+":"+quantita+",";
+                    });
+                    if(contenutoCarrello.length>0){
+                        contenutoCarrello=contenutoCarrello.slice(0,-1);
+                    }
+                    console.log(contenutoCarrello);
+                    $.ajax({
+                        url: "server.php",
+                        method: "POST",
+                        data: {email: userEmail, nome: nomeCarrello, contenuto: contenutoCarrello},
+                        success: function (response) {
+                            console.log(response);
+                            popupCarrello.style.display='none';
+                            buttonPref.innerHTML='<ion-icon name="star">';
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Errore Richiesta');
+                        }
+                    });
+                    popupCarrello.style.display='none';
+                    buttonPref.innerHTML='<ion-icon name="star">';
+                });
+                
+            }
+        });
+     </script>
 
 
     <title>MyShoppingList</title>
@@ -1282,7 +1341,10 @@
                     <button class="bottone_salva">
                         <h2>SAVE YOUR CART</h2>
                     </button>
+                    <button id="preferito" class="bottone-preferito" style="display: none;"><ion-icon name="star-outline"></ion-icon></button>
                 </div>
+
+                
 
                 <div class="Totale">
                 </div>
@@ -1301,6 +1363,13 @@
             <div class="consigliato">
 
             </div>
+        </div>
+
+        <div id="popup_nome_carrello" class="popup-carrello">
+            <h3>Inserire nome carrello</h3>
+            <input required type="text" id="nome_carrello" placeholder="Nome carrello" style="margin-top:5px; margin-right:2px; margin-left:5px; ">
+            <button id="conferma_carrello" class="bottone_salva" style="width: 15%; height: 20px; font-size:18;">Salva</button>
+            <span class="close" id="close-popup-carrello">&times;</span>
         </div>
     </div>
 

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./Immagini/favicon.png">
     <link rel="stylesheet" href="preferences.css">
+    <link rel="stylesheet" href="checkout.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
@@ -32,9 +33,87 @@
                 })
             }
             setSessionCookie();
-        });
-    </script>
+            loadCarts();
+            
+            
 
+        });   
+
+        // carica carrelli
+        function loadCarts() {
+            email = sessionStorage.getItem("email");
+            $.ajax({
+                url: "preferences.php",
+                type: "GET",
+                data: {
+                    email: email
+                },
+                dataType: "json",
+                success: function (response) {
+                    response.forEach(function (element) {
+                        var user_email = element.email;
+                        var cart_name = element.name_cart;
+                        var str_contenuto = element.products;
+                        //console.log(user_email);
+                        //console.log(cart_name);
+                        //console.log(str_contenuto);
+                        
+                        var cart = document.createElement('div');
+                        cart.classList.add('cart');
+                        var cart_header = document.createElement('div');
+                        var cart_body = document.createElement('div');
+                        cart_body.classList.add('cart-body');
+                        cart_header.classList.add('cart-header');
+                        cart_header.innerHTML = `<tr>
+                                <td>${cart_name}</td>
+                            </tr>
+                            <button class="checkout-btn" id="${cart_name}" type="button">Checkout</button>
+                            `;
+                        
+                        cart.appendChild(cart_header);
+                        var arr_contenuto = str_contenuto.split(',');
+                        arr_contenuto.forEach(function (element) {
+                            var row = document.createElement('div');
+                            row.classList.add('row-prodotto');
+                            var coppia_prodotto = element.split(':');
+                            //product.classList.add('product');
+                            row.innerHTML = `<tr>
+                                <td>${coppia_prodotto[0]}</td>
+                                <td>${coppia_prodotto[1]}</td>
+                            </tr>
+                            `;
+                            cart_body.appendChild(row);
+                        });
+                        cart.appendChild(cart_body);
+                        document.getElementById('carts_container').appendChild(cart);
+                    });
+                    
+                    var bottoni_checkout = document.querySelectorAll('.checkout-btn');
+                    console.log('Numero di bottoni checkout:', bottoni_checkout.length);
+                    bottoni_checkout.forEach(function(element){
+                        document.getElementById(element.id).addEventListener('click', function(){
+                            checkout_function(element.id);
+                        });
+                    });
+
+                       
+                    },
+                
+                error: function(xhr, status, error){
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+            });
+        }
+
+        function checkout_function(button_id){
+            console.log('Cliccato'+button_id);
+            //finire domani
+        }
+
+        
+    </script>
+       
+        
     <!-- Tasto Login -->
     <script>
         window.addEventListener('load', function (event) {
@@ -47,22 +126,21 @@
         });
     </script>
 
-<!-- setSessionCookie -->
-<script>
-    function setSessionCookie() {
-        if (sessionStorage.getItem('sessionId')) {
-            var sessionId = sessionStorage.getItem('sessionId');
-            console.log('Session ID is already set: ' + sessionId);
-            return;
+    <!-- setSessionCookie -->
+    <script>
+        function setSessionCookie() {
+            if (sessionStorage.getItem('sessionId')) {
+                var sessionId = sessionStorage.getItem('sessionId');
+                console.log('Session ID is already set: ' + sessionId);
+                return;
+            }
+
+            var sessionId = generateSessionId();
+
+            sessionStorage.setItem('sessionId', sessionId); 
         }
-
-        var sessionId = generateSessionId();
-
-        sessionStorage.setItem('sessionId', sessionId); 
-    }
-</script>
-
-
+    </script>
+    
      <!-- Cambia immagine Navbar -->
      <script>
         window.addEventListener('load', function (event) {
@@ -113,9 +191,48 @@
                 })
             }
         });
-    </script>
+        
+        
 
+        //elimina carrello
+        window.onload = function() {
+        document.getElementById("elimina_carrello").addEventListener('click', function(event) {
+            document.getElementById("deleteCartModal").style.display = "block";
+            document.getElementById("submitDeleteCart").onclick = function() {
+            var name = document.getElementById("Delete_nameInput").value;
+            var email = sessionStorage.getItem("email");
+            $.ajax({
+                url: 'preferences.php',
+                type: 'DELETE',
+                data: {name: name, email: email},
+
+                success: function(response){
+                            //alert(result);
+                            location.reload(); // Ricarica le recensioni dopo l'eliminazione
+                            document.getElementById("deleteCartModal").style.display = "none";
+                            console.log('Carrello eliminato con successo:');
+                        },
+                        error: function(error){
+                            console.error('Errore nell\'eliminazione del carrello:', error);
+                        }
+            });
+            };
+
+        });
+
+        // Quando l'utente clicca sulla X, chiudi il modal
+        document.getElementsByClassName("close")[0].onclick = function() {
+            document.getElementById("deleteCartModal").style.display = "none";
+        }
+    }
+
+        
+
+    </script>
     
+<!--gestione checkout-->
+    
+        
 <head>
     
 <body>
@@ -138,38 +255,90 @@
     </header>
 </div>
 
-<!-- Ricette -->
+<div style="padding-top: 100px; text-align: center;"><h1>ECCO I TUOI CARRELLI PREFERITI...</h1></div>
+<div class="scrollable_container" id="carts_container">
 
-<div class="scroll-container">
-    <h1>ECCO I TUOI CARRELLI PREFERITI...</h1>
-    <div class="card">Card 1</div>
-    <div class="card">Card 2</div>
-    <div class="card">Card 3</div>
-    <div class="card">Card 4</div>
-    <div class="card">Card 5</div>
+</div>
+<div class="button-container">
+    
+    <button id="elimina_carrello" type="button">Elimina un carrello</button>
 </div>
 
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-    // Seleziona tutte le card
-    var cards = document.querySelectorAll('.card');
+
+
+<!--modal eliminazione-->
+<div id="deleteCartModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Elimina Carrello</h2>
+        <p>Inserisci il nome del Carrello che desideri eliminare:</p>
+        <input type="text" id="Delete_nameInput" placeholder="Name">
+        <button id="submitDeleteCart">Elimina</button>
+    </div>
+</div>
+
+<!--modal checkout-->
+<div class="wrapper_checkout">
+    <span class="icon_close_checkout">
+        <ion-icon name="close-outline"></ion-icon>
+    </span>
+
+    <div class="left_checkout">
+        <div class="Titolo">
+            <h1>Shopping Cart</h1>
+        </div>
+        <div class="Colonne">
+            <div class="colonna1">
+                <h3>name</h3>
+            </div>
+            <div class="colonna2">
+                <h3>quantity</h3>
+            </div>
+            <div class="colonna3">
+                <h3>price</h3>
+            </div>
+        </div>
+
+        <div class="carrello">
+        </div>
+
+        <div class="salva">
+            <div class="BTN">
+                <button class="bottone_salva">
+                    <h2>SAVE YOUR CART</h2>
+                </button>
+                <button id="preferito" class="bottone-preferito" style="display: none;"><ion-icon name="star-outline"></ion-icon></button>
+            </div>
+
+            
+
+            <div class="Totale">
+            </div>
+        </div>
+    </div>
+
+    <div class="right_checkout">
+        <div class="economico">
+
+        </div>
+
+        <div class="vicino">
+
+        </div>
+
+        <div class="consigliato">
+
+        </div>
+    </div>
+
     
-    // Itera attraverso ogni card
-    cards.forEach(function(card) {
-        // Crea il pulsante
-        var button = document.createElement('button');
-        button.classList.add('checkout-btn');
-        button.textContent = 'Checkout'; // Imposta il testo del pulsante
-        
-        // Aggiungi il pulsante alla card
-        card.appendChild(button);
-    });
-});
+</div>
 
 
 
-</script>
+
+
 
 
 </body>
