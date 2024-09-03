@@ -10,6 +10,22 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
+    <link rel="shortcut icon" href="Icone/favicon.png">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+
+    <script src="https://unpkg.com/jspdf-autotable@3.5.22/dist/jspdf.plugin.autotable.js"></script>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script>
         window.addEventListener('load', function (event) {
@@ -108,10 +124,396 @@
         function checkout_function(button_id){
             console.log('Cliccato'+button_id);
             //finire domani
-        }
+
+            
+
+            const checkout_wrapper = document.querySelector('.wrapper_checkout');
+            const checkout_body = document.querySelector('body');
+            const checkout_iconClose = document.getElementById('close_checkout_icon');
+            
+            $.ajax({
+                url: "preferences.php",
+                type: "POST",
+                data: {
+                    name_cart: button_id,
+                    email: sessionStorage.getItem("email")
+                },
+                success: function(response){
+                    console.log("carrello aggiornato con successo");
+                },
+                error: function(xhr, status, error){
+                    console.error('Si è verificato un errore durante la richiesta.');
+                }
+
+            })
+
+            function checkMaxAmount(maxAmount) {
+                if (maxAmount == true) {
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "The total is grater than your max amount",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#28A745",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, continue!",
+                        reverseButtons: true,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            checkout_wrapper.classList.add('active-popup');
+                            checkout_body.classList.add('popup-active');
+                            callback(false);
+                        }
+                        else {
+
+                            callback(true);
+                        }
+                    });
+
+                }
+                else {
+                    callback(false);
+                }
+            }
+
+            // Function to scroll to top smoothly
+            function scrollToTop() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+
+
+            // Funzione per controllare se il carrello è vuoto
+            
+
+            //si attiva al click del bottone checkout
+            
+
+                
+
+                    var sessionId = getSessionId();
+                    $.ajax({
+                        url: "server.php?action=checkout",
+                        method: "GET",
+                        data: { id: sessionId },
+                        success: function (response) {
+
+                            if(response.cheapestSupermarket.totalPrice>sessionStorage.getItem("budget") && sessionStorage.getItem("budget")!=null){
+                                checkMaxAmount(true);
+                            }else{
+                                checkout_wrapper.classList.add('active-popup');
+                                checkout_body.classList.add('popup-active');
+                            }
+
+                            var Cart = "Cart";
+                            const myDiv = document.querySelector('.carrello'); // Seleziona l'elemento <div>
+                            myDiv.innerHTML = '';
+
+                            // Inserisci informazioni sui supermercati
+                            const economico = document.querySelector('.economico');
+                            economico.innerHTML = `
+                                <div class="descrizione">
+                                    <h2>Cheapest Supermarket :</h2>
+                                    <img src="./Supermercati/${response.cheapestSupermarket.chain}.svg">
+                                    <br>
+                                    <p class="p2">Placed:&ensp; </p> <p>${response.cheapestSupermarket.name}</p>
+                                    <p class="p2">Distance: &ensp;</p> <p>${response.cheapestSupermarket.distance}</p>
+                                    <p class="p2">Total cost: &ensp;</p> <p>${response.cheapestSupermarket.totalPrice} €</p>
+                                    <br>
+                                </div>
+                                <div class="maps" id="map">
+                                </div>
+                            `;
+
+                            var greenIcon = L.icon({
+                                iconUrl: 'Icone/icons8-marker-48 (1).png',
+                                iconSize: [35, 40], // size of the icon
+                            });
+                            var Latitudine = parseFloat(response.cheapestSupermarket.latitude);
+                            var Longitudine = parseFloat(response.cheapestSupermarket.longitude);
+                            var map1 = L.map('map').setView([Latitudine, Longitudine], 15);
+                            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                maxZoom: 19,
+                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                            }).addTo(map1);
+                            var markerEconomico = L.marker([Latitudine, Longitudine], { icon: greenIcon }).addTo(map1);
+
+                            const vicino = document.querySelector('.vicino');
+                            vicino.innerHTML = `
+                                <div class="descrizione">
+                                    <h2>Closest Supermarket:</h2>
+                                    <img src="./Supermercati/${response.nearestSupermarket.chain}.svg">
+                                    <br>
+                                    <p class="p2">Placed: &ensp;</p> <p>${response.nearestSupermarket.name}</p>
+                                    <p class="p2">Distance: &ensp;</p> <p>${response.nearestSupermarket.distance}</p>
+                                    <p class="p2">Total cost: &ensp;</p> <p>${response.nearestSupermarket.totalPrice} €</p>
+                                    <br>
+                                </div>
+                                <div class="maps" id="map2">
+                                </div>
+                            `;
+
+                            Latitudine = parseFloat(response.nearestSupermarket.latitude);
+                            Longitudine = parseFloat(response.nearestSupermarket.longitude);
+                            var map2 = L.map('map2').setView([Latitudine, Longitudine], 15);
+                            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                maxZoom: 19,
+                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                            }).addTo(map2);
+                            var markerVicino = L.marker([Latitudine, Longitudine], { icon: greenIcon }).addTo(map2);
+
+
+                            const consigliato = document.querySelector('.consigliato');
+                            consigliato.innerHTML = `
+                                <div class="descrizione">
+                                    <h2>Suggested Supermarket:</h2>
+                                    <img src="./Supermercati/${response.recommendedSupermarket.chain}.svg">
+                                    <br>
+                                    <p class="p2">Placed:&ensp; </p> <p>${response.recommendedSupermarket.name}</p>
+                                    <p class="p2">Distance: &ensp;</p> <p>${response.recommendedSupermarket.distance}</p>
+                                    <p class="p2">Total cost: &ensp;</p> <p>${response.recommendedSupermarket.totalPrice} €</p>
+                                    <br>
+                                </div>
+                                <div class="maps" id="map3">
+                                </div>
+                            `;
+
+                            Latitudine = parseFloat(response.recommendedSupermarket.latitude);
+                            Longitudine = parseFloat(response.recommendedSupermarket.longitude);
+                            var map = L.map('map3').setView([Latitudine, Longitudine], 15);
+                            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                maxZoom: 19,
+                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                            }).addTo(map);
+                            L.marker([Latitudine, Longitudine], { icon: greenIcon }).addTo(map);
+
+                            // Inserisci lista dei prodotti nel carrello
+                            response.productsPrices.forEach(function (element) {
+                                var carrelloCard = $('<div>').addClass('carrello_elemento2');
+                                carrelloCard[0].id = element.Nome;
+                                var carrelloNome = $('<div>').addClass('carrello_nome2');
+                                carrelloNome.append('<h3>' + element.Nome + '</h3>');
+                                carrelloCard.append(carrelloNome);
+
+                                var carrelloQuantità = $('<div>').addClass('carrello_quantità2');
+                                carrelloQuantità.append('<h4>' + element.Quantità + '</h4>');
+
+                                var carrelloPrezzo = $('<div>').addClass('carrello_prezzo2');
+                                carrelloPrezzo.append('<h4>' + element.price + '</h4>');
+
+                                carrelloCard.append(carrelloQuantità);
+                                carrelloCard.append(carrelloPrezzo);
+                                $('.carrello').append(carrelloCard);
+                            });
+
+                            const totale = document.querySelector('.Totale');
+                            totale.innerHTML = `<h2>TOT: ${response.recommendedSupermarket.totalPrice}</h2>`;
+
+                            const bottoneSalva = document.querySelector('.bottone_salva');
+                            bottoneSalva.addEventListener('click', function (event) {
+                                event.preventDefault();
+
+                                // prenditi dal sessionStorage il sessionID e l'email
+                                var sessionId = sessionStorage.getItem('sessionId');
+                                var email = sessionStorage.getItem('email');
+                                var log = sessionStorage.getItem('Log');
+
+                                console.log('Session ID:', sessionId);
+                                console.log('Email:', email);
+                                console.log('Log:', log);
+
+                                if (log == 1) {
+                                    console.log('Loggato');
+
+                                    // Creazione del PDF
+                                    var doc = new jsPDF();
+
+                                    var logoImg = new Image();
+                                    logoImg.src = 'Icone/MyShoppingList.png';
+
+                                    logoImg.onload = function () {
+                                        doc.addImage(logoImg, 'PNG', 10, 10, 203 / 5, 30 / 5); // Adjust position and size as needed (the logo has 203 pixel width and 30 pixel height)
+
+                                        doc.setFontSize(10);
+                                        doc.setFont("helvetica");
+
+                                        var yOffset = 25;
+
+                                        doc.setFontSize(8);
+                                        doc.text('Email: ' + email, 10, 46 - yOffset);
+
+                                        doc.setFontSize(10);
+
+                                        insertSupermarketInfo(doc, 54 - yOffset, response.recommendedSupermarket);
+
+                                        doc.setFontSize(10);
+                                        doc.setFontType("bold");
+                                        doc.text('Product Prices (Recommended Supermarket)', 10, 75 - yOffset);
+                                        doc.setFontType("normal");
+
+                                        // Crea la tabella con i prodotti e i prezzi
+                                        var tableStart = 80 - yOffset;
+                                        doc.autoTable({
+                                            startY: tableStart,
+                                            head: [['Name', 'Quantity', 'Price (€)']],
+                                            body: response.productsPrices.map(product => [product.Nome, product.Quantità, product.price]),
+                                            theme: 'grid' // Add grid styling for the table
+                                        });
+
+                                        var totalPriceY = tableStart + doc.autoTableEndPosY({ startY: tableStart, head: [['Name', 'Quantity', 'Price (€)']], body: response.productsPrices.map(product => [product.Nome, product.Quantità, product.price]) });
+
+                                        doc.setFontSize(12);
+                                        doc.setFontType("bold");
+                                        doc.text('Total Price:', 10, totalPriceY + 10 - yOffset);
+                                        doc.text(response.recommendedSupermarket.totalPrice + ' €', 175, totalPriceY + 10 - yOffset);
+
+                                        doc.save('shopping_list.pdf');
+                                    };
+
+                                    // Funzione per inserire le informazioni del supermercato nel PDF
+                                    function insertSupermarketInfo(doc, Offset, supermarket) {
+                                        doc.text('Supermarket: ' + supermarket.chain + ' ' + supermarket.name, 10, Offset);
+
+                                        doc.textWithLink('View on Google Maps', 10, Offset + 7, {
+                                            url: 'https://maps.google.com/maps?q=loc:' + supermarket.latitude + ',' + supermarket.longitude
+                                        });
+
+                                        doc.text('Distance: ' + supermarket.distance, 10, Offset + 14);
+                                    }
+
+                                } else {
+                                    console.log('Non loggato');
+                                    const wrapper = document.querySelector('.wrapper');
+                                    const body = document.querySelector('body');
+                                    wrapper.classList.add('active-popup');
+                                    body.classList.add('popup-active');
+                                    checkout_wrapper.classList.remove('active-popup');
+                                }
+                            });
+
+                            if (sessionStorage.getItem('Log') != 1) {
+                                document.querySelector('.vicino').classList.add('blurred');
+                                document.querySelector('.economico').classList.add('blurred');
+
+                                // Rimozione dei marker dalle mappe
+                                map1.removeLayer(markerEconomico);
+                                map2.removeLayer(markerVicino);
+
+                                // Verifica se l'elemento del testo è già presente
+                                if (!document.querySelector('.blurred-text-wrapper')) {
+                                    // Creazione dell'elemento wrapper esterno
+                                    const blurredTextWrapper = document.createElement('div');
+                                    blurredTextWrapper.classList.add('blurred-text-wrapper');
+
+                                    // Creazione del testo e del bottone
+                                    const blurredTextContent = `
+                                        <div class="blurred-text">
+                                            Want to know the closest or cheapest supermarkets?
+                                            <br>
+                                            <button class="register-button-check">Register Now!</button>
+                                        </div>
+                                    `;
+
+                                    // Aggiunta del testo e del bottone all'elemento wrapper esterno
+                                    blurredTextWrapper.innerHTML = blurredTextContent;
+
+                                    // Aggiunta dell'elemento wrapper esterno tra i due div blurrati
+                                    const vicinoDiv = document.querySelector('.vicino');
+                                    const economicoDiv = document.querySelector('.economico');
+                                    vicinoDiv.parentNode.insertBefore(blurredTextWrapper, economicoDiv);
+
+                                    // Aggiungi un evento click al bottone "Registrati ora"
+                                    blurredTextWrapper.querySelector('.register-button-check').addEventListener('click', function () {
+                                        const wrapper = document.querySelector('.wrapper');
+                                        const body = document.querySelector('body');
+                                        wrapper.classList.add('active-popup');
+                                        body.classList.add('popup-active');
+                                        checkout_wrapper.classList.remove('active-popup');
+                                    });
+                                }
+                            }
+
+
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Si è verificato un errore durante la richiesta.');
+                        }
+                    });
+
+                    scrollToTop();
+                  
+
+                }
+            
+            document.addEventListener('DOMContentLoaded', function () {
+                
+                var checkout_iconClose=document.getElementById('close_checkout_icon');
+                const checkout_wrapper = document.querySelector('.wrapper_checkout');
+                const checkout_body = document.querySelector('body');
+                
+                checkout_iconClose.addEventListener('click', () => {
+                    checkout_wrapper.classList.remove('active-popup');
+                    checkout_body.classList.remove('popup-active');
+                    const myDiv = document.querySelector('.carrello'); // Seleziona l'elemento <div>
+                    myDiv.innerHTML = '';
+
+                });
+            });
+        
+
+
+
+        
 
         
     </script>
+
+    
+        
+
+<!--geolocalizzazione-->
+<script> 
+    $(document).ready(function () {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+
+                sessionStorage.setItem("latitude", latitude);
+                sessionStorage.setItem("longitude", longitude);
+
+                var sessionId = getSessionId();
+
+                if (sessionId) {
+                    console.log('Session ID:', sessionId);
+                } else {
+                    console.log('Session ID not found.');
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "preferences.php",
+                    data: { latitude: latitude, longitude: longitude, session_id: sessionId },
+                    success: function (response) {
+                        console.log(response);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            });
+        } else {
+            console.log("Geolocation is not available");
+        }
+    });
+
+    function getSessionId() {
+        return sessionStorage.getItem('sessionId');
+    }
+
+</script>
        
         
     <!-- Tasto Login -->
@@ -280,7 +682,7 @@
 
 <!--modal checkout-->
 <div class="wrapper_checkout">
-    <span class="icon_close_checkout">
+    <span class="icon_close_checkout" id="close_checkout_icon">
         <ion-icon name="close-outline"></ion-icon>
     </span>
 
