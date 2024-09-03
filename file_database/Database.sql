@@ -582,10 +582,19 @@ CREATE TABLE reviews (
 );
 
 /*---------preferenze------------*/
+<<<<<<< Updated upstream
 CREATE TABLE preferences(
   user_id varchar(255) NOT NULL,
   name_cart varchar(100) NOT NULL,
   products varchar(2500) NOT NULL,
   PRIMARY KEY (user_id, name_cart),
   FOREIGN KEY (user_id) REFERENCES `utenti`(`id`)
+=======
+CREATE TABLE `preferences` (
+ `user_id` varchar(255) NOT NULL,
+ `name_cart` varchar(100) NOT NULL,
+ `products` varchar(2500) NOT NULL,
+ PRIMARY KEY (`user_id`,`name_cart`),
+ CONSTRAINT `fk_username` FOREIGN KEY (`user_id`) REFERENCES `utenti` (`email`) ON DELETE CASCADE ON UPDATE CASCADE
+>>>>>>> Stashed changes
 );
