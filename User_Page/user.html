@@ -28,6 +28,7 @@
                 var email = document.getElementById("email").value;
                 var password = document.getElementById("password").value;
                 var selectedRadio = document.querySelector('input[name="Admin"]:checked').value;
+                console.log(selectedRadio);
 
                 // Verifica se i campi richiesti sono compilati
                 if (name.trim() === "" || surname.trim() === "" || birthdate.trim() === "" || phone.trim() === "" || email.trim() === "" || password.trim() === "") {
@@ -64,6 +65,9 @@
                             console.log("Server Response:", data);
                             sessionStorage.setItem("Log", 1);
                             sessionStorage.setItem("email", email_ut);
+                            if(selectedRadio== "1"){
+                                sessionStorage.setItem("admin", 1);
+                            }
                             window.location.href = "../home/home.html";
                         },
                         error: function(xhr, status, error) {
