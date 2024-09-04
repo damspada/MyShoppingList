@@ -90,6 +90,14 @@ body {
     width: 0;
 }
 
+.my_navbar a:nth-child(2):hover::before {
+    width: 100%;
+}
+
+.my_navbar a:nth-child(2) .sign:hover::before {
+    width: 0;
+}
+
 
 
 

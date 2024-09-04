@@ -28,7 +28,7 @@
                 var email = document.getElementById("email").value;
                 var password = document.getElementById("password").value;
                 var selectedRadio = document.querySelector('input[name="Admin"]:checked').value;
-                console.log(selectedRadio);
+
 
                 // Verifica se i campi richiesti sono compilati
                 if (name.trim() === "" || surname.trim() === "" || birthdate.trim() === "" || phone.trim() === "" || email.trim() === "" || password.trim() === "") {
@@ -67,6 +67,8 @@
                             sessionStorage.setItem("email", email_ut);
                             if(selectedRadio== "1"){
                                 sessionStorage.setItem("admin", 1);
+                            }else {
+                                sessionStorage.setItem("admin", 0);
                             }
                             window.location.href = "../home/home.html";
                         },
@@ -130,7 +132,7 @@
                             console.log(element.cell);
                             console.log(element.email);
                             console.log(element.budget);
-                            console.log(element.admin); 
+                            console.log(element.adm); 
                             sessionStorage.setItem("budget",element.budget);
                             if(element.immagine){
                                 var url = element.immagine;
@@ -175,7 +177,7 @@
 
                             //cambia pulsanti register e update 
                             //se utente non Admin
-                            if(element.admin != 1){
+                            if(element.adm != 1){
                                 const div_register = document.getElementById("register_button");
                                 div_register.innerHTML = '';
                                 const shopping_button = document.createElement("button");
@@ -193,13 +195,6 @@
                             else{
                                 const div_register = document.getElementById("register_button");
                                 div_register.innerHTML = '';
-                                const shopping_button = document.createElement("button");
-                                shopping_button.className = "button_shopping";
-                                shopping_button.textContent = "Back to Home";
-                                shopping_button.onclick = function() {
-                                    window.location.href = "../home/home.html";
-                                };
-                                div_register.appendChild(shopping_button);
                             }
                             
                             document.getElementById("update").style.display = "block";
@@ -216,8 +211,11 @@
                             document.getElementById("importo").value = element.budget;
                             document.getElementById("password").value = element.pass;
                             //aggiungo il valore admin
-                            if(element.admin == 1){
+                            if(element.adm == 1){
                                 document.getElementById("option1").checked = true;
+
+                                document.getElementById("stile_di_vita").value = ""; 
+                                document.getElementById("importo").value = "0";
                                 document.getElementById("stile_di_vita").disabled = true;
                                 document.getElementById("importo").disabled = true;
                             } else {
@@ -301,6 +299,36 @@
             };
         });
     </script>
+
+    <!-- pulsante preferenze su NavBar-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const preferencesLink = document.getElementById('preferences-link');
+            const wrapper = document.querySelector('.wrapper');
+            const body = document.querySelector('body');
+            const iconClose = document.querySelector('.icon-close');
+            const btnPopup = document.querySelector('.Btn');
+
+            preferencesLink.addEventListener('click', function (event) {
+                event.preventDefault(); // Impedisce il comportamento predefinito del link
+                if (sessionStorage.getItem("Log") != 1) {
+                    wrapper.classList.add('active-popup');
+                    body.classList.add('popup-active');
+                } 
+                else if (sessionStorage.getItem("admin") !=1) {
+                    window.location.href = '../preferences/preferences.html'; //se loggato manda alla pagina di preferenze
+                }
+                else{ 
+                    document.getElementById('popup-overlay').style.display = 'flex';
+                    
+                    function hidePopup() {
+                        document.getElementById('popup-overlay').style.display = 'none';
+                    }
+                    document.getElementById('popup-close').addEventListener('click', hidePopup);
+                }
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -311,6 +339,7 @@
             <a href="../home/home.html"><img src="./Immagini/MyShoppingList.png" class="logo"></a>
             <nav class="my_navbar">
                     <a href="../home/home.html" class="link_navbar">Home</a>
+                    <a href="#" id="preferences-link" class="link_navbar">Preferenze</a>
                     <a href="../home/home.html" class="icon_contatti" id="icon_log_out" style="display: none;"><img src="./Immagini/log_out.png"></a>
             </nav>
         </header>

@@ -95,13 +95,6 @@ body.popup-active {
     width: 0;
 }
 
-.my_navbar a:nth-child(2):hover::before {
-    width: 100%;
-}
-
-.my_navbar a:nth-child(2) .sign:hover::before {
-    width: 0;
-}
 
 @media screen and (max-width: 900px){
     html, body {
@@ -460,14 +453,13 @@ body.popup-active {
 
 .table-scrollable {
     overflow-y: auto;  /* Abilita lo scorrimento verticale */
-    max-height: 400px; /* Imposta l'altezza massima desiderata per la parte scrollabile */
+    max-height: 400px; 
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
-    
 }
 
 th, td {
