@@ -319,12 +319,25 @@
                     window.location.href = '../preferences/preferences.html'; //se loggato manda alla pagina di preferenze
                 }
                 else{ 
-                    document.getElementById('popup-overlay').style.display = 'flex';
+                    // document.getElementById('popup-overlay').style.display = 'flex';
                     
-                    function hidePopup() {
-                        document.getElementById('popup-overlay').style.display = 'none';
-                    }
-                    document.getElementById('popup-close').addEventListener('click', hidePopup);
+                    // function hidePopup() {
+                    //     document.getElementById('popup-overlay').style.display = 'none';
+                    // }
+                    // document.getElementById('popup-close').addEventListener('click', hidePopup);
+                    Swal.fire({
+                        title: "An Admin cannot access preferences!",
+                        icon: "warning",
+                        dangerMode: true,
+                        background: "#f8f9fa",
+                        textColor: "#343a40",
+                        width: "400px",
+                        padding: "3rem",
+                        titleFont: "Montserrat_Arabic_Regular",
+                        textFont: "Montserrat_Arabic_Regular",
+                        showConfirmButton: false, 
+                        timer: 2000 
+                    });
                 }
             });
         });
@@ -339,7 +352,7 @@
             <a href="../home/home.html"><img src="./Immagini/MyShoppingList.png" class="logo"></a>
             <nav class="my_navbar">
                     <a href="../home/home.html" class="link_navbar">Home</a>
-                    <a href="#" id="preferences-link" class="link_navbar">Preferenze</a>
+                    <a href="#" id="preferences-link" class="link_navbar">Preferences</a>
                     <a href="../home/home.html" class="icon_contatti" id="icon_log_out" style="display: none;"><img src="./Immagini/log_out.png"></a>
             </nav>
         </header>

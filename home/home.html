@@ -110,12 +110,25 @@
                 window.location.href = '../preferences/preferences.html'; //se loggato manda alla pagina di preferenze
             }
             else{ 
-                document.getElementById('popup-overlay').style.display = 'flex';
+                // document.getElementById('popup-overlay').style.display = 'flex';
                 
-                function hidePopup() {
-                    document.getElementById('popup-overlay').style.display = 'none';
-                }
-                document.getElementById('popup-close').addEventListener('click', hidePopup);
+                // function hidePopup() {
+                //     document.getElementById('popup-overlay').style.display = 'none';
+                // }
+                // document.getElementById('popup-close').addEventListener('click', hidePopup);
+                Swal.fire({
+                    title: "An Admin cannot access preferences!",
+                    icon: "warning",
+                    dangerMode: true,
+                    background: "#f8f9fa",
+                    textColor: "#343a40",
+                    width: "400px",
+                    padding: "3rem",
+                    titleFont: "Montserrat_Arabic_Regular",
+                    textFont: "Montserrat_Arabic_Regular",
+                    showConfirmButton: false, 
+                    timer: 2000 
+                });
             }
         });
     });
@@ -358,12 +371,25 @@
                 body.classList.add('popup-active');
             }
             else if (sessionStorage.getItem("admin")==1){
-                document.getElementById('popup-recensione-admin').style.display = 'flex';
+                // document.getElementById('popup-recensione-admin').style.display = 'flex';
                 
-                function hidePopup() {
-                    document.getElementById('popup-recensione-admin').style.display = 'none';
-                }
-                document.getElementById('popup-recensione-admin-close').addEventListener('click', hidePopup);
+                // function hidePopup() {
+                //     document.getElementById('popup-recensione-admin').style.display = 'none';
+                // }
+                // document.getElementById('popup-recensione-admin-close').addEventListener('click', hidePopup);
+                Swal.fire({
+                    title: "An Admin cannot write reviews!",
+                    icon: "warning",
+                    dangerMode: true,
+                    background: "#f8f9fa",
+                    textColor: "#343a40",
+                    width: "400px",
+                    padding: "3rem",
+                    titleFont: "Montserrat_Arabic_Regular",
+                    textFont: "Montserrat_Arabic_Regular",
+                    showConfirmButton: false, 
+                    timer: 2000 
+                });
             }
             else{
                 var email = sessionStorage.getItem("email");
@@ -457,12 +483,25 @@
                 body.classList.add('popup-active');
             }
             else if(admin==1){
-                document.getElementById('popup-modifica-recensione-admin').style.display = 'flex';
+                // document.getElementById('popup-modifica-recensione-admin').style.display = 'flex';
                 
-                function hidePopup() {
-                    document.getElementById('popup-modifica-recensione-admin').style.display = 'none';
-                }
-                document.getElementById('popup-modifica-recensione-admin-close').addEventListener('click', hidePopup);
+                // function hidePopup() {
+                //     document.getElementById('popup-modifica-recensione-admin').style.display = 'none';
+                // }
+                // document.getElementById('popup-modifica-recensione-admin-close').addEventListener('click', hidePopup);
+                Swal.fire({
+                    title: "An Admin cannot edit reviews!",
+                    icon: "warning",
+                    dangerMode: true,
+                    background: "#f8f9fa",
+                    textColor: "#343a40",
+                    width: "400px",
+                    padding: "3rem",
+                    titleFont: "Montserrat_Arabic_Regular",
+                    textFont: "Montserrat_Arabic_Regular",
+                    showConfirmButton: false, 
+                    timer: 2000 
+                });
             }
             else{
                 document.getElementById('modificaModal').style.display = 'block';
@@ -509,7 +548,7 @@
             <a href="home.html"><img src="./Immagini/MyShoppingList.png" class="logo"></a>
             <nav class="my_navbar">
                     <a href="home.html" class="link_navbar">Home</a>
-                    <a href="#" id="preferences-link" class="link_navbar">Preferenze</a>
+                    <a href="#" id="preferences-link" class="link_navbar">Preferences</a>
                     <a href="#contatti">Contacts</a>
                     <a href="#contatti" class="icon_contatti"><img src="./Immagini/phone.png"></a>
                     <a href="#">        
@@ -739,20 +778,25 @@
     <!--Pop up Elima Recensione Admin-->
     <div id="emailModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Inserisci l'email per cancellare la recensione</h2>
-            <input type="email" id="emailInput" placeholder="Email">
-            <button id="submitEmail">Conferma</button>
+            <div class="modal-header">
+                <h2>Enter the email of the review to be deleted.</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <input type="email" id="emailInput" placeholder="Email">
+                <button id="submitEmail">Confirm</button>
+            </div>
         </div>
     </div>
+    
 
     <!--Pop up Modifica Recensione-->
     <div id="modificaModal" class="modal2">
         <div class="modal-content2">
             <span class="close2">&times;</span>
-            <h2>Inserisci la tua nuova recensione</h2>
+            <h2>Enter your new review.</h2>
             <input type="text" id="textInput" placeholder="text">
-            <button id="submittext">Conferma</button>
+            <button id="submittext">Confirm</button>
         </div>
     </div>
 
@@ -767,13 +811,14 @@
     <!--Recensioni-->
     <div class="recensioni-container" id="recensioni">
         <form id="form-recensione">
-            <h3>Lascia una recensione</h3>
-            <textarea id="testo-recensione" placeholder="Scrivi la tua recensione qui..." required></textarea>
-            <button type="submit">Invia</button>
-            <button id="elimina" type="button">Elimina</button>
-            <button id="modifica" type="button">Modifica</button>
+            <h3>Leave a review</h3>
+            <textarea id="testo-recensione" placeholder="Write your review here..." required></textarea>
+            <button type="submit">Send</button>
+            <button id="elimina" type="button">Delete</button>
+            <button id="modifica" type="button">Edit</button>
         </form>
-        <h2>Recensioni</h2>
+        <br>
+        <h2>Reviews:</h2>
         <div id="recensioni-list">
             <!-- Qui verranno caricate le recensioni dal database -->
         </div>
@@ -906,6 +951,38 @@
                 <button id="save-yt">Save</button>
             </div>
         </div>
+
+        <!-- elimina recensione admin, manca il confirm -->
+        <script>
+            // Prendi il modale
+            var modal = document.getElementById("emailModal");
+
+            // Prendi l'elemento <span> che chiude il modale
+            var span = document.getElementsByClassName("close")[0];
+
+            // Ottieni il pulsante che apre il modale
+            var btn = document.getElementById("elimina");
+
+            // Quando l'utente clicca sul pulsante, apri il modale
+            btn.onclick = function() {
+                modal.style.display = "block";
+                document.body.classList.add("no-scroll");
+            }
+
+            // Quando l'utente clicca sulla "X", chiudi il modale
+            span.onclick = function() {
+                modal.style.display = "none";
+                document.body.classList.remove("no-scroll");
+            }
+
+            // Chiudi il modale se l'utente clicca fuori dal contenuto del modale
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    document.body.classList.remove("no-scroll");
+                }
+            }
+        </script>
 
         <!--funzioni per modificare contatti e social-->
         <script>

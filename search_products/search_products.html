@@ -1139,6 +1139,49 @@
         });
      </script>
 
+    <!-- pulsante preferenze su NavBar-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const preferencesLink = document.getElementById('preferences-link');
+            const wrapper = document.querySelector('.wrapper');
+            const body = document.querySelector('body');
+            const iconClose = document.querySelector('.icon-close');
+            const btnPopup = document.querySelector('.Btn');
+
+            preferencesLink.addEventListener('click', function (event) {
+                event.preventDefault(); // Impedisce il comportamento predefinito del link
+                if (sessionStorage.getItem("Log") != 1) {
+                    wrapper.classList.add('active-popup');
+                    body.classList.add('popup-active');
+                } 
+                else if (sessionStorage.getItem("admin") !=1) {
+                    window.location.href = '../preferences/preferences.html'; //se loggato manda alla pagina di preferenze
+                }
+                else{ 
+                    // document.getElementById('popup-overlay').style.display = 'flex';
+                    
+                    // function hidePopup() {
+                    //     document.getElementById('popup-overlay').style.display = 'none';
+                    // }
+                    // document.getElementById('popup-close').addEventListener('click', hidePopup);
+                    Swal.fire({
+                        title: "An Admin cannot access preferences!",
+                        icon: "warning",
+                        dangerMode: true,
+                        background: "#f8f9fa",
+                        textColor: "#343a40",
+                        width: "400px",
+                        padding: "3rem",
+                        titleFont: "Montserrat_Arabic_Regular",
+                        textFont: "Montserrat_Arabic_Regular",
+                        showConfirmButton: false, 
+                        timer: 2000 
+                    });
+                }
+            });
+        });
+    </script>
+
 
     <title>MyShoppingList</title>
 </head>
@@ -1155,6 +1198,7 @@
             <a href="../home/home.html"><img src="Icone/MyShoppingList.png" class="logo"></a>
             <nav class="my_navbar">
                 <a href="../home/home.html" class="link_navbar">Home</a>
+                <a href="#" id="preferences-link" class="link_navbar">Preferences</a>
                 <a href="#contatti">Contacts</a>
                 <a href="#contatti" class="icon_contatti"><img src="./Icone/phone.png"></a>
                 <a href="#">
