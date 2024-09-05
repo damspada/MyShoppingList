@@ -1126,6 +1126,21 @@
                             console.log(response);
                             popupCarrello.style.display='none';
                             buttonPref.innerHTML='<ion-icon name="star">';
+                            Swal.fire({
+                                title: "Success!",
+                                text: "Cart added to Preferences.",
+                                icon: "success",
+                                timer: 1500, 
+                                showConfirmButton: false,
+                                confirmButtonText: "OK",
+                                background: "#f8f9fa",
+                                confirmButtonColor: "#28a745",
+                                textColor: "#343a40",
+                                width: "400px",
+                                padding: "3rem",
+                                titleFont: "Montserrat_Arabic_Regular",
+                                textFont: "Montserrat_Arabic_Regular"
+                            });
                         },
                         error: function (xhr, status, error) {
                             console.error('Errore Richiesta');
@@ -1410,9 +1425,9 @@
         </div>
 
         <div id="popup_nome_carrello" class="popup-carrello">
-            <h3>Inserire nome carrello</h3>
-            <input required type="text" id="nome_carrello" placeholder="Nome carrello" style="margin-top:5px; margin-right:2px; margin-left:5px; ">
-            <button id="conferma_carrello" class="bottone_salva" style="width: 15%; height: 20px; font-size:18;">Salva</button>
+            <h3>Enter cart name</h3>
+            <input required type="text" id="nome_carrello" placeholder="Cart name" style="margin-top:5px; margin-right:2px; margin-left:5px; ">
+            <button id="conferma_carrello" class="bottone_salva" style="width: 15%; height: 20px; font-size:18;">Save</button>
             <span class="close" id="close-popup-carrello">&times;</span>
         </div>
     </div>

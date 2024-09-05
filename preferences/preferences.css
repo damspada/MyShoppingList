@@ -504,18 +504,16 @@ body.popup-active {
     width: 80%;
     overflow-x: auto;
     margin-top: 20px;
-    max-height: 500px; /* Imposta l'altezza massima del contenitore */
+    height: 600px; /* Imposta l'altezza massima del contenitore */
 }
 
 .cart{
-    overflow-y: auto;  /* Abilita lo scorrimento verticale */
+    /* overflow-y: auto;   */
     max-height: 400px; /* Imposta l'altezza massima desiderata per la parte scrollabile */
     width: 100%; /* Occupa interamente la larghezza dell'elemento padre */
     box-sizing: border-box; /* Include padding e bordi nella larghezza */
     border-collapse: collapse;
-    margin-bottom: 20px;
-    
-
+    margin-bottom: 3%;
 }
 
 .cart-header{
@@ -536,7 +534,6 @@ body.popup-active {
     text-align: left;
     border-bottom: 1px solid #ddd;
     box-sizing: border-box; /* Include padding e bordi nella larghezza */
-    
 }
 
 .row-prodotto{
@@ -556,7 +553,11 @@ body.popup-active {
     justify-content: center; /* Centra i bottoni orizzontalmente */
     gap: 10px; /* Spazio tra i bottoni */
     margin-top: 20px; /* Margine superiore per separare i bottoni dal contenuto precedente */
-    
+}
+
+.elimina_carrello_css{
+    font-size: 20px;
+    font-weight: 500;
 }
 
 /*gestione eliminazione*/

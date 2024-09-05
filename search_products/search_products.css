@@ -31,6 +31,10 @@ body.popup-active {
     overflow: hidden;
 }
 
+.no-scroll {
+    overflow: hidden;
+}
+
 .top_div {
     height:25%;
     background-color: #e1306c;
