@@ -116,6 +116,7 @@
                         document.getElementById("password").setAttribute("readonly", true);
                         sessionStorage.setItem("Log", 1);
                         sessionStorage.setItem("email", email_git);
+                        location.reload();
                     }
                 },
                 error: function(xhr, status, error) {
