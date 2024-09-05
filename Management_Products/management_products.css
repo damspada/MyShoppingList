@@ -26,6 +26,10 @@ body.popup-active {
     overflow: hidden;
 }
 
+.no-scroll {
+    overflow: hidden;
+}
+
 
 /*-------------------------------- Navbar --------------------------------*/
 #login_div{
@@ -448,12 +452,12 @@ body.popup-active {
     width: 80%;
     overflow-x: auto;
     margin-top: 100px;
-    max-height: 500px; /* Imposta l'altezza massima del contenitore */
+    height: 800px; /* Imposta l'altezza massima del contenitore */
 }
 
 .table-scrollable {
     overflow-y: auto;  /* Abilita lo scorrimento verticale */
-    max-height: 400px; 
+    height: 650px; 
 }
 
 table {
@@ -471,6 +475,10 @@ th, td {
 th {
     background-color: #00BF63;
     color: white;
+    position: sticky;  /* Fissa l'intestazione */
+    top: 0;            /* Allineamento all'inizio durante lo scroll */
+    z-index: 2;        /* Assicura che l'intestazione sia sopra le righe */
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4); /* Aggiunge un'ombra per evidenziare l'effetto sticky */
 }
 
 tr:nth-child(even) {
@@ -489,15 +497,21 @@ button.action-button {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.button_products_div{
+    margin-left: 12%;
 }
 
 /* Stile specifico per il pulsante "Aggiungi" */
 .action-button.aggiungi {
-    background-color: #4CAF50; /* Verde */
+    background-color: #00BF63; /* Verde */
 }
 
 .action-button.aggiungi:hover {
-    background-color: #45a049; /* Verde più scuro */
+    background-color: #0da75c;
 }
 
 /* Stile specifico per il pulsante "Elimina" */
@@ -515,7 +529,7 @@ button.action-button {
 .modal {
     display: none; /* Nascondi il modale per impostazione predefinita */
     position: fixed;
-    z-index: 1; /* Posiziona il modale sopra gli altri contenuti */
+    z-index: 100000; /* Posiziona il modale sopra gli altri contenuti */
     left: 0;
     top: 0;
     width: 100%;

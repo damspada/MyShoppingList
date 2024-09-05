@@ -145,6 +145,8 @@
     window.onload = function() {
         document.getElementById("elimina").addEventListener('click', function(event) {
             document.getElementById("deleteUserModal").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+            document.body.classList.add("no-scroll");
             document.getElementById("submitEmail").onclick = function() {
             var email = document.getElementById("emailInput").value;
             $.ajax({
@@ -156,6 +158,8 @@
                             //alert(result);
                             location.reload(); // Ricarica le recensioni dopo l'eliminazione
                             document.getElementById("deleteUserModal").style.display = "none";
+                            document.getElementById("overlay").style.display = "none";
+                            document.body.classList.remove("no-scroll");
                         },
                         error: function(error){
                             console.error('Errore nell\'eliminazione dell\'utente:', error);
@@ -168,17 +172,26 @@
         // Quando l'utente clicca sulla X, chiudi il modal
         document.getElementsByClassName("close")[0].onclick = function() {
             document.getElementById("deleteUserModal").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+            document.body.classList.remove("no-scroll");
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("deleteUserModal")) {
+                document.getElementById("deleteUserModal").style.display = "none";
+                document.getElementById("overlay").style.display = "none";
+                document.body.classList.remove("no-scroll");
+            }
         }
     }
 
-    
     </script>
 
     <title>User Management</title>
 <head>
     
 <body>
-
+    <div class="overlay" id="overlay"></div>
    <!-- NavBar-->
     <div>
         <header class="header">
@@ -212,17 +225,17 @@
                 </tbody>
             </table>
         </div>
-        <button class="action-button" id="elimina" type="button">Elimina un Utente Registrato</button>
+        <button class="action-button" id="elimina" type="button">Delete a Registered User</button>
     </div>
  
     <!--Pop up elimina utente registrato-->
     <div id="deleteUserModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Elimina Utente</h2>
-            <p>Inserisci l'email dell'utente che desideri eliminare:</p>
-            <input type="text" id="emailInput" placeholder="Email">
-            <button id="submitEmail" class="action-button">Elimina</button>
+            <h2>Delete User</h2>
+            <p>Enter the email of the user you want to delete:</p>
+            <input type="text" id="emailInput" placeholder="Email" required>
+            <button id="submitEmail" class="action-button-delete">Delete</button>
         </div>
     </div>
 </body>

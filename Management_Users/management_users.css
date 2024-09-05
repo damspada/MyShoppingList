@@ -26,6 +26,10 @@ body.popup-active {
     overflow: hidden;
 }
 
+.no-scroll {
+    overflow: hidden;
+}
+
 
 /*-------------------------------- Navbar --------------------------------*/
 #login_div{
@@ -471,6 +475,10 @@ th, td {
 th {
     background-color: #00BF63;
     color: white;
+    position: sticky;  /* Fissa l'intestazione */
+    top: 0;            /* Allineamento all'inizio durante lo scroll */
+    z-index: 2;        /* Assicura che l'intestazione sia sopra le righe */
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4); /* Aggiunge un'ombra per evidenziare l'effetto sticky */
 }
 
 tr:nth-child(even) {
@@ -483,13 +491,33 @@ tr:hover {
 
 button.action-button {
     display: inline-block;
-    background-color: #dc3545; 
+    background-color: #f44336; 
     color: #fff;
     border: none;
     padding: 20px 20px;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
+    margin-left: 35%;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.action-button-delete{
+    display: inline-block;
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    padding: 20px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.action-button:hover{
+    background-color: #d32f2f;
 }
 
 /*-------------Popup-Elimina-User-------------*/
@@ -497,7 +525,7 @@ button.action-button {
 .modal {
     display: none; /* Nascondi il modale per impostazione predefinita */
     position: fixed;
-    z-index: 1; /* Posiziona il modale sopra gli altri contenuti */
+    z-index: 12100; /* Posiziona il modale sopra gli altri contenuti */
     left: 0;
     top: 0;
     width: 100%;

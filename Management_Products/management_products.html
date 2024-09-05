@@ -166,6 +166,8 @@
     window.onload = function() {
         document.getElementById("elimina").addEventListener('click', function(event) {
             document.getElementById("deleteProductModal").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+            document.body.classList.add("no-scroll");
             document.getElementById("submitDeleteProducts").onclick = function() {
             var name = document.getElementById("Delete_nameInput").value;
             $.ajax({
@@ -177,6 +179,8 @@
                             //alert(result);
                             location.reload(); // Ricarica le recensioni dopo l'eliminazione
                             document.getElementById("deleteProductModal").style.display = "none";
+                            document.getElementById("overlay").style.display = "none";
+                            document.body.classList.remove("no-scroll");
                         },
                         error: function(error){
                             console.error('Errore nell\'eliminazione dell\'utente:', error);
@@ -189,6 +193,8 @@
         // Quando l'utente clicca sulla X, chiudi il modal
         document.getElementsByClassName("close")[0].onclick = function() {
             document.getElementById("deleteProductModal").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+            document.body.classList.remove("no-scroll");
         }
     }
 
@@ -198,11 +204,15 @@
         // Quando l'utente clicca sul pulsante, apri il modale
         document.getElementById("aggiungi").onclick = function() {
             document.getElementById("modalAggiungiProdotto").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+            document.body.classList.add("no-scroll");
         }
 
         // Quando l'utente clicca su(x), chiudi il modale
         document.getElementsByClassName("close_modalAggiungi")[0].onclick = function() {
             document.getElementById("modalAggiungiProdotto").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+            document.body.classList.remove("no-scroll");
         }
 
         // Gestione invio dati
@@ -251,10 +261,14 @@
         //MODIFICA PRODOTTO
         document.getElementById("modifica").onclick = function () {
                 document.getElementById("modalModificaProdotto").style.display = "block";
+                document.getElementById("overlay").style.display = "block";
+                document.body.classList.add("no-scroll");
             }
 
             document.getElementsByClassName("close_modalModifica")[0].onclick = function () {
                 document.getElementById("modalModificaProdotto").style.display = "none";
+                document.getElementById("overlay").style.display = "none";
+                document.body.classList.remove("no-scroll");
             }
 
             document.getElementById('submitModificaProdotto').addEventListener('click', function () {
@@ -298,12 +312,30 @@
             });
         });
 
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("modalModificaProdotto")) {
+                document.getElementById("modalModificaProdotto").style.display = "none";
+                document.getElementById("overlay").style.display = "none";
+                document.body.classList.remove("no-scroll");
+            }
+            if (event.target == document.getElementById("modalAggiungiProdotto")) {
+                document.getElementById("modalAggiungiProdotto").style.display = "none";
+                document.getElementById("overlay").style.display = "none";
+                document.body.classList.remove("no-scroll");
+            }
+            if (event.target == document.getElementById("deleteProductModal")) {
+                document.getElementById("deleteProductModal").style.display = "none";
+                document.getElementById("overlay").style.display = "none";
+                document.body.classList.remove("no-scroll");
+            }
+        }
+
     </script>
 
 <head>
     
 <body>
-
+    <div class="overlay" id="overlay"></div>
    <!-- NavBar-->
     <div>
         <header class="header">
@@ -340,9 +372,11 @@
                 </tbody>
             </table>
         </div>
-        <button class="action-button aggiungi" id="aggiungi" type="button">Registra un Nuovo Prodotto</button>
-        <button class="action-button aggiungi" id="modifica" type="button">Modifica un Prodotto Registrato</button>
-        <button class="action-button elimina" id="elimina" type="button">Elimina un Prodotto Registrato</button>
+        <div class="button_products_div">
+            <button class="action-button aggiungi" id="aggiungi" type="button">Register a New Product</button>
+            <button class="action-button aggiungi" id="modifica" type="button">Modify a Registered Product</button>
+            <button class="action-button elimina" id="elimina" type="button">Delete a Registered Product</button>
+        </div>   
     </div>
 
     
