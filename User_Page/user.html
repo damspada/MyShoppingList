@@ -347,6 +347,10 @@
             const iconClose = document.querySelector('.icon-close');
             const btnPopup = document.querySelector('.Btn');
 
+            if (sessionStorage.getItem("Log") != 1) {
+                preferencesLink.style.display = "none"; // Nascondi il link Preferences
+            }
+
             preferencesLink.addEventListener('click', function (event) {
                 event.preventDefault(); // Impedisce il comportamento predefinito del link
                 if (sessionStorage.getItem("Log") != 1) {
