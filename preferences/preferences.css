@@ -26,6 +26,10 @@ body.popup-active {
     overflow: hidden;
 }
 
+.no-scroll {
+    overflow: hidden;
+}
+
 
 /*-------------------------------- Navbar --------------------------------*/
 #login_div{
