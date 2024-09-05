@@ -367,6 +367,10 @@
             var reviewText = $('#testo-recensione').val();
 
             if(sessionStorage.getItem("Log") != 1){
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // Scorrimento fluido
+                });
                 wrapper.classList.add('active-popup');
                 body.classList.add('popup-active');
             }
@@ -419,6 +423,10 @@
             const iconClose = document.querySelector('.icon-close');
             const btnPopup = document.querySelector('.Btn');
             if(sessionStorage.getItem("Log") != 1){
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // Scorrimento fluido
+                });
                 wrapper.classList.add('active-popup');
                 body.classList.add('popup-active');
             }
@@ -479,6 +487,10 @@
             const iconClose = document.querySelector('.icon-close');
             const btnPopup = document.querySelector('.Btn');
             if(sessionStorage.getItem("Log") != 1){
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // Scorrimento fluido
+                });
                 wrapper.classList.add('active-popup');
                 body.classList.add('popup-active');
             }
@@ -964,22 +976,25 @@
             var btn = document.getElementById("elimina");
 
             // Quando l'utente clicca sul pulsante, apri il modale
-            btn.onclick = function() {
-                modal.style.display = "block";
-                document.body.classList.add("no-scroll");
-            }
+            if(sessionStorage.getItem("admin") == 1){ 
+                btn.onclick = function() {
+                    modal.style.display = "block";
+                    document.body.classList.add("no-scroll");
+                }
+            
 
-            // Quando l'utente clicca sulla "X", chiudi il modale
-            span.onclick = function() {
-                modal.style.display = "none";
-                document.body.classList.remove("no-scroll");
-            }
-
-            // Chiudi il modale se l'utente clicca fuori dal contenuto del modale
-            window.onclick = function(event) {
-                if (event.target == modal) {
+                // Quando l'utente clicca sulla "X", chiudi il modale
+                span.onclick = function() {
                     modal.style.display = "none";
                     document.body.classList.remove("no-scroll");
+                }
+
+                // Chiudi il modale se l'utente clicca fuori dal contenuto del modale
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                        document.body.classList.remove("no-scroll");
+                    }
                 }
             }
         </script>
