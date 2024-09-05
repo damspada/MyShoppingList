@@ -15,6 +15,8 @@
 
     <!-- Salvare dati dal form -->
     <script>
+        
+
         $(document).ready(function(){
             document.getElementById("form_log").addEventListener("submit", function(event){
                 event.preventDefault();
@@ -85,6 +87,41 @@
     <!-- Riempi Form -->
     <script>
         window.addEventListener('load', function (event) {
+            
+            $.ajax({
+                url: "server.php?action=check_logged_git",
+                type: "GET",
+                
+                success: function(data) {
+                    console.log(data);
+                    var res=JSON.parse(data);
+                    // Estrai i valori da data
+                    var logged_github = res.logged_github;
+                    var email_git = res.email_git;
+                    var name = res.name;
+
+                    // Usa i valori estratti
+                    console.log('logged_github:', logged_github);
+                    console.log('email_git:', email_git);
+                    console.log('name:', name);
+                    if (logged_github == false || email_git == null || name == null) {
+                        return; // Esce dalla funzione senza fare nulla
+                    }
+                    if(logged_github == true && email_git != "" && name != ""){
+                        document.getElementById("name").value = name;
+                        document.getElementById("email").value = email_git;
+                        //document.getElementById("name").setAttribute("readonly", true);
+                        document.getElementById("email").setAttribute("readonly", true);
+                        document.getElementById("password").value = "->GITHUB";
+                        document.getElementById("password").setAttribute("readonly", true);
+                        sessionStorage.setItem("Log", 1);
+                        sessionStorage.setItem("email", email_git);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("AJAX Error:", status, error);
+                }
+            });
             /*mantenere il numero di telefono modificato*/
             var savedPhoneNumber = localStorage.getItem('phoneNumber');
             if (savedPhoneNumber) {
@@ -92,7 +129,7 @@
             }
             var savedEmailAddress = localStorage.getItem('emailAddress');
             if (savedEmailAddress) {
-                document.getElementById('email').innerHTML = '<img src="./Immagini/mail.png">' + savedEmailAddress;
+                document.getElementById('emailApp').innerHTML = '<img src="./Immagini/mail.png">' + savedEmailAddress;
             }
             var savedFacebook = localStorage.getItem('facebookLink');
             if(savedFacebook){
@@ -114,11 +151,12 @@
             if(savedYoutube){
                 document.querySelector('.icon.youtube').setAttribute('href', savedYoutube);
             }
-
+            console.log(sessionStorage.getItem("Log"));
             if(sessionStorage.getItem("Log")==1){
                 var email=sessionStorage.getItem("email");
+                console.log(email);
                 $.ajax({
-                    url: "server.php",
+                    url: "server.php?action=log",
                     type: "GET",
                     data:{
                         email: email
@@ -429,7 +467,7 @@
                 <div class="flex_container_2">
                     <div class="flex_item">
                         <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" placeholder="Insert here..." required>
+                        <input type="password" id="password" name="password" placeholder="Insert here..." required pattern="^(?!.*->GITHUB).*$">
                     </div>
                     <div class="flex_item" id="register_button">
                         <button type="submit" class="button_register" id="log">Register Now!</button>
@@ -476,7 +514,7 @@
         </div>
     
         <div class="contatto">
-            <p id="email"><img src="./Immagini/mail.png"><a href="mailto:MyShoppingList@gmail.com">MyShoppingList@gmail.com</a></p>
+            <p id="emailApp"><img src="./Immagini/mail.png"><a href="mailto:MyShoppingList@gmail.com">MyShoppingList@gmail.com</a></p>
         </div>
     </div>
 </div>

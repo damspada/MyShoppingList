@@ -1,4 +1,5 @@
 <?php
+session_start();
 $servername = "127.0.0.1";
 $username = "root";
 $password = "";
@@ -60,8 +61,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 
 
-if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET["email"])){
-    $email=$_GET["email"];
+if($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action']=='log' && isset($_GET['email'])){
+    $email=$_GET['email'];
 
     $sql="SELECT * FROM utenti where email='$email'";
     $result=$conn->query($sql);
@@ -73,6 +74,19 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET["email"])){
         }
     }
     echo json_encode($utente);
+}
+
+if($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action']=='check_logged_git'){
+    $response = array(
+        'logged_github' => $_SESSION['logged_github'],
+        'email_git' => $_SESSION['email_git'] ,
+        'name' => $_SESSION['name'] 
+    );
+    echo json_encode($response);
+    $_SESSION['logged_github'] = false; // Imposta il flag di accesso GitHub nella sessione
+    $_SESSION['name'] = '';
+    $_SESSION['email_git'] = '';
+    
 }
 
 $conn->close();
