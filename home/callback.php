@@ -5,9 +5,9 @@ $clientId = 'Ov23li8fPAWLW5JGKcl1';
 $clientSecret = 'e0b792dd27c7fee3b3668176f1d312c9f85fbc7f';
 $redirectUri = 'http://localhost/msl/MyShoppingList/home/callback.php'; // Assicurati che sia lo stesso di login.php
 
-/*$_SESSION['logged_github'] = false; // Imposta il flag di accesso GitHub nella sessione
+$_SESSION['logged_github'] = false; // Imposta il flag di accesso GitHub nella sessione
 $_SESSION['name'] = '';
-$_SESSION['email_git'] = '';*/
+$_SESSION['email_git'] = '';
 
 
 // Verifica se è presente il codice di autorizzazione

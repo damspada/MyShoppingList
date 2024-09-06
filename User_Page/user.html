@@ -114,15 +114,19 @@
                         document.getElementById("email").setAttribute("readonly", true);
                         document.getElementById("password").value = "->GITHUB";
                         document.getElementById("password").setAttribute("readonly", true);
-                        sessionStorage.setItem("Log", 1);
+                        if(sessionStorage.getItem("Log") == 0){
+                            sessionStorage.setItem("Log", 1);
+                            location.reload();
+                        }
                         sessionStorage.setItem("email", email_git);
-                        location.reload();
+                        
                     }
                 },
                 error: function(xhr, status, error) {
                     console.error("AJAX Error:", status, error);
                 }
             });
+        
             /*mantenere il numero di telefono modificato*/
             var savedPhoneNumber = localStorage.getItem('phoneNumber');
             if (savedPhoneNumber) {
