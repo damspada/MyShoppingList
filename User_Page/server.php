@@ -11,6 +11,10 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+/*$_SESSION['logged_github'] = false; // Imposta il flag di accesso GitHub nella sessione
+$_SESSION['name'] = '';
+$_SESSION['email_git'] = '';*/
+
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $name = $_POST['name'];
@@ -83,10 +87,16 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action']=='check_logged_git'){
         'name' => $_SESSION['name'] 
     );
     echo json_encode($response);
-    //$_SESSION['logged_github'] = false; // Imposta il flag di accesso GitHub nella sessione
-    //$_SESSION['name'] = '';
-    //$_SESSION['email_git'] = '';
+    $_SESSION['logged_github'] = false; // Imposta il flag di accesso GitHub nella sessione
+    $_SESSION['name'] = '';
+    $_SESSION['email_git'] = '';
     
+}
+
+if($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action']=='logout'){
+    $_SESSION['logged_github'] = false; // Imposta il flag di accesso GitHub nella sessione
+    $_SESSION['name'] = '';
+    $_SESSION['email_git'] = '';
 }
 
 

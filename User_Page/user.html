@@ -106,6 +106,7 @@
                     console.log('name:', name);
                     if (logged_github == false || email_git == null || name == null) {
                         return; // Esce dalla funzione senza fare nulla
+                        console.log("questo è il return");
                     }
                     if(logged_github == true && email_git != "" && name != ""){
                         document.getElementById("name").value = name;
@@ -114,7 +115,7 @@
                         document.getElementById("email").setAttribute("readonly", true);
                         document.getElementById("password").value = "->GITHUB";
                         document.getElementById("password").setAttribute("readonly", true);
-                        if(sessionStorage.getItem("Log") == 0){
+                        if(sessionStorage.getItem("Log") == 0 ){
                             sessionStorage.setItem("Log", 1);
                             location.reload();
                         }
@@ -268,6 +269,7 @@
                             document.getElementById("surname").setAttribute("readonly", true);
                             document.getElementById("birthdate").setAttribute("readonly", true);
                             document.getElementById("email").setAttribute("readonly", true);
+                            document.getElementById("password").setAttribute("readonly", true);
                             document.getElementById("option1").disabled = true;
                             document.getElementById("option2").disabled = true;
                         });
@@ -285,10 +287,22 @@
         window.addEventListener('load', function(event) {
             if (sessionStorage.getItem("Log") == 1) {
                 document.getElementById("icon_log_out").addEventListener("click", function(event){
+                    $.ajax({
+                        url: "server.php?action=logout",
+                        type: "POST",
+                        success: function(data) {
+                            console.log("logout fatto!");
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("AJAX Error:", status, error);
+                        }
+                    });
+                    
                     sessionStorage.setItem("Log", 0);
                     sessionStorage.removeItem("budget");
                     sessionStorage.removeItem("admin");
                     sessionStorage.removeItem("email");
+
                 });
             };
         });
