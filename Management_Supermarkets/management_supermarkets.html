@@ -145,6 +145,8 @@
     window.onload = function() {
         document.getElementById("elimina").addEventListener('click', function(event) {
             document.getElementById("deleteSupermarketsModal").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+            document.body.classList.add("no-scroll");
             document.getElementById("submitDeleteSupermarkets").onclick = function() {
             var chain = document.getElementById("Delete_chainInput").value;
             var name = document.getElementById("Delete_nameInput").value;
@@ -157,6 +159,8 @@
                             //alert(result);
                             location.reload(); // Ricarica le recensioni dopo l'eliminazione
                             document.getElementById("deleteSupermarketsModal").style.display = "none";
+                            document.getElementById("overlay").style.display = "none";
+                            document.body.classList.remove("no-scroll");
                         },
                         error: function(error){
                             console.error('Errore nell\'eliminazione dell\'utente:', error);
@@ -169,6 +173,8 @@
         // Quando l'utente clicca sulla X, chiudi il modal
         document.getElementsByClassName("close")[0].onclick = function() {
             document.getElementById("deleteSupermarketsModal").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+            document.body.classList.remove("no-scroll");
         }
     }
 
@@ -177,11 +183,15 @@
         // Quando l'utente clicca sul pulsante, apri il modale
         document.getElementById("aggiungi").onclick = function() {
             document.getElementById("modalAggiungi").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+            document.body.classList.add("no-scroll");
         }
 
         // Quando l'utente clicca su(x), chiudi il modale
         document.getElementsByClassName("close_modalAggiungi")[0].onclick = function() {
             document.getElementById("modalAggiungi").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+            document.body.classList.remove("no-scroll");
         }
 
         // Gestione invio dati
@@ -211,6 +221,8 @@
                 success: function(response) {
                     //alert("Supermercato aggiunto con successo!");
                     document.getElementById("modalAggiungi").style.display = "none";
+                    document.getElementById("overlay").style.display = "none";
+                    document.body.classList.remove("no-scroll");
                     loadSupermarkets(); // Aggiorna la lista dei supermercati
                 },
                 error: function(xhr, status, error) {
@@ -222,10 +234,14 @@
         
         document.getElementById("modifica").onclick = function () {
                 document.getElementById("modalModifica").style.display = "block";
+                document.getElementById("overlay").style.display = "block";
+                document.body.classList.add("no-scroll");
             }
 
             document.getElementsByClassName("close_modalModifica")[0].onclick = function () {
                 document.getElementById("modalModifica").style.display = "none";
+                document.getElementById("overlay").style.display = "none";
+                document.body.classList.remove("no-scroll");
             }
 
             document.getElementById('submitModificaSupermarkets').addEventListener('click', function () {
@@ -253,6 +269,8 @@
                     success: function (response) {
                         //alert("ao");
                         document.getElementById("modalModifica").style.display = "none";
+                        document.getElementById("overlay").style.display = "none";
+                        document.body.classList.remove("no-scroll");
                         loadSupermarkets(); // Aggiorna la lista dei supermercati
                     },
                     error: function (xhr, status, error) {
@@ -262,12 +280,30 @@
             });
         });
 
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("modalModifica")) {
+                document.getElementById("modalModifica").style.display = "none";
+                document.getElementById("overlay").style.display = "none";
+                document.body.classList.remove("no-scroll");
+            }
+            if (event.target == document.getElementById("modalAggiungi")) {
+                document.getElementById("modalAggiungi").style.display = "none";
+                document.getElementById("overlay").style.display = "none";
+                document.body.classList.remove("no-scroll");
+            }
+            if (event.target == document.getElementById("deleteSupermarketsModal")) {
+                document.getElementById("deleteSupermarketsModal").style.display = "none";
+                document.getElementById("overlay").style.display = "none";
+                document.body.classList.remove("no-scroll");
+            }
+        }
+
     </script>
 
 <head>
     
 <body>
-
+    <div class="overlay" id="overlay"></div>
    <!-- NavBar-->
     <div>
         <header class="header">
@@ -300,9 +336,11 @@
                 </tbody>
             </table>
         </div>
-        <button class="action-button aggiungi" id="aggiungi" type="button">Registra un Nuovo Supermercato</button>
-        <button class="action-button aggiungi" id="modifica" type="button">Modifica un Supermercato Registrato</button>
-        <button class="action-button elimina" id="elimina" type="button">Elimina un Supermercato Registrato</button>
+        <div class="action-button-div">
+            <button class="action-button aggiungi" id="aggiungi" type="button">Register a New Supermarket</button>
+            <button class="action-button aggiungi" id="modifica" type="button">Edit a Registered Supermarket</button>
+            <button class="action-button elimina" id="elimina" type="button">Delete a Registered Supermarket</button>
+        </div>
     </div>
 
     <!--Pop up elimina supermercato registrato-->

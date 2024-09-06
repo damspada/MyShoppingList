@@ -415,9 +415,10 @@
                     }
                 });
             }
-        });
+        });        
+
         //elimina una recensione
-    document.getElementById('elimina').addEventListener('click', function(event) {
+        document.getElementById('elimina').addEventListener('click', function(event) {
             var admin = sessionStorage.getItem("admin");
             //per il pop-up login
             event.preventDefault();
@@ -454,8 +455,12 @@
             else{
                 //var email = prompt('Inserisci l\'email per cancellare la recensione:');
                 document.getElementById('emailModal').style.display = 'block';
-                document.querySele('.close').addEventListener('click', function() {
+                document.getElementById("overlay").style.display = "block";
+                document.body.classList.add("no-scroll");
+                document.getElementsByClassName("close")[0].addEventListener('click', function() {
                     document.getElementById('emailModal').style.display = 'none';
+                    document.getElementById("overlay").style.display = "none";
+                    document.body.classList.remove("no-scroll");
                 });
 
                 document.getElementById('submitEmail').onclick = function() {
@@ -470,6 +475,8 @@
                         //alert(result);
                         location.reload(); // Ricarica le recensioni dopo l'eliminazione
                         document.getElementById('emailModal').style.display = 'none';
+                        document.getElementById("overlay").style.display = "none";
+                        document.body.classList.remove("no-scroll");
                     },
                     error: function(error){
                         console.error('Errore nell\'eliminazione della recensione:', error);
@@ -522,8 +529,12 @@
             }
             else{
                 document.getElementById('modificaModal').style.display = 'block';
+                document.getElementById("overlay").style.display = "block";
+                document.body.classList.add("no-scroll");
                 document.querySelector('.close2').addEventListener('click', function() {
                     document.getElementById('modificaModal').style.display = 'none';
+                    document.getElementById("overlay").style.display = "none";
+                    document.body.classList.remove("no-scroll");
                 });
 
                 document.getElementById('submittext').onclick = function() {
@@ -539,6 +550,8 @@
                         //alert(result);
                         location.reload(); // Ricarica le recensioni dopo la modifica
                         document.getElementById('modificaModal').style.display = 'none';
+                        document.getElementById("overlay").style.display = "none";
+                        document.body.classList.remove("no-scroll");
                     },
                     error: function(error){
                         console.error('Errore nella modifica della recensione:', error);
@@ -547,7 +560,20 @@
                 }
             }
         });
-    });
+    }); 
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("modificaModal")) {
+                document.getElementById("modificaModal").style.display = "none";
+                document.getElementById("overlay").style.display = "none";
+                document.body.classList.remove("no-scroll");
+            }
+            if (event.target == document.getElementById("emailModal")) {
+                document.getElementById("emailModal").style.display = "none";
+                document.getElementById("overlay").style.display = "none";
+                document.body.classList.remove("no-scroll");
+            }
+        }
 
     </script>
 
@@ -556,7 +582,7 @@
 
 <body>
 
-    <div class="overlay"></div>
+    <div class="overlay" id="overlay"></div>
 
 
     <!-- NavBar -->
@@ -982,41 +1008,6 @@
                 <button id="save-yt">Save</button>
             </div>
         </div>
-
-        <!-- elimina recensione admin, manca il confirm -->
-        <script>
-            // Prendi il modale
-            var modal = document.getElementById("emailModal");
-
-            // Prendi l'elemento <span> che chiude il modale
-            var span = document.getElementsByClassName("close")[0];
-
-            // Ottieni il pulsante che apre il modale
-            var btn = document.getElementById("elimina");
-
-            // Quando l'utente clicca sul pulsante, apri il modale
-            if(sessionStorage.getItem("admin") == 1){ 
-                btn.onclick = function() {
-                    modal.style.display = "block";
-                    document.body.classList.add("no-scroll");
-                }
-            
-
-                // Quando l'utente clicca sulla "X", chiudi il modale
-                span.onclick = function() {
-                    modal.style.display = "none";
-                    document.body.classList.remove("no-scroll");
-                }
-
-                // Chiudi il modale se l'utente clicca fuori dal contenuto del modale
-                window.onclick = function(event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                        document.body.classList.remove("no-scroll");
-                    }
-                }
-            }
-        </script>
 
         <!--funzioni per modificare contatti e social-->
         <script>
