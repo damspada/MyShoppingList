@@ -564,7 +564,7 @@ body.popup-active {
 .modal {
     display: none; /* Nascondi il modale per impostazione predefinita */
     position: fixed;
-    z-index: 1; /* Posiziona il modale sopra gli altri contenuti */
+    z-index: 10000; /* Posiziona il modale sopra gli altri contenuti */
     left: 0;
     top: 0;
     width: 100%;

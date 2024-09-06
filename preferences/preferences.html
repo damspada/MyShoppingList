@@ -601,6 +601,7 @@
         window.onload = function() {
         document.getElementById("elimina_carrello").addEventListener('click', function(event) {
             document.getElementById("deleteCartModal").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
             document.getElementById("submitDeleteCart").onclick = function() {
             var name = document.getElementById("Delete_nameInput").value;
             var email = sessionStorage.getItem("email");
@@ -613,6 +614,8 @@
                             //alert(result);
                             location.reload(); // Ricarica le recensioni dopo l'eliminazione
                             document.getElementById("deleteCartModal").style.display = "none";
+                            document.getElementById("overlay").style.display = "none";
+                            document.body.classList.remove("no-scroll");
                             console.log('Carrello eliminato con successo:');
                         },
                         error: function(error){
@@ -625,12 +628,14 @@
 
         document.getElementById("elimina_carrello").onclick = function() {
             document.getElementById("deleteCartModal").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
             document.body.classList.add("no-scroll");
         }
 
         // Quando l'utente clicca sulla X, chiudi il modal
         document.getElementsByClassName("close")[0].onclick = function() {
             document.getElementById("deleteCartModal").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
             document.body.classList.remove("no-scroll");
         }
 
@@ -638,6 +643,7 @@
         window.onclick = function(event) {
             if (event.target == document.getElementById("deleteCartModal")) {
                 document.getElementById("deleteCartModal").style.display = "none";
+                document.getElementById("overlay").style.display = "none";
                 document.body.classList.remove("no-scroll");
             }
         }
@@ -651,7 +657,7 @@
 <head>
     
 <body>
-    <div class="overlay"></div>
+    <div class="overlay" id="overlay"></div>
 
    <!-- NavBar-->
    <div>
