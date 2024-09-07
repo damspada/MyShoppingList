@@ -896,7 +896,7 @@
         <div class="social_container">
             <div class="wrapper_social">
                 <div class="social_item">
-                    <button class="modifica_social" id="facebook">!</button>
+                    <button class="modifica_social" id="facebook"><img src="./Immagini/8666681_edit_icon.svg"></button>
                     <a href="https://www.facebook.com/" class="icon facebook">
                         <span><i class="fab fa-facebook-f"></i></span>
                     </a>
@@ -904,28 +904,28 @@
                 </div>
 
                 <div class="social_item">
-                    <button class="modifica_social" id="instagram">!</button>
+                    <button class="modifica_social" id="instagram"><img src="./Immagini/8666681_edit_icon.svg"></button>
                     <a href="https://www.instagram.com/" class="icon instagram">
                         <span><i class="fab fa-instagram"></i></span>
                     </a>
                 </div>
 
                 <div class="social_item">
-                    <button class="modifica_social" id="github">!</button>
+                    <button class="modifica_social" id="github"><img src="./Immagini/8666681_edit_icon.svg"></button>
                     <a href="https://github.com/damspada/MyShoppingList" class="icon github">
                         <span><i class="fab fa-github"></i></span>
                     </a>
                 </div>
 
                 <div class="social_item">
-                    <button class="modifica_social" id="linkedin">!</button>
+                    <button class="modifica_social" id="linkedin"><img src="./Immagini/8666681_edit_icon.svg"></button>
                     <a href="https://it.linkedin.com/" class="icon linkedin">
                         <span><i class="fab fa-linkedin"></i></span>
                     </a>
                 </div>
 
                 <div class="social_item">
-                    <button class="modifica_social" id="youtube">!</button>
+                    <button class="modifica_social" id="youtube"><img src="./Immagini/8666681_edit_icon.svg"></button>
                     <a href="https://www.youtube.com/" class="icon youtube">
                         <span><i class="fab fa-youtube"></i></span>
                     </a>
@@ -935,270 +935,425 @@
             </div>
         </div>
 
+        <div id="modalFacebook" class="modalC">
+            <div class="modalcontatti-content">
+                <h2>Enter new Facebook URL<span class="close" id="closeModalCF">&times;</span></h2>
+                <br>
+                <input type="text" id="new-facebook" placeholder="URL" style="margin-left: 16%; height: 40px; width: 60%;">
+                <button id="save-facebook" class="done_button"><img src="./Immagini/icons8-done-64.png" class="done"></button>
+            </div>
+        </div>
+
+        <div id="modalInstagram" class="modalC">
+            <div class="modalcontatti-content">
+                <h2>Enter new Instagram URL<span class="close" id="closeModalCI">&times;</span></h2>
+                <br>
+                <input type="text" id="new-insta" placeholder="URL" style="margin-left: 16%; height: 40px; width: 60%;">
+                <button id="save-insta" class="done_button"><img src="./Immagini/icons8-done-64.png" class="done"></button>
+            </div>
+        </div>
+
+        <div id="modalGit" class="modalC">
+            <div class="modalcontatti-content">
+                <h2>Enter new GitHub URL<span class="close" id="closeModalCG">&times;</span></h2>
+                <br>
+                <input type="text" id="new-git" placeholder="URL" style="margin-left: 16%; height: 40px; width: 60%;">
+                <button id="save-git" class="done_button"><img src="./Immagini/icons8-done-64.png" class="done"></button>
+            </div>
+        </div>
+
+        <div id="modalLinkedin" class="modalC">
+            <div class="modalcontatti-content">
+                <h2>Enter new Linkedin URL<span class="close" id="closeModalCL">&times;</span></h2>
+                <br>
+                <input type="text" id="new-linkedin" placeholder="URL" style="margin-left: 16%; height: 40px; width: 60%;">
+                <button id="save-linkedin" class="done_button"><img src="./Immagini/icons8-done-64.png" class="done"></button>
+            </div>
+        </div>
+
+        <div id="modalYoutube" class="modalC">
+            <div class="modalcontatti-content">
+                <h2>Enter new YouTube URL<span class="close" id="closeModalCY">&times;</span></h2>
+                <br>
+                <input type="text" id="new-yt" placeholder="URL" style="margin-left: 16%; height: 40px; width: 60%;">
+                <button id="save-yt" class="done_button"><img src="./Immagini/icons8-done-64.png" class="done"></button>
+            </div>
+        </div>
+
+        <div id="modalTel" class="modalC">
+            <div class="modalcontatti-content">
+                <h2>Change Phone Number<span class="close" id="closeModalCT">&times;</span></h2>
+                <br>
+                <input type="text" id="new-phone-number" placeholder="Enter new phone number" style="margin-left: 16%; height: 40px; width: 60%;">
+                <button id="save-phone-number" class="done_button"><img src="./Immagini/icons8-done-64.png" class="done"></button>
+            </div>
+        </div>
+
+        <div id="modalMail" class="modalC">
+            <div class="modalcontatti-content">
+                <h2>Change Email Address<span class="close" id="closeModalCE">&times;</span></h2>
+                <br>
+                <input type="text" id="new-email" placeholder="Enter new email" style="margin-left: 16%; height: 40px; width: 60%;">
+                <button id="save-email" class="done_button"><img src="./Immagini/icons8-done-64.png" class="done"></button>
+            </div>
+        </div>
         
 
         <div class="contatti" id="contatti">
             <div class="contatto">
                 <p id="tel"><img src="./Immagini/phone.png">+39 340-559-5344</p>
+                <button class="modifica_contatti" id="modTel" style="display: none;"><img src="./Immagini/8666681_edit_icon.svg"></button>
             </div>
-
-            <button class="modifica_contatti" id="modTel" style="display: none;">Modifica</button>
             
             <div class="contatto">
                 <p id="email"><img src="./Immagini/mail.png"><a href="mailto:MyShoppingList@gmail.com">MyShoppingList@gmail.com</a></p>
-            </div>
-
-            <button class="modifica_contatti" id="modMail" style="display: none;">Modifica</button>
-            
-            
-        </div>
-        <!--pop up per cambiare social e contatti-->
-        <div id="modalTel" class="modalC" style="display: none; width: 60%; padding-top: 10px;">
-            <div class="modalcontatti-content">
-                <span class="close" id="closeModalCT">&times;</span>
-                <h2>Modifica Numero di Telefono</h2>
-                <input type="text" id="new-phone-number" placeholder="Enter new phone number">
-                <button id="save-phone-number">Save</button>
+                <button class="modifica_contatti" id="modMail" style="display: none;"><img src="./Immagini/8666681_edit_icon.svg"></button>
             </div>
         </div>
 
-        <div id="modalMail" class="modalC" style="display: none; width: 60%; padding-top: 10px;">
-            <div class="modalcontatti-content">
-                <span class="close" id="closeModalCE">&times;</span>
-                <h2>Modifica Indirizzo Email</h2>
-                <input type="text" id="new-email" placeholder="Enter new email">
-                <button id="save-email">Save</button>
-            </div>
-        </div>
 
-        <div id="modalFacebook" class="modalC" style="display: none; width: 60%; padding-top: 10px;">
-            <div class="modalcontatti-content">
-                <span class="close" id="closeModalCF">&times;</span>
-                <h2>Inserisci nuova URL di Facebook</h2>
-                <input type="text" id="new-facebook" placeholder="URL">
-                <button id="save-facebook">Save</button>
-            </div>
-        </div>
 
-        <div id="modalInstagram" class="modalC" style="display: none; width: 60%; padding-top: 10px;">
-            <div class="modalcontatti-content">
-                <span class="close" id="closeModalCI">&times;</span>
-                <h2>Inserisci nuova URL di Instagram</h2>
-                <input type="text" id="new-insta" placeholder="URL">
-                <button id="save-insta">Save</button>
-            </div>
-        </div>
 
-        <div id="modalGit" class="modalC" style="display: none; width: 60%; padding-top: 10px;">
-            <div class="modalcontatti-content">
-                <span class="close" id="closeModalCG">&times;</span>
-                <h2>Inserisci nuova URL di Github</h2>
-                <input type="text" id="new-git" placeholder="URL">
-                <button id="save-git">Save</button>
-            </div>
-        </div>
 
-        <div id="modalLinkedin" class="modalC" style="display: none; width: 60%; padding-top: 10px;">
-            <div class="modalcontatti-content">
-                <span class="close" id="closeModalCL">&times;</span>
-                <h2>Inserisci nuova URL Linkedin</h2>
-                <input type="text" id="new-linkedin" placeholder="URL">
-                <button id="save-linkedin">Save</button>
-            </div>
-        </div>
-
-        <div id="modalYoutube" class="modalC" style="display: none; width: 60%; padding-top: 10px;">
-            <div class="modalcontatti-content">
-                <span class="close" id="closeModalCY">&times;</span>
-                <h2>Inserisci nuova URL di Youtube</h2>
-                <input type="text" id="new-yt" placeholder="URL">
-                <button id="save-yt">Save</button>
-            </div>
-        </div>
 
         <!--funzioni per modificare contatti e social-->
         <script>
+            function closeAllModals() {
+                var modals = document.querySelectorAll('.modalC');
+                modals.forEach(function(modal) {
+                    modal.style.display = 'none';
+                });
+            }
+
             function openModalTel() {
-            var modal = document.getElementById('modalTel');
-            modal.style.display = 'block';
+                closeAllModals();
+                var modal = document.getElementById('modalTel');
+                modal.style.display = 'block';
 
-            var closeBtn = document.querySelector('#closeModalCT');
-            closeBtn.onclick = function() {
-                modal.style.display = 'none';
-            }
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth' 
+                });
 
-            var saveBtn = document.getElementById('save-phone-number');
-            saveBtn.onclick = function() {
-                var newPhoneNumber = document.getElementById('new-phone-number').value;
-                if (newPhoneNumber) {
-                    document.getElementById('tel').innerHTML = '<img src="./Immagini/phone.png">' + newPhoneNumber;
-                    localStorage.setItem('phoneNumber', newPhoneNumber);
+                var closeBtn = document.querySelector('#closeModalCT');
+                closeBtn.onclick = function() {
                     modal.style.display = 'none';
+                }
+
+                var saveBtn = document.getElementById('save-phone-number');
+                saveBtn.onclick = function() {
+                    var newPhoneNumber = document.getElementById('new-phone-number').value;
+                    if (newPhoneNumber) {
+                        document.getElementById('tel').innerHTML = '<img src="./Immagini/phone.png">' + newPhoneNumber;
+                        localStorage.setItem('phoneNumber', newPhoneNumber);
+                        modal.style.display = 'none';
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Modifications successfully completed.",
+                            icon: "success",
+                            timer: 1500, 
+                            showConfirmButton: false,
+                            confirmButtonText: "OK",
+                            background: "#f8f9fa",
+                            confirmButtonColor: "#28a745",
+                            textColor: "#343a40",
+                            width: "400px",
+                            padding: "3rem",
+                            titleFont: "Montserrat_Arabic_Regular",
+                            textFont: "Montserrat_Arabic_Regular"
+                        });
+
+                    }
+                }
+
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = 'none';
+                    }
                 }
             }
 
-            window.onclick = function(event) {
-                if (event.target == modal) {
+            function openModalEmail() {
+                closeAllModals();
+                var modal = document.getElementById('modalMail');
+                modal.style.display = 'block';
+
+                window.scrollTo({
+                        top: document.body.scrollHeight,
+                        behavior: 'smooth' 
+                    });
+
+                var closeBtn = document.querySelector('#closeModalCE');
+                closeBtn.onclick = function() {
                     modal.style.display = 'none';
                 }
-            }
-        }
 
-        function openModalEmail() {
-            var modal = document.getElementById('modalMail');
-            modal.style.display = 'block';
-
-            var closeBtn = document.querySelector('#closeModalCE');
-            closeBtn.onclick = function() {
-                modal.style.display = 'none';
-            }
-
-            var saveBtn = document.getElementById('save-email');
-            saveBtn.onclick = function() {
-                var newEmailAddress = document.getElementById('new-email').value;
-                if (newEmailAddress) {
-                    document.getElementById('email').innerHTML = '<img src="./Immagini/mail.png">' + newEmailAddress;
-                    localStorage.setItem('emailAddress', newEmailAddress);
-                    modal.style.display = 'none';
+                var saveBtn = document.getElementById('save-email');
+                saveBtn.onclick = function() {
+                    var newEmailAddress = document.getElementById('new-email').value;
+                    if (newEmailAddress) {
+                        document.getElementById('email').innerHTML = '<img src="./Immagini/mail.png">' + newEmailAddress;
+                        localStorage.setItem('emailAddress', newEmailAddress);
+                        modal.style.display = 'none';
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Modifications successfully completed.",
+                            icon: "success",
+                            timer: 1500, 
+                            showConfirmButton: false,
+                            confirmButtonText: "OK",
+                            background: "#f8f9fa",
+                            confirmButtonColor: "#28a745",
+                            textColor: "#343a40",
+                            width: "400px",
+                            padding: "3rem",
+                            titleFont: "Montserrat_Arabic_Regular",
+                            textFont: "Montserrat_Arabic_Regular"
+                        });
+                    }
                 }
-            }
 
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = 'none';
-                }
-            }
-        }
-
-        function openModalFacebook(){
-            var modal = document.getElementById('modalFacebook');
-            modal.style.display = 'block';
-
-            var closeBtn = document.querySelector('#closeModalCF');
-            closeBtn.onclick = function() {
-                modal.style.display = 'none';
-            }
-
-            var saveBtn = document.getElementById('save-facebook');
-            saveBtn.onclick = function() {
-                var newFacebookLink = document.getElementById('new-facebook').value;
-                if (newFacebookLink) {
-                    document.querySelector('.icon.facebook').setAttribute('href', newFacebookLink);
-                    localStorage.setItem('facebookLink', newFacebookLink);
-                    modal.style.display = 'none';
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = 'none';
+                    }
                 }
             }
 
-            window.onclick = function(event) {
-                if (event.target == modal) {
+            function openModalFacebook(){
+                closeAllModals();
+                var modal = document.getElementById('modalFacebook');
+                modal.style.display = 'block';
+
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth' 
+                });
+
+                var closeBtn = document.querySelector('#closeModalCF');
+                closeBtn.onclick = function() {
                     modal.style.display = 'none';
                 }
-            }
-        }
 
-        function openModalInstagram(){
-            var modal = document.getElementById('modalInstagram');
-            modal.style.display = 'block';
+                var saveBtn = document.getElementById('save-facebook');
+                saveBtn.onclick = function() {
+                    var newFacebookLink = document.getElementById('new-facebook').value;
+                    if (newFacebookLink) {
+                        document.querySelector('.icon.facebook').setAttribute('href', newFacebookLink);
+                        localStorage.setItem('facebookLink', newFacebookLink);
+                        modal.style.display = 'none';
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Modifications successfully completed.",
+                            icon: "success",
+                            timer: 1500, 
+                            showConfirmButton: false,
+                            confirmButtonText: "OK",
+                            background: "#f8f9fa",
+                            confirmButtonColor: "#28a745",
+                            textColor: "#343a40",
+                            width: "400px",
+                            padding: "3rem",
+                            titleFont: "Montserrat_Arabic_Regular",
+                            textFont: "Montserrat_Arabic_Regular"
+                        });
+                    }
+                }
 
-            var closeBtn = document.querySelector('#closeModalCI');
-            closeBtn.onclick = function() {
-                modal.style.display = 'none';
-            }
-
-            var saveBtn = document.getElementById('save-insta');
-            saveBtn.onclick = function() {
-                var newInstagramLink = document.getElementById('new-insta').value;
-                if (newInstagramLink) {
-                    document.querySelector('.icon.instagram').setAttribute('href', newInstagramLink);
-                    localStorage.setItem('instagramLink', newInstagramLink);
-                    modal.style.display = 'none';
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = 'none';
+                    }
                 }
             }
 
-            window.onclick = function(event) {
-                if (event.target == modal) {
+            function openModalInstagram(){
+                closeAllModals();
+                var modal = document.getElementById('modalInstagram');
+                modal.style.display = 'block';
+
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth' 
+                });
+
+                var closeBtn = document.querySelector('#closeModalCI');
+                closeBtn.onclick = function() {
                     modal.style.display = 'none';
                 }
+
+                var saveBtn = document.getElementById('save-insta');
+                saveBtn.onclick = function() {
+                    var newInstagramLink = document.getElementById('new-insta').value;
+                    if (newInstagramLink) {
+                        document.querySelector('.icon.instagram').setAttribute('href', newInstagramLink);
+                        localStorage.setItem('instagramLink', newInstagramLink);
+                        modal.style.display = 'none';
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Modifications successfully completed.",
+                            icon: "success",
+                            timer: 1500, 
+                            showConfirmButton: false,
+                            confirmButtonText: "OK",
+                            background: "#f8f9fa",
+                            confirmButtonColor: "#28a745",
+                            textColor: "#343a40",
+                            width: "400px",
+                            padding: "3rem",
+                            titleFont: "Montserrat_Arabic_Regular",
+                            textFont: "Montserrat_Arabic_Regular"
+                        });
+                    }
+                }
+
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = 'none';
+                    }
+                }
             }
-        }
         
-        function openModalGithub(){
-            var modal = document.getElementById('modalGit');
-            modal.style.display = 'block';
+            function openModalGithub(){
+                closeAllModals();
+                var modal = document.getElementById('modalGit');
+                modal.style.display = 'block';
 
-            var closeBtn = document.querySelector('#closeModalCG');
-            closeBtn.onclick = function() {
-                modal.style.display = 'none';
-            }
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth' 
+                });
 
-            var saveBtn = document.getElementById('save-git');
-            saveBtn.onclick = function() {
-                var newGithubLink = document.getElementById('new-git').value;
-                if (newGithubLink) {
-                    document.querySelector('.icon.github').setAttribute('href', newGithubLink);
-                    localStorage.setItem('githubLink', newGithubLink);
+                var closeBtn = document.querySelector('#closeModalCG');
+                closeBtn.onclick = function() {
                     modal.style.display = 'none';
+                }
+
+                var saveBtn = document.getElementById('save-git');
+                saveBtn.onclick = function() {
+                    var newGithubLink = document.getElementById('new-git').value;
+                    if (newGithubLink) {
+                        document.querySelector('.icon.github').setAttribute('href', newGithubLink);
+                        localStorage.setItem('githubLink', newGithubLink);
+                        modal.style.display = 'none';
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Modifications successfully completed.",
+                            icon: "success",
+                            timer: 1500, 
+                            showConfirmButton: false,
+                            confirmButtonText: "OK",
+                            background: "#f8f9fa",
+                            confirmButtonColor: "#28a745",
+                            textColor: "#343a40",
+                            width: "400px",
+                            padding: "3rem",
+                            titleFont: "Montserrat_Arabic_Regular",
+                            textFont: "Montserrat_Arabic_Regular"
+                        });
+                    }
+                }
+
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = 'none';
+                    }
                 }
             }
 
-            window.onclick = function(event) {
-                if (event.target == modal) {
+            function openModalLinkedin(){
+                closeAllModals();
+                var modal = document.getElementById('modalLinkedin');
+                modal.style.display = 'block';
+
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth' 
+                });
+
+                var closeBtn = document.querySelector('#closeModalCL');
+                closeBtn.onclick = function() {
                     modal.style.display = 'none';
                 }
-            }
-        }
 
-        function openModalLinkedin(){
-            var modal = document.getElementById('modalLinkedin');
-            modal.style.display = 'block';
-
-            var closeBtn = document.querySelector('#closeModalCL');
-            closeBtn.onclick = function() {
-                modal.style.display = 'none';
-            }
-
-            var saveBtn = document.getElementById('save-linkedin');
-            saveBtn.onclick = function() {
-                var newLinkedinLink = document.getElementById('new-linkedin').value;
-                if (newLinkedinLink) {
-                    document.querySelector('.icon.linkedin').setAttribute('href', newLinkedinLink);
-                    localStorage.setItem('linkedinLink', newLinkedinLink);
-                    modal.style.display = 'none';
+                var saveBtn = document.getElementById('save-linkedin');
+                saveBtn.onclick = function() {
+                    var newLinkedinLink = document.getElementById('new-linkedin').value;
+                    if (newLinkedinLink) {
+                        document.querySelector('.icon.linkedin').setAttribute('href', newLinkedinLink);
+                        localStorage.setItem('linkedinLink', newLinkedinLink);
+                        modal.style.display = 'none';
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Modifications successfully completed.",
+                            icon: "success",
+                            timer: 1500, 
+                            showConfirmButton: false,
+                            confirmButtonText: "OK",
+                            background: "#f8f9fa",
+                            confirmButtonColor: "#28a745",
+                            textColor: "#343a40",
+                            width: "400px",
+                            padding: "3rem",
+                            titleFont: "Montserrat_Arabic_Regular",
+                            textFont: "Montserrat_Arabic_Regular"
+                        });
+                    }
                 }
-            }
 
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = 'none';
-                }
-            }
-        }
-
-        function openModalYoutube(){
-            var modal = document.getElementById('modalYoutube');
-            modal.style.display = 'block';
-
-            var closeBtn = document.querySelector('#closeModalCY');
-            closeBtn.onclick = function() {
-                modal.style.display = 'none';
-            }
-
-            var saveBtn = document.getElementById('save-yt');
-            saveBtn.onclick = function() {
-                var newYoutubeLink = document.getElementById('new-yt').value;
-                if (newYoutubeLink) {
-                    document.querySelector('.icon.youtube').setAttribute('href', newYoutubeLink);
-                    localStorage.setItem('youtubeLink', newYoutubeLink);
-                    modal.style.display = 'none';
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = 'none';
+                    }
                 }
             }
 
-            window.onclick = function(event) {
-                if (event.target == modal) {
+            function openModalYoutube(){
+                closeAllModals();
+                var modal = document.getElementById('modalYoutube');
+                modal.style.display = 'block';
+
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth' 
+                });
+
+                var closeBtn = document.querySelector('#closeModalCY');
+                closeBtn.onclick = function() {
                     modal.style.display = 'none';
                 }
+
+                var saveBtn = document.getElementById('save-yt');
+                saveBtn.onclick = function() {
+                    var newYoutubeLink = document.getElementById('new-yt').value;
+                    if (newYoutubeLink) {
+                        document.querySelector('.icon.youtube').setAttribute('href', newYoutubeLink);
+                        localStorage.setItem('youtubeLink', newYoutubeLink);
+                        modal.style.display = 'none';
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Modifications successfully completed.",
+                            icon: "success",
+                            timer: 1500, 
+                            showConfirmButton: false,
+                            confirmButtonText: "OK",
+                            background: "#f8f9fa",
+                            confirmButtonColor: "#28a745",
+                            textColor: "#343a40",
+                            width: "400px",
+                            padding: "3rem",
+                            titleFont: "Montserrat_Arabic_Regular",
+                            textFont: "Montserrat_Arabic_Regular"
+                        });
+                    }
+                }
+
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = 'none';
+                    }
+                }
             }
-        }
 
         </script>
         
