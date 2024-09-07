@@ -256,6 +256,8 @@
                 success: function(response) {
                     //alert("Supermercato aggiunto con successo!");
                     document.getElementById("modalAggiungiProdotto").style.display = "none";
+                    document.getElementById("overlay").style.display = "none";
+                    document.body.classList.remove("no-scroll");
                     loadProducts(); 
                     console.log('Prodotto aggiunto con successo!');
                 },
@@ -310,6 +312,8 @@
                     success: function (response) {
 
                         document.getElementById("modalModificaProdotto").style.display = "none";
+                        document.getElementById("overlay").style.display = "none";
+                        document.body.classList.remove("no-scroll");
                         loadProducts(); // Aggiorna la lista dei supermercati
                         //console.log('Prodotto modificato con successo!');
                     },
