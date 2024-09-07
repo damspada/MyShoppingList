@@ -170,6 +170,13 @@
             document.body.classList.add("no-scroll");
             document.getElementById("submitDeleteProducts").onclick = function() {
             var name = document.getElementById("Delete_nameInput").value;
+
+            
+            if (!name) {
+                alert("Please enter all fields!");
+                return;
+            }
+
             $.ajax({
                 url: 'management_products.php',
                 type: 'DELETE',
@@ -191,7 +198,7 @@
         });
 
         // Quando l'utente clicca sulla X, chiudi il modal
-        document.getElementsByClassName("close")[0].onclick = function() {
+        document.getElementsByClassName("close_modalDelete")[0].onclick = function() {
             document.getElementById("deleteProductModal").style.display = "none";
             document.getElementById("overlay").style.display = "none";
             document.body.classList.remove("no-scroll");
@@ -225,8 +232,9 @@
             var health = document.getElementById('Aggiungi_healthInput').value;
             var image = document.getElementById('Aggiungi_imageInput').value;
 
-            if (!nome) {
-                alert("Per favore inserisci tutti i campi!");
+
+            if (!nome || !peso || !categoria || !descrizione || !nutrients || !health || !image) {
+                alert("Please enter all fields!");
                 return;
             }
 
@@ -279,8 +287,8 @@
                 var health = document.getElementById('Modifica_healthInput').value;
                 var image = document.getElementById('Modifica_imageInput').value;
 
-                if (!nome) {
-                    alert("Per favore inserisci tutti i campi!");
+                if (!nome || !peso || !descrizione || !nutrients || !health || !image) {
+                    alert("Please enter all fields!");
                     return;
                 }
 
@@ -380,60 +388,64 @@
     </div>
 
     
-    <div id="deleteProductModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Elimina Prodotto</h2>
-            <p>Inserisci il nome del prodotto che desideri eliminare:</p>
+    <div id="deleteProductModal" class="modalDelete">
+        <div class="modalDelete-content">
+            <span class="close_modalDelete">&times;</span>
+            <h2>Delete Product</h2>
+            <br>
+            <p>Enter the name of the product you want to delete:</p>
             <input type="text" id="Delete_nameInput" placeholder="Name">
-            <button id="submitDeleteProducts">Elimina</button>
+            <button id="submitDeleteProducts">Delete</button>
         </div>
     </div>
 
     
-    <div id="modalAggiungiProdotto" class="modal">
-        <div class="modal-content">
+    <div id="modalAggiungiProdotto" class="modalAggiungi">
+        <div class="modalAggiungi-content">
             <span class="close_modalAggiungi">&times;</span>
-            <h2>Aggiungi un Prodotto</h2>
-            <p style="color: rgb(81, 79, 79); font-size: 8; margin-bottom: 10px;">attenzione! assicurati l'immagine che vuoi inserire appartenga alla cartella products</p>
-            <input type="text" id="Aggiungi_nomeInput" placeholder="Nome">
-            <input type="text" id="Aggiungi_pesoInput" placeholder="Peso">
+            <h2>Add a Product</h2>
+            <br>
+            <p style="color: rgb(81, 79, 79); font-size: 8; margin-bottom: 10px;">Attention! Make sure the image you want to insert belongs to the products folder</p>
+            <input type="text" id="Aggiungi_nomeInput" placeholder="Name">
+            <input type="text" id="Aggiungi_pesoInput" placeholder="Weight">
             <!--input type="text" id="Aggiungi_categoriaInput" placeholder="Categoria"-->
             <select id="Aggiungi_categoriaInput" placeholder="Category">
-                <option value="Vegetali">Vegetali</option>
-                <option value="Carne">Carne</option>
-                <option value="Pesce">Pesce</option>
-                <option value="Dispensa">Dispensa</option>
-                <option value="Dolci">Dolci</option>
-                <option value="Bevande">Bevande</option>
+                <option value="">Select one..</option>
+                <option value="Vegetali">Vegetables</option>
+                <option value="Carne">Meat</option>
+                <option value="Pesce">Fish</option>
+                <option value="Dispensa">Pantry</option>
+                <option value="Dolci">Sweets</option>
+                <option value="Bevande">Drinks</option>
                 <option value="Halthy">Healthy</option>
-                <option value="Igiene e Casa">Igiene e Casa</option>
-                <option value="Salumi e Formaggi">Salumi e Formaggi</option>
-                <option value="Snack">Snack</option>
-                <option value="Surgelati">Surgelati</option>
+                <option value="Igiene e Casa">Hygiene and Home</option>
+                <option value="Salumi e Formaggi">Cured meats and cheeses</option>
+                <option value="Snack">Snacks</option>
+                <option value="Surgelati">Frozen foods</option>
             </select>
             <input type="text" id="Aggiungi_descrizioneInput" placeholder="Description">
             <input type="text" id="Aggiungi_nutrientsInput" placeholder="Nutrients">
-            <input type="text" id="Aggiungi_healthInput" placeholder="health">
-            <input type="text" id="Aggiungi_imageInput" placeholder="path immagine">
+            <input type="text" id="Aggiungi_healthInput" placeholder="Health">
+            <input type="text" id="Aggiungi_imageInput" placeholder="Path Image">
             <br>
-            <button id="submitAggiungiProdotto">Aggiungi Prodotto</button>
+            <button id="submitAggiungiProdotto">Add Product</button>
         </div>
     </div>
 
      
-     <div id="modalModificaProdotto" class="modal">
-        <div class="modal-content">
+     <div id="modalModificaProdotto" class="modalModifica">
+        <div class="modalModifica-content">
             <span class="close_modalModifica">&times;</span>
-            <h2>Modifica un Prodotto</h2>
-            <p style="color: rgb(81, 79, 79); font-size: 8; margin-bottom: 10px;">attenzione! assicurati l'immagine che vuoi inserire appartenga alla cartella products</p>
-            <input type="text" id="Modifica_nomeInput" placeholder="Nome">
-            <input type="text" id="Modifica_pesoInput" placeholder="Peso">
-            <input type="text" id="Modifica_descrizioneInput" placeholder="Descrizione">
+            <h2>Edit a Product</h2>
+            <br>
+            <p style="color: rgb(81, 79, 79); font-size: 8; margin-bottom: 10px;">Attention! Make sure the image you want to insert belongs to the products folder</p>
+            <input type="text" id="Modifica_nomeInput" placeholder="Name">
+            <input type="text" id="Modifica_pesoInput" placeholder="Weight">
+            <input type="text" id="Modifica_descrizioneInput" placeholder="Description">
             <input type="text" id="Modifica_nutrientsInput" placeholder="Nutrients">
             <input type="text" id="Modifica_healthInput" placeholder="Health">
-            <input type="text" id="Modifica_imageInput" placeholder="Path immagine">
-            <button id="submitModificaProdotto">Modifica Prodotto</button>
+            <input type="text" id="Modifica_imageInput" placeholder="Path Image">
+            <button id="submitModificaProdotto">Edit Product</button>
         </div>
     </div>
      

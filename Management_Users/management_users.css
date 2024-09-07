@@ -452,6 +452,7 @@ body.popup-active {
     overflow-x: auto;
     margin-top: 100px;
     max-height: 500px; /* Imposta l'altezza massima del contenitore */
+    border-radius: 5px;
 }
 
 .table-scrollable {
@@ -541,6 +542,7 @@ button.action-button {
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Larghezza del modale */
+    border-radius: 5px;
 }
 
 /* Pulsante di chiusura */
@@ -569,12 +571,14 @@ button.action-button {
 #submitEmail {
     width: 100%;
     padding: 14px;
-    background-color: #4CAF50; /* Verde */
+    background-color: #f44336; /* Verde */
     color: white;
     border: none;
     cursor: pointer;
+    font-size: 18px !important;
+    font-weight: 500;
 }
 
 #submitEmail:hover {
-    background-color: #45a049; /* Verde più scuro */
+    background-color: #d32f2f; /* Verde più scuro */
 }

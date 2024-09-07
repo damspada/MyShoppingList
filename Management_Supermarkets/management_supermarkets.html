@@ -150,6 +150,12 @@
             document.getElementById("submitDeleteSupermarkets").onclick = function() {
             var chain = document.getElementById("Delete_chainInput").value;
             var name = document.getElementById("Delete_nameInput").value;
+
+            if (!chain || !name) {
+                alert("Please enter all fields!");
+                return;
+            }
+
             $.ajax({
                 url: 'management_supermarkets.php',
                 type: 'DELETE',
@@ -202,7 +208,7 @@
             var longitude = document.getElementById('Aggiungi_longitudineInput').value;
 
             if (!chain || !name || !latitude || !longitude) {
-                alert("Per favore inserisci tutti i campi!");
+                alert("Please enter all fields!");
                 return;
             }
 
@@ -251,7 +257,7 @@
                 var longitude = document.getElementById('Modifica_longitudineInput').value;
 
                 if (!chain || !name || !latitude || !longitude) {
-                    alert("Per favore inserisci tutti i campi!");
+                    alert("Please enter all fields!");
                     return;
                 }
 
@@ -347,12 +353,13 @@
     <div id="deleteSupermarketsModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Elimina Supermercato</h2>
-            <p>Inserisci la catena del supermercato che desideri eliminare:</p>
+            <h2>Delete a Supermarket</h2>
+            <br>
+            <p>Enter the supermarket chain you want to delete:</p>
             <input type="text" id="Delete_chainInput" placeholder="Chain">
-            <p>Inserisci il nome del supermercato che desideri eliminare:</p>
+            <p>Enter the name of the supermarket you want to delete:</p>
             <input type="text" id="Delete_nameInput" placeholder="Name">
-            <button id="submitDeleteSupermarkets" class="action-button">Elimina</button>
+            <button id="submitDeleteSupermarkets" class="action-button">Delete</button>
         </div>
     </div>
 
@@ -360,12 +367,12 @@
     <div id="modalAggiungi" class="modalAggiungi">
         <div class="modalAggiungi-content">
             <span class="close_modalAggiungi">&times;</span>
-            <h2>Aggiungi un Supermercato</h2>
-            <input type="text" id="Aggiungi_chainInput" placeholder="Catena">
-            <input type="text" id="Aggiungi_nameInput" placeholder="Nome">
-            <input type="text" id="Aggiungi_latitudineInput" placeholder="Latitudine">
-            <input type="text" id="Aggiungi_longitudineInput" placeholder="Longitudine">
-            <button id="submitAggiungiSupermarkets">Aggiungi Supermercato</button>
+            <h2>Add a Supermarket</h2>
+            <input type="text" id="Aggiungi_chainInput" placeholder="Chain" required>
+            <input type="text" id="Aggiungi_nameInput" placeholder="Name" required>
+            <input type="text" id="Aggiungi_latitudineInput" placeholder="Latitude" required>
+            <input type="text" id="Aggiungi_longitudineInput" placeholder="Longitude" required>
+            <button id="submitAggiungiSupermarkets">Add Supermarket</button>
         </div>
     </div>
 
@@ -373,12 +380,12 @@
      <div id="modalModifica" class="modalModifica">
         <div class="modalModifica-content">
             <span class="close_modalModifica">&times;</span>
-            <h2>Modifica un Supermercato</h2>
-            <input type="text" id="Modifica_chainInput" placeholder="Catena">
-            <input type="text" id="Modifica_nameInput" placeholder="Nome">
-            <input type="text" id="Modifica_latitudineInput" placeholder="Latitudine">
-            <input type="text" id="Modifica_longitudineInput" placeholder="Longitudine">
-            <button id="submitModificaSupermarkets">Modifica Supermercato</button>
+            <h2>Edit a Supermarket</h2>
+            <input type="text" id="Modifica_chainInput" placeholder="Chain">
+            <input type="text" id="Modifica_nameInput" placeholder="Name">
+            <input type="text" id="Modifica_latitudineInput" placeholder="Latitude">
+            <input type="text" id="Modifica_longitudineInput" placeholder="Longitude">
+            <button id="submitModificaSupermarkets">Edit Supermarket</button>
         </div>
     </div>
      

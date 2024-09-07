@@ -453,6 +453,7 @@ body.popup-active {
     overflow-x: auto;
     margin-top: 100px;
     height: 800px; /* Imposta l'altezza massima del contenitore */
+    border-radius: 5px;
 }
 
 .table-scrollable {
@@ -546,6 +547,7 @@ button.action-button {
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Larghezza del modale */
+    border-radius: 5px;
 }
 
 /* Pulsante di chiusura */
@@ -585,6 +587,8 @@ button.action-button {
     color: white;
     border: none;
     cursor: pointer;
+    font-size: 18px !important;
+    font-weight: 500
 }
 
 #submitDeleteSupermarkets:hover {
@@ -612,6 +616,7 @@ button.action-button {
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Larghezza del modale */
+    border-radius: 5px;
 }
 
 /* Pulsante di chiusura */
@@ -660,14 +665,17 @@ button.action-button {
 #submitAggiungiSupermarkets {
     width: 100%;
     padding: 14px;
-    background-color: #4CAF50; /* Verde */
+    background-color: #00BF63; /* Verde */
     color: white;
     border: none;
     cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
 }
 
 #submitAggiungiSupermarkets:hover {
-    background-color: #45a049; /* Verde più scuro */
+    background-color: #0da75c; /* Verde più scuro */
 }
 
 
@@ -692,6 +700,7 @@ button.action-button {
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Larghezza del modale */
+    border-radius: 5px;
 }
 
 /* Pulsante di chiusura */
@@ -740,12 +749,15 @@ button.action-button {
 #submitModificaSupermarkets {
     width: 100%;
     padding: 14px;
-    background-color: #4CAF50; /* Verde */
+    background-color: #00BF63; /* Verde */
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
 }
 
 #submitModificaSupermarkets:hover {
-    background-color: #45a049; /* Verde più scuro */
+    background-color: #0da75c; /* Verde più scuro */
 }

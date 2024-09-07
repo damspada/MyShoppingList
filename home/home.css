@@ -1467,74 +1467,42 @@ h3{
 
 /*-------------Popup-Elimina-Admin-------------*/
 /* Stile del modale */
-.modal {
+.modal{
     display: none; /* Nascondi il modale per impostazione predefinita */
     position: fixed;
-    z-index: 1; /* Posiziona il modale sopra gli altri contenuti */
+    z-index: 10000; /* Posiziona il modale sopra gli altri contenuti */
     left: 0;
     top: 0;
-    width: 50%;
+    width: 100%;
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4); /* Sfondo semi-trasparente */
-    padding: 8% 20%;
 }
 
 /* Contenuto del modale */
-.modal-content {
+.modal-content{
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 15% 10% ;
     padding: 20px;
     border: 1px solid #888;
-    width: 50%; /* Larghezza del modale */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombra per dare un po' di profondità */
-    border-radius: 10px; /* Angoli arrotondati */
+    width: 80% !important; /* Larghezza del modale */
+    border-radius: 5px;
 }
 
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
-    border: none;
-}
-
-.modal-header h2 {
-    margin: 0;
-    font-size: 24px;
-    flex-grow: 1;
-    border: none; /* Rimuove qualsiasi bordo */
-    box-shadow: none; /* Rimuove qualsiasi ombra */
-}
-
-.modal-header .close {
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-left: 20px;
-    border-bottom: none;
-}
-
-.modal-body {
-    display: flex;
-    flex-direction: column;
-    border-top: none;
-}
-
-/* Pulsante di chiusura
-.close {
+/* Pulsante di chiusura */
+.close_modal{
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close_modal:hover,
+.close_modal:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
-} */
+}
 
 /* Stile dell'input e del pulsante */
 #emailInput {
@@ -1547,14 +1515,17 @@ h3{
 #submitEmail {
     width: 100%;
     padding: 14px;
-    background-color: #4CAF50; /* Verde */
+    background-color: #00BF63; /* Verde */
     color: white;
     border: none;
     cursor: pointer;
+    font-size: 18px !important;
+    font-weight: 500;
+    border-radius: 5px;
 }
 
 #submitEmail:hover {
-    background-color: #45a049; /* Verde più scuro */
+    background-color: #0da75c; /* Verde più scuro */
 }
 
 /*-------------Popup-Modifica-Recensione-------------*/
@@ -1574,10 +1545,11 @@ h3{
 /* Contenuto del modale */
 .modal-content2 {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 18% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Larghezza del modale */
+    width: 60% !important; /* Larghezza del modale */
+    border-radius: 5px;
 }
 
 /* Pulsante di chiusura */
@@ -1606,14 +1578,17 @@ h3{
 #submittext {
     width: 100%;
     padding: 14px;
-    background-color: #4CAF50; /* Verde */
+    background-color: #00BF63; /* Verde */
     color: white;
     border: none;
     cursor: pointer;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    border-radius: 5px;
 }
 
 #submittext:hover {
-    background-color: #45a049; /* Verde più scuro */
+    background-color: #0da75c; /* Verde più scuro */
 }
 
 

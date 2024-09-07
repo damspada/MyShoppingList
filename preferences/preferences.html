@@ -605,6 +605,12 @@
             document.getElementById("submitDeleteCart").onclick = function() {
             var name = document.getElementById("Delete_nameInput").value;
             var email = sessionStorage.getItem("email");
+
+            if(!name){
+                alert("Please enter all fields!");
+                return;
+            }
+            
             $.ajax({
                 url: 'preferences.php',
                 type: 'DELETE',
@@ -692,6 +698,7 @@
     <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Delete cart</h2>
+        <br>
         <p>Enter the name of the Cart you wish to delete:</p>
         <input type="text" id="Delete_nameInput" placeholder="Name">
         <button id="submitDeleteCart">Delete</button>

@@ -149,6 +149,12 @@
             document.body.classList.add("no-scroll");
             document.getElementById("submitEmail").onclick = function() {
             var email = document.getElementById("emailInput").value;
+
+            if (!email) {
+                alert("Please enter all fields!");
+                return;
+            }
+
             $.ajax({
                 url: 'management_users.php',
                 type: 'DELETE',
@@ -233,6 +239,7 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Delete User</h2>
+            <br>
             <p>Enter the email of the user you want to delete:</p>
             <input type="text" id="emailInput" placeholder="Email" required>
             <button id="submitEmail" class="action-button-delete">Delete</button>

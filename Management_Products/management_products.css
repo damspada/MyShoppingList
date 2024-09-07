@@ -453,6 +453,7 @@ body.popup-active {
     overflow-x: auto;
     margin-top: 100px;
     height: 800px; /* Imposta l'altezza massima del contenitore */
+    border-radius: 5px;
 }
 
 .table-scrollable {
@@ -526,10 +527,10 @@ button.action-button {
 
 /*-------------Popup-Elimina-Supermercato-------------*/
 /* Stile del modale */
-.modal {
+.modalDelete{
     display: none; /* Nascondi il modale per impostazione predefinita */
     position: fixed;
-    z-index: 100000; /* Posiziona il modale sopra gli altri contenuti */
+    z-index: 10000; /* Posiziona il modale sopra gli altri contenuti */
     left: 0;
     top: 0;
     width: 100%;
@@ -539,24 +540,25 @@ button.action-button {
 }
 
 /* Contenuto del modale */
-.modal-content {
+.modalDelete-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 15%  10%;
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Larghezza del modale */
+    border-radius: 5px;
 }
 
 /* Pulsante di chiusura */
-.close {
+.close_modalDelete {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close_modalDelete:hover,
+.close_modalDelete:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
@@ -570,32 +572,28 @@ button.action-button {
     box-sizing: border-box;
 }
 
-#Delete_chainInput {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-}
-
-#submitDeleteSupermarkets {
+#submitDeleteProducts {
     width: 100%;
     padding: 14px;
     background-color: #f44336; 
     color: white;
     border: none;
     cursor: pointer;
+    font-size: 18px !important;
+    font-weight: 500;
+    border-radius: 5px;
 }
 
-#submitDeleteSupermarkets:hover {
+#submitDeleteProducts:hover {
     background-color: #d32f2f;
 }
 
-/*-------------Popup-Aggiungi-Supermercato-------------*/
+/*-------------Popup-Aggiungi-Prodotto-------------*/
 /* Stile del modale */
 .modalAggiungi {
     display: none; /* Nascondi il modale per impostazione predefinita */
     position: fixed;
-    z-index: 1; /* Posiziona il modale sopra gli altri contenuti */
+    z-index: 10000; /* Posiziona il modale sopra gli altri contenuti */
     left: 0;
     top: 0;
     width: 100%;
@@ -607,10 +605,11 @@ button.action-button {
 /* Contenuto del modale */
 .modalAggiungi-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 10%  10%;
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Larghezza del modale */
+    border-radius: 5px;
 }
 
 /* Pulsante di chiusura */
@@ -629,53 +628,77 @@ button.action-button {
 }
 
 /* Stile dell'input e del pulsante */
-#Aggiungi_nameInput {
+#Aggiungi_nomeInput {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
 }
 
-#Aggiungi_chainInput {
+#Aggiungi_pesoInput {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
 }
 
-#Aggiungi_latitudineInput {
+#Aggiungi_categoriaInput {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
 }
 
-#Aggiungi_longitudineInput {
+#Aggiungi_descrizioneInput {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
 }
-#submitAggiungiSupermarkets {
+
+#Aggiungi_nutrientsInput {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+#Aggiungi_healthInput {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+#Aggiungi_imageInput {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+#submitAggiungiProdotto {
     width: 100%;
     padding: 14px;
-    background-color: #4CAF50; /* Verde */
+    background-color: #00BF63; /* Verde */
     color: white;
     border: none;
     cursor: pointer;
+    font-size: 18px !important;
+    font-weight: 500;
+    border-radius: 5px;
 }
 
-#submitAggiungiSupermarkets:hover {
-    background-color: #45a049; /* Verde più scuro */
+#submitAggiungiProdotto:hover {
+    background-color: #0da75c; /* Verde più scuro */
 }
 
 
-/*-------------Popup-Aggiungi-Supermercato-------------*/
+/*-------------Popup-Modifica-Prodotto-------------*/
 /* Stile del modale */
 .modalModifica {
     display: none; /* Nascondi il modale per impostazione predefinita */
     position: fixed;
-    z-index: 1; /* Posiziona il modale sopra gli altri contenuti */
+    z-index: 10000; /* Posiziona il modale sopra gli altri contenuti */
     left: 0;
     top: 0;
     width: 100%;
@@ -687,10 +710,11 @@ button.action-button {
 /* Contenuto del modale */
 .modalModifica-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 10%  10%;
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Larghezza del modale */
+    border-radius: 5px;
 }
 
 /* Pulsante di chiusura */
@@ -709,42 +733,60 @@ button.action-button {
 }
 
 /* Stile dell'input e del pulsante */
-#Modifica_nameInput {
+#Modifica_nomeInput {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
 }
 
-#Modifica_chainInput {
+#Modifica_pesoInput {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
 }
 
-#Modifica_latitudineInput {
+#Modifica_descrizioneInput {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
 }
 
-#Modifica_longitudineInput {
+#Modifica_nutrientsInput {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
 }
-#submitModificaSupermarkets {
+
+#Modifica_healthInput {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+#Modifica_imageInput {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+#submitModificaProdotto {
     width: 100%;
     padding: 14px;
-    background-color: #4CAF50; /* Verde */
+    background-color: #00BF63; /* Verde */
     color: white;
     border: none;
     cursor: pointer;
+    font-size: 18px !important;
+    font-weight: 500;
+    border-radius: 5px;
 }
 
-#submitModificaSupermarkets:hover {
-    background-color: #45a049; /* Verde più scuro */
+#submitModificaProdotto:hover {
+    background-color: #0da75c; /* Verde più scuro */
 }
