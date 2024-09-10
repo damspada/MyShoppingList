@@ -84,8 +84,8 @@ if (isset($_GET['code'])) {
     
     // Gestisci i dati dell'utente
     
-    $_SESSION['email_git']=$email[0]['email'];
-    if(isset($_SESSION['email_git']) && !empty($_SESSION['email_git'])){
+    $_SESSION['email']=$email[0]['email'];
+    if(isset($_SESSION['email']) && !empty($_SESSION['email'])){
         echo "email settata";
         $_SESSION['logged_github'] = true;
     }

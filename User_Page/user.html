@@ -115,11 +115,12 @@
                         document.getElementById("email").setAttribute("readonly", true);
                         document.getElementById("password").value = "->GITHUB";
                         document.getElementById("password").setAttribute("readonly", true);
-                        if(sessionStorage.getItem("Log") == 0 ){
+                        if(sessionStorage.getItem("Log") == 0 || sessionStorage.getItem("Log") == null){
                             sessionStorage.setItem("Log", 1);
+                            sessionStorage.setItem("email", email_git);
                             location.reload();
                         }
-                        sessionStorage.setItem("email", email_git);
+                        //PROBLEMADICAZZOsessionStorage.setItem("email", email_git);
                         
                     }
                 },
@@ -288,8 +289,11 @@
             if (sessionStorage.getItem("Log") == 1) {
                 document.getElementById("icon_log_out").addEventListener("click", function(event){
                     $.ajax({
-                        url: "server.php?action=logout",
+                        url: "server.php",
                         type: "POST",
+                        data:{
+                            action: "logout"
+                        },
                         success: function(data) {
                             console.log("logout fatto!");
                         },
@@ -302,6 +306,9 @@
                     sessionStorage.removeItem("budget");
                     sessionStorage.removeItem("admin");
                     sessionStorage.removeItem("email");
+                    sessionStorage.removeItem("logged_github");
+                    sessionStorage.removeItem("email_git");
+                    sessionStorage.removeItem("name");
 
                 });
             };

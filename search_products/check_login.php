@@ -48,6 +48,12 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET["email"])){
     echo json_encode($utente);
 }
 
+if($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action']=='log_no_git'){
+    $_SESSION['logged_github'] = false; // Imposta il flag di accesso GitHub nella sessione
+    $_SESSION['name'] = '';
+    $_SESSION['email_git'] = '';
+}
+
 
 $conn->close();
 ?>

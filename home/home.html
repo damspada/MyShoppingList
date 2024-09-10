@@ -54,7 +54,7 @@
                 console.log(pass);
                 $.ajax({
                     
-                    url: 'check_login.php', 
+                    url: 'giulia.php', 
                     type: 'POST',
                     data: { email: email, pass: pass },
                     success: function(response){
@@ -303,6 +303,19 @@
                     }
                 })
             }
+            
+            document.getElementById('login-btn').addEventListener('click', function(){
+                $.ajax({
+                    url: "check_login.php?action=log_no_git",
+                    type: "POST",
+                    success: function(data){
+                        console.log('Richiesta andata a buon fine.');
+                    },
+                    element: function(xhr, status, error){
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                })
+            })
             
         });
     </script>
@@ -585,6 +598,8 @@
             }
         }
 
+        
+
     </script>
 
 
@@ -633,7 +648,7 @@
                     <input type="password" required pattern="^(?!.*->GITHUB).*$">
                     <label>Password</label>
                 </div>
-                <button type="submit" class="btn">Login</button>
+                <button type="submit" class="btn" id="login-btn">Login</button>
                 
                 <div class="login-register">
                     <p>Don't have an account?<a href="../User_Page/user.html" class="register-link"> Register</a></p>
