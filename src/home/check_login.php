@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($user) {
             echo json_encode(['status' => 'success', 'admin' => $user['adm']]);
         } else {
-            echo "failure";
+            echo json_encode(['status' => 'failure']);
         }
     }
 
