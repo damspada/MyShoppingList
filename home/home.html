@@ -20,6 +20,8 @@
             console.log(sessionStorage.getItem("Log"));
             console.log(sessionStorage.getItem("email"));
             console.log(sessionStorage.getItem("sessionId"));
+            console.log(sessionStorage.getItem("logged_github"));
+            console.log(sessionStorage.getItem("email_git"));
             if (sessionStorage.getItem("Log") != 1 && sessionStorage.getItem("sessionId")==null) {
                 $.ajax({
                     url: "check_login.php",
@@ -54,7 +56,7 @@
                 console.log(pass);
                 $.ajax({
                     
-                    url: 'giulia.php', 
+                    url: 'check_login.php', 
                     type: 'POST',
                     data: { email: email, pass: pass },
                     success: function(response){

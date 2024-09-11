@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             echo json_encode(['status' => 'success', 'admin' => $row['adm']]);
         } else {
             // L'utente non esiste nel database o le credenziali non sono valide
-            echo "failure";
+            echo json_encode(['status' => 'failure']);
         }
     }
     

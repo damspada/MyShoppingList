@@ -42,14 +42,16 @@
                 success: function (data) {
                     var userTableBody = document.getElementById('userTableBody');
                     data.forEach(function (user) {
-                        var row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${user.email}</td>
-                            <td>${user.cell}</td>
-                            <td>${user.life}</td>
-                            <td>${user.budget}</td>
-                        `;
-                        userTableBody.appendChild(row);
+                        if(user.email !== null && user.email !== '' && user.email !== ""){
+                            var row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${user.email}</td>
+                                <td>${user.cell}</td>
+                                <td>${user.life}</td>
+                                <td>${user.budget}</td>
+                            `;
+                            userTableBody.appendChild(row);
+                        }
                     });
                 },
                 error: function (xhr, status, error) {
