@@ -1,0 +1,15 @@
+# Codeception Acceptance Test Suite Configuration
+#
+# Perform tests in a browser by either emulating one using PhpBrowser, or in a real browser using WebDriver.
+# If you need both WebDriver and PhpBrowser tests, create a separate suite for each.
+
+actor: AcceptanceTester
+modules:
+    enabled:
+        - WebDriver:
+            url: 'http://localhost/msl/MyShoppingList/src/home'
+            browser: firefox # O il browser che desideri usare
+            window_size: maximize
+            restart: true
+    step_decorators:
+        - Codeception\Step\Retry

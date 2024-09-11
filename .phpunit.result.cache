@@ -1,0 +1,1 @@
+{"version":1,"defects":{"DatabaseTest::testVerifyUserSuccess":7,"DatabaseTest::testVerifyUserFailure":8},"times":{"DatabaseTest::testVerifyUserSuccess":0.00200000000000000004163336342344337026588618755340576171875,"DatabaseTest::testVerifyUserFailure":0.001000000000000000020816681711721685132943093776702880859375}}

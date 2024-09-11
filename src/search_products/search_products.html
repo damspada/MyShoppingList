@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="Icone/favicon.png">
+    <link rel="stylesheet" href="search_products.css">
+    <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+
+    <script src="https://unpkg.com/jspdf-autotable@3.5.22/dist/jspdf.plugin.autotable.js"></script>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<!-- 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKmiR3vhiQGXT9qZBFDQInSqjXSsVL664" async></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <!-- Check del Login -->
+    <script>
+        $(document).ready(function () {
+            $('.login form').submit(function (event) {
+                event.preventDefault();
+
+                var email = $(this).find('input[type="email"]').val();
+                var pass = $(this).find('input[type="password"]').val();
+
+                $.ajax({
+                    url: 'check_login.php', 
+                    type: 'POST',
+                    data: { email: email, pass: pass },
+                    success: function (response) {
+                        // Se la risposta è 'success', l'utente esiste nel database
+                        if (response.trim() === 'success') {
+                            // Reindirizza l'utente alla sua pagina utente
+                            window.location.href = '../User_Page/user.html';
+                            sessionStorage.setItem("Log",1);
+                            sessionStorage.setItem("email",email);
+                        } else {
+                            // Mostra il popup di errore
+                            Swal.fire({
+                                title: "Errore!",
+                                html: "Invalid credentials. <br>Try again.",
+                                icon: "error",
+                                dangerMode: true,
+                                background: "#f8f9fa",
+                                textColor: "#343a40",
+                                width: "400px",
+                                padding: "3rem",
+                                titleFont: "Montserrat_Arabic_Regular",
+                                textFont: "Montserrat_Arabic_Regular",
+                                showConfirmButton: false, // Nasconde il pulsante "OK"
+                                timer: 2000 // Tempo in millisecondi (3 secondi)
+                            });
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        // Gestisci gli errori durante la chiamata AJAX
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Popup Login -->
+    <script>
+        window.addEventListener('load', function (event) {
+            if (sessionStorage.getItem("Log") == 1) {
+                // Se l'utente è già loggato, reindirizza alla pagina utente
+                document.querySelector('.Btn').addEventListener('click', function () {
+                    window.location.href = '../User_Page/user.html';
+                    wrapper.classList.remove('active-popup');
+                    body.classList.remove('popup-active');
+                });
+            } else {
+                // Se l'utente non è loggato, mostra il popup di login
+                const wrapper = document.querySelector('.wrapper');
+                const body = document.querySelector('body');
+                const loginLink = document.querySelector('.login-link');
+                const iconClose = document.querySelector('.icon-close');
+                const btnPopup = document.querySelector('.Btn');
+
+                loginLink.addEventListener('click', () => {
+                    wrapper.classList.remove('active');
+                });
+
+                btnPopup.addEventListener('click', () => {
+                    wrapper.classList.add('active-popup');
+                    body.classList.add('popup-active');
+                });
+
+                iconClose.addEventListener('click', () => {
+                    wrapper.classList.remove('active-popup');
+                    body.classList.remove('popup-active');
+                    hidePopup();
+                });
+            }
+        });
+    </script>
+
+
+    <!-- Cambia immagine Navbar -->
+    <script>
+        window.addEventListener('load', function (event) {
+            /*mantenere il numero di telefono modificato*/
+            var savedPhoneNumber = localStorage.getItem('phoneNumber');
+            if (savedPhoneNumber) {
+                document.getElementById('tel').innerHTML = '<img src="./Immagini/phone.png">' + savedPhoneNumber;
+            }
+            var savedEmailAddress = localStorage.getItem('emailAddress');
+            if (savedEmailAddress) {
+                document.getElementById('email').innerHTML = '<img src="./Immagini/mail.png">' + savedEmailAddress;
+            }
+            var savedFacebook = localStorage.getItem('facebookLink');
+            if(savedFacebook){
+                document.querySelector('.icon.facebook').setAttribute('href', savedFacebook);
+            }
+            var savedInstagram = localStorage.getItem('instagramLink');
+            if(savedInstagram){
+                document.querySelector('.icon.instagram').setAttribute('href', savedInstagram);
+            }
+            var savedGithub = localStorage.getItem('githubLink');
+            if(savedGithub){
+                document.querySelector('.icon.github').setAttribute('href', savedGithub);
+            }
+            var savedLinkedin = localStorage.getItem('linkedinLink');
+            if(savedLinkedin){
+                document.querySelector('.icon.linkedin').setAttribute('href', savedLinkedin);
+            }
+            var savedYoutube = localStorage.getItem('youtubeLink');
+            if(savedYoutube){
+                document.querySelector('.icon.youtube').setAttribute('href', savedYoutube);
+            }
+
+            if (sessionStorage.getItem("Log") == 1) {
+                var email = sessionStorage.getItem("email");
+                $.ajax({
+                    url: "check_login.php",
+                    type: "GET",
+                    data: {
+                        email: email
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        data.forEach(function (element) {
+
+                            var name_img = element.nome;
+
+                            function primaLetteraMaiuscola(parola) {
+                                var primaLettera = parola.charAt(0);
+                                return primaLettera.toUpperCase();
+                            }
+
+                            name_img = primaLetteraMaiuscola(name_img);
+
+                            // Trova l'elemento ion-icon all'interno del pulsante
+                            const iconElement = document.querySelector('.Btn ion-icon');
+
+                            // Rimuovi l'elemento ion-icon
+                            iconElement.remove();
+
+                            // Crea un nuovo elemento immagine
+                            const imgElement = document.createElement('h3');
+
+                            // Assegna il testo della variabile name_img all'elemento h2
+                            imgElement.textContent = name_img;
+                            imgElement.style.fontSize = '30px';
+                            imgElement.style.color = 'white';
+                            imgElement.style.margin = 'auto'
+                            imgElement.style.fontWeight = '700';
+
+                            // Aggiungi l'immagine al div con la classe "sign"
+                            const signDiv = document.querySelector('.Btn .sign');
+                            signDiv.appendChild(imgElement);
+
+                            // Seleziona l'elemento del pulsante
+                            const loginButton = document.querySelector('.text_btn');
+
+                            // Cambia il testo del pulsante a "Accedi"
+                            loginButton.textContent = 'Profile';
+
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        // Gestisci gli errori durante la chiamata AJAX
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                })
+            }
+        });
+    </script>
+
+    <!-- Script per visualizzare il carrello della sessione al caricamento della pagina -->
+    <script> 
+        window.addEventListener('load', function (event) {
+            $.ajax({
+                url: "server.php",
+                method: "GET",
+                data: { riavvio: '1' },
+                dataType: "json",
+                success: function (response) {
+                    console.log('Richiesta andata a buon fine.');
+                    response.forEach(function (element) {
+                        if (!(!!document.getElementById(element.Nome))) {
+                            var carrelloCard = $('<div>').addClass('carrello_elemento');
+                            carrelloCard[0].id = element.Nome;
+                            var carrelloNome = $('<div>').addClass('carrello_nome');
+                            carrelloNome.append('<h3>' + element.Nome + '</h3>');
+                            carrelloCard.append(carrelloNome);
+
+                            var carrelloQuantità = $('<div>').addClass('carrello_quantità');
+                            const quantityForm = document.createElement('form');
+                            quantityForm.setAttribute('id', element.Nome);
+                            quantityForm.setAttribute('action', '');
+                            quantityForm.setAttribute('method', 'post');
+
+                            
+                            const updateQuantityNameInput = document.createElement('input');
+                            updateQuantityNameInput.setAttribute('type', 'hidden');
+                            updateQuantityNameInput.setAttribute('name', 'update_quantity_name');
+                            updateQuantityNameInput.value = element.Nome;
+
+            
+                            const decreaseButton = document.createElement('button');
+                            decreaseButton.setAttribute('type', 'submit');
+                            decreaseButton.setAttribute('class', 'bottoni_tondi2');
+                            decreaseButton.setAttribute('name', 'decrease_btn');
+                            decreaseButton.textContent = "-";
+
+                            const quantityInput = document.createElement('input');
+                            quantityInput.setAttribute('type', 'number');
+                            quantityInput.setAttribute('class', 'quantity');
+                            quantityInput.setAttribute('name', 'update_quantity');
+                            quantityInput.setAttribute('min', '1');
+                            quantityInput.setAttribute('value', element.Quantità);
+                            quantityInput.setAttribute('readonly', true);
+
+                            const increaseButton = document.createElement('button');
+                            increaseButton.setAttribute('type', 'submit');
+                            increaseButton.setAttribute('class', 'bottoni_tondi');
+                            increaseButton.setAttribute('name', 'update_btn');
+                            increaseButton.textContent = "+";
+
+                            quantityForm.append(updateQuantityNameInput);
+                            quantityForm.append(decreaseButton);
+                            quantityForm.append(quantityInput);
+                            quantityForm.append(increaseButton);
+                            quantityForm.addEventListener('submit', function (event) {
+                                event.preventDefault();
+                                const addButtonClicked = event.submitter.classList.contains('bottoni_tondi');
+                                const lowButtonClicked = event.submitter.classList.contains('bottoni_tondi2');
+                                if (addButtonClicked) {
+                                    $.ajax({
+                                        url: 'server.php', // Specifica l'URL del server
+                                        type: 'POST', // Metodo HTTP 
+                                        data: { elemento: element.Nome, valore: '+1' }, // Dati da inviare al server
+                                        success: function (response) {
+                                            const inputElement = document.querySelector(`[id="${element.Nome}"] .quantity`);
+                                            inputElement.value++;
+                                        },
+                                        error: function (error) {
+                                            // Gestisci eventuali errori
+                                            console.error('Si è verificato un errore durante la richiesta.');
+                                        }
+                                    });
+                                } else if (lowButtonClicked) {
+                                    $.ajax({
+                                        url: 'server.php', // Specifica l'URL del server
+                                        type: 'POST', // Metodo HTTP
+                                        data: { elemento: element.Nome, valore: '-1' }, // Dati da inviare al server
+                                        success: function (response) {
+                                            const inputElement = document.querySelector(`[id="${element.Nome}"] .quantity`);
+                                            if (inputElement.value == 1) {
+                                                const myDiv = document.getElementById(element.Nome);
+                                                myDiv.remove();
+                                            } else {
+                                                inputElement.value--;
+                                            }
+                                        },
+                                        error: function (error) {
+                                            console.error('Si è verificato un errore durante la richiesta.');
+                                        }
+                                    });
+                                }
+                            });
+                            carrelloQuantità.append(quantityForm);
+                            carrelloCard.append(carrelloQuantità);
+                            $('.carrello_spesa').append(carrelloCard);
+                        } else {
+                            const inputElement = document.querySelector(`[id="${element.Nome}"] .quantity`);
+                            inputElement.value++;
+                        }
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error('Errore Richiesta');
+                }
+            });
+        })
+    </script>
+
+    <!-- script per visualizzare tutti i prodotti -->
+    <script> 
+        $(document).ready(function () {
+
+            function createProductCard(productData) {
+                const productCard = $('<div>').addClass('card');
+
+                const cardImage = $('<div>').addClass('card_image');
+                cardImage.append('<img src="' + productData.image + '" alt="' + productData.Nome + '">');
+                productCard.append(cardImage);
+
+                const cardText = $('<div>').addClass('card_text');
+                cardText.append('<h3>' + productData.Nome + '</h3>');
+                if (productData.health != null) {
+                    cardText.append('<p>Healty: ' + productData.health + '</p>');
+                }
+                productCard.append(cardText);
+
+                const productForm = createProductForm(productData);
+                productCard.append(productForm);
+
+                return productCard;
+            }
+
+            function createProductForm(productData) {
+                const productForm = document.createElement('form');
+                productForm.id = 'productForm';
+                productForm.method = 'post';
+
+                const inputName = document.createElement('input');
+                inputName.type = 'hidden';
+                inputName.name = 'product_name';
+                inputName.value = productData.Nome;
+
+                const inputCategory = document.createElement('input');
+                inputCategory.type = 'hidden';
+                inputCategory.name = 'product_category';
+                inputCategory.value = productData.category;
+
+                const inputImage = document.createElement('input');
+                inputImage.type = 'hidden';
+                inputImage.name = 'product_image';
+                inputImage.value = productData.Nome;
+
+                productForm.appendChild(inputName);
+                productForm.appendChild(inputCategory);
+                productForm.appendChild(inputImage);
+
+                const submitButton = document.createElement("input");
+                submitButton.type = "submit";
+                submitButton.className = "bottone_carrello";
+                submitButton.value = "Add to Cart";
+                submitButton.name = productData.Nome;
+
+                productForm.appendChild(submitButton);
+
+                productForm.addEventListener("submit", function (event) {
+                    event.preventDefault();
+
+                    const formData = $(this).serialize();
+
+                    checkHealth(productData, function (response) {
+                        if (response === false) {
+                            $.ajax({
+                                type: "POST",
+                                url: "server.php",
+                                data: formData,
+                                success: function (response) {
+                                    handleAddToCartSuccess(productData);
+                                },
+                                error: function (xhr, status, error) {
+                                    console.error('Si è verificato un errore durante la richiesta.');
+                                }
+                            });
+                        } else {
+                            console.log('Prodotto non aggiunto');
+                        }
+                    });
+                });
+
+                return productForm;
+            }
+
+
+            function handleAddToCartSuccess(productData) {
+                if (!document.getElementById(productData.Nome)) {
+                    const carrelloCard = createCartCard(productData);
+                    $('.carrello_spesa').append(carrelloCard);
+                } else {
+                    const inputElement = document.querySelector(`[id="${productData.Nome}"] .quantity`);
+                    inputElement.value++;
+                }
+            }
+
+            function createCartCard(productData) {
+                const carrelloCard = $('<div>').addClass('carrello_elemento');
+                carrelloCard[0].id = productData.Nome;
+                const carrelloNome = $('<div>').addClass('carrello_nome');
+                carrelloNome.append('<h3>' + productData.Nome + '</h3>');
+                carrelloCard.append(carrelloNome);
+
+                const carrelloQuantità = $('<div>').addClass('carrello_quantità');
+                const quantityForm = createQuantityForm(productData);
+                carrelloQuantità.append(quantityForm);
+                carrelloCard.append(carrelloQuantità);
+
+                return carrelloCard;
+            }
+
+            function createQuantityForm(productData) {
+                const quantityForm = document.createElement('form');
+                quantityForm.setAttribute('id', productData.Nome);
+                quantityForm.setAttribute('action', '');
+                quantityForm.setAttribute('method', 'post');
+
+                const updateQuantityNameInput = document.createElement('input');
+                updateQuantityNameInput.setAttribute('type', 'hidden');
+                updateQuantityNameInput.setAttribute('name', 'update_quantity_name');
+                updateQuantityNameInput.value = productData.Nome;
+
+                const decreaseButton = document.createElement('button');
+                decreaseButton.setAttribute('type', 'submit');
+                decreaseButton.setAttribute('class', 'bottoni_tondi2');
+                decreaseButton.setAttribute('name', 'decrease_btn');
+                decreaseButton.textContent = "-";
+
+                const quantityInput = document.createElement('input');
+                quantityInput.setAttribute('type', 'number');
+                quantityInput.setAttribute('class', 'quantity');
+                quantityInput.setAttribute('name', 'update_quantity');
+                quantityInput.setAttribute('min', '1');
+                quantityInput.setAttribute('value', 1);
+                quantityInput.setAttribute('readonly', true);
+
+                const increaseButton = document.createElement('button');
+                increaseButton.setAttribute('type', 'submit');
+                increaseButton.setAttribute('class', 'bottoni_tondi');
+                increaseButton.setAttribute('name', 'update_btn');
+                increaseButton.textContent = "+";
+
+                quantityForm.append(updateQuantityNameInput);
+                quantityForm.append(decreaseButton);
+                quantityForm.append(quantityInput);
+                quantityForm.append(increaseButton);
+
+                quantityForm.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    const addButtonClicked = event.submitter.classList.contains('bottoni_tondi');
+                    const lowButtonClicked = event.submitter.classList.contains('bottoni_tondi2');
+
+                    if (addButtonClicked) {
+                        handleQuantityIncrease(productData.Nome);
+                    } else if (lowButtonClicked) {
+                        handleQuantityDecrease(productData.Nome);
+                    }
+                });
+
+                return quantityForm;
+            }
+
+            function handleQuantityIncrease(productName) {
+                $.ajax({
+                    url: 'server.php', 
+                    type: 'POST', 
+                    data: { elemento: productName, valore: '+1' }, 
+                    success: function (response) {
+                        const inputElement = document.querySelector(`[id="${productName}"] .quantity`);
+                        inputElement.value++;
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                });
+            }
+
+            
+            function handleQuantityDecrease(productName) {
+                const inputElement = document.querySelector(`[id="${productName}"] .quantity`);
+                $.ajax({
+                    url: 'server.php',
+                    type: 'POST', 
+                    data: { elemento: productName, valore: '-1' }, 
+                    success: function (response) {
+                        if (inputElement.value == 1) {
+                            const myDiv = document.getElementById(productName);
+                            myDiv.remove();
+                        } else {
+                            inputElement.value--;
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                });
+            }
+
+
+            // Funzione che verifica se l'healthy del prodotto selezionato combacia con lo stile di vita dell'utente        
+            function checkHealth(productData, callback) {
+                var log = sessionStorage.getItem("Log");
+                var email = sessionStorage.getItem('email');
+
+                if (log == 1) {
+                    $.ajax({
+                        url: "server.php",
+                        method: "GET",
+                        data: { action: 'check_health', email: email, health: productData.health, nome: productData.Nome},
+                        dataType: "json",
+                        success: function (response) {
+                            console.log(response);
+                            if (response == true) {
+                                Swal.fire({
+                                    title: "Are you sure?",
+                                    text: "The product does not match your health",
+                                    icon: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#28A745",
+                                    cancelButtonColor: "#d33",
+                                    confirmButtonText: "Yes, add it!",
+                                    reverseButtons: true,
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        Swal.fire({
+                                            title: "Added!",
+                                            icon: "success",
+                                            showConfirmButton: false,
+                                            timer: 1000,
+                                            width: "400px"
+                                        });
+                                        callback(false); 
+                                    }
+                                    else {
+                                        callback(true);
+                                    }
+                                });
+
+                            }
+                            else {
+                                callback(false);
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('An error occurred during the request.');
+                            callback(false); 
+                        }
+                    });
+                } else {
+                    callback(false); 
+                }
+            }
+
+
+            // Effettua la richiesta al server per ottenere i prodotti
+            $.ajax({
+                url: "server.php",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    data.forEach(function (element) {
+                        const productCard = createProductCard(element);
+                        $('.prodotti_div').append(productCard);
+                    });
+                }
+            });
+
+            // Funzione che gestisce i filtri
+            var filterCards = document.getElementsByClassName('filter-card');
+            for (var i = 0; i < filterCards.length; i++) {
+                filterCards[i].addEventListener('click', function (event) {
+                    var categoria = this.id;
+                    $.ajax({
+                        url: "server.php",
+                        method: "GET",
+                        data: { Categoria: categoria },
+                        dataType: "json",
+                        success: function (response) {
+                            const myDiv = document.querySelector('.prodotti_div'); // Seleziona l'elemento <div>
+                            myDiv.innerHTML = '';
+                            console.log("Richiesta Eseguita");
+                            response.forEach(function (element) {
+                                const productCard = createProductCard(element);
+                                $('.prodotti_div').append(productCard);
+                            });
+                            myDiv.scrollTop = 0;
+                        },
+                        error: function (xhr, status, error) {
+                            // Gestisci eventuali errori
+                            console.error('Si è verificato un errore durante la richiesta.');
+                        }
+                    });
+                });
+            }
+
+            // Funzione per svuotare il carrello premendo l'icona del cestino
+            document.getElementById('Cestino').addEventListener('submit', function (event) {
+                event.preventDefault();
+                $.ajax({
+                    url: "server.php",
+                    method: "POST",
+                    data: { cestino: '1' },
+                    success: function (response) {
+                        const myDiv = document.querySelector('.carrello_spesa'); // Seleziona l'elemento <div>
+                        myDiv.innerHTML = '';
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Si è verificato un errore durante la richiesta.');
+                    }
+                });
+            });
+
+
+            const searchBtn = document.getElementById("searchBtn");
+            const searchBar = document.getElementById("searchBar");
+
+            // Funzione per barra di ricerca premendo il bottone
+            searchBtn.addEventListener("click", () => {
+                const searchQuery = searchBar.value;
+                $.ajax({
+                    url: "server.php",
+                    method: "GET",
+                    data: { Nome: searchQuery },
+                    dataType: "json",
+                    success: function (response) {
+                        const myDiv = document.querySelector('.prodotti_div'); // Seleziona l'elemento <div>
+                        myDiv.innerHTML = '';
+                        response.forEach(function (element) {
+                            const productCard = createProductCard(element);
+                            $('.prodotti_div').append(productCard);
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        // Gestisci eventuali errori
+                        console.log('Si è verificato un errore durante la richiesta.');
+                    }
+                });
+            });
+
+            // Funzione per barra di ricerca premento il tasto invio
+            searchBar.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" ) {
+                    const searchQuery = searchBar.value;
+                    $.ajax({
+                        url: "server.php",
+                        method: "GET",
+                        data: { Nome: searchQuery },
+                        dataType: "json",
+                        success: function (response) {
+                            console.log("Hello, world!");
+                            const myDiv = document.querySelector('.prodotti_div'); // Seleziona l'elemento <div>
+                            myDiv.innerHTML = '';
+                            response.forEach(function (element) {
+                                const productCard = createProductCard(element);
+                                $('.prodotti_div').append(productCard);
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            // Gestisci eventuali errori
+                            console.log('Si è verificato un errore durante la richiesta.');
+                        }
+                    });
+                }
+            });
+
+            // Funzione per le ricette
+            var bottoni = document.getElementsByClassName('bottone_carrello2');
+            for (var i = 0; i < bottoni.length; i++) {
+                bottoni[i].addEventListener('click', function (event) {
+                    var ricetta = this.id;
+                    console.log(ricetta)
+                    $.ajax({
+                        url: "server.php",
+                        method: "GET",
+                        data: { Ricetta: ricetta },
+                        dataType: "json",
+                        success: function (response) {
+                            response.forEach(function (element) {
+                                handleAddToCartSuccess(element);
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            // Gestisci eventuali errori
+                            console.error('Si è verificato un errore durante la richiesta.');
+                        }
+                    });
+                });
+            };
+
+        });
+
+    </script>
+
+    <!-- Script per la chiusura del checkout -->
+    <script> 
+        $(document).ready(function () {
+
+            const checkout_wrapper = document.querySelector('.wrapper_checkout');
+            const checkout_body = document.querySelector('body');
+            const checkout_iconClose = document.querySelector('.icon_close_checkout');
+            const checkout_btnPopup = document.querySelector('.bottone_checkout');
+            // Function to display empty cart message
+            function showEmptyCartMessage() {
+                Swal.fire({
+                    title: "The cart is empty!",
+                    text: "Add products to your cart before proceeding to checkout.",
+                    icon: "warning",
+                    showCancelButton: false,
+                    showConfirmButton: false, // Hides "OK" button
+                    timer: 2000
+                });
+            }
+
+            function checkMaxAmount(maxAmount) {
+                if (maxAmount == true) {
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "The total is grater than your max amount",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#28A745",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, continue!",
+                        reverseButtons: true,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            checkout_wrapper.classList.add('active-popup');
+                            checkout_body.classList.add('popup-active');
+                            callback(false);
+                        }
+                        else {
+
+                            callback(true);
+                        }
+                    });
+
+                }
+                else {
+                    callback(false);
+                }
+            }
+
+            // Function to scroll to top smoothly
+            function scrollToTop() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+
+
+            // Funzione per controllare se il carrello è vuoto
+            function checkCartNotEmpty() {
+                var carrelloSpesa = document.querySelector('.carrello_spesa');
+                var carrelloElementi = carrelloSpesa.querySelectorAll('.carrello_elemento');
+                return carrelloElementi.length > 0;
+            }
+
+            //si attiva al click del bottone checkout
+            checkout_btnPopup.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                console.log('Button clicked');
+
+                if (!checkCartNotEmpty()) {
+                    showEmptyCartMessage();
+                } else {
+
+                    var sessionId = getSessionId();
+                    $.ajax({
+                        url: "server.php?action=checkout",
+                        method: "GET",
+                        data: { id: sessionId },
+                        success: function (response) {
+
+                            if(response.cheapestSupermarket.totalPrice>sessionStorage.getItem("budget") && sessionStorage.getItem("budget")!=null){
+                                checkMaxAmount(true);
+                            }else{
+                                checkout_wrapper.classList.add('active-popup');
+                                checkout_body.classList.add('popup-active');
+                            }
+
+                            var Cart = "Cart";
+                            const myDiv = document.querySelector('.carrello'); // Seleziona l'elemento <div>
+                            myDiv.innerHTML = '';
+
+                            // Inserisci informazioni sui supermercati
+                            const economico = document.querySelector('.economico');
+                            economico.innerHTML = `
+                                <div class="descrizione">
+                                    <h2>Cheapest Supermarket :</h2>
+                                    <img src="./Supermercati/${response.cheapestSupermarket.chain}.svg">
+                                    <br>
+                                    <p class="p2">Placed:&ensp; </p> <p>${response.cheapestSupermarket.name}</p>
+                                    <p class="p2">Distance: &ensp;</p> <p>${response.cheapestSupermarket.distance}</p>
+                                    <p class="p2">Total cost: &ensp;</p> <p>${response.cheapestSupermarket.totalPrice} €</p>
+                                    <br>
+                                </div>
+                                <div class="maps" id="map">
+                                </div>
+                            `;
+
+                            var greenIcon = L.icon({
+                                iconUrl: 'Icone/icons8-marker-48 (1).png',
+                                iconSize: [35, 40], // size of the icon
+                            });
+                            var Latitudine = parseFloat(response.cheapestSupermarket.latitude);
+                            var Longitudine = parseFloat(response.cheapestSupermarket.longitude);
+                            var map1 = L.map('map').setView([Latitudine, Longitudine], 15);
+                            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                maxZoom: 19,
+                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                            }).addTo(map1);
+                            var markerEconomico = L.marker([Latitudine, Longitudine], { icon: greenIcon }).addTo(map1);
+
+                            const vicino = document.querySelector('.vicino');
+                            vicino.innerHTML = `
+                                <div class="descrizione">
+                                    <h2>Closest Supermarket:</h2>
+                                    <img src="./Supermercati/${response.nearestSupermarket.chain}.svg">
+                                    <br>
+                                    <p class="p2">Placed: &ensp;</p> <p>${response.nearestSupermarket.name}</p>
+                                    <p class="p2">Distance: &ensp;</p> <p>${response.nearestSupermarket.distance}</p>
+                                    <p class="p2">Total cost: &ensp;</p> <p>${response.nearestSupermarket.totalPrice} €</p>
+                                    <br>
+                                </div>
+                                <div class="maps" id="map2">
+                                </div>
+                            `;
+
+                            Latitudine = parseFloat(response.nearestSupermarket.latitude);
+                            Longitudine = parseFloat(response.nearestSupermarket.longitude);
+                            var map2 = L.map('map2').setView([Latitudine, Longitudine], 15);
+                            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                maxZoom: 19,
+                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                            }).addTo(map2);
+                            var markerVicino = L.marker([Latitudine, Longitudine], { icon: greenIcon }).addTo(map2);
+
+
+                            const consigliato = document.querySelector('.consigliato');
+                            consigliato.innerHTML = `
+                                <div class="descrizione">
+                                    <h2>Suggested Supermarket:</h2>
+                                    <img src="./Supermercati/${response.recommendedSupermarket.chain}.svg">
+                                    <br>
+                                    <p class="p2">Placed:&ensp; </p> <p>${response.recommendedSupermarket.name}</p>
+                                    <p class="p2">Distance: &ensp;</p> <p>${response.recommendedSupermarket.distance}</p>
+                                    <p class="p2">Total cost: &ensp;</p> <p>${response.recommendedSupermarket.totalPrice} €</p>
+                                    <br>
+                                </div>
+                                <div class="maps" id="map3">
+                                </div>
+                            `;
+
+                            Latitudine = parseFloat(response.recommendedSupermarket.latitude);
+                            Longitudine = parseFloat(response.recommendedSupermarket.longitude);
+                            var map = L.map('map3').setView([Latitudine, Longitudine], 15);
+                            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                maxZoom: 19,
+                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                            }).addTo(map);
+                            L.marker([Latitudine, Longitudine], { icon: greenIcon }).addTo(map);
+
+                            // Inserisci lista dei prodotti nel carrello
+                            response.productsPrices.forEach(function (element) {
+                                var carrelloCard = $('<div>').addClass('carrello_elemento2');
+                                carrelloCard[0].id = element.Nome;
+                                var carrelloNome = $('<div>').addClass('carrello_nome2');
+                                carrelloNome.append('<h3>' + element.Nome + '</h3>');
+                                carrelloCard.append(carrelloNome);
+
+                                var carrelloQuantità = $('<div>').addClass('carrello_quantità2');
+                                carrelloQuantità.append('<h4>' + element.Quantità + '</h4>');
+
+                                var carrelloPrezzo = $('<div>').addClass('carrello_prezzo2');
+                                carrelloPrezzo.append('<h4>' + element.price + '</h4>');
+
+                                carrelloCard.append(carrelloQuantità);
+                                carrelloCard.append(carrelloPrezzo);
+                                $('.carrello').append(carrelloCard);
+                            });
+
+                            const totale = document.querySelector('.Totale');
+                            totale.innerHTML = `<h2>TOT: ${response.recommendedSupermarket.totalPrice}</h2>`;
+
+                            const bottoneSalva = document.querySelector('.bottone_salva');
+                            bottoneSalva.addEventListener('click', function (event) {
+                                event.preventDefault();
+
+                                // prenditi dal sessionStorage il sessionID e l'email
+                                var sessionId = sessionStorage.getItem('sessionId');
+                                var email = sessionStorage.getItem('email');
+                                var log = sessionStorage.getItem('Log');
+
+                                console.log('Session ID:', sessionId);
+                                console.log('Email:', email);
+                                console.log('Log:', log);
+
+                                if (log == 1) {
+                                    console.log('Loggato');
+
+                                    // Creazione del PDF
+                                    var doc = new jsPDF();
+
+                                    var logoImg = new Image();
+                                    logoImg.src = 'Icone/MyShoppingList.png';
+
+                                    logoImg.onload = function () {
+                                        doc.addImage(logoImg, 'PNG', 10, 10, 203 / 5, 30 / 5); // Adjust position and size as needed (the logo has 203 pixel width and 30 pixel height)
+
+                                        doc.setFontSize(10);
+                                        doc.setFont("helvetica");
+
+                                        var yOffset = 25;
+
+                                        doc.setFontSize(8);
+                                        doc.text('Email: ' + email, 10, 46 - yOffset);
+
+                                        doc.setFontSize(10);
+
+                                        insertSupermarketInfo(doc, 54 - yOffset, response.recommendedSupermarket);
+
+                                        doc.setFontSize(10);
+                                        doc.setFontType("bold");
+                                        doc.text('Product Prices (Recommended Supermarket)', 10, 75 - yOffset);
+                                        doc.setFontType("normal");
+
+                                        // Crea la tabella con i prodotti e i prezzi
+                                        var tableStart = 80 - yOffset;
+                                        doc.autoTable({
+                                            startY: tableStart,
+                                            head: [['Name', 'Quantity', 'Price (€)']],
+                                            body: response.productsPrices.map(product => [product.Nome, product.Quantità, product.price]),
+                                            theme: 'grid' // Add grid styling for the table
+                                        });
+
+                                        var totalPriceY = tableStart + doc.autoTableEndPosY({ startY: tableStart, head: [['Name', 'Quantity', 'Price (€)']], body: response.productsPrices.map(product => [product.Nome, product.Quantità, product.price]) });
+
+                                        doc.setFontSize(12);
+                                        doc.setFontType("bold");
+                                        doc.text('Total Price:', 10, totalPriceY + 10 - yOffset);
+                                        doc.text(response.recommendedSupermarket.totalPrice + ' €', 175, totalPriceY + 10 - yOffset);
+
+                                        doc.save('shopping_list.pdf');
+                                    };
+
+                                    // Funzione per inserire le informazioni del supermercato nel PDF
+                                    function insertSupermarketInfo(doc, Offset, supermarket) {
+                                        doc.text('Supermarket: ' + supermarket.chain + ' ' + supermarket.name, 10, Offset);
+
+                                        doc.textWithLink('View on Google Maps', 10, Offset + 7, {
+                                            url: 'https://maps.google.com/maps?q=loc:' + supermarket.latitude + ',' + supermarket.longitude
+                                        });
+
+                                        doc.text('Distance: ' + supermarket.distance, 10, Offset + 14);
+                                    }
+
+                                } else {
+                                    console.log('Non loggato');
+                                    const wrapper = document.querySelector('.wrapper');
+                                    const body = document.querySelector('body');
+                                    wrapper.classList.add('active-popup');
+                                    body.classList.add('popup-active');
+                                    checkout_wrapper.classList.remove('active-popup');
+                                }
+                            });
+
+                            if (sessionStorage.getItem('Log') != 1) {
+                                document.querySelector('.vicino').classList.add('blurred');
+                                document.querySelector('.economico').classList.add('blurred');
+
+                                // Rimozione dei marker dalle mappe
+                                map1.removeLayer(markerEconomico);
+                                map2.removeLayer(markerVicino);
+
+                                // Verifica se l'elemento del testo è già presente
+                                if (!document.querySelector('.blurred-text-wrapper')) {
+                                    // Creazione dell'elemento wrapper esterno
+                                    const blurredTextWrapper = document.createElement('div');
+                                    blurredTextWrapper.classList.add('blurred-text-wrapper');
+
+                                    // Creazione del testo e del bottone
+                                    const blurredTextContent = `
+                                        <div class="blurred-text">
+                                            Want to know the closest or cheapest supermarkets?
+                                            <br>
+                                            <button class="register-button-check">Register Now!</button>
+                                        </div>
+                                    `;
+
+                                    // Aggiunta del testo e del bottone all'elemento wrapper esterno
+                                    blurredTextWrapper.innerHTML = blurredTextContent;
+
+                                    // Aggiunta dell'elemento wrapper esterno tra i due div blurrati
+                                    const vicinoDiv = document.querySelector('.vicino');
+                                    const economicoDiv = document.querySelector('.economico');
+                                    vicinoDiv.parentNode.insertBefore(blurredTextWrapper, economicoDiv);
+
+                                    // Aggiungi un evento click al bottone "Registrati ora"
+                                    blurredTextWrapper.querySelector('.register-button-check').addEventListener('click', function () {
+                                        const wrapper = document.querySelector('.wrapper');
+                                        const body = document.querySelector('body');
+                                        wrapper.classList.add('active-popup');
+                                        body.classList.add('popup-active');
+                                        checkout_wrapper.classList.remove('active-popup');
+                                    });
+                                }
+                            }
+
+
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Si è verificato un errore durante la richiesta.');
+                        }
+                    });
+
+                    scrollToTop();
+                  
+
+                }
+            });
+
+            // si attiva al click della x nel checkout
+            checkout_iconClose.addEventListener('click', () => {
+                checkout_wrapper.classList.remove('active-popup');
+                checkout_body.classList.remove('popup-active');
+                const myDiv = document.querySelector('.carrello'); // Seleziona l'elemento <div>
+                myDiv.innerHTML = '';
+
+            });
+        });
+    </script>
+
+    <!-- funzione per la geolocalizzazione -->
+    <script> 
+        $(document).ready(function () {
+            console.log('funzione eseguita');
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    console.log('consentita posizione');
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+
+                    sessionStorage.setItem("latitude", latitude);
+                    sessionStorage.setItem("longitude", longitude);
+
+                    console.log(latitude);
+                    console.log(longitude);
+
+                    var sessionId = getSessionId();
+
+                    if (sessionId) {
+                        console.log('Session ID:', sessionId);
+                    } else {
+                        console.log('Session ID not found.');
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url: "server.php",
+                        data: { latitude: latitude, longitude: longitude, session_id: sessionId },
+                        success: function (response) {
+                            console.log(response);
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                });
+            } else {
+                console.log("Geolocation is not available");
+            }
+        });
+
+        function getSessionId() {
+            return sessionStorage.getItem('sessionId');
+        }
+
+    </script>
+
+    <!-- aggiunta ai Preferiti-->
+     <script>
+        window.addEventListener('load', function (event){
+            var buttonPref=document.getElementById('preferito');
+            var log=sessionStorage.getItem('Log');
+            var popupCarrello=document.getElementById('popup_nome_carrello');
+            var closePopup=document.getElementById('close-popup-carrello');
+            var salvaCarrello=document.getElementById('conferma_carrello');
+            if(log){
+                
+                buttonPref.style.display='block';
+                buttonPref.addEventListener('click', function(event){
+                    //buttonPref.innerHTML='<ion-icon name="star">';
+                    var popupCarrello=document.getElementById('popup_nome_carrello');
+                    popupCarrello.style.display='block';
+                });
+                closePopup.addEventListener('click', function(event){
+                    popupCarrello.style.display='none';
+                });
+                var iconClose=document.querySelector('.icon_close_checkout');
+                iconClose.addEventListener('click', function(event){
+                    popupCarrello.style.display='none';
+                });
+                salvaCarrello.addEventListener('click', function(event){
+                    var nomeCarrello=document.getElementById('nome_carrello').value;
+                    var userEmail=sessionStorage.getItem('email');
+                    var contenutoCarrello="";
+                    var elementi_carrello=document.querySelectorAll('.carrello_elemento2');
+                    elementi_carrello.forEach(function(element){
+                        var nome=element.querySelector('.carrello_nome2 h3').textContent;
+                        var quantita=element.querySelector('.carrello_quantità2 h4').textContent;
+                        contenutoCarrello+=nome+":"+quantita+",";
+                    });
+                    if(contenutoCarrello.length>0){
+                        contenutoCarrello=contenutoCarrello.slice(0,-1);
+                    }
+                    console.log(contenutoCarrello);
+                    $.ajax({
+                        url: "server.php",
+                        method: "POST",
+                        data: {email: userEmail, nome: nomeCarrello, contenuto: contenutoCarrello},
+                        success: function (response) {
+                            console.log(response);
+                            popupCarrello.style.display='none';
+                            buttonPref.innerHTML='<ion-icon name="star">';
+                            Swal.fire({
+                                title: "Success!",
+                                text: "Cart added to Preferences.",
+                                icon: "success",
+                                timer: 1500, 
+                                showConfirmButton: false,
+                                confirmButtonText: "OK",
+                                background: "#f8f9fa",
+                                confirmButtonColor: "#28a745",
+                                textColor: "#343a40",
+                                width: "400px",
+                                padding: "3rem",
+                                titleFont: "Montserrat_Arabic_Regular",
+                                textFont: "Montserrat_Arabic_Regular"
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Errore Richiesta');
+                        }
+                    });
+                    popupCarrello.style.display='none';
+                    buttonPref.innerHTML='<ion-icon name="star">';
+                });
+                
+            }
+        });
+     </script>
+
+    <!-- pulsante preferenze su NavBar-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const preferencesLink = document.getElementById('preferences-link');
+            const wrapper = document.querySelector('.wrapper');
+            const body = document.querySelector('body');
+            const iconClose = document.querySelector('.icon-close');
+            const btnPopup = document.querySelector('.Btn');
+
+            preferencesLink.addEventListener('click', function (event) {
+                event.preventDefault(); // Impedisce il comportamento predefinito del link
+                if (sessionStorage.getItem("Log") != 1) {
+                    wrapper.classList.add('active-popup');
+                    body.classList.add('popup-active');
+                } 
+                else if (sessionStorage.getItem("admin") !=1) {
+                    window.location.href = '../preferences/preferences.html'; //se loggato manda alla pagina di preferenze
+                }
+                else{ 
+                    // document.getElementById('popup-overlay').style.display = 'flex';
+                    
+                    // function hidePopup() {
+                    //     document.getElementById('popup-overlay').style.display = 'none';
+                    // }
+                    // document.getElementById('popup-close').addEventListener('click', hidePopup);
+                    Swal.fire({
+                        title: "An Admin cannot access preferences!",
+                        icon: "warning",
+                        dangerMode: true,
+                        background: "#f8f9fa",
+                        textColor: "#343a40",
+                        width: "400px",
+                        padding: "3rem",
+                        titleFont: "Montserrat_Arabic_Regular",
+                        textFont: "Montserrat_Arabic_Regular",
+                        showConfirmButton: false, 
+                        timer: 2000 
+                    });
+                }
+            });
+        });
+    </script>
+
+
+    <title>MyShoppingList</title>
+</head>
+
+<body>
+
+    <div class="overlay"></div>
+    <div class="overlay2"></div>
+    <div class="overlay3"></div>
+
+    <!-- NavBar-->
+    <div>
+        <header class="header">
+            <a href="../home/home.html"><img src="Icone/MyShoppingList.png" class="logo"></a>
+            <nav class="my_navbar">
+                <a href="../home/home.html" class="link_navbar">Home</a>
+                <a href="#" id="preferences-link" class="link_navbar">Preferences</a>
+                <a href="#contatti">Contacts</a>
+                <a href="#contatti" class="icon_contatti"><img src="./Icone/phone.png"></a>
+                <a href="#">
+                    <button class="Btn">
+                        <div class="sign"><ion-icon name="person-circle-outline" size="large"></ion-icon></div>
+                        <div class="text_btn">Login</div>
+                    </button>
+                </a>
+            </nav>
+        </header>
+    </div>
+
+
+
+    <!-- Search -->
+    <div class="search-container" id="searchContainerLarge">
+        <div class="search">
+        </div>
+    </div>
+
+    <div class="search-container2" id="searchContainerSmall">
+        <div class="search">
+            <input placeholder="Search Products..." type="text" id="searchBar">
+            <button type="submit" id="searchBtn">
+                <ion-icon id="search-icon" name="search" size="medium"></ion-icon>
+            </button>
+        </div>
+        <div class="cart-icon" id="cart_icon">
+            <img src="./Icone/cart_media.png" alt="Cart Icon">
+        </div>
+    </div>
+
+
+    <!-- Filtri -->
+    <div class="filter-wrapper">
+        <button class="filter-card tooltip-top" id="All">
+            <img src="Icone/icons8-restaurant-64.png">
+        </button>
+        <button class="filter-card tooltip-top2" id="Dispensa">
+            <img src="Icone/icons8-pomodorini-in-salamoia-64.png">
+        </button>
+        <button class="filter-card tooltip-top3" id="Carne">
+            <img src="Icone/icons8-meat-64.png">
+        </button>
+        <div class="filter-card tooltip-top4" id="Salumi e Formaggi">
+            <img src="Icone/icons8-cheese-64-2.png">
+        </div>
+        <div class="filter-card tooltip-top5" id="Pesce">
+            <img src="Icone/icons8-salmone-64.png">
+        </div>
+        <div class="filter-card tooltip-top8" id="Vegetali">
+            <img src="Icone/icons8-carrot-64.png">
+        </div>
+        <div class="filter-card tooltip-top6" id="Bevande">
+            <img src="Icone/icons8-coke-60.png">
+        </div>
+        <div class="filter-card tooltip-top7" id="Igiene e Casa">
+            <img src="Icone/icons8-soap-64.png">
+        </div>
+        <div class="filter-card tooltip-top9" id="Snack">
+            <img src="Icone/icons8-snack-64 (1).png">
+        </div>
+        <div class="filter-card tooltip-top10" id="Dolci">
+            <img src="Icone/icons8-barra-di-cioccolato-64 (1).png">
+        </div>
+        <div class="filter-card tooltip-top11" id="Surgelati">
+            <img src="Icone/icons8-inverno-64.png">
+        </div>
+        <div class="filter-card tooltip-top12" id="Healty">
+            <img src="Icone/icons8-organic-food-64.png">
+        </div>
+    </div>
+
+    <!--Login e Signin-->
+    <div id="login_div">
+        <div class="wrapper">
+            <span class="icon-close">
+                <ion-icon name="close-outline"></ion-icon>
+            </span>
+
+            <div class="form-box login">
+                <h2>Login</h2>
+                <form action="#">
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+                        <input type="email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                        <input type="password" required pattern="^(?!.*->GITHUB).*$">
+                        <label>Password</label>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                    <div class="login-register">
+                        <p>Don't have an account?<a href="../User_Page/user.html" class="register-link"> Register</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="form-box register">
+                <h2>Registration</h2>
+                <form action="#">
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                        <input type="text" required>
+                        <label>Username</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+                        <input type="email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                        <input type="password" required pattern="^(?!.*->GITHUB).*$">
+                        <label>Password</label>
+                    </div>
+                    <div class="remember-forgot">
+                        <label><input type="checkbox">agree to the terms & conditions</label>
+                    </div>
+                    <button type="submit" class="btn">Register</button>
+                    <div class="login-register">
+                        <p>Already have an account?<a href="#" class="login-link">Login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prodotti -->
+    <div class="prodotti_div">
+    </div>
+
+
+    <!-- Carrello -->
+    <div class="carrello_div" id="carrello_div">
+        <div class="carrello_titolo">
+            <h2>Shopping Cart <img src="./Icone/close.png" class="close-icon"></h2>
+        </div>
+
+        <div class="carrello_spesa">
+
+        </div>
+
+        <div class="carrello_checkout">
+            <form id="Cestino">
+                <input type="submit" name="cestino" class="bottoni_tondi3" value="">
+            </form>
+            <button id="check" class="bottone_checkout">
+                <h2>Checkout</h2>
+            </button>
+        </div>
+    </div>
+
+    <!-- Checkout -->
+    <div class="wrapper_checkout">
+        <span class="icon_close_checkout">
+            <ion-icon name="close-outline"></ion-icon>
+        </span>
+
+        <div class="left_checkout">
+            <div class="Titolo">
+                <h1>Shopping Cart</h1>
+            </div>
+            <div class="Colonne">
+                <div class="colonna1">
+                    <h3>name</h3>
+                </div>
+                <div class="colonna2">
+                    <h3>quantity</h3>
+                </div>
+                <div class="colonna3">
+                    <h3>price</h3>
+                </div>
+            </div>
+
+            <div class="carrello">
+            </div>
+
+            <div class="salva">
+                <div class="BTN">
+                    <button class="bottone_salva">
+                        <h2>SAVE YOUR CART</h2>
+                    </button>
+                    <button id="preferito" class="bottone-preferito" style="display: none;"><ion-icon name="star-outline"></ion-icon></button>
+                </div>
+
+                
+
+                <div class="Totale">
+                </div>
+            </div>
+        </div>
+
+        <div class="right_checkout">
+            <div class="economico">
+
+            </div>
+
+            <div class="vicino">
+
+            </div>
+
+            <div class="consigliato">
+
+            </div>
+        </div>
+
+        <div id="popup_nome_carrello" class="popup-carrello">
+            <h3>Enter cart name</h3>
+            <input required type="text" id="nome_carrello" placeholder="Cart name" style="margin-top:5px; margin-right:2px; margin-left:5px; ">
+            <button id="conferma_carrello" class="bottone_salva" style="width: 15%; height: 20px; font-size:18;">Save</button>
+            <span class="close" id="close-popup-carrello">&times;</span>
+        </div>
+    </div>
+
+
+    <!-- Ricette -->
+    <div class="text">
+        <h1>WHAT WE RECOMMEND YOU...</h1>
+    </div>
+
+    <div class="ricette_div">
+
+        <div class="ricetta_card carbonara">
+            <div class="ricetta_immagine">
+                <img src="Icone/carbo (1) (1).jpeg" alt="">
+            </div>
+            <div class="ricetta_description">
+                <h4>CARBONARA</h4>
+                Carbonara is a traditional Italian dish, originating from Rome. This creamy and tasty pasta is prepared
+                with spaghetti or rigatoni, eggs, pecorino cheese, guanciale and black pepper.
+            </div>
+            <div class="ricetta_form">
+                <button type="submit" class="bottone_carrello2" id="Carbonara">
+                    Try it
+                </button>
+            </div>
+        </div>
+
+        <div class="ricetta_card">
+            <div class="ricetta_immagine">
+                <img src="Icone/L'amatriciana di Cicolini (1).jpg" alt="">
+            </div>
+            <div class="ricetta_description">
+                <h4>AMATRICIANA</h4>
+                Amatriciana is a traditional Italian dish, originally from Amatrice. It is simple but rich in flavor
+                thanks to the bacon, pecorino romano, tomato and chilli pepper. It pairs well with bucatini.
+            </div>
+            <div class="ricetta_form">
+                <button type="submit" class="bottone_carrello2" id="Amatriciana">
+                    Try it
+                </button>
+            </div>
+        </div>
+
+        <div class="ricetta_card">
+            <div class="ricetta_immagine">
+                <img src="Icone/Pollo (1) (1).jpg" alt="">
+            </div>
+            <div class="ricetta_description">
+                <h4>POLLO E PATATE</h4>
+                A warm embrace between pieces of succulent chicken and soft potatoes. The aroma of garlic and rosemary
+                wafts through the air as the pan sizzles. It is a dish that tastes of home.
+            </div>
+            <div class="ricetta_form">
+                <button type="submit" class="bottone_carrello2" id="Pollo">
+                    Try it
+                </button>
+            </div>
+        </div>
+
+        <div class="ricetta_card">
+            <div class="ricetta_immagine">
+                <img src="Icone/Tiramisu-Recipe-Cover (1) (2).jpg" alt="">
+            </div>
+            <div class="ricetta_description">
+                <h4>TIRAMISU</h4>
+                Tiramisu is a traditional and famous Italian dessert. This spoon dessert is made up of ladyfingers
+                soaked in coffee and covered with a cream made from mascarpone, eggs and sugar.
+            </div>
+            <div class="ricetta_form">
+                <button type="submit" class="bottone_carrello2" id="Tiramisù">
+                    Try it
+                </button>
+            </div>
+        </div>
+
+        <div class="ricetta_card">
+            <div class="ricetta_immagine">
+                <img src="Icone/Lasagna (1) (1).jpg" alt="">
+            </div>
+            <div class="ricetta_description">
+                <h4>LASAGNA</h4>
+                Lasagna Bolognese is a mainstay of Italian cuisine that combines layers of fresh pasta with a rich meat
+                sauce. It is a dish full of flavors and to be shared with family and friends.
+            </div>
+            <div class="ricetta_form">
+                <button type="submit" class="bottone_carrello2" id="Lasagna">
+                    Try it
+                </button>
+            </div>
+        </div>
+
+        <div class="ricetta_card">
+            <div class="ricetta_immagine">
+                <img src="Icone/PB051362-1-768x1024 (1) (1).jpg" alt="">
+            </div>
+            <div class="ricetta_description">
+                <h4>TORTELLINI IN BRODO</h4>
+                Tortellini are small stuffed pasta parcels. They are stuffed with a mixture of meats, Parmigiano
+                Reggiano, eggs and nutmeg and then cooked in a rich meat broth and served piping hot.
+            </div>
+            <div class="ricetta_form">
+                <button type="submit" class="bottone_carrello2" id="Tortellini">
+                    Try it
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer_container">
+        <div class="social_container">
+            <div class="wrapper_social">
+                <a href="https://www.facebook.com/" class="icon facebook">
+                    <span><i class="fab fa-facebook-f"></i></span>
+                </a>
+
+                <a href="https://www.instagram.com/" class="icon instagram">
+                    <span><i class="fab fa-instagram"></i></span>
+                </a>
+
+                <a href="https://github.com/damspada/MyShoppingList" class="icon github">
+                    <span><i class="fab fa-github"></i></span>
+                </a>
+
+                <a href="https://it.linkedin.com/" class="icon linkedin">
+                    <span><i class="fab fa-linkedin"></i></span>
+                </a>
+
+                <a href="https://www.youtube.com/" class="icon youtube">
+                    <span><i class="fab fa-youtube"></i></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="contatti" id="contatti">
+            <div class="contatto">
+                <p id="tel"><img src="./Icone/phone.png">+39 340-559-5344</p>
+            </div>
+
+            <div class="contatto">
+                <p id="email"><img src="./Icone/mail.png"><a href="mailto:MyShoppingList@gmail.com">MyShoppingList@gmail.com</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="login_script.js"></script>
+<script src="search_products.js"></script>
+
+</html>

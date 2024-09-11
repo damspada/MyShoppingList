@@ -1,0 +1,23 @@
+{
+    "name": "mattiaricciardelli/my-shopping-list",
+    "autoload": {
+        "psr-4": {
+            "Mattiaricciardelli\\MyShoppingList\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mattia Raffaele Ricciardelli",
+            "email": "165891336+MattiaRicciardelli02@users.noreply.github.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^11.3",
+        "codeception/module-webdriver": "^4.0"
+    },
+    "require": {
+        "codeception/codeception": "^5.1",
+        "codeception/module-phpbrowser": "*",
+        "codeception/module-asserts": "*"
+    }
+}
