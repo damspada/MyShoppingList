@@ -7,11 +7,11 @@ class FillCartCest
     public function AggiuntaSupermercato (AcceptanceTester $I)
     {
         $I->maximizeWindow();
-        // Step 1: Go to the homepage
+ 
         $I->amOnPage('/home.html');
         $I->wait(3);
-        // Step 2: Check if you are on the homepage
-        $I->see('How do we help you?'); // Assuming there's an h1 with this text
+        
+        $I->see('How do we help you?');
 
         $I->click('Login');
 
@@ -35,7 +35,7 @@ class FillCartCest
 
         $I->click('Register a New Supermarket');
 
-            // Compila i campi del modulo
+        // Compila i campi del modulo
         $I->fillField('#Aggiungi_chainInput', 'AAAA'); // Campo Catena
         $I->fillField('#Aggiungi_nameInput', 'Tiburtina'); // Campo Nome
         $I->fillField('#Aggiungi_latitudineInput', '45.123456'); // Campo Latitudine
