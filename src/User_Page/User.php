@@ -109,4 +109,25 @@ class User
             }
         }
     }
+
+    public static function getProductsByCategory($conn, $categoria)
+    {
+        if ($categoria == "All") {
+            $sql = "SELECT * FROM `products`";
+        } else if ($categoria == "Healty") {
+            $sql = "SELECT * FROM `products` WHERE health>=8";
+        } else {
+            $sql = "SELECT * FROM `products` WHERE category = '$categoria'";
+        }
+
+        $risultato = $conn->query($sql);
+        $productsC = array();
+        if ($risultato->num_rows > 0) {
+            while ($row = $risultato->fetch_assoc()) {
+                $productsC[] = $row;
+            }
+        }
+
+        return json_encode($productsC);
+    }
 }

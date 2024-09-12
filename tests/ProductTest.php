@@ -75,7 +75,7 @@ class ProductTest extends TestCase {
     public function testGetProductsByCategoryAll()
     {
         // Test con categoria "All"
-        $result = Product::getProductsByCategory($this->conn, "All");
+        $result = User::getProductsByCategory($this->conn, "All");
         $products = json_decode($result, true);
 
         $this->assertIsArray($products);
@@ -85,7 +85,7 @@ class ProductTest extends TestCase {
     public function testGetProductsByCategoryHealthy()
     {
         // Test con categoria "Healthy"
-        $result = Product::getProductsByCategory($this->conn, "Healthy");
+        $result = User::getProductsByCategory($this->conn, "Healthy");
         $products = json_decode($result, true);
 
         $this->assertIsArray($products);
@@ -97,7 +97,7 @@ class ProductTest extends TestCase {
     public function testGetProductsBySpecificCategory()
     {
         // Test con una categoria specifica, ad esempio "Vegetali"
-        $result = Product::getProductsByCategory($this->conn, "Vegetali");
+        $result = User::getProductsByCategory($this->conn, "Vegetali");
         $products = json_decode($result, true);
 
         $this->assertIsArray($products);

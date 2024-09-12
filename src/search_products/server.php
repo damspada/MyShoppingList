@@ -1,6 +1,8 @@
 <?php
 
-require 'Product.php';
+use Mattiaricciardelli\MyShoppingList\User_page\User;
+require '../User_page/User.php';
+
 
 $servername = "127.0.0.1";
 $username = "root";
@@ -52,8 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     //Per visualizzare i prodotti della categoria desiderata
     else if (isset($_GET['Categoria'])) {
-        $category = $_GET['Categoria'];
-        echo Mattiaricciardelli\MyShoppingList\Search_products\Product::getProductsByCategory($conn, $category);
+        $categoria = $_GET['Categoria'];
+        $productsC = User::getProductsByCategory($conn, $categoria);
+        echo $productsC;
     }
 
     // Per inserire nel carrello i prodotti in base alla ricetta selezionata
