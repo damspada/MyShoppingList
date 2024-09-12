@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $admin=$_POST['admin'];
 
     // Caricamento dell'immagine
-    $target_dir = "../../../uploads/";
+    $target_dir = "../../../../uploads/";
     $target_file = $target_dir . basename($_FILES["avatar-upload"]["name"]);
 
     if ($_FILES["avatar-upload"]["error"] !== UPLOAD_ERR_OK) {

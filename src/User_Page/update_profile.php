@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $ID = $_POST['id'];
 
     
-    $target_dir = "../../../uploads/";
+    $target_dir = "../../../../uploads/";
     $target_file = $target_dir . basename($_FILES["avatar-upload"]["name"]);
     $image_changed = false;
 
