@@ -3,7 +3,7 @@ session_start();
 // Configura i dettagli dell'app GitHub
 $clientId = 'Ov23li8fPAWLW5JGKcl1';
 $clientSecret = 'e0b792dd27c7fee3b3668176f1d312c9f85fbc7f';
-$redirectUri = 'http://localhost/msl/MyShoppingList/home/callback.php'; // Assicurati che sia lo stesso di login.php
+$redirectUri = 'http://localhost/msl/MyShoppingList/src/home/callback.php'; // Assicurati che sia lo stesso di login.php
 
 $_SESSION['logged_github'] = false; // Imposta il flag di accesso GitHub nella sessione
 $_SESSION['name'] = '';
@@ -93,7 +93,7 @@ if (isset($_GET['code'])) {
 
     
     // Reindirizza l'utente alla tua applicazione
-    header('Location: http://localhost/msl/MyShoppingList/User_Page/user.html'); // Modifica questo URL secondo le tue esigenze
+    header('Location: http://localhost/msl/MyShoppingList/src/User_Page/user.html'); // Modifica questo URL secondo le tue esigenze
     exit;
    
 } else {
